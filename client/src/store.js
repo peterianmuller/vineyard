@@ -3,10 +3,10 @@ import thunk from 'redux-thunk';
 import promise from 'redux-promise';
 import logger from 'redux-logger';
 //remove or rename tempreducer once real reducers are in place
-import { tempReducer } from './reducers/temp';
+import { navReducer } from './reducers/navigation';
 
 const rootReducer = combineReducers({
-  temp: tempReducer,
+  nav: navReducer,
 });
 
 const middleware = applyMiddleware(logger(), promise, thunk);
