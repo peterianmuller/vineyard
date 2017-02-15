@@ -1,6 +1,6 @@
 import express from 'express';
-import routes from '../config/routes';
-import middleware from '../config/middleware';
+import routes from './config/routes';
+import middleware from './config/middleware';
 
 var app = express();
 middleware(app, express);
