@@ -4,9 +4,9 @@
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: Andrea Oneto
+  - __Scrum Master__: Aaron Min
+  - __Development Team Members__: Peter Muller, Jared Spenser
 
 ## Table of Contents
 
