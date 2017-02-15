@@ -4,7 +4,15 @@ import Addresses from './addresses';
 
 const Organizations = sequelize.define('organization', {
   name: Sequelize.STRING,
-  phone_number: Sequelize.STRING,
+  phoneNumber: Sequelize.STRING,
+  tier: {
+    type: Sequelize.ENUM,
+    values: [
+      'Hobbyist',
+      'Small',
+      'Large'
+    ]
+  }
 });
 
 // Addresses.belongsTo(Organizations);
