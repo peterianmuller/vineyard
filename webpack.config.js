@@ -7,11 +7,11 @@ module.exports = {
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
         loaders: [
-          'babel'
-        ],
-        include: 'client/index.js',
+          'babel-loader'
+        ]
       }
     ]
   }
