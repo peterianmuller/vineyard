@@ -11,7 +11,8 @@ class App extends React.Component {
         <MainNavBar /> 
         { React.cloneElement(this.props.children, 
 						{
-							login: this.props.login
+							login: this.props.login,
+							signup: this.props.signup
 						}
 					)
 				}

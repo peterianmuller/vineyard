@@ -13,6 +13,7 @@ var Root = props => (
       <Route path='/' component={App}>
         <IndexRedirect to='/login' />
         <Route path='/login' component={Login} />
+        <Route path='/signup' component={Signup} />
       </Route>
     </Router>
   </Provider>
