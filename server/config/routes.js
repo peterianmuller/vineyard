@@ -10,7 +10,7 @@ export default function routes(app, express) {
 
   // CONTROLLER DEPENDENCIES
   import organizationsController from '../db/controllers/organizations';
-  import addressController from '../db/controllers/addresses';
+  import addressesController from '../db/controllers/addresses';
   import vineyardsController from '../db/controllers/vineyards';
   import blocksController from '../db/controllers/blocks';
   import rowsController from '../db/controllers/rows';
@@ -20,8 +20,8 @@ export default function routes(app, express) {
   import messagesController from '../db/controllers/messages';
 
 
-  // QUESTION: IS '/api/organization' BETTER SYNTAX OR CONVENTION?
-  // QUESTION: IS IT BETTER TO ORGANIZE ROUTES BY GET/POST, OR BY ENDPOINT (ORG, ADDRESS, VINEYARD, ETC.)?
+  // QUESTION: HOW DO RESTFUL API NAMING CONVENTIONS MAP TO RELATIONAL DATA MODELS, SPECFICALLY MANY TO MANY?
+  // EXAMPLE: DO NOTES BELONG TO USERS, ROWS, BLOCKS, VINEYARDS, ORGANIZATIONS, ETC.? ALSO FOR ADDRESSES, AND USERS.
 
   // === OGRANIZATION ROUTING ===
 
@@ -32,67 +32,113 @@ export default function routes(app, express) {
   // GET ALL ORGANIZATIONS
   app.get('/api/organizations', organizationsController.getOrganizations);
   // UPDATE AN ORGANIZATION
-  app.patch('/api/organization', organizationsController.updateOrganizations);
+  app.patch('/api/organization', organizationsController.updateOrganization);
   // DELETE AN ORGANIZATION
   app.delete('/api/organization', organizationsController.deleteOrganizations);
 
   // === VINEYARD ROUTING ===
 
   // CREATE NEW VINEYARD
-  app.post('/api/vineyard', vineyardsController.newVineyard);
+  app.post('/api/organization/vineyard', vineyardsController.newVineyard);
   // GET ONE VINEYARD
-  app.get('/api/vineyard', vineyardsController.getVineyard);
+  app.get('/api/organization/vineyard', vineyardsController.getVineyard);
   // GET ALL VINEYARDS
-  app.get('/api/vineyards', vineyardsController.getVineyard);
+  app.get('/api/organization/vineyards', vineyardsController.getVineyards);
   // UPDATE AN VINEYARD
-  app.patch('/api/vineyard', vineyardsController.updateVineyard);
+  app.patch('/api/organization/vineyard', vineyardsController.updateVineyard);
   // DELETE AN VINEYARD
-  app.delete('/api/vineyard', vineyardsController.deleteVineyard);
+  app.delete('/api/organization/vineyard', vineyardsController.deleteVineyard);
 
   // === BLOCK ROUTING ===
 
   // CREATE NEW BLOCK
-  app.post('/api/block', blocksController.newBlock);
+  app.post('/api/organization/vineyard/block', blocksController.newBlock);
   // GET ONE BLOCK
-  app.get('/api/block', blocksController.getBlock);
+  app.get('/api/organization/vineyard/block', blocksController.getBlock);
   // GET ALL BLOCKS
-  app.get('/api/blocks', blocksController.getBlock);
+  app.get('/api/organization/vineyard/blocks', blocksController.getBlocks);
   // UPDATE AN BLOCK
-  app.patch('/api/block', blocksController.updateBlock);
+  app.patch('/api/organization/vineyard/block', blocksController.updateBlock);
   // DELETE AN BLOCK
-  app.delete('/api/block', blocksController.deleteBlock);
+  app.delete('/api/organization/vineyard/block', blocksController.deleteBlock);
 
   // === ROW ROUTING ===
 
   // CREATE NEW ROW
-  app.post('/api/row', rowsController.newRow);
+  app.post('/api/organization/vineyard/block/row', rowsController.newRow);
   // GET ONE ROW
-  app.get('/api/row', rowsController.getRow);
+  app.get('/api/organization/vineyard/block/row', rowsController.getRow);
   // GET ALL ROWS
-  app.get('/api/rows', rowsController.getRow);
+  app.get('/api/organization/vineyard/block/rows', rowsController.getRows);
   // UPDATE AN ROW
-  app.patch('/api/row', rowsController.updateRow);
+  app.patch('/api/organization/vineyard/block/row', rowsController.updateRow);
   // DELETE AN ROW
-  app.delete('/api/row', rowsController.deleteRow);
+  app.delete('/api/organization/vineyard/block/row', rowsController.deleteRow);
 
+  // === ADDRESS ROUTING ===
 
-  app.get('/api/address', addressController.getAddress);
-  app.get('/api/vineyard', vineyardsController.getVineyard);
-  app.get('/api/block', blocksController.getBlock);
-  app.get('/api/row', rowsController.getRow);
-  app.get('/api/user', usersController.getUser);
-  app.get('/api/note', notesController.getNote);
-  app.get('/api/alert', alertsController.getAlert);
-  app.get('/api/message', messagesController.getMessage);
+  // CREATE NEW ADDRESS
+  app.post('/api/address', addressesController.newAddress);
+  // GET ONE ADDRESS
+  app.get('/api/address', addressesController.getAddress);
+  // GET ALL ADDRESSES
+  app.get('/api/addresses', addressesController.getAddresses);
+  // UPDATE AN ADDRESS
+  app.patch('/api/address', addressesController.updateAddress);
+  // DELETE AN ADDRESS
+  app.delete('/api/address', addressesController.deleteAddress);
 
-  app.post('/api/address', addressController.newAddress);
-  app.post('/api/vineyard', vineyardsController.newVineyard);
-  app.post('/api/block', blocksController.newBlock);
-  app.post('/api/row', rowsController.newRow);
+  // === USER ROUTING ===
+
+  // CREATE NEW USER
   app.post('/api/user', usersController.newUser);
+  // GET ONE USER
+  app.get('/api/user', usersController.getUser);
+  // GET ALL USERS
+  app.get('/api/users', usersController.getUsers);
+  // UPDATE AN USER
+  app.patch('/api/user', usersController.updateUser);
+  // DELETE AN USER
+  app.delete('/api/user', usersController.deleteUser);
+
+  // === NOTE ROUTING ===
+
+  // CREATE NEW NOTE
   app.post('/api/note', notesController.newNote);
+  // GET ONE NOTE
+  app.get('/api/note', notesController.getNote);
+  // GET ALL NOTES
+  app.get('/api/notes', notesController.getNotes);
+  // UPDATE AN NOTE
+  app.patch('/api/note', notesController.updateNote);
+  // DELETE AN NOTE
+  app.delete('/api/note', notesController.deleteNote);
+
+  // === ALERT ROUTING ===
+
+  // CREATE NEW ALERT
   app.post('/api/alert', alertsController.newAlert);
+  // GET ONE ALERT
+  app.get('/api/alert', alertsController.getAlert);
+  // GET ALL ALERTS
+  app.get('/api/alerts', alertsController.getAlert);
+  // UPDATE AN ALERT
+  app.patch('/api/alert', alertsController.updateAlert);
+  // DELETE AN ALERT
+  app.delete('/api/alert', alertsController.deleteAlert);
+
+  // === MESSAGE ROUTING ===
+
+  // CREATE NEW MESSAGE
   app.post('/api/message', messagesController.newMessage);
+  // GET ONE MESSAGE
+  app.get('/api/message', messagesController.getMessage);
+  // GET ALL MESSAGES
+  app.get('/api/messages', messagesController.getMessage);
+  // UPDATE AN MESSAGE
+  app.patch('/api/message', messagesController.updateMessage);
+  // DELETE AN MESSAGE
+  app.delete('/api/message', messagesController.deleteMessage);
 
 
   app.use('*', (req, res, next) => {
