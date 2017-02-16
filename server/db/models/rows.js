@@ -39,6 +39,8 @@ const Rows = sequelize.define('row', {
       'Post-harvest',
     ]
   }
+}, {
+  timestamps: false
 });
 
 Blocks.hasOne(Rows, {
