@@ -9,6 +9,12 @@ class App extends React.Component {
     return (
       <div>
         <MainNavBar /> 
+        { React.cloneElement(this.props.children, 
+						{
+							login: this.props.login
+						}
+					)
+				}
       </div>
     );
   }
