@@ -1,7 +1,7 @@
 import 'babel-polyfill';
 import chai from 'chai';
-import { userLoginReducer } from '../../client/src/reducers/login';
-import { userSignupReducer } from '../../client/src/reducers/signup';
+import { userLoginReducer } from '../../../client/src/reducers/login';
+import { userSignupReducer } from '../../../client/src/reducers/signup';
 
 var expect = chai.expect;
 

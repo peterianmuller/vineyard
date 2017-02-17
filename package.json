@@ -6,7 +6,8 @@
   "scripts": {
     "start": "nodemon server/index.js --exec babel-node",
     "build": "webpack -d --watch",
-    "test": "mocha --recursive --compilers js:babel-core/register",
+    "test": "mocha -w test/client/config/testdom.js test/client/tests/*Tests.js",
+    "test1": "mocha --recursive --compilers js:babel-core/register .:test/client/config/compiler.js test/client/tests/*Tests.js",
     "test:watch": "npm test --watch"
   },
   "repository": {
@@ -53,6 +54,8 @@
     "babel-loader": "^6.3.0",
     "babel-preset-es2015": "^6.22.0",
     "chai": "^3.5.0",
+    "enzyme": "^2.7.1",
+    "jsdom": "^9.11.0",
     "mocha": "^3.2.0",
     "redux-logger": "^2.8.1",
     "sinon": "^1.17.7",
