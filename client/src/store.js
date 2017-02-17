@@ -1,13 +1,18 @@
 import { applyMiddleware, createStore, combineReducers } from 'redux';
 import thunk from 'redux-thunk';
-import promise from 'redux-promise';
+import promise from 'redux-promise-middleware';
 import logger from 'redux-logger';
-//remove or rename tempreducer once real reducers are in place
-import { tempReducer } from './reducers/temp';
+import { navReducer } from './reducers/navigation';
+import { userLoginReducer } from './reducers/login';
+import { userSignupReducer } from './reducers/signup';
+import { noteFormReducer } from './reducers/noteForm';
 
 const rootReducer = combineReducers({
-  temp: tempReducer,
+  nav: navReducer,
+  login: userLoginReducer,
+	signup: userSignupReducer,
+  note: noteFormReducer
 });
 
-const middleware = applyMiddleware(logger(), promise, thunk);
+const middleware = applyMiddleware(logger(), promise(), thunk);
 export default createStore(rootReducer, middleware);

@@ -6,6 +6,7 @@ import Blocks from './blocks';
 import Vineyards from './vineyards';
 
 const Notes = sequelize.define('note', {
+  title: Sequelize.STRING,
   text: {
     type: Sequelize.STRING,
     allowNull: false

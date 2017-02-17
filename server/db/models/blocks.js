@@ -7,6 +7,8 @@ const Blocks = sequelize.define('block', {
     type: Sequelize.STRING,
     allowNull: false
   }
+}, {
+  timestamps: false
 });
 
 Vineyard.hasOne(Blocks, {

@@ -1,40 +1,22 @@
 import knex from 'knex';
 import bookshelf from 'bookshelf';
 
-var db = bookshelf(knex({
-  client: 'pg',
-  connection: {
-    host : '127.0.0.1',
-    user : '',
-    password : '',
-    database : 'vineyard'
-  }
-}));
+// const db ='postgres://user:@localhost:5432/vineyard'
+// const sequelize = new Sequelize(db);
 
-db.knex.schema.hasTable('organizations').then((exists) => {
-  if (!exists) {
-    db.knex.schema.createTable('organizations', (org) => {
-      org.increments('id').primary();
-      org.string('name', 255);
-      org.string('phone_umber', 20);
-      org.string('tier', 255)
-    }).then((table) => {
-      console.log('Created Table', table);
-    });
-  }
+const sequelize = new Sequelize('vineyard', 'postgres', '1234', {
+  host: 'localhost',
+  dialect: 'postgres',
+  port: 5432
 });
 
-db.knex.schema.hasTable('vineyards').then((exists) => {
-  if (!exists) {
-    db.knex.schema.createTable('vineyards', (vineyard) => {
-      vineyard.increments('id').primary();
-      vineyard.string('name', 255).notNullable();
-      vineyard.string('phone_umber', 255);
-      vineyard.string('appellation', 255).notNullable();
-    }).then((table) => {
-      console.log('Created Table', table);
-    });
-  }
-});
+sequelize
+  .authenticate()
+  .then(function(err) {
+    console.log('Connection has been established successfully.');
+  })
+  .catch(function (err) {
+    console.log('Unable to connect to the database:', err);
+  });
 
-export { db, knex };
+export default sequelize;
