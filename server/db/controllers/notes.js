@@ -1,19 +1,11 @@
 import Notes from '../models/notes';
 
-const newNote = (req, res, next) => {
+const newNote = (params) => {
   return Notes.create({
-    title: req.body.title,
-    text: req.body.text,
-    location: req.body.location,
-    image: req.body.image
-  })
-  .then((note) => {
-    if (note) {
-      res.json(note);
-    }
-    next();
-  }).catch((err) => {
-    console.log('could not add note ', err);
+    title: params.title,
+    text: params.text,
+    location: params.location,
+    image: params.image
   });
 };
 
@@ -51,24 +43,24 @@ const getNote = (req, res, next) => {
   }
 };
 
-const getNote = (req, res, next) => {
-  return Notes.find({
-    where: Sequelize.or({
-      text: req.body.text
-    },
-    {
-      location: req.body.location
-    });
-  })
-  .then((note) => {
-    if (note) {
-      res.json(note);
-    }
-    next();
-  }).catch((err) => {
-    console.log('could not find note ', err);
-  });
-};
+// const getNote = (req, res, next) => {
+//   return Notes.find({
+//     where: Sequelize.or({
+//       text: req.body.text
+//     },
+//     {
+//       location: req.body.location
+//     }),
+//   })
+//   .then((note) => {
+//     if (note) {
+//       res.json(note);
+//     }
+//     next();
+//   }).catch((err) => {
+//     console.log('could not find note ', err);
+//   });
+// };
 // QUESTION: DO I SEARCH FOR NOTES FOR A SPECIFIC PLACE OR VINEYARD? I CAN'T IMAGINE EVER REQUESTING ALL NOTES.
 const getNotes = (req, res, next) => {};
 const updateNote = (req, res, next) => {};

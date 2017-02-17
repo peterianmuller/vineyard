@@ -3,23 +3,15 @@ import Addresses from '../models/addresses';
 // QUESTION: ALSO, IS IT BETTER TO NAME THE FILES ADDRESSESMODEL.JS AND ADDRESSESCONTROLLER.JS?
 
 // QUESTION: ARE THESE THE BASIC FUNCTION: NEW, GET, GETALL, UPDATE, DELETE?
-const newAddress = (req, res, next) => {
+const newAddress = (params) => {
   return Addresses.create({
     // QUESTION: CAN THESE ALL BE REPLACED WITH REQ.BODY, AND SEQUELIZE WILL FIGURE IT ALL OUT
-    street: req.body.street,
-    street2: req.body.street2,
-    city: req.body.city,
-    state: req.body.state,
-    zip: req.body.zip,
-    country: req.body.country
-  })
-  .then((address) => {
-    if (address) {
-      res.json(address);
-    }
-    next();
-  }).catch((err) => {
-    console.log('error adding address ', err);
+    street: params.street,
+    street2: params.street2,
+    city: params.city,
+    state: params.state,
+    zip: params.zip,
+    country: params.country
   });
 };
 const getAddress = (req, res, next) => {};

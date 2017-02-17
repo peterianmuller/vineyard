@@ -1,19 +1,10 @@
 import Organizations from '../models/organizations';
 
-const newOrganization = (req, res, next) => {
+const newOrganization = (params) => {
   return Organizations.create({
-    name: req.body.name,
-    phoneNumber: req.body.phoneNumber,
-    tier: req.body.tier
-  })
-  .then((organization) => {
-    if (organization) {
-      // QUESTION: BETTER TO USE RES.SEND?
-      res.json(organization);
-    }
-    next();
-  }).catch((err) => {
-    console.log('could not add organization ', err);
+    name: params.name,
+    phoneNumber: params.phoneNumber,
+    tier: params.tier
   });
 }
 

@@ -1,20 +1,11 @@
 import Vineyards from '../models/vineyards';
 
-const newVineyard = (req, res, next) => {
+const newVineyard = (params) => {
   return Vineyards.create({
-    name: req.body.name,
-    phoneNumber: req.body.phoneNumber,
-    appellation: req.body.appellation
+    name: params.name,
+    phoneNumber: params.phoneNumber,
+    appellation: params.appellation
   })
-  .then((vineyard) => {
-    if (vineyard) {
-      // QUESTION: BETTER TO USE RES.SEND?
-      res.json(vineyard);
-    }
-    next();
-  }).catch((err) => {
-    console.log('could not add vineyard ', err);
-  });
 };
 // QUESTION: SHOULD WE ADD SEQUELIZE.AND FOR ORGANIZATION NAME IN CASE MULTIPLE VINEYARDS SHARE THE SAME NAME?
 const getVineyard = (req, res, next) => {

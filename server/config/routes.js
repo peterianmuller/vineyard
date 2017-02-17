@@ -9,7 +9,7 @@ import rowsController from '../db/controllers/rows';
 import usersController from '../db/controllers/users';
 import notesController from '../db/controllers/notes';
 import alertsController from '../db/controllers/alerts';
-import messagesController from '../db/controllers/messages';
+// import messagesController from '../db/controllers/messages';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
@@ -26,120 +26,178 @@ export default function routes(app, express) {
   // === OGRANIZATION ROUTING ===
 
   // CREATE NEW ORGANIZATION
-  app.post('/api/organization', organizationsController.newOrganization);
-  // GET ONE ORGANIZATION
-  app.get('/api/organization', organizationsController.getOrganization);
-  // GET ALL ORGANIZATIONS
-  app.get('/api/organizations', organizationsController.getOrganizations);
-  // UPDATE AN ORGANIZATION
-  app.patch('/api/organization', organizationsController.updateOrganization);
-  // DELETE AN ORGANIZATION
-  // app.delete('/api/organization', organizationsController.deleteOrganizations);
+  app.post('/api/organization', (req, res, next) => {
+    const params = {
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      tier: req.body.tier
+    };
+    return organizationsController.newOrganization(params)
+    .then((organization) => {
+      if (organization) {
+        // QUESTION: BETTER TO USE RES.SEND?
+        res.json(organization);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add organization ', err);
+    });
+
+  });
 
   // === VINEYARD ROUTING ===
 
   // CREATE NEW VINEYARD
-  app.post('/api/organization/vineyard', vineyardsController.newVineyard);
-  // GET ONE VINEYARD
-  app.get('/api/organization/vineyard', vineyardsController.getVineyard);
-  // GET ALL VINEYARDS
-  app.get('/api/organization/vineyards', vineyardsController.getVineyards);
-  // UPDATE AN VINEYARD
-  app.patch('/api/organization/vineyard', vineyardsController.updateVineyard);
-  // DELETE AN VINEYARD
-  // app.delete('/api/organization/vineyard', vineyardsController.deleteVineyard);
+  app.post('/api/organization/vineyard', (req, res, next) => {
+    const params = {
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      appellation: req.body.appellation
+    };
+    return vineyardsController.newVineyard(params)
+    .then((vineyard) => {
+      if (vineyard) {
+        // QUESTION: BETTER TO USE RES.SEND?
+        res.json(vineyard);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add vineyard ', err);
+    });
+  });
 
   // === BLOCK ROUTING ===
 
   // CREATE NEW BLOCK
-  app.post('/api/organization/vineyard/block', blocksController.newBlock);
-  // GET ONE BLOCK
-  app.get('/api/organization/vineyard/block', blocksController.getBlock);
-  // GET ALL BLOCKS
-  app.get('/api/organization/vineyard/blocks', blocksController.getBlocks);
-  // UPDATE AN BLOCK
-  app.patch('/api/organization/vineyard/block', blocksController.updateBlock);
-  // DELETE AN BLOCK
-  // app.delete('/api/organization/vineyard/block', blocksController.deleteBlock);
+  app.post('/api/organization/vineyard/block', (req, res, next) => {
+    const params = {
+      number: req.body.number
+    };
+    return blocksController.newBlock(params)
+    .then((block) => {
+      if (block) {
+        res.json(block);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add block ', err);
+    });
+  });
 
   // === ROW ROUTING ===
 
   // CREATE NEW ROW
-  app.post('/api/organization/vineyard/block/row', rowsController.newRow);
-  // GET ONE ROW
-  app.get('/api/organization/vineyard/block/row', rowsController.getRow);
-  // GET ALL ROWS
-  app.get('/api/organization/vineyard/block/rows', rowsController.getRows);
-  // UPDATE AN ROW
-  app.patch('/api/organization/vineyard/block/row', rowsController.updateRow);
-  // DELETE AN ROW
-  // app.delete('/api/organization/vineyard/block/row', rowsController.deleteRow);
+  app.post('/api/organization/vineyard/block/row', (req, res, next) => {
+    const params = {
+      number: req.body.number,
+      point1: req.body.point1,
+      point2: req.body.point2,
+      clone: req.body.clone,
+      varietal: req.body.varietal,
+      rootStock: req.body.rootStock,
+      status: req.body.status
+    };
+    return rowsController.newRow(params)
+    .then((row) => {
+      if (row) {
+        res.json(row);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add row ', err);
+    });
+  });
 
   // === ADDRESS ROUTING ===
 
   // CREATE NEW ADDRESS
-  app.post('/api/address', addressesController.newAddress);
-  // GET ONE ADDRESS
-  app.get('/api/address', addressesController.getAddress);
-  // GET ALL ADDRESSES
-  app.get('/api/addresses', addressesController.getAddresses);
-  // UPDATE AN ADDRESS
-  app.patch('/api/address', addressesController.updateAddress);
-  // DELETE AN ADDRESS
-  // app.delete('/api/address', addressesController.deleteAddress);
+  app.post('/api/address', (req, res, next) => {
+    const params = {
+      street: req.body.street,
+      street2: req.body.street2,
+      city: req.body.city,
+      state: req.body.state,
+      zip: req.body.zip,
+      country: req.body.country
+    };
+    return addressesController.newAddress(params)
+    .then((address) => {
+      if (address) {
+        res.json(address);
+      }
+      next();
+    }).catch((err) => {
+      console.log('error adding address ', err);
+    });
+  });
 
   // === USER ROUTING ===
 
   // CREATE NEW USER
-  app.post('/api/user', usersController.newUser);
-  // GET ONE USER
-  app.get('/api/user', usersController.getUser);
-  // GET ALL USERS
-  app.get('/api/users', usersController.getUsers);
-  // UPDATE AN USER
-  app.patch('/api/user', usersController.updateUser);
-  // DELETE AN USER
-  // app.delete('/api/user', usersController.deleteUser);
+  app.post('/api/user', (req, res, user) => {
+    const params = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      password: req.body.password,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      securityQuestion: req.body.securityQuestion,
+      securityAnswer: req.body.securityAnswer,
+      birthdate: req.body.birthdate,
+      accountRestrictions: req.body.accountRestrictions
+    };
+    return usersController.newUser(params)
+    .then((user) => {
+      if (user) {
+        res.json(user);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add user ', err);
+    });
+  });
 
   // === NOTE ROUTING ===
 
   // CREATE NEW NOTE
-  app.post('/api/note', notesController.newNote);
-  // GET ONE NOTE
-  app.get('/api/note', notesController.getNote);
-  // GET ALL NOTES
-  app.get('/api/notes', notesController.getNotes);
-  // UPDATE AN NOTE
-  app.patch('/api/note', notesController.updateNote);
-  // DELETE AN NOTE
-  // app.delete('/api/note', notesController.deleteNote);
+  app.post('/api/note', (req, res, next) => {
+    const params = {
+      title: req.body.title,
+      text: req.body.text,
+      location: req.body.location,
+      image: req.body.image
+    };
+    return notesController.newNote(params)
+    .then((note) => {
+      if (note) {
+        res.json(note);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add note ', err);
+    });
+  });
 
   // === ALERT ROUTING ===
 
   // CREATE NEW ALERT
-  app.post('/api/alert', alertsController.newAlert);
-  // GET ONE ALERT
-  app.get('/api/alert', alertsController.getAlert);
-  // GET ALL ALERTS
-  app.get('/api/alerts', alertsController.getAlert);
-  // UPDATE AN ALERT
-  app.patch('/api/alert', alertsController.updateAlert);
-  // DELETE AN ALERT
-  // app.delete('/api/alert', alertsController.deleteAlert);
-
-  // === MESSAGE ROUTING ===
-
-  // CREATE NEW MESSAGE
-  app.post('/api/message', messagesController.newMessage);
-  // GET ONE MESSAGE
-  app.get('/api/message', messagesController.getMessage);
-  // GET ALL MESSAGES
-  app.get('/api/messages', messagesController.getMessage);
-  // UPDATE AN MESSAGE
-  app.patch('/api/message', messagesController.updateMessage);
-  // DELETE AN MESSAGE
-  // app.delete('/api/message', messagesController.deleteMessage);
-
+  app.post('/api/alert', (req, res, next) => {
+    const params = {
+      text: req.body.text,
+      location: req.body.location,
+      alertTime: req.body.alertTime
+    };
+    return alertsController.newAlert(params)
+    .then((alert) => {
+      if (alert) {
+        res.json(alert);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add alert ', err);
+    });
+  });
 
   app.use('*', (req, res, next) => {
     res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));

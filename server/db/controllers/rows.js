@@ -1,22 +1,14 @@
 import Rows from '../models/rows';
 
-const newRow = (req, res, next) => {
+const newRow = (params) => {
   return Rows.create({
-    number: req.body.number,
-    point1: req.body.point1,
-    point2: req.body.point2,
-    clone: req.body.clone,
-    varietal: req.body.varietal,
-    rootStock: req.body.rootStock,
-    status: req.body.status
-  })
-  .then((row) => {
-    if (row) {
-      res.json(row);
-    }
-    next();
-  }).catch((err) => {
-    console.log('could not add row ', err);
+    number: params.number,
+    point1: params.point1,
+    point2: params.point2,
+    clone: params.clone,
+    varietal: params.varietal,
+    rootStock: params.rootStock,
+    status: params.status
   });
 };
 // TODO: FIGURE OUT HOW TO SEARCH BY ANY PARAMETER BY WHICH WE'RE LOOKING FOR A ROW, EITHER BY LOCATION, NUMBER, ROOTSTOCK

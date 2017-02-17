@@ -3,14 +3,6 @@ import Blocks from '../models/blocks';
 const newBlock = (req, res, next) => {
   return Blocks.create({
     number: req.body.number
-  })
-  .then((block) => {
-    if (block) {
-      res.json(block);
-    }
-    next();
-  }).catch((err) => {
-    console.log('could not add block ', err);
   });
 };
 
