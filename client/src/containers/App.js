@@ -1,16 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
+import MainNavBar from '../components/MainNavBar';
 
-export default class App extends React.Component {
+class App extends React.Component {
   
   render() {
     return (
       <div>
-        <h1>It renders</h1>
+        <MainNavBar /> 
+        { React.cloneElement(this.props.children, 
+						{
+							login: this.props.login,
+							signup: this.props.signup
+						}
+					)
+				}
       </div>
     );
   }
 }
 
-//export default connect(state => state)(App);
+export default connect(state => state)(App);
