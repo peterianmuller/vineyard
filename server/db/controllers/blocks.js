@@ -58,7 +58,7 @@ const deleteBlock = (req, res, next) => {
     next();
   }).catch((err) => {
     console.log('could not delete block', err);
-  }):
+  });
 };
 
 export default {

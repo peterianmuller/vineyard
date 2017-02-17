@@ -47,9 +47,7 @@ const getOrganizations = (req, res, next) => {
   });
 };
 // TODO: FIGURE OUT WHETHER TO USE UPDATE, OR TO FIND THE ORGANIZATION AND CHANGE THE DIFFERENT ATTRIBUTE.
-const updateOrganization = (req, res, next) => {
-  return Organizations.
-};
+const updateOrganization = (req, res, next) => {};
 // TODO: TEST IF THIS METHOD OF DELETION WORKS
 const deleteOrganization = (req, res, next) => {
   return Organizations.find({

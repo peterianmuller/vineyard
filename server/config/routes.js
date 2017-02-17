@@ -1,27 +1,27 @@
 import path from 'path';
-import bodyParser from 'body-parser';
+
+// CONTROLLER DEPENDENCIES
+import organizationsController from '../db/controllers/organizations';
+import addressesController from '../db/controllers/addresses';
+import vineyardsController from '../db/controllers/vineyards';
+import blocksController from '../db/controllers/blocks';
+import rowsController from '../db/controllers/rows';
+import usersController from '../db/controllers/users';
+import notesController from '../db/controllers/notes';
+import alertsController from '../db/controllers/alerts';
+import messagesController from '../db/controllers/messages';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
 
-  // ================================
-  // DATA ENDPOINT ROUTING
-  // ================================
-
-  // CONTROLLER DEPENDENCIES
-  import organizationsController from '../db/controllers/organizations';
-  import addressesController from '../db/controllers/addresses';
-  import vineyardsController from '../db/controllers/vineyards';
-  import blocksController from '../db/controllers/blocks';
-  import rowsController from '../db/controllers/rows';
-  import usersController from '../db/controllers/users';
-  import notesController from '../db/controllers/notes';
-  import alertsController from '../db/controllers/alerts';
-  import messagesController from '../db/controllers/messages';
 
 
   // QUESTION: HOW DO RESTFUL API NAMING CONVENTIONS MAP TO RELATIONAL DATA MODELS, SPECFICALLY MANY TO MANY?
   // EXAMPLE: DO NOTES BELONG TO USERS, ROWS, BLOCKS, VINEYARDS, ORGANIZATIONS, ETC.? ALSO FOR ADDRESSES, AND USERS.
+
+  // ================================
+  // DATA ENDPOINT ROUTING
+  // ================================
 
   // === OGRANIZATION ROUTING ===
 
@@ -34,7 +34,7 @@ export default function routes(app, express) {
   // UPDATE AN ORGANIZATION
   app.patch('/api/organization', organizationsController.updateOrganization);
   // DELETE AN ORGANIZATION
-  app.delete('/api/organization', organizationsController.deleteOrganizations);
+  // app.delete('/api/organization', organizationsController.deleteOrganizations);
 
   // === VINEYARD ROUTING ===
 
@@ -47,7 +47,7 @@ export default function routes(app, express) {
   // UPDATE AN VINEYARD
   app.patch('/api/organization/vineyard', vineyardsController.updateVineyard);
   // DELETE AN VINEYARD
-  app.delete('/api/organization/vineyard', vineyardsController.deleteVineyard);
+  // app.delete('/api/organization/vineyard', vineyardsController.deleteVineyard);
 
   // === BLOCK ROUTING ===
 
@@ -60,7 +60,7 @@ export default function routes(app, express) {
   // UPDATE AN BLOCK
   app.patch('/api/organization/vineyard/block', blocksController.updateBlock);
   // DELETE AN BLOCK
-  app.delete('/api/organization/vineyard/block', blocksController.deleteBlock);
+  // app.delete('/api/organization/vineyard/block', blocksController.deleteBlock);
 
   // === ROW ROUTING ===
 
@@ -73,7 +73,7 @@ export default function routes(app, express) {
   // UPDATE AN ROW
   app.patch('/api/organization/vineyard/block/row', rowsController.updateRow);
   // DELETE AN ROW
-  app.delete('/api/organization/vineyard/block/row', rowsController.deleteRow);
+  // app.delete('/api/organization/vineyard/block/row', rowsController.deleteRow);
 
   // === ADDRESS ROUTING ===
 
@@ -86,7 +86,7 @@ export default function routes(app, express) {
   // UPDATE AN ADDRESS
   app.patch('/api/address', addressesController.updateAddress);
   // DELETE AN ADDRESS
-  app.delete('/api/address', addressesController.deleteAddress);
+  // app.delete('/api/address', addressesController.deleteAddress);
 
   // === USER ROUTING ===
 
@@ -99,7 +99,7 @@ export default function routes(app, express) {
   // UPDATE AN USER
   app.patch('/api/user', usersController.updateUser);
   // DELETE AN USER
-  app.delete('/api/user', usersController.deleteUser);
+  // app.delete('/api/user', usersController.deleteUser);
 
   // === NOTE ROUTING ===
 
@@ -112,7 +112,7 @@ export default function routes(app, express) {
   // UPDATE AN NOTE
   app.patch('/api/note', notesController.updateNote);
   // DELETE AN NOTE
-  app.delete('/api/note', notesController.deleteNote);
+  // app.delete('/api/note', notesController.deleteNote);
 
   // === ALERT ROUTING ===
 
@@ -125,7 +125,7 @@ export default function routes(app, express) {
   // UPDATE AN ALERT
   app.patch('/api/alert', alertsController.updateAlert);
   // DELETE AN ALERT
-  app.delete('/api/alert', alertsController.deleteAlert);
+  // app.delete('/api/alert', alertsController.deleteAlert);
 
   // === MESSAGE ROUTING ===
 
@@ -138,10 +138,10 @@ export default function routes(app, express) {
   // UPDATE AN MESSAGE
   app.patch('/api/message', messagesController.updateMessage);
   // DELETE AN MESSAGE
-  app.delete('/api/message', messagesController.deleteMessage);
+  // app.delete('/api/message', messagesController.deleteMessage);
 
 
   app.use('*', (req, res, next) => {
     res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
   });
-}
+};
