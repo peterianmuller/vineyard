@@ -17,11 +17,46 @@ export function noteFormReducer(state = defaultForm, action) {
         ...state,
         username: action.value
       };
-    case "SET_NOTE_FORM_PASSWORD":
+    case "SET_NOTE_FORM_VINEYARD":
       return {
         ...state,
-        password: action.value
+        vineyard: action.value
       };
+    case "SET_NOTE_FORM_BLOCK": 
+      return {
+        ...state,
+        block: action.value
+      }
+    case "SET_NOTE_FORM_ROW":
+      return {
+        ...state,
+        row: action.value
+      }
+    case "SET_NOTE_FORM_ROWSTART":
+      return {
+        ...state,
+        rowStart: action.value
+      }
+    case "SET_NOTE_FORM_ROWEND":
+      return {
+        ...state,
+        rowEnd: action.value
+      }
+    case "SET_NOTE_FORM_LAT":
+      return {
+        ...state,
+        lat: action.value
+      }
+    case "SET_NOTE_FORM_LON":
+      return {
+        ...state,
+        lon: action.value
+      }
+    case "SET_NOTE_FORM_TEXTAREA":
+      return {
+        ...state,
+        textArea: action.value
+      }
     default:
       return state;
   }
