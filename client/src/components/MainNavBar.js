@@ -25,8 +25,8 @@ export default class NavBar extends React.Component {
               <NavItem eventKey={4} href="#">Write Note</NavItem>
             </Nav>
             <Nav pullRight>
-              <NavItem href="#">Login</NavItem>
-              <NavItem href="#">Register</NavItem>
+              <NavItem href="/login">Login</NavItem>
+              <NavItem href="/signup">Sign Up</NavItem>
               <NavItem href="#">Log Out</NavItem>
             </Nav>
           </Navbar.Collapse>

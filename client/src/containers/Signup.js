@@ -6,12 +6,12 @@ import { setSignupItem } from '../actions/signup';
 export default props => (
 	<Grid>
     <Row>
-      <Col xsOffset={2} xs={8} mdOffset={3} md={4}>
+      <Col xsOffset={2} xs={8} mdOffset={4} md={4}>
         <h2>Sign up here!</h2>
       </Col>
     </Row>
 	  <Row>
-	    <Col xsOffset={2} xs={8} mdOffset={3} md={4}>
+	    <Col xsOffset={2} xs={8} mdOffset={4} md={4}>
 	      <Form>
 	        <FormGroup >
 	          <ControlLabel>Username</ControlLabel>
@@ -50,15 +50,17 @@ export default props => (
             <Col xs={6} md={6}>
 	            <ControlLabel>Last name</ControlLabel>
             </Col>
-            <Col xs={6} md={6}>
+            <Col xs={6}>
 	            <FormControl 
+                bsClass="form-control multiColumnInput"
 						  	value={props.signup.firstName} 
 						  	onChange={ handleItemChange.bind(null, setSignupItem, 'first_name') } 
 						  	placeholder='First Name' 
 						  />
             </Col>
-            <Col xs={6} md={6}>
+            <Col xs={6}>
 	            <FormControl 
+                bsClass="form-control multiColumnInput"
 						  	value={props.signup.lastName} 
 						  	onChange={ handleItemChange.bind(null, setSignupItem, 'last_name') } 
 						  	placeholder='Last Name' 
@@ -73,6 +75,7 @@ export default props => (
           <Row>
             <Col xs={4}>
 	            <FormControl 
+                bsClass="form-control multiColumnInput"
 						  	value={props.signup.birthDay} 
 						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_day') } 
 						  	placeholder='Day' 
@@ -80,6 +83,7 @@ export default props => (
             </Col>
             <Col xs={4}>
 	            <FormControl 
+                bsClass="form-control multiColumnInput"
 						  	value={props.signup.birthMonth} 
 						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_month') } 
 						  	placeholder='Month' 
@@ -87,6 +91,7 @@ export default props => (
             </Col>
             <Col xs={4}>
 	            <FormControl 
+                bsClass="form-control multiColumnInput"
 						  	value={props.signup.birthYear} 
 						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_year') } 
 						  	placeholder='Year' 
