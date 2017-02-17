@@ -1,5 +1,5 @@
 import chai from 'chai';
-import * as loginActions from '../../client/src/actions/login'; 
+import * as loginActions from '../../../client/src/actions/login'; 
 
 var expect = chai.expect;
 
