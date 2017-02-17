@@ -1,5 +1,5 @@
 
-export function setSignup(item, value) {
+export function setSignupItem(item, value) {
   var toReturn =  {
     value
   };

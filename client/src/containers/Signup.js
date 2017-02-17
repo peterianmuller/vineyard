@@ -28,14 +28,16 @@ export default props => (
 						/>
 	          <ControlLabel>Password</ControlLabel>
 	          <FormControl 
+              type='password'
 							value={props.signup.password} 
 							onChange={ handleItemChange.bind(null, setSignupItem, 'password') } 
 							placeholder='Password' 
 						/>
 	          <ControlLabel>Confirm Password</ControlLabel>
 	          <FormControl 
+              type='password'
 							value={props.signup.confirmPassword} 
-							onChange={ handleItemChange.bind(null, setSignupItem, 'confirmPassword') } 
+							onChange={ handleItemChange.bind(null, setSignupItem, 'confirm_password') } 
 							placeholder='Confirm password' 
 						/>
 	        </FormGroup>
@@ -51,14 +53,14 @@ export default props => (
             <Col xs={6} md={6}>
 	            <FormControl 
 						  	value={props.signup.firstName} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'firstName') } 
+						  	onChange={ handleItemChange.bind(null, setSignupItem, 'first_name') } 
 						  	placeholder='First Name' 
 						  />
             </Col>
             <Col xs={6} md={6}>
 	            <FormControl 
 						  	value={props.signup.lastName} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'lastName') } 
+						  	onChange={ handleItemChange.bind(null, setSignupItem, 'last_name') } 
 						  	placeholder='Last Name' 
 						  />
             </Col>
@@ -72,27 +74,33 @@ export default props => (
             <Col xs={4}>
 	            <FormControl 
 						  	value={props.signup.birthDay} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birthDay') } 
+						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_day') } 
 						  	placeholder='Day' 
 						  />
             </Col>
             <Col xs={4}>
 	            <FormControl 
 						  	value={props.signup.birthMonth} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birthMonth') } 
+						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_month') } 
 						  	placeholder='Month' 
 						  />
             </Col>
             <Col xs={4}>
 	            <FormControl 
 						  	value={props.signup.birthYear} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birthYear') } 
+						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_year') } 
 						  	placeholder='Year' 
 						  />
             </Col>
           </Row>
         </Form>
-        <Button bsStyle="primary">Submit</Button> 
+        <Button 
+          bsStyle="primary" 
+          disabled={ 
+            props.signup.password === props.signup.confirm_password 
+              && props.signup.password != '' ? 
+                false : 
+                true }>Submit</Button> 
 	    </Col>
 	  </Row>
 	</Grid>
