@@ -5,17 +5,7 @@ import {FormGroup, ControlLabel, HelpBlock, FormControl, Button, Form} from 'rea
 export default class FormPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      username:'',
-      vineyard: '',
-      block: '',
-      row: '',
-      rowStart: '',
-      rowEnd: '',
-      lat: '',
-      lon: '',
-      textArea: ''
-    };
+    this.state = ;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -26,13 +16,6 @@ export default class FormPage extends React.Component {
     console.log(this.state);
   }
   
-  // getValidationState() {
-  //   const length = this.state.value.length;
-  //   if (length > 10) return 'success';
-  //   else if (length > 5) return 'warning';
-  //   else if (length > 0) return 'error';
-  // },
-
   handleChange(e) {
     const target = e.target;
     const value = target.value;
@@ -41,8 +24,6 @@ export default class FormPage extends React.Component {
     this.setState({
       [name]: value
     });
-   // console.log(this.state);
-
   }
 
   render() {
