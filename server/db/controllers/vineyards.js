@@ -16,7 +16,7 @@ const newVineyard = (req, res, next) => {
     console.log('could not add vineyard ', err);
   });
 };
-
+// QUESTION: SHOULD WE ADD SEQUELIZE.AND FOR ORGANIZATION NAME IN CASE MULTIPLE VINEYARDS SHARE THE SAME NAME?
 const getVineyard = (req, res, next) => {
   return Vineyards.find({
     where: {
