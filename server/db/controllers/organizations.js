@@ -13,7 +13,7 @@ const newOrganization = (req, res, next) => {
     }
     next();
   }).catch((err) => {
-    console.log('error adding orginzation ', err);
+    console.log('error adding organization ', err);
   });
 }
 
@@ -30,7 +30,7 @@ const getOrganization = (req, res, next) => {
     }
     next();
   }).catch((err) => {
-    console.log('could not find orginzation ', err);
+    console.log('could not find organization ', err);
   });
 };
 
@@ -43,14 +43,14 @@ const getOrganizations = (req, res, next) => {
     }
     next();
   }).catch((err) => {
-    console.log('could not find orginzations ', err);
+    console.log('could not find organizations ', err);
   });
 };
 // TODO: FIGURE OUT WHETHER TO USE UPDATE, OR TO FIND THE ORGANIZATION AND CHANGE THE DIFFERENT ATTRIBUTE.
 const updateOrganization = (req, res, next) => {
   return Organizations.
 };
-
+// TODO: TEST IF THIS METHOD OF DELETION WORKS
 const deleteOrganization = (req, res, next) => {
   return Organizations.find({
     where: {
@@ -60,6 +60,7 @@ const deleteOrganization = (req, res, next) => {
   .then((organization) => {
     if (organization) {
       organization.destroy();
+      console.log('organization deleted');
     }
     next();
   }).catch((err) => {
