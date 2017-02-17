@@ -13,7 +13,7 @@ const newOrganization = (req, res, next) => {
     }
     next();
   }).catch((err) => {
-    console.log('error adding organization ', err);
+    console.log('could not add organization ', err);
   });
 }
 

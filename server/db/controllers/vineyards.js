@@ -13,7 +13,7 @@ const newVineyard = (req, res, next) => {
     }
     next();
   }).catch((err) => {
-    console.log('error adding vineyard ', err);
+    console.log('could not add vineyard ', err);
   });
 };
 
