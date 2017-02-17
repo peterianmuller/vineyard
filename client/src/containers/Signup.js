@@ -1,4 +1,5 @@
 import React from 'react';
+import NameBirthdateInput from '../components/NameBirthdateInput';
 import { Button, Col, ControlLabel, Form, FormControl, FormGroup, Grid, Row } from 'react-bootstrap';
 import { handleItemChange } from '../helpers/changeHandlers';
 import { setSignupItem } from '../actions/signup';
@@ -20,12 +21,6 @@ export default props => (
 							onChange={ handleItemChange.bind(null, setSignupItem, 'username') } 
 							placeholder='Username' 
 						/>
-	          <ControlLabel>Email address</ControlLabel>
-	          <FormControl 
-							value={props.signup.email} 
-							onChange={ handleItemChange.bind(null, setSignupItem, 'email') } 
-							placeholder='Email' 
-						/>
 	          <ControlLabel>Password</ControlLabel>
 	          <FormControl 
               type='password'
@@ -42,65 +37,13 @@ export default props => (
 						/>
 	        </FormGroup>
 	      </Form>
-        <Form inline>
-          <Row>
-            <Col xs={6} md={6}>
-	            <ControlLabel>First name</ControlLabel>
-            </Col>
-            <Col xs={6} md={6}>
-	            <ControlLabel>Last name</ControlLabel>
-            </Col>
-            <Col xs={6}>
-	            <FormControl 
-                bsClass="form-control multiColumnInput"
-						  	value={props.signup.firstName} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'first_name') } 
-						  	placeholder='First Name' 
-						  />
-            </Col>
-            <Col xs={6}>
-	            <FormControl 
-                bsClass="form-control multiColumnInput"
-						  	value={props.signup.lastName} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'last_name') } 
-						  	placeholder='Last Name' 
-						  />
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={12}>
-              <ControlLabel>Birthdate</ControlLabel>
-            </Col>
-          </Row>
-          <Row>
-            <Col xs={4}>
-	            <FormControl 
-                bsClass="form-control multiColumnInput"
-						  	value={props.signup.birthDay} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_day') } 
-						  	placeholder='Day' 
-						  />
-            </Col>
-            <Col xs={4}>
-	            <FormControl 
-                bsClass="form-control multiColumnInput"
-						  	value={props.signup.birthMonth} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_month') } 
-						  	placeholder='Month' 
-						  />
-            </Col>
-            <Col xs={4}>
-	            <FormControl 
-                bsClass="form-control multiColumnInput"
-						  	value={props.signup.birthYear} 
-						  	onChange={ handleItemChange.bind(null, setSignupItem, 'birth_year') } 
-						  	placeholder='Year' 
-						  />
-            </Col>
-          </Row>
-        </Form>
+        <NameBirthdateInput
+          setItem={ setSignupItem }
+          signup={ props.signup }
+        />
         <Button 
           bsStyle="primary" 
+          bsClass="btn pull-right btn-primary"
           disabled={ 
             props.signup.password === props.signup.confirm_password 
               && props.signup.password != '' ? 
