@@ -5,11 +5,13 @@ import logger from 'redux-logger';
 import { navReducer } from './reducers/navigation';
 import { userLoginReducer } from './reducers/login';
 import { userSignupReducer } from './reducers/signup';
+import { noteFormReducer } from './reducers/noteForm';
 
 const rootReducer = combineReducers({
   nav: navReducer,
   login: userLoginReducer,
-	signup: userSignupReducer
+	signup: userSignupReducer,
+  note: noteFormReducer
 });
 
 const middleware = applyMiddleware(logger(), promise(), thunk);
