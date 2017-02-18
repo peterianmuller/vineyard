@@ -69,6 +69,7 @@
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
     "postgresql": "0.0.1",
+    "react-addons-test-utils": "^15.4.2",
     "redux-logger": "^2.8.1",
     "sinon": "^1.17.7",
     "superagent": "^3.4.3",
