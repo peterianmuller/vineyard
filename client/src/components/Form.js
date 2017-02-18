@@ -1,11 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import NoteFormInput from './NoteFormInput';
-import { Col, Row, FormGroup, ControlLabel, HelpBlock, InputGroup, FormControl, Button, Form } from 'react-bootstrap';
-import { handleItemChange } from '../helpers/changeHandlers';
-import { appendNoteFormItem, setCurrentlyRecording, setNoteFormItem, postNote } from '../actions/noteForm';
-import recog from '../helpers/recognition';
-
+import { Form } from 'react-bootstrap';
 
 export default class FormPage extends React.Component {
   constructor(props) {
@@ -36,5 +32,5 @@ export default class FormPage extends React.Component {
       </Form>
     );
   }
-};
+}
 
