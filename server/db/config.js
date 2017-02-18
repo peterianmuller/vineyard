@@ -1,6 +1,4 @@
-import knex from 'knex';
-import bookshelf from 'bookshelf';
-
+import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize('vineyard', null, null, {
   host: 'localhost',
