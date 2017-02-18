@@ -11,6 +11,7 @@ const Notes = sequelize.define('note', {
     type: Sequelize.STRING,
     allowNull: false
   },
+  // ADD NOTE AUTHOR
   location: {
     // type: Sequelize.GEOGRAPHY(POINT),
     type: Sequelize.STRING,
