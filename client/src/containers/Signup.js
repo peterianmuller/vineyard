@@ -5,11 +5,28 @@ import { handleItemChange } from '../helpers/changeHandlers';
 import { setSignupItem } from '../actions/signup';
 
 export default class Signup extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
   getPasswordValidationState() {
     if (this.props.signup.password === '' &&
         this.props.signup.confirm_password === '') return null;
     else if (this.props.signup.password !== this.props.signup.confirm_password) return 'error';
     else return 'success';
+  }
+
+  buttonStatus() {
+    return !(this.props.signup.password === this.props.signup.confirm_password && 
+      Object.keys(this.props.signup).reduce((acc, key)  => {
+        return this.props.signup[key] !== '' && acc;
+      }, true));
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
   }
 
   render() {
@@ -55,11 +72,7 @@ export default class Signup extends React.Component {
             <Button 
               bsStyle="primary" 
               bsClass="btn pull-right btn-primary"
-              disabled={ 
-                this.props.signup.password === this.props.signup.confirm_password 
-                  && this.props.signup.password != '' ? 
-                    false : 
-                    true }>Submit</Button> 
+              disabled={ this.buttonStatus() }>Submit</Button> 
 	        </Col>
 	      </Row>
 	    </Grid>
