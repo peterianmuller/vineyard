@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize('vineyard', 'postgres', '123', {
+const sequelize = new Sequelize('vineyard', null, null, {
   host: 'localhost',
   dialect: 'postgres',
   port: 5432
@@ -13,6 +13,6 @@ sequelize
   })
   .catch(function (err) {
     console.log('Unable to connect to the database:', err);
-  });
+});
 
 export default sequelize;
