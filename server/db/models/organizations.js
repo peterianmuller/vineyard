@@ -11,3 +11,4 @@ const Organizations = sequelize.define('organization', {
 
 
 export default Organizations;
+//this is my edit
