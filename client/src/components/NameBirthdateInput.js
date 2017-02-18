@@ -1,9 +1,9 @@
 import React from 'react';
-import { Col, ControlLabel, Form, FormControl, Row } from 'react-bootstrap'; 
+import { Col, ControlLabel, Form, FormControl, FormGroup, Row } from 'react-bootstrap'; 
 import { handleItemChange } from '../helpers/changeHandlers';
 
 export default props => (
-  <Form inline>
+  <FormGroup>
     <Row>
       <Col xs={12}>
 	      <ControlLabel>Email address</ControlLabel>
@@ -74,5 +74,5 @@ export default props => (
 	  	  />
       </Col>
     </Row>
-  </Form>
+  </FormGroup>
 );
