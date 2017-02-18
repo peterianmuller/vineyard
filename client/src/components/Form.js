@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {FormGroup, ControlLabel, HelpBlock, FormControl, Button, Form} from 'react-bootstrap';
+import { handleItemChange } from '../helpers/changeHandlers';
+import { setNoteFormItem } from '../actions/noteForm';
 
 export default class FormPage extends React.Component {
   constructor(props) {
     super(props);
-    this.state = ;
+    // this.state = ;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,15 +18,15 @@ export default class FormPage extends React.Component {
     console.log(this.state);
   }
   
-  handleChange(e) {
-    const target = e.target;
-    const value = target.value;
-    const name = target.name;
+  // handleChange(e) {
+  //   const target = e.target;
+  //   const value = target.value;
+  //   const name = target.name;
 
-    this.setState({
-      [name]: value
-    });
-  }
+  //   this.setState({
+  //     [name]: value
+  //   });
+  // }
 
   render() {
     return (
@@ -36,9 +38,9 @@ export default class FormPage extends React.Component {
           <FormControl
             name="username"
             type="text"
-            value={this.state.username}
-            placeholder="Enter text"
-            onChange={this.handleChange}
+            value=""
+            placeholder="Enter username here"
+            onChange={ handleItemChange.bind(null, setNoteFormItem, 'username') }
           />
           <FormControl.Feedback />
 

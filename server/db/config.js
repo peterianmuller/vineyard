@@ -1,10 +1,8 @@
 import knex from 'knex';
 import bookshelf from 'bookshelf';
 
-// const db ='postgres://user:@localhost:5432/vineyard'
-// const sequelize = new Sequelize(db);
 
-const sequelize = new Sequelize('vineyard', 'postgres', '1234', {
+const sequelize = new Sequelize('vineyard', null, null, {
   host: 'localhost',
   dialect: 'postgres',
   port: 5432
