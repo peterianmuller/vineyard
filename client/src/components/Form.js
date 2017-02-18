@@ -4,7 +4,6 @@ import ReactDOM from 'react-dom';
 import {Col, Row, FormGroup, ControlLabel, HelpBlock, FormControl, Button, Form} from 'react-bootstrap';
 import { handleItemChange } from '../helpers/changeHandlers';
 import { setNoteFormItem } from '../actions/noteForm';
-import ourStore from '../store';
 
 export default class FormPage extends React.Component {
   constructor(props) {
@@ -15,7 +14,7 @@ export default class FormPage extends React.Component {
   handleSubmit(event) {
     //non-functional, just logging the current state to be submitted
     event.preventDefault();  
-    console.log("get state", ourStore.getState());
+    console.log(this.props, "should have our note now!");
   }
   
   render() {
@@ -30,7 +29,7 @@ export default class FormPage extends React.Component {
             <FormControl
               name="title"
               type="text"
-              value={this.props.title}
+              value={this.props.note.title}
               placeholder="Enter text"
               onChange={handleItemChange.bind(null, setNoteFormItem, 'title')}
             />
@@ -44,7 +43,7 @@ export default class FormPage extends React.Component {
             <FormControl
               name="username"
               type="text"
-              value={this.props.username}
+              value={this.props.note.username}
               placeholder="Enter text"
               onChange={handleItemChange.bind(null, setNoteFormItem, 'username')}
             />
@@ -58,7 +57,7 @@ export default class FormPage extends React.Component {
           <FormControl
             name="vineyard"
             type="text"
-            value={this.props.vineyard}
+            value={this.props.note.vineyard}
             placeholder="Enter text"
             onChange={handleItemChange.bind(null, setNoteFormItem, 'vineyard')}
           />
@@ -72,7 +71,7 @@ export default class FormPage extends React.Component {
           <FormControl
             name="block"
             type="text"
-            value={this.props.block}
+            value={this.props.note.block}
             placeholder="Enter text"
             onChange={handleItemChange.bind(null, setNoteFormItem, 'block')}
           />
@@ -86,7 +85,7 @@ export default class FormPage extends React.Component {
           <FormControl
             name = "row"
             type="text"
-            value={this.props.row}
+            value={this.props.note.row}
             placeholder="Enter text"
             onChange={handleItemChange.bind(null, setNoteFormItem, 'row')}
           />
@@ -100,7 +99,7 @@ export default class FormPage extends React.Component {
           <FormControl
             name="rowStart"
             type="text"
-            value={this.props.rowStart}
+            value={this.props.note.rowStart}
             placeholder="Enter text"
             onChange={handleItemChange.bind(null, setNoteFormItem, 'rowStart')}
           />
@@ -114,7 +113,7 @@ export default class FormPage extends React.Component {
           <FormControl
             name="rowEnd"
             type="text"
-            value={this.props.rowEnd}
+            value={this.props.note.rowEnd}
             placeholder="Enter text"
             onChange={handleItemChange.bind(null, setNoteFormItem, 'rowEnd')}
           />
@@ -128,7 +127,7 @@ export default class FormPage extends React.Component {
           <FormControl
             name="lat"
             type="text"
-            value={this.props.lat}
+            value={this.props.note.lat}
             placeholder="Enter text"
             onChange={handleItemChange.bind(null, setNoteFormItem, 'lat')}
           />
@@ -142,7 +141,7 @@ export default class FormPage extends React.Component {
           <FormControl
             name="lon"
             type="text"
-            value={this.props.lon}
+            value={this.props.note.lon}
             placeholder="Enter text"
             onChange={handleItemChange.bind(null, setNoteFormItem, 'lon')}
           />
@@ -156,7 +155,7 @@ export default class FormPage extends React.Component {
           <FormControl componentClass="textarea"
             name="textArea"
             type="text"
-            value={this.props.textArea}
+            value={this.props.note.textArea}
             placeholder="Enter text"
             onChange={handleItemChange.bind(null, setNoteFormItem, 'textArea')}
           />
