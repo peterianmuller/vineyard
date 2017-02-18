@@ -7,7 +7,6 @@ import { setNoteFormItem } from '../actions/noteForm';
 export default class FormPage extends React.Component {
   constructor(props) {
     super(props);
-    // this.state = ;
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,16 +17,6 @@ export default class FormPage extends React.Component {
     console.log(this.state);
   }
   
-  // handleChange(e) {
-  //   const target = e.target;
-  //   const value = target.value;
-  //   const name = target.name;
-
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // }
-
   render() {
     return (
       <Form onSubmit={this.handleSubmit}>
