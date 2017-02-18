@@ -26,15 +26,16 @@ export default function routes(app, express) {
   // ================================
 
   // === LOGIN ROUTING ===
-  app.post('/signup', passport.authenticate('local', {
+  app.post('/api/signup', passport.authenticate('local', {
     successRedirect: '/login',
     failureRedirect: '/signup'
   }));
 
-  app.post('/login', passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-  }));
+  app.post('/api/login', );
+  // passport.authenticate('local', {
+  //   successRedirect: '/home',
+  //   failureRedirect: '/login'
+  // })
 
   // === OGRANIZATION ROUTING ===
 
