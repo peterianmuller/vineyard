@@ -28,7 +28,7 @@ const deleteUser = (req, res, next) => {};
 
 export default {
   newUser,
-  getUser,
+  getUserByUsername,
   getUsers,
   updateUser,
   deleteUser

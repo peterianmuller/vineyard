@@ -1,4 +1,5 @@
 import path from 'path';
+import passport from 'passport';
 
 // CONTROLLER DEPENDENCIES
 import organizationsController from '../db/controllers/organizations';
@@ -25,8 +26,13 @@ export default function routes(app, express) {
   // ================================
 
   // === LOGIN ROUTING ===
+  app.post('/signup', passport.authenticate('local', {
+    successRedirect: '/login',
+    failureRedirect: '/signup'
+  }));
+
   app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
+    successRedirect: '/home',
     failureRedirect: '/login'
   }));
 

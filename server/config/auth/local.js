@@ -1,10 +1,35 @@
 import passport from 'passport';
-import LocalStrategy from 'passport-local';
+import passportLocal from 'passport-local';
 
-const LocalStrategy = LocalStrategy.Strategy;
+import User from '../../db/models/users';
 
-const validateLogin = passport.use(new LocalStrategy({
+const LocalStrategy = passportLocal.Strategy;
 
-}));
+passport.use(new LocalStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username })
+    .then(user => {
+      console.log('login user ', user);
+    	if (!user) {
+    		return done(null, false, { message: 'Incorrect username.' });
+    	}
+    	if (!user.validPassword(password)) {
+        return done(null, false, { message: 'Incorrect password.' });
+      }
+      return done(null, user);
+    })
+    .catch(err => done(err))
+  }
+));
 
-export default validateLogin;
+passport.serializeUser(function(user, done) {
+  done(null, user.id);
+});
+
+passport.deserializeUser(function(id, done) {
+  User.findById(id)
+  .then(user => done(user))
+  .catch(err => done(err))
+});
+
+export default passport;
