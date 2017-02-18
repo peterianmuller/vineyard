@@ -10,6 +10,7 @@ import usersController from '../db/controllers/users';
 import notesController from '../db/controllers/notes';
 import alertsController from '../db/controllers/alerts';
 // import messagesController from '../db/controllers/messages';
+import login from './auth/local';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
@@ -22,6 +23,12 @@ export default function routes(app, express) {
   // ================================
   // DATA ENDPOINT ROUTING
   // ================================
+
+  // === LOGIN ROUTING ===
+  app.post('/login', passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login'
+  }));
 
   // === OGRANIZATION ROUTING ===
 
@@ -157,6 +164,31 @@ export default function routes(app, express) {
       console.log('could not add user ', err);
     });
   });
+  // GET ONE USER
+  app.get('/api/user', (req, res, next) => {
+    const params = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      password: req.body.password,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      securityQuestion: req.body.securityQuestion,
+      securityAnswer: req.body.securityAnswer,
+      birthdate: req.body.birthdate,
+      accountRestrictions: req.body.accountRestrictions
+    };
+    // GET USER BY USERNAME
+    return usersController.getUserByUsername(params)
+    .then((user) => {
+      if (user) {
+        res.json(user);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add user ', err);
+    });
+  })
 
   // === NOTE ROUTING ===
 
