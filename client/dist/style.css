@@ -1,3 +1,8 @@
 .multiColumnInput {
   width: 100% !important;
 }
+
+.buttonWithMargin {
+  margin: 1em;
+  margin-right: 0em;
+}
