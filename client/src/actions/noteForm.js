@@ -1,9 +1,24 @@
 import axios from 'axios';
 
+export function setCurrentlyRecording(value) {
+  return {
+    type: "SET_CURRENTLY_RECORDING",
+    value
+  };
+}
+
 export function setNoteFormItem(item, value) {
   var toReturn = { value };
 
   toReturn.type = "SET_NOTE_FORM_" + item.toUpperCase();
+
+  return toReturn;
+}
+
+export function appendNoteFormItem(item, value) {
+  var toReturn = { value };
+
+  toReturn.type = "APPEND_NOTE_FORM_" + item.toUpperCase();
 
   return toReturn;
 }
