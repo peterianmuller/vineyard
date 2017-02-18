@@ -3,16 +3,16 @@ import sequelize from '../config';
 import Addresses from './addresses';
 
 const Organizations = sequelize.define('organization', {
-  name: Sequelize.STRING,
-  phoneNumber: Sequelize.STRING,
-  tier: {
-    type: Sequelize.ENUM,
-    values: [
-      'Hobbyist',
-      'Small',
-      'Large'
-    ]
-  }
+ name: Sequelize.STRING,
+ phoneNumber: Sequelize.STRING,
+ tier: {
+   type: Sequelize.ENUM,
+   values: [
+     'Hobbyist',
+     'Small',
+     'Large'
+   ]
+ }
 });
 
 // Addresses.belongsTo(Organizations);
@@ -20,7 +20,9 @@ const Organizations = sequelize.define('organization', {
 //   foreignKey: 'addressId'
 // });
 Addresses.hasOne(Organizations, {
-  foreignKey: 'addressId'
+ foreignKey: 'addressId'
 })
 
 export default Organizations;
+
+
