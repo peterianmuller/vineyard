@@ -1,4 +1,5 @@
 const defaultForm = {
+  title: '',
   username:'',
   vineyard: '',
   block: '',
@@ -12,6 +13,10 @@ const defaultForm = {
 
 export function noteFormReducer(state = defaultForm, action) {
   switch(action.type) {
+    case "CLEAR_NOTE_FIELDS":
+      return {
+        ...defaultForm
+      };
     case "SET_NOTE_FORM_USERNAME":
       return {
         ...state,
@@ -31,6 +36,11 @@ export function noteFormReducer(state = defaultForm, action) {
       return {
         ...state,
         row: action.value
+      }
+    case "SET_NOTE_FORM_TITLE":
+      return {
+        ...state,
+        title: action.value
       }
     case "SET_NOTE_FORM_ROWSTART":
       return {

@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import {Col, Row, FormGroup, ControlLabel, HelpBlock, FormControl, Button, Form} from 'react-bootstrap';
 import { handleItemChange } from '../helpers/changeHandlers';
-import { setNoteFormItem } from '../actions/noteForm';
+import { setNoteFormItem, postNote } from '../actions/noteForm';
+
 
 export default class FormPage extends React.Component {
   constructor(props) {
@@ -12,13 +12,11 @@ export default class FormPage extends React.Component {
   };
 
   handleSubmit(event) {
-    //non-functional, just logging the current state to be submitted
     event.preventDefault();  
-    console.log(this.props, "should have our note now!");
+    this.props.dispatch(postNote(this.props.note));
   }
   
   render() {
-    console.log(this.props, "this.props within the form component")
     return (
 
       <Form onSubmit={this.handleSubmit}>
