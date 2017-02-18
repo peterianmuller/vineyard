@@ -2,12 +2,11 @@ import React from 'react';
 import NameBirthdateInput from '../components/NameBirthdateInput';
 import { Button, Col, ControlLabel, Form, FormControl, FormGroup, Grid, Row } from 'react-bootstrap';
 import { handleItemChange } from '../helpers/changeHandlers';
-import { setSignupItem } from '../actions/signup';
+import { setSignupItem, signup } from '../actions/signup';
 
 export default class Signup extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -29,6 +28,7 @@ export default class Signup extends React.Component {
     e.preventDefault();
     console.log('button clicked');
     alert('uhhuhuhuh');
+    this.props.dispatch(signup(this.props.signup));
   }
 
   render() {
@@ -98,7 +98,8 @@ export default class Signup extends React.Component {
                 signup={ this.props.signup }
               />
               <Button 
-                bsStyle="primary" 
+                bsStyle="primary"
+                method="POST" 
                 bsClass="btn pull-right btn-primary buttonWithMargin"
                 disabled={ this.buttonStatus() }
                 type='submit'

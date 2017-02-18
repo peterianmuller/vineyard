@@ -148,6 +148,7 @@ export default function routes(app, express) {
 
   // CREATE NEW USER
   app.post('/api/user', (req, res, user) => {
+    console.log('user post in router: ', req.body);
     const params = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,

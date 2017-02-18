@@ -1,6 +1,7 @@
 import Users from '../models/users';
 
 const newUser = (params) => {
+  console.log('params inside newUSer, user controller: ', params);
   return Users.create({
     firstName: params.firstName,
     lastName: params.lastName,
