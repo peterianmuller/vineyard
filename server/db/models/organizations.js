@@ -1,5 +1,5 @@
-import sequelize from '../config';
 import Sequelize from 'sequelize';
+import sequelize from '../config';
 import Addresses from './addresses';
 
 const Organizations = sequelize.define('organization', {

@@ -9,6 +9,7 @@ passport.use(new LocalStrategy(
   function(username, password, done) {
     User.findOne({ username: username })
     .then(user => {
+      console.log('login user ', user);
     	if (!user) {
     		return done(null, false, { message: 'Incorrect username.' });
     	}
@@ -32,6 +33,3 @@ passport.deserializeUser(function(id, done) {
 });
 
 export default passport;
-
-
-
