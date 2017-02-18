@@ -2,6 +2,7 @@ import 'babel-polyfill';
 import chai from 'chai';
 import { userLoginReducer } from '../../../client/src/reducers/login';
 import { userSignupReducer } from '../../../client/src/reducers/signup';
+import { noteFormReducer } from '../../../client/src/reducers/noteForm';
 
 var expect = chai.expect;
 
@@ -124,4 +125,101 @@ describe('Reducers', () => {
       })).to.deep.equal({ ...defaults, 'birth_year': 'birth_year' });
     });
   });
+
+  describe('noteFormReducer', () => {
+    var defaults;
+
+    before(() => {
+      defaults = {
+        title: '',
+        username:'',
+        vineyard: '',
+        block: '',
+        row: '',
+        rowStart: '',
+        rowEnd: '',
+        lat: '',
+        lon: '',
+        textArea: ''
+      };
+    });
+
+    it('should return the inital state', () => {
+      expect(noteFormReducer(undefined, {}))
+      .to.deep.equal(defaults);
+    });
+
+    it('should update the title', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_TITLE',
+        value: 'new title'
+      })).to.deep.equal({...defaults, title: 'new title'});
+    });
+
+    it('should update the username', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_USERNAME',
+        value: 'new username'
+      })).to.deep.equal({...defaults, username: 'new username'});
+    });
+
+    it('should update the vineyard', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_VINEYARD',
+        value: 'new vineyard'
+      })).to.deep.equal({...defaults, vineyard: 'new vineyard'});
+    });
+
+    it('should update the block', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_BLOCK',
+        value: 'new block'
+      })).to.deep.equal({...defaults, block: 'new block'});
+    });
+
+    it('should update the row', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_ROW',
+        value: 'new row'
+      })).to.deep.equal({...defaults, row: 'new row'});
+    });
+
+    it('should update the rowStart', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_ROWSTART',
+        value: 'new rowStart'
+      })).to.deep.equal({...defaults, rowStart: 'new rowStart'});
+    });
+
+    it('should update the rowEnd', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_ROWEND',
+        value: 'new rowEnd'
+      })).to.deep.equal({...defaults, rowEnd: 'new rowEnd'});
+    });
+
+    it('should update the lat', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_LAT',
+        value: 'new lat'
+      })).to.deep.equal({...defaults, lat: 'new lat'});
+    });
+
+    it('should update the lon', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_LON',
+        value: 'new lon'
+      })).to.deep.equal({...defaults, lon: 'new lon'});
+    });
+
+    it('should update the textArea', () => {
+      expect(noteFormReducer(undefined, {
+        type: 'SET_NOTE_FORM_TEXTAREA',
+        value: 'new textArea'
+      })).to.deep.equal({...defaults, textArea: 'new textArea'});
+    });
+
+  });
+
+   
 });
