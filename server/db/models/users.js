@@ -52,12 +52,9 @@ const Users = sequelize.define('user', {
 
 Users.beforeCreate(function(user, options) {
   const context = this;
-  console.log('inside beforecreate hook');
     return bcrypt.hash(user.password, 10, function(err, hashedPassword) {
-    console.log('inside bcrypt hash', 'user', user, 'option', options, hashedPassword, err);
     user.password = hashedPassword;
     user.save();
-    console.log('password', user.password);
   });
 });
 

@@ -10,11 +10,11 @@ export function setLoginItem(item, value) {
 
 export function loginUser(userCredentials) {
   return dispatch => axios.post('/api/login', {
-    userName: userCredentials.userName,
-    password: userCredentials.passowrd
+    userName: userCredentials.username,
+    password: userCredentials.password
   })
-  // .then(() => dispatch(clearLogin))
-  // .catch((err) => {
-  //   console.log('error dispatching login credentials ', err);
-  // });
+  .then((val) => {console.log('returned inside loginUser', val)})
+  .catch((err) => {
+    console.log('error dispatching login credentials ', err);
+  });
 };

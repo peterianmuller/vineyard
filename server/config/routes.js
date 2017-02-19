@@ -1,5 +1,5 @@
 import path from 'path';
-import passport from 'passport';
+// import passport from 'passport';
 // import passport from './auth/local';
 
 // CONTROLLER DEPENDENCIES
@@ -12,7 +12,7 @@ import usersController from '../db/controllers/users';
 import notesController from '../db/controllers/notes';
 import alertsController from '../db/controllers/alerts';
 // import messagesController from '../db/controllers/messages';
-import login from './auth/local';
+import { login, passport } from './auth/local';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
@@ -32,7 +32,10 @@ export default function routes(app, express) {
     failureRedirect: '/signup'
   }));
 
-  app.post('/api/login', );
+  app.post('/api/login', passport.authenticate('local', {
+    successRedirect: '/form',
+    failureRedirect: '/form'
+  }));
   // passport.authenticate('local', {
   //   successRedirect: '/home',
   //   failureRedirect: '/login'
