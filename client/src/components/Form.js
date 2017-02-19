@@ -2,6 +2,7 @@ import React from 'react';
 import NoteFormInput from './NoteFormInput';
 import { Form } from 'react-bootstrap';
 import { setLatLong } from '../helpers/changeHandlers';
+import { postNote } from '../actions/noteForm';
 
 export default class FormPage extends React.Component {
   constructor(props) {
@@ -34,6 +35,7 @@ export default class FormPage extends React.Component {
           <NoteFormInput title='Latitude' field='lat' value={this.props.note.lat} />
           <NoteFormInput title='Longitude' field='lon' value={this.props.note.lon} />
           <NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
+          <input type='submit' />
       </Form>
     );
   }

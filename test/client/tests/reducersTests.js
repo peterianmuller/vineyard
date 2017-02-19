@@ -140,7 +140,8 @@ describe('Reducers', () => {
         rowEnd: '',
         lat: '',
         lon: '',
-        textArea: ''
+        textArea: '',
+        currentlyRecording: ''
       };
     });
 
