@@ -5,6 +5,7 @@ import { ControlLabel, FormControl } from 'react-bootstrap';
 import MainNavBar from '../../../client/src/components/MainNavBar';
 import NameBirthdateInput from '../../../client/src/components/NameBirthdateInput';
 import NoteForm from '../../../client/src/components/Form';
+import NoteFormInput from '../../../client/src/components/NoteFormInput';
 
 describe('Components', () => {
   describe('<MainNavBar />', () => {
@@ -103,78 +104,43 @@ describe('Components', () => {
   
   });
 
-  describe('<NoteForm />', () => {
-    it('should have props', () => {
-      const wrapper = shallow(<NoteForm setItem ={ ()=> {} } note = { {
-        title: '',
-        username:'',
-        vineyard: '',
-        block: 'block number',
-        row: '',
-        rowStart: '',
-        rowEnd: '',
-        lat: '',
-        lon: '',
-        textArea: ''
-      } } />);
-      var props = wrapper.props();
-      expect(props.length).to.not.equal(0);
+  describe('<NoteFormInput />', () => {
+
+    it('should render 1 FormControl', () => {
+      const wrapper = mount(<NoteFormInput title='Note Title' field='title'/>);
+
+      expect(wrapper.find(FormControl)).to.have.length(1);
+          
     });
 
-    it('should render 10 FormControls', () => {
-      const wrapper = shallow(<NoteForm setItem ={ ()=> {} } note = { {
-        title: '',
-        username:'',
-        vineyard: '',
-        block: 'block number',
-        row: '',
-        rowStart: '',
-        rowEnd: '',
-        lat: '',
-        lon: '',
-        textArea: ''
-      } } />);
-      expect(wrapper.find(FormControl)).to.have.length(10);
-    });
+    it('should render 1 ControlLabel', () => {
+      const wrapper = mount(<NoteFormInput title='Note Title' field='title'/>);
 
-    it('should render 10 ControlLabels', () => {
-      const wrapper = shallow(<NoteForm setItem ={ ()=> {} } note = { {
-        title: '',
-        username:'',
-        vineyard: '',
-        block: 'block number',
-        row: '',
-        rowStart: '',
-        rowEnd: '',
-        lat: '',
-        lon: '',
-        textArea: ''
-      } } />);
-      expect(wrapper.find(ControlLabel)).to.have.length(10);
-    });
-
-
-    it('should have labels for title, username, vineyard, block, row, rowStart, rowEnd, lat, lon, and textArea', () => {
-      const wrapper = shallow(<NoteForm setItem ={ ()=> {} } note = { {
-        title: '',
-        username:'',
-        vineyard: '',
-        block: 'block number',
-        row: '',
-        rowStart: '',
-        rowEnd: '',
-        lat: '',
-        lon: '',
-        textArea: ''
-      } } />);
-
-      var textNodes= [];
-
-      wrapper.find(ControlLabel).forEach(item => { textNodes.push(item.children().text()) })
-      expect(textNodes).to.deep.equal(['Note Title', 'Username', 'Vineyard', 'Block', 'Row', 'Row Start', 'Row End', 'Latitude', 'Longitude', 'Note Text']);
-    });
-
+      expect(wrapper.find(ControlLabel)).to.have.length(1);
+    })
   
+  });
+
+  describe('<Form />', () => {
+    
+    it('should render 10 instances of <NoteFormInput>', () => {
+      const wrapper = mount(<NoteForm note={{
+        title: '',
+        username:'',
+        vineyard: '',
+        block: '',
+        row: '',
+        rowStart: '',
+        rowEnd: '',
+        lat: '',
+        lon: '',
+        textArea: '',
+        currentlyRecording: ''
+      }}/>);
+
+      expect(wrapper.find(NoteFormInput)).to.have.length(10);
+    });
+
   });
 
 });
