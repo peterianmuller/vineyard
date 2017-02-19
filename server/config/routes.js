@@ -1,5 +1,6 @@
 import path from 'path';
 import passport from 'passport';
+// import passport from './auth/local';
 
 // CONTROLLER DEPENDENCIES
 import organizationsController from '../db/controllers/organizations';
@@ -26,7 +27,7 @@ export default function routes(app, express) {
   // ================================
 
   // === LOGIN ROUTING ===
-  app.post('/api/signup', passport.authenticate('local', {
+  app.post('/api/signup', passport.authenticate('local-signup', {
     successRedirect: '/login',
     failureRedirect: '/signup'
   }));
@@ -148,7 +149,7 @@ export default function routes(app, express) {
   // === USER ROUTING ===
 
   // CREATE NEW USER
-  app.post('/api/user', (req, res, user) => {
+  app.post('/api/user', (req, res, next) => {
     console.log('user post in router: ', req.body);
     const params = {
       firstName: req.body.firstName,
@@ -166,8 +167,9 @@ export default function routes(app, express) {
     .then((user) => {
       if (user) {
         res.json(user);
+      } else {
+        next();
       }
-      next();
     }).catch((err) => {
       console.log('could not add user ', err);
     });
