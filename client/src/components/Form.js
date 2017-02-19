@@ -1,13 +1,18 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import NoteFormInput from './NoteFormInput';
 import { Form } from 'react-bootstrap';
+import { setLatLong } from '../helpers/changeHandlers';
 
 export default class FormPage extends React.Component {
   constructor(props) {
     super(props);
 
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  componentDidMount() {
+    navigator.geolocation.getCurrentPosition(
+    ({ coords }) => { setLatLong(coords.latitude, coords.longitude) } );
   }
 
   handleSubmit(event) {
