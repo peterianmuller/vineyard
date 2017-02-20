@@ -11,7 +11,7 @@ export default class Map extends React.Component {
   render() {
     return (
       <div>
-        <div id='googleMaps' style = {{'margin': '0 auto', 'height': '50%', 'width': '50%', 'borderRadius': '5px' }}>
+        <div id='googleMaps' style = {{'margin': '0 auto', 'height': '50%', 'width': '50%', 'borderRadius': '3px' }}>
         </div>
       </div> 
   )};
