@@ -14,7 +14,7 @@ export function loginUser(userCredentials) {
     userName: userCredentials.username,
     password: userCredentials.password
   })
-  .then((val) => { browserHistory.push('/form')})
+  .then(() => { browserHistory.push('/form')})
   .catch((err) => {
     console.log('error dispatching login credentials ', err);
   });
