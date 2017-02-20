@@ -13,7 +13,7 @@ export default class FormPage extends React.Component {
   
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-    ({ coords }) => { setLatLong(coords.latitude, coords.longitude) } );
+      ({ coords }) => { setLatLong(coords.latitude, coords.longitude) } );
   }
 
   handleSubmit(event) {

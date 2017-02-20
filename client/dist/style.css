@@ -6,3 +6,27 @@
   margin: 1em;
   margin-right: 0em;
 }
+
+.imageCropper {
+  width: 150px;
+  height: 150px;
+  margin-top: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+.imageCropper__image {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  transform: translate3d(-23%,0,0);
+  min-width: 100%;
+}
+
+.textCenter {
+  text-align: center;
+}
+
+.textLeft {
+  text-align: left;
+}

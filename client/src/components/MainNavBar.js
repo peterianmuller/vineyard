@@ -13,10 +13,11 @@ export default props => (
       </Navbar.Header>
       <Navbar.Collapse>
         <Nav>
-          <NavItem eventKey={1} href="#">Home</NavItem>
-          <NavItem eventKey={2} href="#">View Data</NavItem>
-          <NavItem eventKey={3} href="#">Check Alerts</NavItem>
-          <NavItem eventKey={4} href="/form">Write Note</NavItem>
+          <NavItem eventKey={1} href="/home">Home</NavItem>
+          <NavItem eventKey={2} href="/user">User Profile</NavItem>
+          <NavItem eventKey={3} href="#">View Data</NavItem>
+          <NavItem eventKey={4} href="#">Check Alerts</NavItem>
+          <NavItem eventKey={5} href="/form">Write Note</NavItem>
         </Nav>
         <Nav pullRight>
           <NavItem href="/login">Login</NavItem>
