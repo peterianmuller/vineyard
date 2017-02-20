@@ -2,21 +2,22 @@ import path from 'path';
 import express from 'express';
 
 // CONTROLLER DEPENDENCIES
-import organizationsController from '../db/controllers/organizations';
 import addressesController from '../db/controllers/addresses';
-import vineyardsController from '../db/controllers/vineyards';
-import blocksController from '../db/controllers/blocks';
-import rowsController from '../db/controllers/rows';
-import usersController from '../db/controllers/users';
-import notesController from '../db/controllers/notes';
 import alertsController from '../db/controllers/alerts';
+import blocksController from '../db/controllers/blocks';
+import organizationsController from '../db/controllers/organizations';
+import notesController from '../db/controllers/notes';
+import rowsController from '../db/controllers/rows';
+import vineyardsController from '../db/controllers/vineyards';
+import usersController from '../db/controllers/users';
 // import messagesController from '../db/controllers/messages';
-import {passport } from './auth/local';
+import { passport } from './auth/local';
+import weatherRoutes from './weather/routes';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
 
-
+  app.use('/api/weather', weatherRoutes);
 
   // QUESTION: HOW DO RESTFUL API NAMING CONVENTIONS MAP TO RELATIONAL DATA MODELS, SPECFICALLY MANY TO MANY?
   // EXAMPLE: DO NOTES BELONG TO USERS, ROWS, BLOCKS, VINEYARDS, ORGANIZATIONS, ETC.? ALSO FOR ADDRESSES, AND USERS.

@@ -1,5 +1,15 @@
 import axios from 'axios';
 
+export function getWeather(note) {
+  return dispatch => axios.post('/api/weather', {
+    lat: note.lat,
+    lon: note.lon
+  }).then(resp => dispatch(setNoteWeather(resp)))
+    .catch(err => {
+      console.log(err);
+    });
+}
+
 export function setCurrentlyRecording(value) {
   return {
     type: "SET_CURRENTLY_RECORDING",

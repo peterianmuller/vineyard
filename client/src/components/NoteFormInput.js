@@ -16,18 +16,24 @@ export default props => (
         placeholder="Enter text"
         onChange={ handleItemChange.bind(null, setNoteFormItem, props.field)}
         componentClass={ props.isTextArea ? 'textarea' : 'input'}
+        disabled={ props.disabled ? true : false }
       />
       <FormControl.Feedback />
-      <InputGroup.Button>
-        <Button onClick={ 
-          startRecording.bind(
-            null, 
-            setCurrentlyRecording, 
-            props.field.toUpperCase()
-          )}>
-          Record
-        </Button>
-      </InputGroup.Button>
+      { 
+        props.disabled ? '' : 
+        ( 
+          <InputGroup.Button>
+           <Button onClick={ 
+             startRecording.bind(
+               null, 
+               setCurrentlyRecording, 
+               props.field.toUpperCase()
+             )}>
+             Record
+           </Button>
+         </InputGroup.Button> 
+        )
+      }
     </InputGroup>
   </FormGroup>
 );
