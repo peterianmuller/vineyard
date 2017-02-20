@@ -32,6 +32,13 @@ export default function routes(app, express) {
   passport.authenticate('local'), function(req, res){ 
     res.status(201).json(req.user);
   });
+
+
+
+  app.get('/api/logout', function(req, res){
+    req.logout();
+    res.status(201).json(req.user);
+  });
   // === OGRANIZATION ROUTING ===
 
   // CREATE NEW ORGANIZATION

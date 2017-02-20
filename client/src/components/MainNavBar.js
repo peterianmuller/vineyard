@@ -4,7 +4,6 @@ import { RootCloseWrapper } from 'react-overlays';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-
 export default props => {
   const handleClick = (e) => {
     e.preventDefault();
