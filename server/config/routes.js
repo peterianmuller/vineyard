@@ -1,7 +1,5 @@
 import path from 'path';
 import express from 'express';
-// import passport from 'passport';
-// import passport from './auth/local';
 
 // CONTROLLER DEPENDENCIES
 import organizationsController from '../db/controllers/organizations';
@@ -13,7 +11,7 @@ import usersController from '../db/controllers/users';
 import notesController from '../db/controllers/notes';
 import alertsController from '../db/controllers/alerts';
 // import messagesController from '../db/controllers/messages';
-import {/* serializeLogin, */passport } from './auth/local';
+import {passport } from './auth/local';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
@@ -28,14 +26,15 @@ export default function routes(app, express) {
   // ================================
 
   // === LOGIN ROUTING ===
-  // app.post('/api/signup', passport.authenticate('local-signup', {
-  //   successRedirect: '/login',
-  //   failureRedirect: '/signup'
-  // }));
-
-
   app.post('/api/login',
   passport.authenticate('local'), function(req, res){ 
+    res.status(201).json(req.user);
+  });
+
+
+
+  app.get('/api/logout', function(req, res){
+    req.logout();
     res.status(201).json(req.user);
   });
   // === OGRANIZATION ROUTING ===

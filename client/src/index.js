@@ -16,6 +16,7 @@ var Root = props => (
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/form' component={Form} />
+        <Route path='/logout' component={Login} />
       </Route>
     </Router>
   </Provider>

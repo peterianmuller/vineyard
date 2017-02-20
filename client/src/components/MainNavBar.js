@@ -21,7 +21,7 @@ export default props => (
         <Nav pullRight>
           <NavItem href="/login">Login</NavItem>
           <NavItem href="/signup">Sign Up</NavItem>
-          <NavItem href="#">Log Out</NavItem>
+          <NavItem href="/logout">Log Out</NavItem>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

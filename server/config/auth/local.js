@@ -25,15 +25,12 @@ passport.use('local', new LocalStrategy({
   passReqToCallback : true 
 },
   function(req, username, password, done) {
-    console.log('inside local strategy', req.body)
     User.find({
       where: {
         userName: username
       }
     })
     .then((user) => {
-      console.log(req.body, "is req available?")
-      console.log('user found: ', user);
       if (!user) {
         return done(null, false);
       }
@@ -50,13 +47,4 @@ passport.use('local', new LocalStrategy({
   }
 ));
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
-//
-// passport.deserializeUser(function(id, done) {
-//   User.getUserById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
  export { passport, serializeLogin };
