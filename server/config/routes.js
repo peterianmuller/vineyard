@@ -1,5 +1,7 @@
 import path from 'path';
-import passport from 'passport';
+import express from 'express';
+// import passport from 'passport';
+// import passport from './auth/local';
 
 // CONTROLLER DEPENDENCIES
 import organizationsController from '../db/controllers/organizations';
@@ -11,7 +13,7 @@ import usersController from '../db/controllers/users';
 import notesController from '../db/controllers/notes';
 import alertsController from '../db/controllers/alerts';
 // import messagesController from '../db/controllers/messages';
-import login from './auth/local';
+import {/* serializeLogin, */passport } from './auth/local';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
@@ -26,16 +28,18 @@ export default function routes(app, express) {
   // ================================
 
   // === LOGIN ROUTING ===
-  app.post('/signup', passport.authenticate('local', {
-    successRedirect: '/login',
-    failureRedirect: '/signup'
-  }));
+  // app.post('/api/signup', passport.authenticate('local-signup', {
+  //   successRedirect: '/login',
+  //   failureRedirect: '/signup'
+  // }));
 
-  app.post('/login', passport.authenticate('local', {
-    successRedirect: '/home',
-    failureRedirect: '/login'
-  }));
 
+  app.post('/api/login',
+  passport.authenticate('local', { 
+    successRedirect: '/api/form',
+    failureRedirect: '/api/signup'
+  })
+);
   // === OGRANIZATION ROUTING ===
 
   // CREATE NEW ORGANIZATION
@@ -147,7 +151,7 @@ export default function routes(app, express) {
   // === USER ROUTING ===
 
   // CREATE NEW USER
-  app.post('/api/user', (req, res, user) => {
+  app.post('/api/signup', (req, res, next) => {
     const params = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
@@ -164,8 +168,9 @@ export default function routes(app, express) {
     .then((user) => {
       if (user) {
         res.json(user);
+      } else {
+        next();
       }
-      next();
     }).catch((err) => {
       console.log('could not add user ', err);
     });

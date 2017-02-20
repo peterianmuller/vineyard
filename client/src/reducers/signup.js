@@ -12,6 +12,10 @@ var signupState = {
 
 export function userSignupReducer(state = signupState, action) {
   switch(action.type) {
+    case "CLEAR_SIGNUP_FIELDS":
+      return {
+        ...signupState
+      };
     case "SET_SIGNUP_USERNAME": 
       return {
         ...state,

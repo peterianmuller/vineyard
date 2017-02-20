@@ -22,6 +22,15 @@ const getUserByUsername = (params) => {
     }
   });
 };
+
+const getUserById = params => {
+  return Users.find({
+    where: {
+      id: params.id
+    }
+  });
+};
+
 const getUsers = (req, res, next) => {};
 const updateUser = (req, res, next) => {};
 const deleteUser = (req, res, next) => {};

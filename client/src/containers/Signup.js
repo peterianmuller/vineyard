@@ -2,12 +2,11 @@ import React from 'react';
 import NameBirthdateInput from '../components/NameBirthdateInput';
 import { Button, Col, ControlLabel, Form, FormControl, FormGroup, Grid, Row } from 'react-bootstrap';
 import { handleItemChange } from '../helpers/changeHandlers';
-import { setSignupItem } from '../actions/signup';
+import { setSignupItem, signup } from '../actions/signup';
 
 export default class Signup extends React.Component {
   constructor(props) {
     super(props);
-
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -19,7 +18,7 @@ export default class Signup extends React.Component {
   }
 
   buttonStatus() {
-    return !(this.props.signup.password === this.props.signup.confirm_password && 
+    return !(this.props.signup.password === this.props.signup.confirm_password &&
       Object.keys(this.props.signup).reduce((acc, key)  => {
         return this.props.signup[key] !== '' && acc;
       }, true));
@@ -28,7 +27,7 @@ export default class Signup extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log('button clicked');
-    alert('uhhuhuhuh');
+    this.props.dispatch(signup(this.props.signup));
   }
 
   render() {
@@ -50,10 +49,10 @@ export default class Signup extends React.Component {
                 </Row>
                 <Row>
                   <Col xs={12}>
-	                  <FormControl 
-	    					    	value={this.props.signup.username} 
-	    					    	onChange={ handleItemChange.bind(null, setSignupItem, 'username') } 
-	    					    	placeholder='Username' 
+	                  <FormControl
+	    					    	value={this.props.signup.username}
+	    					    	onChange={ handleItemChange.bind(null, setSignupItem, 'username') }
+	    					    	placeholder='Username'
                       bsClass='form-control multiColumnInput'
 	    					    />
                   </Col>
@@ -67,11 +66,11 @@ export default class Signup extends React.Component {
                 </Row>
                 <Row>
                   <Col xs={12}>
-	                  <FormControl 
+	                  <FormControl
                       type='password'
-	    					    	value={this.props.signup.password} 
-	    					    	onChange={ handleItemChange.bind(null, setSignupItem, 'password') } 
-	    					    	placeholder='Password' 
+	    					    	value={this.props.signup.password}
+	    					    	onChange={ handleItemChange.bind(null, setSignupItem, 'password') }
+	    					    	placeholder='Password'
                       bsClass='form-control multiColumnInput'
 	    					    />
                   </Col>
@@ -83,11 +82,11 @@ export default class Signup extends React.Component {
                 </Row>
                 <Row>
                   <Col xs={12}>
-	                  <FormControl 
+	                  <FormControl
                       type='password'
-	    					    	value={this.props.signup.confirm_password} 
-	    					    	onChange={ handleItemChange.bind(null, setSignupItem, 'confirm_password') } 
-	    					    	placeholder='Confirm password' 
+	    					    	value={this.props.signup.confirm_password}
+	    					    	onChange={ handleItemChange.bind(null, setSignupItem, 'confirm_password') }
+	    					    	placeholder='Confirm password'
                       bsClass='form-control multiColumnInput'
 	    					    />
                   </Col>
@@ -97,14 +96,15 @@ export default class Signup extends React.Component {
                 setItem={ setSignupItem }
                 signup={ this.props.signup }
               />
-              <Button 
-                bsStyle="primary" 
+              <Button
+                bsStyle="primary"
+                method="POST"
                 bsClass="btn pull-right btn-primary buttonWithMargin"
                 disabled={ this.buttonStatus() }
                 type='submit'
               >
                 Submit
-              </Button> 
+              </Button>
 	          </Form>
 	        </Col>
 	      </Row>
