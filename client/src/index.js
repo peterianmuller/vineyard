@@ -7,12 +7,8 @@ import Form from './components/Form';
 import Home from './containers/home';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
-<<<<<<< 588af33a22f078201ccde29d618191b113392796
-import Form from './components/Form';
 import Map from './components/Map';
-=======
 import UserPage from './containers/UserPage';
->>>>>>> Add placeholder user page
 import store from './store';
 
 var Root = props => (
