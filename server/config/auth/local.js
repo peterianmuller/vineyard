@@ -11,9 +11,6 @@ function serializeLogin (passport) {
   });
 
   passport.deserializeUser(function(id, done) {
-    // const params = {
-    //   id: id
-    // };
     User.findOne({
       where: {id: id}
     })
@@ -28,15 +25,12 @@ passport.use('local', new LocalStrategy({
   passReqToCallback : true 
 },
   function(req, username, password, done) {
-    console.log('inside local strategy', req.body)
     User.find({
       where: {
         userName: username
       }
     })
     .then((user) => {
-      console.log(req.body, "is req available?")
-      console.log('user found: ', user);
       if (!user) {
         return done(null, false);
       }
@@ -47,24 +41,10 @@ passport.use('local', new LocalStrategy({
       console.log('user matched, done being calleds')
       return done(null, user);
     })
-    // .then((user) => {
-    //   req.login(user, function( err) {
-    //     if (err) { console.log(err); }
-    //   });
-    // })
     .catch((err) => {
       console.log('error loging in user ', err);
     });
   }
 ));
 
-// passport.serializeUser(function(user, done) {
-//   done(null, user.id);
-// });
-//
-// passport.deserializeUser(function(id, done) {
-//   User.getUserById(id, function(err, user) {
-//     done(err, user);
-//   });
-// });
  export { passport, serializeLogin };
