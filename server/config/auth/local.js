@@ -11,9 +11,6 @@ function serializeLogin (passport) {
   });
 
   passport.deserializeUser(function(id, done) {
-    // const params = {
-    //   id: id
-    // };
     User.findOne({
       where: {id: id}
     })
@@ -47,11 +44,6 @@ passport.use('local', new LocalStrategy({
       console.log('user matched, done being calleds')
       return done(null, user);
     })
-    // .then((user) => {
-    //   req.login(user, function( err) {
-    //     if (err) { console.log(err); }
-    //   });
-    // })
     .catch((err) => {
       console.log('error loging in user ', err);
     });

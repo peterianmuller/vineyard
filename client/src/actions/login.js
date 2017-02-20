@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 export function setLoginItem(item, value) {
   var toReturn =  {
@@ -13,7 +14,7 @@ export function loginUser(userCredentials) {
     userName: userCredentials.username,
     password: userCredentials.password
   })
-  .then((val) => {console.log('returned inside loginUser', val)})
+  .then((val) => { browserHistory.push('/form')})
   .catch((err) => {
     console.log('error dispatching login credentials ', err);
   });
