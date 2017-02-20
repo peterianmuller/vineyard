@@ -7,6 +7,7 @@ import NameBirthdateInput from '../../../client/src/components/NameBirthdateInpu
 import NoteForm from '../../../client/src/components/Form';
 import NoteFormInput from '../../../client/src/components/NoteFormInput';
 
+
 describe('Components', () => {
   describe('<MainNavBar />', () => {
     it('should not have any props but children', () => {
@@ -124,7 +125,7 @@ describe('Components', () => {
   describe('<Form />', () => {
     
     it('should render 10 instances of <NoteFormInput>', () => {
-      const wrapper = mount(<NoteForm note={{
+      const wrapper = shallow(<NoteForm note={{
         title: '',
         username:'',
         vineyard: '',

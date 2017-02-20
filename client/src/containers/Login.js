@@ -11,7 +11,7 @@ export default props => {
 	return (
 	<Grid>
 	  <Row>
-	    <Col xsOffset={2} xs={8} mdOffset={3} md={4}>
+	    <Col xsOffset={2} xs={8} mdOffset={4} md={4}>
 	      <form onSubmit={handleSubmit}>
 	        <FormGroup >
 	          <ControlLabel>Username</ControlLabel>
@@ -25,6 +25,7 @@ export default props => {
 							value={props.login.password}
 							onChange={ handleItemChange.bind(null, setLoginItem, 'password') }
 							placeholder='Enter password here...'
+              type='password'
 						/>
 	        </FormGroup>
 					<Button

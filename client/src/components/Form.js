@@ -13,7 +13,7 @@ export default class FormPage extends React.Component {
   
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
-    ({ coords }) => { setLatLong(coords.latitude, coords.longitude) } );
+      ({ coords }) => { setLatLong(coords.latitude, coords.longitude) } );
   }
 
   handleSubmit(event) {
@@ -32,8 +32,8 @@ export default class FormPage extends React.Component {
           <NoteFormInput title='Row' field='row' value={this.props.note.row} />
           <NoteFormInput title='Row Start' field='rowStart' value={this.props.note.rowStart} />
           <NoteFormInput title='Row End' field='rowEnd' value={this.props.note.rowEnd} />
-          <NoteFormInput title='Latitude' field='lat' value={this.props.note.lat} />
-          <NoteFormInput title='Longitude' field='lon' value={this.props.note.lon} />
+          <NoteFormInput title='Latitude' field='lat' value={this.props.note.lat} disabled={true}/>
+          <NoteFormInput title='Longitude' field='lon' value={this.props.note.lon} disabled={true} />
           <NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
           <input type='submit' />
       </Form>
