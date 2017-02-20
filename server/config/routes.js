@@ -29,9 +29,28 @@ export default function routes(app, express) {
 
   // === LOGIN ROUTING ===
   app.post('/api/login',
-  passport.authenticate('local'), function(req, res){
-    console.log('this is the login session ', req.session);
+  passport.authenticate('local'), function(req, res){ 
     res.status(201).json(req.user);
+  });
+  // === OGRANIZATION ROUTING ===
+
+  // CREATE NEW ORGANIZATION
+  app.post('/api/organization', (req, res, next) => {
+    const params = {
+      name: req.body.name,
+      phoneNumber: req.body.phoneNumber,
+      tier: req.body.tier
+    };
+    return organizationsController.newOrganization(params)
+    .then((organization) => {
+      if (organization) {
+        // QUESTION: BETTER TO USE RES.SEND?
+        res.json(organization);
+      }
+      next();
+    }).catch((err) => {
+      console.log('could not add organization ', err);
+    });
   });
 
   // === LOGOUT ROUTING ===

@@ -11,7 +11,6 @@ import Notes from './db/models/notes';
 import Alerts from './db/models/alerts';
 import Messages from './db/models/messages';
 
-
 Addresses.sync().then(() => {
   console.log('addresses synced');
   Organizations.sync().then(() => {
