@@ -6,7 +6,6 @@ import { setLoginItem, loginUser } from '../actions/login';
 export default props => {
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		console.log('inside login handleSubmit');
 		props.dispatch(loginUser(props.login));
 	}
 	return (

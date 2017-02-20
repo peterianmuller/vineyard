@@ -13,7 +13,7 @@ export function setSignupItem(item, value) {
 
 export function signup(userAccount) {
 	console.log(userAccount, 'user obj to post in signup actions')
-  return dispatch => axios.post('/api/user', {
+  return dispatch => axios.post('/api/signup', {
     firstName: userAccount.first_name,
     lastName: userAccount.last_name,
     userName: userAccount.username,
@@ -25,14 +25,14 @@ export function signup(userAccount) {
     birthdate: userAccount.birthDay,
     accountRestrictions: 'Owner'
   })
-/*  .then(() => dispatch(clearSignup()))*/
-/*  .catch((err) => {
+  .then(() => dispatch(clearSignup()))
+  .catch((err) => {
     console.log(err);
-  })*/
+  })
 }
 
-/*function clearSignup() {
+function clearSignup() {
   return {
     type: "CLEAR_SIGNUP_FIELDS"
   };
-}*/
+}
