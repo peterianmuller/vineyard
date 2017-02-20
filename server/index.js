@@ -11,25 +11,25 @@ import Notes from './db/models/notes';
 import Alerts from './db/models/alerts';
 import Messages from './db/models/messages';
 
-Addresses.sync({force: true}).then(() => {
+Addresses.sync().then(() => {
   console.log('addresses synced');
-  Organizations.sync({force: true}).then(() => {
+  Organizations.sync().then(() => {
     console.log('organizations synced');
-    Vineyards.sync({force: true}).then(() => {
+    Vineyards.sync().then(() => {
       console.log('vineyard synced');
-      Blocks.sync({force: true}).then(() => {
+      Blocks.sync().then(() => {
         console.log('blocks synced');
-        Rows.sync({force: true}).then(() => {
+        Rows.sync().then(() => {
           console.log('rows synced');
-          Users.sync({force: true}).then(() => {
+          Users.sync().then(() => {
             console.log('users synced');
-            Notes.sync({force: true}).then(() => {
+            Notes.sync().then(() => {
               console.log('notes synced');
-              Alerts.sync({force: true}).then(() => {
+              Alerts.sync().then(() => {
                 console.log('alerts synced');
               });
             });
-            Messages.sync({force: true}).then(() => {
+            Messages.sync().then(() => {
               console.log('messages synced');
             });
           });

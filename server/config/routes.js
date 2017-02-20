@@ -35,11 +35,9 @@ export default function routes(app, express) {
 
 
   app.post('/api/login',
-  passport.authenticate('local', { 
-    successRedirect: '/api/form',
-    failureRedirect: '/api/signup'
-  })
-);
+  passport.authenticate('local'), function(req, res){ 
+    res.status(201).json(req.user);
+  });
   // === OGRANIZATION ROUTING ===
 
   // CREATE NEW ORGANIZATION
