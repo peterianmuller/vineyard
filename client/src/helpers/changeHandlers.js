@@ -17,3 +17,5 @@ export function setLatLong(lat, lon) {
   store.dispatch(setNoteFormItem('lat', lat)); 
   store.dispatch(setNoteFormItem('lon', lon)); 
 }
+
+

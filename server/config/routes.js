@@ -26,6 +26,7 @@ export default function routes(app, express) {
   app.use('/api/note', notesRouter);
   app.use('/api/alert', alertsRouter);
 
+  app.use('/api/weather', weatherRoutes);
 
   // === LOGIN ROUTING ===
   app.post('/api/login',
