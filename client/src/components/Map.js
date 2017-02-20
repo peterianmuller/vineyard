@@ -44,7 +44,7 @@ export default class Map extends React.Component {
         var lon = pos.coords.longitude;
         var map = new google.maps.Map(document.getElementById('googleMaps'), {
           center: { lat: lat, lng: lon },
-          zoom: 5,
+          zoom: 15,
           zoomControl: false,
           mapTypeControl: false,
           scaleControl: false,
