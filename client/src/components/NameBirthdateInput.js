@@ -29,7 +29,7 @@ export default props => (
       <Col xs={6}>
         <FormControl 
           bsClass="form-control multiColumnInput"
-	  	  	value={props.signup.firstName} 
+	  	  	value={props.signup.first_name} 
 	  	  	onChange={ handleItemChange.bind(null, props.setItem, 'first_name') } 
 	  	  	placeholder='First Name' 
 	  	  />
@@ -37,7 +37,7 @@ export default props => (
       <Col xs={6}>
         <FormControl 
           bsClass="form-control multiColumnInput"
-	  	  	value={props.signup.lastName} 
+	  	  	value={props.signup.last_name} 
 	  	  	onChange={ handleItemChange.bind(null, props.setItem, 'last_name') } 
 	  	  	placeholder='Last Name' 
 	  	  />
@@ -52,7 +52,7 @@ export default props => (
       <Col xs={4}>
         <FormControl 
           bsClass="form-control multiColumnInput"
-	  	  	value={props.signup.birthDay} 
+	  	  	value={props.signup.birth_day} 
 	  	  	onChange={ handleItemChange.bind(null, props.setItem, 'birth_day') } 
 	  	  	placeholder='Day' 
 	  	  />
@@ -60,7 +60,7 @@ export default props => (
       <Col xs={4}>
         <FormControl 
           bsClass="form-control multiColumnInput"
-	  	  	value={props.signup.birthMonth} 
+	  	  	value={props.signup.birth_month} 
 	  	  	onChange={ handleItemChange.bind(null, props.setItem, 'birth_month') } 
 	  	  	placeholder='Month' 
 	  	  />
@@ -68,7 +68,7 @@ export default props => (
       <Col xs={4}>
         <FormControl 
           bsClass="form-control multiColumnInput"
-	  	  	value={props.signup.birthYear} 
+	  	  	value={props.signup.birth_year} 
 	  	  	onChange={ handleItemChange.bind(null, props.setItem, 'birth_year') } 
 	  	  	placeholder='Year' 
 	  	  />

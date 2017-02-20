@@ -15,4 +15,5 @@ const rootReducer = combineReducers({
 });
 
 const middleware = applyMiddleware(logger(), promise(), thunk);
+
 export default createStore(rootReducer, middleware);
