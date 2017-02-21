@@ -13,7 +13,7 @@ export default class Map extends React.Component {
       <div>
         <div id='googleMaps' style = {{'margin': '0 auto', 'height': '50%', 'width': '50%', 'borderRadius': '3px' }}>
         </div>
-        <div id="current" style={{'paddingTop': '25px'}}>Nothing yet...</div>
+        <div id="current" style={{'paddingTop': '25px'}}>Please move the marker to the correct position</div>
       </div> 
   )};
 

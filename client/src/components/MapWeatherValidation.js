@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { setLatLong } from '../helpers/changeHandlers';
 import Map from './Map';
+import Weather from './Weather';
 
 export default class validationView extends React.Component {
   constructor(props){
@@ -13,7 +14,7 @@ export default class validationView extends React.Component {
     return (
       <div>
         <Map />
-        <div> Weather Validation </div>
+        <Weather />
         <Button>Confirm and Save Note</Button>
       </div>
     )
