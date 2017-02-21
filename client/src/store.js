@@ -12,7 +12,8 @@ const rootReducer = combineReducers({
   nav: navReducer,
   login: userLoginReducer,
 	signup: userSignupReducer,
-  note: noteFormReducer
+  note: noteFormReducer,
+  notesView: notesViewReducer
 });
 
 const middleware = applyMiddleware(logger(), promise(), thunk);

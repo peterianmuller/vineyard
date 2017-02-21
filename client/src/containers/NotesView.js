@@ -4,7 +4,7 @@ import Note from '../components/Note';
 import axios from 'axios';
 
 export default class NotesView extends React.Component {
-  constructor(props){
+  constructor(props) {
     super(props);
     this.state = {
       notes: [{title:'note title 1', text: 'this is the text of the first text', location: 'this is the location'}, {title: 'note title 2', text: 'this is the text of the second note', location: '500 miles'}]
@@ -12,12 +12,7 @@ export default class NotesView extends React.Component {
     //this.getNotes = this.getNotes.bind(this);
   }
 
-  // getNotes() {
-  //   axios.get('/api/notes')
-  //   .then((response)=> {
-  //     console.log(response);
-  //   });
-  // }
+  //use this.props.notesView to access function
 
   render() {
     return(
