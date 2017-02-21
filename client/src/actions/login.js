@@ -18,6 +18,8 @@ export function loginUser(userCredentials) {
     console.log(val.data.userName, ": this is the current username")
     var user = val.data.userName;
     dispatch(updateAuthStatus(user));
+  })
+  .then(() =>  {
     browserHistory.push('/form');
   })
   .catch((err) => {
