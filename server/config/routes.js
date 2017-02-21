@@ -30,13 +30,15 @@ export default function routes(app, express) {
   // === LOGIN ROUTING ===
   app.post('/api/login',
   passport.authenticate('local'), function(req, res){
+    console.log('this is the login session ', req.session);
     res.status(201).json(req.user);
   });
 
   // === LOGOUT ROUTING ===
-  app.get('/api/logout', function(req, res){
+  app.get('/api/logout',
+  function(req, res){
     req.logout();
-    res.status(201).json(req.user);
+    res.status(200).json(req.user);
   });
 
   // === WILDCARD ROUTING ===
