@@ -5,8 +5,8 @@ export function getNotes(){
   return dispatch => axios.get('/api/note')
   .then(resp => {
     console.log('inside');
-    console.log(resp.data);
-    return dispatch(setNotes(resp));
+    console.log('this is', resp.data);
+    return dispatch(setNotes(resp.data));
   })
   .catch(err => {
     console.log('inside catch');
@@ -15,5 +15,9 @@ export function getNotes(){
 }
 
 export function setNotes(data){
-  return;
+  console.log('data is', data);
+  return {
+    type: 'GET_NOTES',
+    value: data
+  }
 };
