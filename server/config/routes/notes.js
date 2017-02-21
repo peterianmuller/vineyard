@@ -34,10 +34,8 @@ router.route('/')
     return notesController.getAllNotes()
     .then((notes) => {
       if (notes) {
-        console.log('notes exist server');
         res.json(notes);
       } else {
-        console.log('going to next');
         next();
       }
     }).catch((err) => {
