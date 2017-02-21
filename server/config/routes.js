@@ -29,30 +29,38 @@ import alertsController from '../db/controllers/alerts';
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
 
-  app.use('/api/organization', organizationsRouter);
-  app.use('/api/organization/vineyard', vineyardsRouter);
-  app.use('/api/organization/vineyard/block', blocksRouter);
-  app.use('/api/organization/vineyard/block/row', rowsRouter);
-  app.use('/api/address', addressesRouter);
-  app.use('/api/signup', usersRouter);
-  app.use('/api/user', usersRouter);
-  app.use('/api/note', notesRouter);
-  app.use('/api/alert', alertsRouter);
+  const checkAuthentication = (req, res, next) => {
+    if (req.isAuthenticated()) {
+      next();
+    } else {
+      res.status(401).json('unauthorized access; please login');
+    }
+  };
 
-  app.use('/api/weather', weatherRoutes);
+  app.use('/api/organization', checkAuthentication, organizationsRouter);
+  app.use('/api/organization/vineyard', checkAuthentication, vineyardsRouter);
+  app.use('/api/organization/vineyard/block', checkAuthentication, blocksRouter);
+  app.use('/api/organization/vineyard/block/row', checkAuthentication, rowsRouter);
+  app.use('/api/address', checkAuthentication, addressesRouter);
+  app.use('/api/signup', checkAuthentication, usersRouter);
+  app.use('/api/user', checkAuthentication, usersRouter);
+  app.use('/api/note', checkAuthentication, notesRouter);
+  app.use('/api/alert', checkAuthentication, alertsRouter);
+
+  app.use('/api/weather', checkAuthentication, weatherRoutes);
 
   // === LOGIN ROUTING ===
   app.post('/api/login',
-  passport.authenticate('local'), function(req, res){ 
+  passport.authenticate('local'), function(req, res){
     res.status(201).json(req.user);
   });
-  
+
   // === LOGOUT ROUTING ===
   app.get('/api/logout', function(req, res){
     req.logout();
     res.status(201).json(req.user);
   });
-  
+
   // === WILDCARD ROUTING ===
   app.use('*', (req, res, next) => {
     res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));

@@ -8,7 +8,12 @@ export default function middleware(app, express) {
   app.use(cookieParser());
   app.use(bodyParser.urlencoded({extended: false}));
   app.use(bodyParser.json());
-  app.use(session({ secret: 'keyboard cat' }));
+  app.use(session({
+    secret: 'keyboard cat',
+    cookie: {maxAge: 1000*60*60},
+    rolling: true,
+    resave: true,
+    saveUnitialized: false }));
 	app.use(passport.initialize());
   app.use(passport.session());
   serializeLogin(passport);
