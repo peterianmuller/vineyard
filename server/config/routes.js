@@ -11,7 +11,9 @@ import usersRouter from './routes/users';
 import notesRouter from './routes/notes';
 import alertsRouter from './routes/alerts';
 // import messagesController from './routes/messages';
+
 import { passport } from './auth/local';
+import weatherRoutes from './weather/routes';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
@@ -33,41 +35,13 @@ export default function routes(app, express) {
   passport.authenticate('local'), function(req, res){ 
     res.status(201).json(req.user);
   });
-
-
-
+  
+  // === LOGOUT ROUTING ===
   app.get('/api/logout', function(req, res){
     req.logout();
     res.status(201).json(req.user);
   });
-  // === OGRANIZATION ROUTING ===
-
-  // CREATE NEW ORGANIZATION
-  app.post('/api/organization', (req, res, next) => {
-    const params = {
-      name: req.body.name,
-      phoneNumber: req.body.phoneNumber,
-      tier: req.body.tier
-    };
-    return organizationsController.newOrganization(params)
-    .then((organization) => {
-      if (organization) {
-        // QUESTION: BETTER TO USE RES.SEND?
-        res.json(organization);
-      }
-      next();
-    }).catch((err) => {
-      console.log('could not add organization ', err);
-    });
-  });
-
-  // === LOGOUT ROUTING ===
-  app.get('/api/logout',
-  function(req, res){
-    req.logout();
-    res.status(200).json(req.user);
-  });
-
+  
   // === WILDCARD ROUTING ===
   app.use('*', (req, res, next) => {
     res.sendFile(path.resolve(__dirname, '../../client/dist/index.html'));
