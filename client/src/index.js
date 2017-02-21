@@ -7,7 +7,7 @@ import Form from './components/Form';
 import Home from './containers/home';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
-import NotesView from'./containers/notesView';
+import NotesView from './containers/NotesView';
 import Map from './components/Map';
 import UserPage from './containers/UserPage';
 import store from './store';
