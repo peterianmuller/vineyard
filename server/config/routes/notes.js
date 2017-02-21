@@ -29,4 +29,18 @@ router.route('/')
     });
 });
 
+router.route('/')
+  .get((req, res, next) => {
+    return notesController.getAllNotes()
+    .then((notes) => {
+      if (notes) {
+        res.json(notes);
+      } else {
+        next();
+      }
+    }).catch((err) => {
+      console.log('could not retrieve all notes ', err);
+    });
+  });
+
 export default router;
