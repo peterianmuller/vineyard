@@ -3,7 +3,60 @@ import { ControlLabel, FormControl } from 'react-bootstrap';
 import { connect, Provider } from 'react-redux';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
+//hold off untl the bookshelf refactor
 
-// import session from 'supertest-session';
-// import myApp from '../../path/to/app';
- 
+
+/*=================================Signup==================================*/
+
+
+/*on signup, should be a post request to /api/signup*/
+
+/*on signup, the newUser function from the user controller should be called*/
+
+/*on signup, the user's password should be hashed*/
+
+/*on signup, user should be redirected to login*/
+
+/*axios calls should have catch block with error handling*/
+
+/*==================================Login===================================*/
+
+/*should use local auth strategy*/
+
+/*should validate password with brcypt.compare*/
+
+/*all subsequent requests should have a req.user property*/
+
+/*should serialze user id on page transfer, should deserialize on page transfer*/
+
+/*should make a get request to /api/login*/
+
+/*should redirect to the form*/
+
+/*should update redux store with login id/username*/
+
+/*axios calls should have catch block with error handling*/
+
+/*==================================Logout===================================*/
+
+
+/*should call .logout and .session.destroy*/
+
+/*should redirect user to login page*/
+
+/*session should no longer contain object with username property*/
+
+/*axios calls should have catch block with error handling*/
+
+/**/
+
+/*===============================Auth Middleware===============================*/
+
+
+/*should prevent transfer between pages when not logged in*/
+
+/**/
+
+/**/
+
+/**/
