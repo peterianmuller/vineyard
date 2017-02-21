@@ -2,6 +2,7 @@ import React from 'react';
 import NoteFormInput from './NoteFormInput';
 import { Button, Col, Form, Grid, Row } from 'react-bootstrap';
 import Map from './Map';
+import LatLon from './LatLon';
 import { setLatLong } from '../helpers/changeHandlers';
 import { getWeather, postNote } from '../actions/noteForm';
 
@@ -37,8 +38,7 @@ export default class FormPage extends React.Component {
             <Form onSubmit={this.handleSubmit.bind(this)}>
               <NoteFormInput title='Note Title' field='title' value={this.props.note.title} />
 
-              <NoteFormInput title='Latitude' field='lat' value={this.props.note.lat} disabled={true}/>
-              <NoteFormInput title='Longitude' field='lon' value={this.props.note.lon} disabled={true} />
+              <LatLon lat={this.props.note.lat} lon={this.props.note.lon} />
               <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
 
               <NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
