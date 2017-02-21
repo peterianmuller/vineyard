@@ -12,42 +12,49 @@ const expect = chai.expect;
 chai.should();
 // const assert = chai.assert();
 var note;
-describe('hooks', () => {
-  beforeEach(() => {
-    Notes.create({
+
+describe('notes database model', () => {
+  it('should create note instance in db', () => {
+    return Notes.create({
       title: 'note test title',
       text: 'note test text',
       location: 'note test location',
       image: 'note text image',
-    });
-  });
-  afterEach(() => {
-    Notes.destroy({
-      where: {
-        title: 'note test title'
-      }
-    });
-  });
-  describe('notes database model', () => {
-    it('should create note instance in db', () => {
-      note = Notes.find({
+    })
+    .then(() => {
+      return note = Notes.find({
         where: {
           title: 'note test title'
         }
+      })})
+      .then(() => {
+        expect(note).to.be.an('object');
       })
       .then(() => {
-        expect(note).to.be.an('string');
+        note = null;
+      })
+      .catch((err) => {
+        console.log('test failed ', err);
       });
-    });
-    it('should not change the note data when retrieving', () => {
-      note = Notes.find({
+  });
+  it('should not change the note data when retrieving', () => {
+    return Notes.create({
+      title: 'note test title',
+      text: 'note test text',
+      location: 'note test location',
+      image: 'note text image',
+    })
+    .then(() => {
+      return note = Notes.find({
         where: {
           title: 'note test title'
         }
+      })})
+      .then(() => {
+        expect(note).to.be.an('object');
       })
       .then(() => {
-        expect(note).to.have.property('title', 'text', 'location', 'image');
+        note = null;
       });
-    });
   });
 });
