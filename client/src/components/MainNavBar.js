@@ -30,6 +30,7 @@ export default props => {
             <NavItem eventKey={2} href="#">View Data</NavItem>
             <NavItem eventKey={3} href="#">Check Alerts</NavItem>
             <NavItem eventKey={4} href="/form">Write Note</NavItem>
+            <NavItem eventKey={5} href="/notesView">View Notes</NavItem>
           </Nav>
           <Nav pullRight>
             <NavItem href="/login">Login</NavItem>
@@ -40,3 +41,4 @@ export default props => {
       </Navbar>
     </div>
   )};
+

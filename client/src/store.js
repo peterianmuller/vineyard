@@ -6,6 +6,7 @@ import { navReducer } from './reducers/navigation';
 import { userLoginReducer } from './reducers/login';
 import { userSignupReducer } from './reducers/signup';
 import { noteFormReducer } from './reducers/noteForm';
+import { notesViewReducer } from './reducers/notesView';
 
 const rootReducer = combineReducers({
   nav: navReducer,

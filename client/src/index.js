@@ -7,6 +7,7 @@ import Form from './components/Form';
 import Home from './containers/home';
 import Login from './containers/Login';
 import Signup from './containers/Signup';
+import NotesView from'./containers/notesView';
 import Map from './components/Map';
 import UserPage from './containers/UserPage';
 import store from './store';
@@ -20,6 +21,7 @@ var Root = props => (
         <Route path='/login' component={Login} />
         <Route path='/signup' component={Signup} />
         <Route path='/form' component={Form} />
+        <Route path='/notesView' component={NotesView} />
         <Route path='/logout' component={Login} />
         <Route path='/map' component={Map} />
         <Route path='/user' component={UserPage} />

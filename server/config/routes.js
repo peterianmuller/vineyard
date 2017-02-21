@@ -1,6 +1,7 @@
 import path from 'path';
 import express from 'express';
 
+
 // SERVER CONTROLLER DEPENDENCIES
 import organizationsRouter from './routes/organizations';
 import addressesRouter from './routes/addresses';
@@ -14,6 +15,16 @@ import alertsRouter from './routes/alerts';
 
 import { passport } from './auth/local';
 import weatherRoutes from './weather/routes';
+
+// CONTROLLER DEPENDENCIES
+import organizationsController from '../db/controllers/organizations';
+import addressesController from '../db/controllers/addresses';
+import vineyardsController from '../db/controllers/vineyards';
+import blocksController from '../db/controllers/blocks';
+import rowsController from '../db/controllers/rows';
+import usersController from '../db/controllers/users';
+import notesController from '../db/controllers/notes';
+import alertsController from '../db/controllers/alerts';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
