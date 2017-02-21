@@ -14,7 +14,7 @@ function serializeLogin (passport) {
     User.findOne({
       where: {id: id}
     })
-    .then(user => done(user))
+    .then(user => done(null, user))
     .catch(err => done(err))
   });
 }
@@ -22,7 +22,7 @@ function serializeLogin (passport) {
 passport.use('local', new LocalStrategy({
   usernameField: 'userName',
   passwordField: 'password',
-  passReqToCallback : true 
+  passReqToCallback : true
 },
   function(req, username, password, done) {
     User.find({
