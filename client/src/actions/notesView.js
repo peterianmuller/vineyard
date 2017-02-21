@@ -1,12 +1,15 @@
-//To do : make get request to populate state of notes
 import axios from 'axios';
 
 export function getNotes(){
-  return dispatch => axios.get('/api/notes', {
-    //get notes data from db
+  console.log('inside getNotes');
+  return dispatch => axios.get('/api/note')
+  .then(resp => {
+    console.log('inside');
+    console.log(resp.data);
+    return dispatch(setNotes(resp));
   })
-  .then(resp => dispatch(setNotes(resp)))
   .catch(err => {
+    console.log('inside catch');
     console.log(err);
   });
 }
