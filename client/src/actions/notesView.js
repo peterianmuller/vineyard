@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export function getNotes(){
+export function getNotes() {
   console.log('inside getNotes');
   return dispatch => axios.get('/api/note')
   .then(resp => {
@@ -14,10 +14,9 @@ export function getNotes(){
   });
 }
 
-export function setNotes(data){
-  console.log('data is', data);
+export function setNotes(data) {
   return {
-    type: 'GET_NOTES',
+    type: "GET_NOTES",
     value: data
-  }
-};
+  };
+}

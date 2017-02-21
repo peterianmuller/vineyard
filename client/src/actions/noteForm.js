@@ -1,9 +1,10 @@
 import axios from 'axios';
 
 export function getWeather(note) {
-  return dispatch => axios.post('/api/weather', {
-    lat: note.lat,
-    lon: note.lon
+  console.log(note);
+  return dispatch => axios.post('/api/weather/byLatLon', {
+    'lat': note.lat,
+    'lon': note.lon
   }).then(resp => dispatch(setNoteWeather(resp)))
     .catch(err => {
       console.log(err);
@@ -23,6 +24,14 @@ export function setNoteFormItem(item, value) {
   toReturn.type = "SET_NOTE_FORM_" + item.toUpperCase();
 
   return toReturn;
+}
+
+function setNoteWeather(value) {
+  console.log('in set note weather');
+  console.log(value);
+  return {
+    type: "IDKMAN"
+  };
 }
 
 export function appendNoteFormItem(item, value) {

@@ -21,18 +21,19 @@ export default props => (
       <FormControl.Feedback />
       { 
         props.disabled ? '' : 
-        ( 
-          <InputGroup.Button>
-           <Button onClick={ 
-             startRecording.bind(
-               null, 
-               setCurrentlyRecording, 
-               props.field.toUpperCase()
-             )}>
-             Record
-           </Button>
-         </InputGroup.Button> 
-        )
+          (
+            <InputGroup.Addon
+              bsClass='input-group-addon btn btn-primary'
+                onClick={ 
+                  startRecording.bind(
+                    null, 
+                    setCurrentlyRecording, 
+                    props.field.toUpperCase()
+                )}
+            > 
+                <i className='fa fa-microphone' />
+            </InputGroup.Addon>
+          ) 
       }
     </InputGroup>
   </FormGroup>
