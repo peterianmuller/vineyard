@@ -1,6 +1,6 @@
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize('vineyard', 'postgres', '123', {
+const sequelize = new Sequelize('vineyard', null, null, {
   host: 'localhost',
   dialect: 'postgres',
   port: 5432
