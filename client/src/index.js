@@ -26,7 +26,6 @@ var Root = props => {
     }
     callback();
   } 
-  authTransition.bind(this);
 
   return (
     <Provider store={store}>

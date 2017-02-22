@@ -17,7 +17,7 @@ class App extends React.Component {
               note: this.props.note,
               dispatch: this.props.dispatch,
               notesView: this.props.notesView,
-              auth: this.props.auth
+              auth: this.props.authStatus
 						}
 					)
 				}
