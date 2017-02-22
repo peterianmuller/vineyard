@@ -4,6 +4,7 @@ import LatLon from './LatLon';
 import { setLatLong } from '../helpers/changeHandlers';
 import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { getWeather, postNote } from '../actions/noteForm';
+import NoteFormInput from './NoteFormInput';
 
 
 export default class Weather extends React.Component {
@@ -20,7 +21,8 @@ export default class Weather extends React.Component {
     return (
       <div>
         <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
-        <p>Weather info will go here</p>
+        <NoteFormInput title='The current temperature is' field='weather' value={this.props.note.temperature} />
+        <NoteFormInput title='Current humidity is' field='weather' value={this.props.note.humidity} />
       </div>
     )
   }

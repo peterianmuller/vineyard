@@ -30,8 +30,6 @@ export default class FormPage extends React.Component {
 
     // this.props.dispatch(postNote(this.props.note));
     this.props.dispatch(uploadImgToImgur(this.props.note.selectedImg));
-    browserHistory.push('/formValidation');
-
   }
 
   pullWeather(e) {

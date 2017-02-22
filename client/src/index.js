@@ -16,14 +16,14 @@ import store from './store';
 var Root = props => {
 
   const authTransition = (nextState, replace, callback) => {
-     var currentState = store.getState();
-     console.log(currentState.authStatus.username, "current store")
-     var currentUser = currentState.authStatus.username;
-     console.log(nextState, "next state")
-     if(!currentUser) {
-       console.log(currentUser)
-       replace('/login');
-     }
+     // var currentState = store.getState();
+     // console.log(currentState.authStatus.username, "current store")
+     // var currentUser = currentState.authStatus.username;
+     // console.log(nextState, "next state")
+     // if(!currentUser) {
+     //   console.log(currentUser)
+     //   replace('/login');
+     // }
     callback();
   } 
 
