@@ -10,8 +10,8 @@ import Signup from './containers/Signup';
 import NotesView from './containers/NotesView';
 import Map from './components/Map';
 import UserPage from './containers/UserPage';
+import MapWeatherValidation from './components/MapWeatherValidation.js';
 import store from './store';
-
 
 var Root = props => {
 
@@ -36,6 +36,7 @@ var Root = props => {
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
           <Route path='/form' component={Form} onEnter={authTransition}/>
+          <Route path='/formValidation' component={MapWeatherValidation} />
           <Route path='/notesView' component={NotesView} onEnter={authTransition} />
           <Route path='/map' component={Map} onEnter={authTransition} />
           <Route path='/user' component={UserPage} onEnter={authTransition} />
@@ -45,5 +46,6 @@ var Root = props => {
   );
 
 }
+
 
 ReactDOM.render(<Root />, document.getElementById('app'));
