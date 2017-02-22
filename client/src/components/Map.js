@@ -37,10 +37,6 @@ export default class Map extends React.Component {
       };
     })();  
 
-    //let markers = [];
-
-
-
 
 
     function initMap() {
@@ -116,7 +112,7 @@ export default class Map extends React.Component {
         google.maps.event.addListener(myMarker, 'dragend', function(evt){
             document.getElementById('current').innerHTML = '<p>My location is: Current Lat: ' + evt.latLng.lat().toFixed(5) + ' Current Lng: ' + evt.latLng.lng().toFixed(5) + '</p>';
             //update request to note with evt.latLng.lat().toFixed(5) and evt.latLng.lng().toFixed(5)
-            
+
 
         });
 
