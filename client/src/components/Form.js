@@ -2,6 +2,7 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import NoteFormInput from './NoteFormInput';
 import { Button, Col, Form, Grid, Row } from 'react-bootstrap';
+import Loadable from 'react-loading-overlay';
 import Map from './Map';
 import LatLon from './LatLon';
 import { setLatLong } from '../helpers/changeHandlers';
@@ -54,26 +55,33 @@ export default class FormPage extends React.Component {
   render() {
     return (
       <Grid>
-        { this.props.note.uploadPending ? (<h1>PENding</h1>) : '' }
         <Row>
           <Col xsOffset={1} xs={10} smOffset={2} sm={8} mdOffset={3} md={6}>
             <Form onSubmit={this.handleSubmit.bind(this)}>
               <NoteFormInput title='Note Title' field='title' value={this.props.note.title} />
 
-
               <NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
             </Form>
-            <LatLon lat={this.props.note.lat} lon={this.props.note.lon} />
-            <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
 
-            <div className='photoContainer'>
-              <img src={this.props.note.selectedImg} className='uploadedPhoto' alt='img will appear here' />
-            </div>
+            <Row>
+              <Col>
+                  <div className='photoContainer'>
+                    <Loadable
+                      spinner
+                      active={ this.props.note.uploadPending }
+                      animate
+                      text="Uploading photo to imgur"
+                    >
+                      <img src={this.props.note.selectedImg} className='uploadedPhoto' alt='Select image to upload' />
+                    </Loadable>
+                  </div>
+              </Col>
+            </Row>
 
-            <input type='file' capture='camera' onChange={this.handleFileSelection.bind(this)} />
-            <Link to='/formValidation'>
-              <Button onClick={this.handleSubmit.bind(this)}>Next</Button>
-            </Link>  
+            <Row>
+              <input className='selectFileBtn' type='file' capture='camera' onChange={this.handleFileSelection.bind(this)} />
+              <Button bsClass='btn btn-primary btn-lg formBtnNext pull-right' onClick={this.handleSubmit.bind(this)}>Next</Button>
+            </Row>
           </Col>
         </Row>
       </Grid>
