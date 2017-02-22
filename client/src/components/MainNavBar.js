@@ -9,9 +9,10 @@ import { clearAuthStatus } from '../actions/login';
 export default props => {
   const handleLogout = (e) => {
     e.preventDefault();
-    axios.get('/api/logout')
+    axios.get('/auth/logout')
     .then(() => {
       props.dispatch(clearAuthStatus());
+      window.localStorage.removeItem('token');
       browserHistory.push('/login');
     })
     .catch((err) => {

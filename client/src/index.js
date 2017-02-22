@@ -16,25 +16,33 @@ import store from './store';
 var Root = props => {
 
   const authTransition = (nextState, replace, callback) => {
-     // var currentState = store.getState();
-     // console.log(currentState.authStatus.username, "current store")
-     // var currentUser = currentState.authStatus.username;
-     // console.log(nextState, "next state")
-     // if(!currentUser) {
-     //   console.log(currentUser)
-     //   replace('/login');
-     // }
+    const currentState = store.getState();
+    const currentUser = currentState.authStatus;
+
+    if (!currentUser.username) {
+      replace('/login');
+    }
     callback();
-  } 
+  };
+
+  const isLoggedIn = (nextState, replace, callback) => {
+    const currentState = store.getState();
+    const currentUser = currentState.authStatus;
+
+    if (currentUser.username) {
+      replace('/home');
+    }
+    callback();
+  };
 
   return (
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path='/' component={App}>
-          <IndexRedirect to='/login' />
+          <IndexRedirect to='/home' />
           <Route path='/home' component={Home} onEnter={authTransition} />
-          <Route path='/login' component={Login} />
-          <Route path='/signup' component={Signup} />
+          <Route path='/login' component={Login} onEnter={isLoggedIn} />
+          <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
           <Route path='/form' component={Form} onEnter={authTransition}/>
           <Route path='/formValidation' component={MapWeatherValidation} />
           <Route path='/notesView' component={NotesView} onEnter={authTransition} />

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { validateUser } from './navigation';
 
 
 export function setLoginItem(item, value) {
@@ -15,9 +16,11 @@ export function loginUser(userCredentials) {
     password: userCredentials.password
   })
   .then((val) => { 
-    localStorage.setItem('token', val.token);
-
-    dispatch(updateAuthStatus(val.data.userName));
+    console.log('hi im here', val);
+    localStorage.setItem('token', val.data.token);
+    
+    dispatch(updateAuthStatus(val.data.token));
+    dispatch(validateUser());
     dispatch(clearUserLogin());
   })
   .then(() =>  {
@@ -34,10 +37,10 @@ export function clearUserLogin() {
   }
 }
 
-function updateAuthStatus(currentUser) {
+function updateAuthStatus(token) {
   return {
-    type: "SET_AUTHSTATUS_USERNAME",
-    value: currentUser
+    type: "SET_AUTHSTATUS_TOKEN",
+    value: token
   };
 }
 

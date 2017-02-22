@@ -2,7 +2,9 @@ import axios from 'axios';
 
 export function getNotes() {
   console.log('inside getNotes');
-  return dispatch => axios.get('/api/note')
+  return dispatch => axios.get('/api/note', {
+    headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
+  })
   .then(resp => {
     console.log('inside');
     console.log('this is', resp.data);

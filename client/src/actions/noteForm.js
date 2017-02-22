@@ -6,6 +6,7 @@ export function getWeather(note) {
   return dispatch => axios.post('/api/weather/byLatLon', {
     'lat': note.lat,
     'lon': note.lon
+  }, { headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
   }).then(resp => dispatch(setNoteWeather(resp)))
     .catch(err => {
       console.log(err);
@@ -52,7 +53,7 @@ export function postNote(note) {
     text: note.textArea,
     location: '3',
     image: ''
-  })
+  }, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
   .then(() => dispatch(clearNoteFields()))
   .catch((err) => {
     console.log(err);
