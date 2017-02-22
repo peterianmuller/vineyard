@@ -4,6 +4,7 @@ import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { setLatLong } from '../helpers/changeHandlers';
 import Map from './Map';
 import Weather from './Weather';
+import NoteFormInput from './NoteFormInput';
 
 export default class validationView extends React.Component {
   constructor(props){
@@ -14,7 +15,7 @@ export default class validationView extends React.Component {
     return (
       <div>
         <Map />
-        <Weather />
+        <NoteFormInput title='Weather' field='weather'/>
         <Button>Confirm and Save Note</Button>
       </div>
     )

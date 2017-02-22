@@ -26,13 +26,14 @@ export default class FormPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();  
 
+
     // this.props.dispatch(postNote(this.props.note));
     this.props.dispatch(uploadImgToImgur(this.props.note.selectedImg));
+
   }
 
   pullWeather(e) {
     e.preventDefault();
-
     this.props.dispatch(getWeather(this.props.note));
   }
 
