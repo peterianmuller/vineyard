@@ -10,12 +10,11 @@ export function setLoginItem(item, value) {
 }
 
 export function loginUser(userCredentials) {
-  return dispatch => axios.post('/api/login', {
+  return dispatch => axios.post('/auth/login', {
     userName: userCredentials.username,
     password: userCredentials.password
   })
   .then((val) => { 
-    console.log('this is jwt', val);
     localStorage.setItem('token', val.token);
 
     dispatch(updateAuthStatus(val.data.userName));

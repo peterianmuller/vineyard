@@ -13,7 +13,7 @@ export function setSignupItem(item, value) {
 
 export function signup(userAccount) {
 	console.log(userAccount, 'user obj to post in signup actions')
-  return dispatch => axios.post('/api/signup', {
+  return dispatch => axios.post('/auth/signup', {
     firstName: userAccount.first_name,
     lastName: userAccount.last_name,
     userName: userAccount.username,

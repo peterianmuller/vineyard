@@ -1,5 +1,5 @@
 export function logoutUser(userCredentials) {
-  return dispatch => axios.get('/api/logout')
+  return dispatch => axios.get('/auth/logout')
   .then(() => { 
   	dispatch(clearAuthStatus());
   	browserHistory.push('/login');
