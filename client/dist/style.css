@@ -30,3 +30,13 @@
 .textLeft {
   text-align: left;
 }
+
+.photoContainer {
+  max-width: 200px;
+  max-height: 200px;
+}
+
+.uploadedPhoto {
+  max-width: 100%;
+  height: auto;
+}

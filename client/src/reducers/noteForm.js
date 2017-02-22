@@ -9,7 +9,10 @@ const defaultForm = {
   lat: '',
   lon: '',
   textArea: '',
-  currentlyRecording: ''
+  currentlyRecording: '',
+  selectedImg: '',
+  uploadedImgUrl: '',
+  uploadPending: false
 };
 
 export function noteFormReducer(state = defaultForm, action) {
@@ -123,6 +126,22 @@ export function noteFormReducer(state = defaultForm, action) {
         ...state,
         textArea: action.value
       }
+    case "SET_UPLOADED_IMG_URL_PENDING":
+      return {
+        ...state,
+        uploadPending: true
+      };
+    case "SET_UPLOADED_IMG_URL_FULFILLED":
+      return {
+        ...state,
+        uploadedImgUrl: action.payload,
+        uploadPending: false
+      };
+    case "SET_SELECTED_IMG":
+      return {
+        ...state,
+        selectedImg: action.value
+      };
     default:
       return state;
   }

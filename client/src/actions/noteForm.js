@@ -61,3 +61,33 @@ function clearNoteFields() {
     type: "CLEAR_NOTE_FIELDS"
   };
 }
+
+export function uploadImgToImgur(image) {
+  return {
+    type: "SET_UPLOADED_IMG_URL",
+    payload: {
+      promise: axios.post('https://api.imgur.com/3/image', 
+        { 
+          image: image.split(',')[1],
+          type: 'base64'
+        }, 
+        {
+          headers: {
+            Authorization: 'Client-ID d945621dec69149',
+            Accept: 'application/json'
+          } 
+        }).then(resp => { 
+          return resp.data.data.link; 
+        }).catch(err => { 
+          console.log('this is err', err); 
+        })
+    }
+  }
+}
+
+export function setSelectedImage(value) {
+  return {
+    type: "SET_SELECTED_IMG",
+    value
+  };
+}
