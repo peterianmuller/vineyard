@@ -1,5 +1,6 @@
 import React from 'react';
 import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
+import { LinkContainer } from 'react-router-bootstrap';
 import { RootCloseWrapper } from 'react-overlays';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
@@ -26,16 +27,32 @@ export default props => {
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <NavItem eventKey={1} href="#">Home</NavItem>
-            <NavItem eventKey={2} href="#">View Data</NavItem>
-            <NavItem eventKey={3} href="#">Check Alerts</NavItem>
-            <NavItem eventKey={4} href="/form">Write Note</NavItem>
-            <NavItem eventKey={5} href="/notesView">View Notes</NavItem>
+            <LinkContainer to='/home'>
+              <NavItem eventKey={1}>Home</NavItem>
+            </LinkContainer>
+            <LinkContainer to='/data/view'>
+              <NavItem eventKey={2}>View Data</NavItem>
+            </LinkContainer>
+            <LinkContainer to='/alerts'>
+              <NavItem eventKey={3}>Check Alerts</NavItem>
+            </LinkContainer>
+            <LinkContainer to='/form'>
+              <NavItem eventKey={4}>Write Note</NavItem>
+            </LinkContainer>
+            <LinkContainer to='/notesView'>
+              <NavItem eventKey={5}>View Notes</NavItem>
+            </LinkContainer>
           </Nav>
           <Nav pullRight>
-            <NavItem href="/login">Login</NavItem>
-            <NavItem href="/signup">Sign Up</NavItem>
-            <NavItem onClick={handleClick} href="/logout">Log Out</NavItem>
+            <LinkContainer to='/login'>
+              <NavItem>Login</NavItem>
+            </LinkContainer>
+            <LinkContainer to='/signup'>
+              <NavItem>Sign Up</NavItem>
+            </LinkContainer>
+            <LinkContainer to='/logout'>
+              <NavItem onClick={handleClick}>Log Out</NavItem>
+            </LinkContainer>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
