@@ -60,6 +60,7 @@ export default class Map extends React.Component {
           fullscreenControl: false
         });
 
+
         function CenterControl(controlDiv, map) {
 
           // Set CSS for the control border.
@@ -70,7 +71,7 @@ export default class Map extends React.Component {
           controlUI.style.boxShadow = '0 2px 6px rgba(0,0,0,.3)';
           controlUI.style.cursor = 'pointer';
           controlUI.style.marginBottom = '22px';
-          controlUI.style.textAlign = 'center';
+          controlUI.style.textAlign = 'right';
           controlUI.title = 'Click to recenter the map';
           controlDiv.appendChild(controlUI);
 
@@ -78,8 +79,8 @@ export default class Map extends React.Component {
           var controlText = document.createElement('div');
           controlText.style.color = 'rgb(25,25,25)';
           controlText.style.fontFamily = 'Roboto,Arial,sans-serif';
-          controlText.style.fontSize = '16px';
-          controlText.style.lineHeight = '38px';
+          controlText.style.fontSize = '10px';
+          controlText.style.lineHeight = '30px';
           controlText.style.paddingLeft = '5px';
           controlText.style.paddingRight = '5px';
           controlText.innerHTML = 'Center Map';
@@ -106,13 +107,17 @@ export default class Map extends React.Component {
         let myLocation = new google.maps.Marker({
           position: {lat: lat, lng: lng},
           draggable: false,
-          label: 'Me'
+          label: 'Me',
+          icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         });
         myLocation.setMap(map);
 
 
         google.maps.event.addListener(myMarker, 'dragend', function(evt){
             document.getElementById('current').innerHTML = '<p>My location is: Current Lat: ' + evt.latLng.lat().toFixed(5) + ' Current Lng: ' + evt.latLng.lng().toFixed(5) + '</p>';
+            //update request to note with evt.latLng.lat().toFixed(5) and evt.latLng.lng().toFixed(5)
+            
+
         });
 
         google.maps.event.addListener(myMarker, 'dragstart', function(evt){
