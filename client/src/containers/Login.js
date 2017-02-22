@@ -8,6 +8,7 @@ export default props => {
 		e.preventDefault();
 		props.dispatch(loginUser(props.login));
 	}
+
 	return (
 	<Grid>
 	  <Row>
@@ -30,7 +31,6 @@ export default props => {
 	        </FormGroup>
 					<Button
 						bsStyle="primary"
-						method="POST"
 						bsClass="btn pull-right btn-primary buttonWithMargin"
 						type='submit'
 					>
