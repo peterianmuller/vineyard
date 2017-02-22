@@ -15,6 +15,10 @@ export function userLoginReducer(state = loginState, action) {
         ...state,
         password: action.value
       }
+    case "CLEAR_LOGIN_FORM":
+      return {
+        ...loginState
+      };
     default:
       return state;
   }

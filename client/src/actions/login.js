@@ -16,6 +16,7 @@ export function loginUser(userCredentials) {
   })
   .then((val) => { 
     dispatch(updateAuthStatus(val.data.userName));
+    dispatch(clearUserLogin());
   })
   .then(() =>  {
     browserHistory.push('/home');
@@ -23,6 +24,12 @@ export function loginUser(userCredentials) {
   .catch((err) => {
     console.log('error dispatching login credentials ', err);
   });
+}
+
+export function clearUserLogin() {
+  return {
+    type: "CLEAR_LOGIN_FORM"
+  }
 }
 
 function updateAuthStatus(currentUser) {
