@@ -37,7 +37,6 @@ var Root = props => {
           <Route path='/signup' component={Signup} />
           <Route path='/form' component={Form} onEnter={authTransition}/>
           <Route path='/notesView' component={NotesView} onEnter={authTransition} />
-          <Route path='/logout' component={Login} onEnter={authTransition} />
           <Route path='/map' component={Map} onEnter={authTransition} />
           <Route path='/user' component={UserPage} onEnter={authTransition} />
         </Route>
