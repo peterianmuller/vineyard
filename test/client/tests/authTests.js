@@ -53,10 +53,10 @@ import { expect } from 'chai';
 /*===============================Auth Middleware===============================*/
 
 
-/*should prevent transfer between pages when not logged in*/
+/*should redirect a user to login if not authorized*/
 
-/**/
+/*if user is authorized, should redirect to next page upon link selection*/
 
-/**/
+/*if user is logged in current state of store should have authorized username defined*/
 
-/**/
+/*if user is not logged in, current state of store's auth-user value should be undefined*/
