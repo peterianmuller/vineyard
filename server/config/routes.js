@@ -42,7 +42,7 @@ export default function routes(app, express) {
   app.use('/api/organization/vineyard/block', checkAuthentication, blocksRouter);
   app.use('/api/organization/vineyard/block/row', checkAuthentication, rowsRouter);
   app.use('/api/address', checkAuthentication, addressesRouter);
-  app.use('/api/signup', checkAuthentication, usersRouter);
+  app.use('/api/signup', usersRouter);
   app.use('/api/user', checkAuthentication, usersRouter);
   app.use('/api/note', checkAuthentication, notesRouter);
   app.use('/api/alert', checkAuthentication, alertsRouter);

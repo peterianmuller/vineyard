@@ -26,33 +26,47 @@ export default props => {
           <Navbar.Toggle />
         </Navbar.Header>
         <Navbar.Collapse>
-          <Nav>
-            <LinkContainer to='/home'>
-              <NavItem eventKey={1}>Home</NavItem>
-            </LinkContainer>
-            <LinkContainer to='/data/view'>
-              <NavItem eventKey={2}>View Data</NavItem>
-            </LinkContainer>
-            <LinkContainer to='/alerts'>
-              <NavItem eventKey={3}>Check Alerts</NavItem>
-            </LinkContainer>
-            <LinkContainer to='/form'>
-              <NavItem eventKey={4}>Write Note</NavItem>
-            </LinkContainer>
-            <LinkContainer to='/notesView'>
-              <NavItem eventKey={5}>View Notes</NavItem>
-            </LinkContainer>
-          </Nav>
+          { props.auth.username ? 
+            (
+              <Nav>
+                <LinkContainer to='/home'>
+                  <NavItem eventKey={1}>Home</NavItem>
+                </LinkContainer>
+                <LinkContainer to='/data/view'>
+                  <NavItem eventKey={2}>View Data</NavItem>
+                </LinkContainer>
+                <LinkContainer to='/alerts'>
+                  <NavItem eventKey={3}>Check Alerts</NavItem>
+                </LinkContainer>
+                <LinkContainer to='/form'>
+                  <NavItem eventKey={4}>Write Note</NavItem>
+                </LinkContainer>
+                <LinkContainer to='/notesView'>
+                  <NavItem eventKey={5}>View Notes</NavItem>
+                </LinkContainer>
+              </Nav>
+            ) : ''
+          }
           <Nav pullRight>
-            <LinkContainer to='/login'>
-              <NavItem>Login</NavItem>
-            </LinkContainer>
-            <LinkContainer to='/signup'>
-              <NavItem>Sign Up</NavItem>
-            </LinkContainer>
-            <LinkContainer to='/logout'>
-              <NavItem onClick={handleClick}>Log Out</NavItem>
-            </LinkContainer>
+            { props.auth.username ? 
+              (
+                <LinkContainer to='/logout'>
+                  <NavItem onClick={handleClick}>Log Out</NavItem>
+                </LinkContainer>
+              ) : 
+              (
+                <LinkContainer to='/login'>
+                  <NavItem>Login</NavItem>
+                </LinkContainer>
+              )
+            }
+            { props.auth.username ? '' : 
+              (
+                <LinkContainer to='/signup'>
+                  <NavItem>Sign Up</NavItem>
+                </LinkContainer>
+              )
+            }
           </Nav>
         </Navbar.Collapse>
       </Navbar>

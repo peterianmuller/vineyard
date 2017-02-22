@@ -8,7 +8,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <MainNavBar /> 
+        <MainNavBar auth={this.props.authStatus} /> 
         { 
           React.cloneElement(this.props.children, 
 						{
