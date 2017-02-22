@@ -33,6 +33,7 @@
     "bluebird": "^3.4.7",
     "body-parser": "^1.16.1",
     "bookshelf": "^0.10.3",
+    "bookshelf-bcrypt": "^2.1.0",
     "bootstrap": "^3.3.7",
     "cookie-parser": "^1.4.3",
     "d3": "^4.5.0",

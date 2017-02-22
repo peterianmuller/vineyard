@@ -1,27 +1,18 @@
-import Sequelize from 'sequelize';
-import sequelize from '../config';
+// import Sequelize from 'sequelize';
+import db from '../config';
 import Addresses from './addresses';
+import Vineyards from './vineyards';
 
-const Organizations = sequelize.define('organization', {
- name: Sequelize.STRING,
- phoneNumber: Sequelize.STRING,
- tier: {
-   type: Sequelize.ENUM,
-   values: [
-     'Hobbyist',
-     'Small',
-     'Large'
-   ]
- }
+const Organizations = db.Model.extend({
+	tableName: 'organizations',
+	hasTimestamps: true,
+	addresses: () => {
+		return this.hasOne(Addresses);
+	},
+	vineyards: () => {
+		return this.hasMany(Vineyards);
+	}
 });
-
-// Addresses.belongsTo(Organizations);
-// Organizations.hasOne(Addresses, {
-//   foreignKey: 'addressId'
-// });
-Addresses.hasOne(Organizations, {
- foreignKey: 'addressId'
-})
 
 export default Organizations;
 

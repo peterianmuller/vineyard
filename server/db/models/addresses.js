@@ -1,30 +1,17 @@
-import Sequelize from 'sequelize';
-import sequelize from '../config';
+import db from '../config';
+import Organizations from './organizations';
+import Vineyards from './vineyards';
 
-const Addresses = sequelize.define('address', {
-  street: {
-    type: Sequelize.STRING,
-    allowNull: false
+
+const Addresses = db.Model.extend({
+  tableName: 'addresses',
+  hasTimestamps: true,
+  organizations: () => {
+    return this.belongsTo(Organizations);
   },
-  street2: Sequelize.STRING,
-  city: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  state: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  zip: {
-    type: Sequelize.STRING,
-    allowNull: false
-  },
-  country: {
-    type: Sequelize.STRING,
-    allowNull: false
+  vineyards: () => {
+    return this.belongsTo(Vineyards);
   }
-}, {
-  timestamps: false
 });
 
 export default Addresses;
