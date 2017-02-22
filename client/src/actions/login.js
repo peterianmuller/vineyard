@@ -31,3 +31,9 @@ function updateAuthStatus(currentUser) {
     value: currentUser
   };
 }
+
+export function clearAuthStatus() {
+  return {
+    type: "CLEAR_AUTHSTATUS"
+  };
+}

@@ -4,18 +4,21 @@ import { LinkContainer } from 'react-router-bootstrap';
 import { RootCloseWrapper } from 'react-overlays';
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { clearAuthStatus } from '../actions/login';
 
 export default props => {
-  const handleClick = (e) => {
+  const handleLogout = (e) => {
     e.preventDefault();
     axios.get('/api/logout')
     .then(() => {
+      props.dispatch(clearAuthStatus());
       browserHistory.push('/login');
     })
     .catch((err) => {
       console.log('inside the axios catch', err);
     });
   }
+
   return (
     <div>
       <Navbar>
@@ -50,9 +53,7 @@ export default props => {
           <Nav pullRight>
             { props.auth.username ? 
               (
-                <LinkContainer to='/logout'>
-                  <NavItem onClick={handleClick}>Log Out</NavItem>
-                </LinkContainer>
+                <NavItem onClick={handleLogout}>Log Out</NavItem>
               ) : 
               (
                 <LinkContainer to='/login'>
