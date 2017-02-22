@@ -12,11 +12,19 @@ const defaultForm = {
   currentlyRecording: '',
   selectedImg: '',
   uploadedImgUrl: '',
-  uploadPending: false
+  uploadPending: false,
+  temperature: '',
+  humidity: ''
 };
 
 export function noteFormReducer(state = defaultForm, action) {
   switch(action.type) {
+    case "UPDATE_WEATHER":
+      return {
+        ...state,
+        temperature: action.value.temp,
+        humidity: action.value.humidity
+      };
     case "APPEND_NOTE_FORM_USERNAME":
       return {
         ...state,

@@ -28,10 +28,12 @@ export function setNoteFormItem(item, value) {
 }
 
 function setNoteWeather(value) {
-  console.log('in set note weather');
-  console.log(value);
+  console.log('really in set note weather?');
+  console.log('resposne from API?', value.data.current_observation
+);
   return {
-    type: "IDKMAN"
+    type: "UPDATE_WEATHER",
+    value: {temp: value.data.current_observation.temp_f +'F, ' + value.data.current_observation.temp_c + 'C' , humidity: value.data.current_observation.relative_humidity}
   };
 }
 

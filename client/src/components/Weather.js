@@ -22,7 +22,7 @@ export default class Weather extends React.Component {
       <div>
         <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
         <p>Weather stuff goes here</p>
-        <NoteFormInput title='Weather' field='weather' value={this.props.note.title}/>
+        <NoteFormInput title='Weather' field='weather' value={this.props.note.temperature}/>
       </div>
     )
   }
