@@ -4,6 +4,7 @@ import LatLon from './LatLon';
 import { setLatLong } from '../helpers/changeHandlers';
 import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { getWeather, postNote } from '../actions/noteForm';
+import NoteFormInput from './NoteFormInput';
 
 
 export default class Weather extends React.Component {
@@ -14,7 +15,6 @@ export default class Weather extends React.Component {
   pullWeather(e) {
     e.preventDefault();
     this.props.dispatch(getWeather(this.props.note));
-    console.log('does this log', this.props.note);
   }
 
   render(){
@@ -22,6 +22,7 @@ export default class Weather extends React.Component {
       <div>
         <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
         <p>Weather stuff goes here</p>
+        <NoteFormInput title='Weather' field='weather' value={this.props.note.title}/>
       </div>
     )
   }

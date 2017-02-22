@@ -5,21 +5,28 @@ import { setLatLong } from '../helpers/changeHandlers';
 import Map from './Map';
 import Weather from './Weather';
 import NoteFormInput from './NoteFormInput';
+import { postNote } from '../actions/noteForm';
 
 export default class validationView extends React.Component {
   constructor(props){
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  //use button below to post note
+  handleSubmit(e){
+    e.preventDefault();
+    this.props.dispatch(postNote(this.props.note));
+
+    //before on button in render function: 
+    //onClick={this.handleSubmit.bind(this)}
+  }
 
   render(){
     return (
       <div>
         <Map dispatch={this.props.dispatch} />
         <Weather dispatch={this.props.dispatch} note={this.props.note}/>
-        <NoteFormInput title='Weather' field='weather' value={this.props.weather}/>
-        <Button>Confirm and Save Note</Button>
+        <Button onClick={this.handleSubmit.bind(this)}>Confirm and Save Note</Button>
       </div>
     )
   }
