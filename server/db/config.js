@@ -107,94 +107,51 @@ const db = bookshelf(knex);
 // });
 
 /*==================addresses====================*/
-// const Addresses = sequelize.define('address', {
-//   street: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   street2: Sequelize.STRING,
-//   city: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   state: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   zip: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   country: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   }
-// }, {
-//   timestamps: false
-// });
-
+db.knex.schema.createTableIfNotExists('Addresses', (address) => {
+	address.increment('id').primary();
+	address.string('street', 255).notNullable();
+	address.string('street_2', 255);
+	address.string('city', 255).notNullable();
+	address.string('state', 255).notNullable();
+	address.string('zip', 255).notNullable();
+	address.string('country', 255).notNullable();
+});
 
 /*==================Organizations====================*/
-// const Organizations = sequelize.define('organization', {
-//  name: Sequelize.STRING,
-//  phoneNumber: Sequelize.STRING,
-//  tier: {
-//    type: Sequelize.ENUM,
-//    values: [
-//      'Hobbyist',
-//      'Small',
-//      'Large'
-//    ]
-//  }
-// });
+
+db.knex.schema.createTableIfNotExists('Organizations', (org) => {
+	org.increment('id').primary();
+	org.string('name', 255).notNullable();
+	org.string('phone_number', 255).notNullable();
+	org.enu('tier', ['Hobbyist', 'Small', 'Large']);
+});
 
 /*==================VINEYARDS====================*/
-db.knex.hasTable('vineyard')
 
-// const Vineyards = sequelize.define('vineyard', {
-//   name: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   phoneNumber: Sequelize.STRING,
-//   appellation: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   }
-// });
+db.knex.schema.createTableIfNotExists('Vineyards', (vineyard) => {
+	vineyard.increment('id').primary();
+	vineyard.string('name', 255).notNullable();
+	vineyard.string('phone_number', 255).notNullable();
+	vineyard.string('appellation', 255).notNullable();
+	vineyard.string('organizaton', 255).references('Organizations.id');
+	vineyard.string('address', 255).references('Addresses.id');
+})
 
 /*==================USERS====================*/
-// const Users = sequelize.define('user', {
-//   firstName: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   lastName: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   userName: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   password: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   phoneNumber: Sequelize.STRING,
-//   email: Sequelize.STRING,
-//   securityQuestion: Sequelize.STRING,
-//   securityAnswer: Sequelize.STRING,
-//   birthdate: Sequelize.STRING,
-//   accountRestrictions: {
-//     type: Sequelize.ENUM,
-//     values: [
-//       'Owner',
-//       'Manager',
-//       'Employee'
-//     ]
-//   }
-// }
+
+db.knex.schema.createTableIfNotExists('Users', (user) => {
+	user.increment('id').primary();
+	user.string('firstname', 255).notNullable();
+	user.string('lastname', 255).notNullable();
+	user.string('password', 255).notNullable();
+	user.string('username', 255).unique().notNullable();
+	user.string('phone_number', 255).notNullable();
+	user.string('email', 255).unique().notNullable();
+	user.date('birthdate', 255).notNullable();
+	user.enu('account_restrictions', ['Owner', 'Manager', 'Employee']).notNullable();
+	user.string('organization').references('Organizations.id');
+
+});
 
 
 export default db;
