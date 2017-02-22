@@ -1,6 +1,8 @@
 import path from 'path';
 import express from 'express';
+import jwt from 'jsonwebtoken';
 
+import jwtOptions from './auth/jwt';
 
 // SERVER CONTROLLER DEPENDENCIES
 import organizationsRouter from './routes/organizations';
@@ -52,13 +54,23 @@ export default function routes(app, express) {
   // === LOGIN ROUTING ===
   app.post('/api/login',
   passport.authenticate('local'), function(req, res){
-    res.status(201).json(req.user);
+    var payload = { id: req.user.id };
+    var token = jwt.sign(payload, jwtOptions.secretOrKey);
+
+    res.status(201).json({ message: "OK", token: token });
   });
 
   // === LOGOUT ROUTING ===
   app.get('/api/logout', function(req, res){
     req.logout();
     res.status(201).json(req.user);
+  });
+
+  // === SESSION RETRIEVAL ===
+  app.get('/api/session', (req, res) => {
+    console.log(req.session, req.user);
+    console.log(req.sessionID);
+    res.status(200).end();
   });
 
   // === WILDCARD ROUTING ===

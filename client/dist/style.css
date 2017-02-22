@@ -32,11 +32,27 @@
 }
 
 .photoContainer {
-  max-width: 200px;
-  max-height: 200px;
+  background-color: #eee;
+  border-color: #ccc;
+  border-radius: 5px;
+  border-width: 1px;
+  border-style: solid;
+  margin: 1em;
+  margin-bottom: 0px;
 }
 
 .uploadedPhoto {
-  max-width: 100%;
+  display: block;
+  margin: 0 auto;
+  max-width: 200px;
   height: auto;
+}
+
+.formBtnNext {
+  margin: 1em;
+}
+
+.selectFileBtn {
+  margin: 1em;
+  margin-top: 0px;
 }

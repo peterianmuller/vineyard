@@ -15,6 +15,9 @@ export function loginUser(userCredentials) {
     password: userCredentials.password
   })
   .then((val) => { 
+    console.log('this is jwt', val);
+    localStorage.setItem('token', val.token);
+
     dispatch(updateAuthStatus(val.data.userName));
     dispatch(clearUserLogin());
   })
