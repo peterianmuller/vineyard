@@ -2,11 +2,16 @@ import React from 'react';
 import axios from 'axios';
 import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { setLatLong } from '../helpers/changeHandlers';
+import { setNoteFormItem } from '../actions/noteForm';
+
 
 export default class Map extends React.Component {
   constructor(props) {
     super(props);
   };
+
+    //setNoteFormItem = setNoteFormItem.bind(this);
+
 
   render() {
     return (
@@ -106,13 +111,17 @@ export default class Map extends React.Component {
           label: 'Me',
           icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
         });
+
         myLocation.setMap(map);
 
 
         google.maps.event.addListener(myMarker, 'dragend', function(evt){
             document.getElementById('current').innerHTML = '<p>My location is: Current Lat: ' + evt.latLng.lat().toFixed(5) + ' Current Lng: ' + evt.latLng.lng().toFixed(5) + '</p>';
-            //update request to note with evt.latLng.lat().toFixed(5) and evt.latLng.lng().toFixed(5)
+          
+          console.log(evt.latLng.lat().toFixed(5), evt.latLng.lng().toFixed(5));
 
+          context.props.dispatch(setNoteFormItem('lat', evt.latLng.lat().toFixed(5)));
+          context.props.dispatch(setNoteFormItem('lon',evt.latLng.lng().toFixed(5)));
 
         });
 

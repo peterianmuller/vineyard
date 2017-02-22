@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, browserHistory } from 'react-router';
 import NoteFormInput from './NoteFormInput';
 import { Button, Col, Form, Grid, Row } from 'react-bootstrap';
 import Map from './Map';
@@ -26,9 +27,9 @@ export default class FormPage extends React.Component {
   handleSubmit(event) {
     event.preventDefault();  
 
-
     // this.props.dispatch(postNote(this.props.note));
     this.props.dispatch(uploadImgToImgur(this.props.note.selectedImg));
+    browserHistory.push('/formValidation');
 
   }
 
@@ -70,7 +71,9 @@ export default class FormPage extends React.Component {
             </div>
 
             <input type='file' capture='camera' onChange={this.handleFileSelection.bind(this)} />
-            <Button onClick={this.handleSubmit.bind(this)}>Next</Button>
+            <Link to='/formValidation'>
+              <Button onClick={this.handleSubmit.bind(this)}>Next</Button>
+            </Link>  
           </Col>
         </Row>
       </Grid>

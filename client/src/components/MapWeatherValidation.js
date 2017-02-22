@@ -11,10 +11,12 @@ export default class validationView extends React.Component {
     super(props);
   }
 
+  //use button below to post note
+
   render(){
     return (
       <div>
-        <Map />
+        <Map dispatch={this.props.dispatch} />
         <NoteFormInput title='Weather' field='weather'/>
         <Button>Confirm and Save Note</Button>
       </div>
