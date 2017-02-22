@@ -7,13 +7,15 @@ import { userLoginReducer } from './reducers/login';
 import { userSignupReducer } from './reducers/signup';
 import { noteFormReducer } from './reducers/noteForm';
 import { notesViewReducer } from './reducers/notesView';
+import { authStatusReducer } from './reducers/authStatus';
 
 const rootReducer = combineReducers({
   nav: navReducer,
   login: userLoginReducer,
 	signup: userSignupReducer,
   note: noteFormReducer,
-  notesView: notesViewReducer
+  notesView: notesViewReducer,
+  authStatus: authStatusReducer
 });
 
 const middleware = applyMiddleware(logger(), promise(), thunk);

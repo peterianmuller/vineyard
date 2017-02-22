@@ -12,22 +12,39 @@ import Map from './components/Map';
 import UserPage from './containers/UserPage';
 import store from './store';
 
-var Root = props => (
-  <Provider store={store}>
-    <Router history={browserHistory}>
-      <Route path='/' component={App}>
-        <IndexRedirect to='/login' />
-        <Route path='/home' component={Home} />
-        <Route path='/login' component={Login} />
-        <Route path='/signup' component={Signup} />
-        <Route path='/form' component={Form} />
-        <Route path='/notesView' component={NotesView} />
-        <Route path='/logout' component={Login} />
-        <Route path='/map' component={Map} />
-        <Route path='/user' component={UserPage} />
-      </Route>
-    </Router>
-  </Provider>
-);
+
+var Root = props => {
+
+  const authTransition = (nextState, replace, callback) => {
+    var currentState = store.getState();
+    console.log(currentState.authStatus.username, "current store")
+    var currentUser = currentState.authStatus.username;
+    console.log(nextState, "next state")
+    if(!currentUser) {
+      console.log(currentUser)
+      replace('/login');
+    }
+    callback();
+  } 
+
+  return (
+    <Provider store={store}>
+      <Router history={browserHistory}>
+        <Route path='/' component={App}>
+          <IndexRedirect to='/login' />
+          <Route path='/home' component={Home} onEnter={authTransition} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
+          <Route path='/form' component={Form} onEnter={authTransition}/>
+          <Route path='/notesView' component={NotesView} onEnter={authTransition} />
+          <Route path='/logout' component={Login} onEnter={authTransition} />
+          <Route path='/map' component={Map} onEnter={authTransition} />
+          <Route path='/user' component={UserPage} onEnter={authTransition} />
+        </Route>
+      </Router>
+    </Provider>
+  );
+
+}
 
 ReactDOM.render(<Root />, document.getElementById('app'));
