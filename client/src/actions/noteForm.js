@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 export function getWeather(note) {
   console.log(note);
@@ -77,7 +78,8 @@ export function uploadImgToImgur(image) {
             Accept: 'application/json'
           } 
         }).then(resp => { 
-          return resp.data.data.link; 
+          browserHistory.push('/formValidation'); 
+          return resp.data.data.link;
         }).catch(err => { 
           console.log('this is err', err); 
         })
