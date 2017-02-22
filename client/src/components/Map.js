@@ -13,10 +13,11 @@ export default class Map extends React.Component {
       <div>
         <div id='googleMaps' style = {{'margin': '0 auto', 'height': '50%', 'width': '50%', 'borderRadius': '3px' }}>
         </div>
+        <div id="current" style={{'paddingTop': '25px'}}>Nothing yet...</div>
       </div> 
   )};
 
-
+  
   componentDidMount() {
     this.createMap();
   };
@@ -36,15 +37,17 @@ export default class Map extends React.Component {
       };
     })();  
 
+    //let markers = [];
+
     function initMap() {
       //need to get current coordinates to center map where user is at
         //navigator is async, so we can only access these coords inside the 
       navigator.geolocation.getCurrentPosition(function(pos){
         var lat = pos.coords.latitude;
-        var lon = pos.coords.longitude;
+        var lng = pos.coords.longitude;
         var map = new google.maps.Map(document.getElementById('googleMaps'), {
-          center: { lat: lat, lng: lon },
-          zoom: 15,
+          center: { lat: lat, lng: lng },
+          zoom: 19,
           zoomControl: false,
           mapTypeControl: false,
           scaleControl: false,
@@ -52,7 +55,28 @@ export default class Map extends React.Component {
           rotateControl: false,
           fullscreenControl: false
         });
+
+        let myMarker = new google.maps.Marker({
+          position: {lat: lat, lng: lng},
+          draggable: true,
+          label: 'Me'
+        })
+
+        google.maps.event.addListener(myMarker, 'dragend', function(evt){
+            document.getElementById('current').innerHTML = '<p>My location is: Current Lat: ' + evt.latLng.lat().toFixed(5) + ' Current Lng: ' + evt.latLng.lng().toFixed(5) + '</p>';
+        });
+
+        google.maps.event.addListener(myMarker, 'dragstart', function(evt){
+            document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
+        });
+
+        map.setCenter(myMarker.position);
+        
+        myMarker.setMap(map);
+
+        // console.log(marker.getPosition().lat());
+        // console.log(marker.getPosition().lng());
       });
-    }  
+    } 
   }
 };

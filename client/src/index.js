@@ -10,8 +10,8 @@ import Signup from './containers/Signup';
 import NotesView from './containers/NotesView';
 import Map from './components/Map';
 import UserPage from './containers/UserPage';
+import MapWeatherValidation from './components/MapWeatherValidation.js';
 import store from './store';
-
 
 var Root = props => {
 
@@ -45,5 +45,6 @@ var Root = props => {
   );
 
 }
+
 
 ReactDOM.render(<Root />, document.getElementById('app'));
