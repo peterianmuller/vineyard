@@ -17,7 +17,8 @@ export default class validationView extends React.Component {
     return (
       <div>
         <Map dispatch={this.props.dispatch} />
-        <NoteFormInput title='Weather' field='weather'/>
+        <Weather dispatch={this.props.dispatch} note={this.props.note}/>
+        <NoteFormInput title='Weather' field='weather' value={this.props.weather}/>
         <Button>Confirm and Save Note</Button>
       </div>
     )

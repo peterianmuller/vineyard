@@ -14,13 +14,14 @@ export default class Weather extends React.Component {
   pullWeather(e) {
     e.preventDefault();
     this.props.dispatch(getWeather(this.props.note));
+    console.log('does this log', this.props.note);
   }
 
   render(){
     return (
       <div>
         <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
-        <p>Weather info will go here</p>
+        <p>Weather stuff goes here</p>
       </div>
     )
   }
