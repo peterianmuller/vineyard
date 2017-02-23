@@ -14,11 +14,17 @@ const defaultForm = {
   uploadedImgUrl: '',
   uploadPending: false,
   temperature: '',
-  humidity: ''
+  humidity: '',
+  date: ''
 };
 
 export function noteFormReducer(state = defaultForm, action) {
   switch(action.type) {
+    case "SET_NOTE_FORM_DATE":
+    return {
+      ...state,
+      date: state.date + '' + action.value
+    };
     case "UPDATE_WEATHER":
       return {
         ...state,
