@@ -1,6 +1,5 @@
 var authStatus = {
 	username: null,
-  token: undefined
 };
 
 export function authStatusReducer(state = authStatus, action) {

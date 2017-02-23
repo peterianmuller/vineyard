@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export function setSignupItem(item, value) {
-  var toReturn =  {
+  var toReturn = {
     value
   };
 

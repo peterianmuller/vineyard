@@ -19,7 +19,7 @@ export function loginUser(userCredentials) {
     console.log('hi im here', val);
     localStorage.setItem('token', val.data.token);
     
-    dispatch(updateAuthStatus(val.data.token));
+    //dispatch(updateAuthStatus(val.data.token));
     dispatch(validateUser());
     dispatch(clearUserLogin());
   })

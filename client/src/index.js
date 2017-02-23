@@ -20,17 +20,8 @@ var Root = props => {
     const currentUser = currentState.authStatus;
 
     if (!currentUser.username) {
+      
       replace('/login');
-    }
-    callback();
-  };
-
-  const isLoggedIn = (nextState, replace, callback) => {
-    const currentState = store.getState();
-    const currentUser = currentState.authStatus;
-
-    if (currentUser.username) {
-      replace('/home');
     }
     callback();
   };
@@ -40,9 +31,9 @@ var Root = props => {
       <Router history={browserHistory}>
         <Route path='/' component={App}>
           <IndexRedirect to='/home' />
-          <Route path='/home' component={Home} onEnter={authTransition} />
-          <Route path='/login' component={Login} onEnter={isLoggedIn} />
-          <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
+          <Route path='/home' component={Home} />
+          <Route path='/login' component={Login} />
+          <Route path='/signup' component={Signup} />
           <Route path='/form' component={Form} onEnter={authTransition}/>
           <Route path='/formValidation' component={MapWeatherValidation} />
           <Route path='/notesView' component={NotesView} onEnter={authTransition} />
