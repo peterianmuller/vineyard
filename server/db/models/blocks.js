@@ -1,5 +1,4 @@
-import Sequelize from 'sequelize';
-import sequelize from '../config';
+import db from '../config';
 import Vineyard from './vineyards';
 
 const Blocks = db.Model.extend({
