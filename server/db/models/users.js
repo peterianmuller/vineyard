@@ -13,10 +13,6 @@ const Users = db.Model.extend({
   // organization: () => {
   //   return this.belongsTo(Organizations);
   // }
-}, {
-  validPassword: function(password) {
-      return bcrypt.compare(password, this.password);
-    }
 });
 
 export default Users;
