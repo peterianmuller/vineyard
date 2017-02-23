@@ -9,14 +9,20 @@ export const newUser = (params) => {
     phone_number: params.phoneNumber,
     email: params.email,
     birthdate: params.birthdate,
-    account_restrictions: params.accountRestrictions,
+    account_restrictions: params.accountRestrictions
     // organization_id: params.organization
   })
-  .save().fetch();
+  .save();
 };
 
 export const getUserByUsername = (params) => {
-  return new Users({ username: params.username }).fetch();
+  return new Users({ 
+    username: params.userName
+  })
+  .fetch()
+  .then((user) => {
+    return user;
+  })
 };
 
 export const getUserById = (params) => {
