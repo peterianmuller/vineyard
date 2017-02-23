@@ -1,5 +1,12 @@
 import axios from 'axios';
 
+export function addEvent(event) {
+  return {
+    type: "ADD_NOTES",
+    value: event
+  };
+}
+
 export function getNotes() {
   console.log('inside getNotes');
   return dispatch => axios.get('/api/note', {

@@ -1,24 +1,19 @@
 import React from 'react';
-import { Col, ControlLabel, FormControl, FormGroup, Grid, Row } from 'react-bootstrap';
+import { Grid } from 'semantic-ui-react';
 
 export default props => (
-  <div>
-    <FormGroup>
-      <Row>
-        <Col md={6}>
-          <ControlLabel>{props.title}</ControlLabel>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <ControlLabel>{props.text}</ControlLabel>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={12}>
-          <ControlLabel>{props.location}</ControlLabel>
-        </Col>
-      </Row>
-    </FormGroup>
-  </div>
+
+  <Grid>
+   <Grid.Row columns={1}>
+      <Grid.Column>
+        {props.title}
+      </Grid.Column>
+   </Grid.Row>  
+   <Grid.Row columns={1}>
+     <Grid.Column>
+        {props.text}
+     </Grid.Column> 
+   </Grid.Row>   
+  </Grid>  
 )
+

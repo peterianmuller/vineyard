@@ -12,6 +12,7 @@ import Map from './components/Map';
 import UserPage from './containers/UserPage';
 import MapWeatherValidation from './components/MapWeatherValidation.js';
 import store from './store';
+import Note from './components/Note';
 
 var Root = props => {
   const authTransition = (nextState, replace, callback) => {
@@ -38,6 +39,7 @@ var Root = props => {
           <Route path='/notesView' component={NotesView} onEnter={authTransition} />
           <Route path='/map' component={Map} onEnter={authTransition} />
           <Route path='/user' component={UserPage} onEnter={authTransition} />
+          <Route path='/notes' component={Note} />
         </Route>
       </Router>
     </Provider>
