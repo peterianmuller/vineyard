@@ -31,7 +31,7 @@ var Root = props => {
       <Router history={browserHistory}>
         <Route path='/' component={App}>
           <IndexRedirect to='/home' />
-          <Route path='/home' component={Home} />
+          <Route path='/home' component={Home} onEnter={authTransition} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />
           <Route path='/form' component={Form} onEnter={authTransition}/>
