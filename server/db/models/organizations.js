@@ -1,4 +1,3 @@
-// import Sequelize from 'sequelize';
 import db from '../config';
 import Addresses from './addresses';
 import Vineyards from './vineyards';

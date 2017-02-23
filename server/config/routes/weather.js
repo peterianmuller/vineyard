@@ -1,4 +1,4 @@
-import { getWeatherByLatLon } from './controllers';
+import { getWeatherByLatLon } from '../../controllers/weather';
 import express from 'express';
 
 var router = express.Router();

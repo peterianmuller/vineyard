@@ -11,10 +11,10 @@ import usersRouter from './routes/users';
 import notesRouter from './routes/notes';
 import alertsRouter from './routes/alerts';
 import authRouter from './routes/authorization';
+import weatherRoutes from './routes/weather';
 // import messagesController from './routes/messages';
 
 import { passport } from './auth/local';
-import weatherRoutes from './weather/routes';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));

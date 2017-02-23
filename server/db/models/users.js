@@ -9,7 +9,7 @@ db.plugin(bookshelf_bcrypt);
 const Users = db.Model.extend({
   tableName: 'users',
   bcrypt: { field: 'password' },
-  hasTimestamps: true
+  hasTimestamps: true,
   organization: () => {
     return this.belongsTo(Organizations);
   }

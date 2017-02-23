@@ -1,7 +1,7 @@
 import passport from 'passport';
 import passportLocal from 'passport-local';
 
-import User from '../../db/models/users';
+import Users from '../../db/models/users';
 
 const LocalStrategy = passportLocal.Strategy;
 
@@ -27,11 +27,7 @@ passport.use('local', new LocalStrategy({
 },
   function(req, username, password, done) {
     console.log('well i made it');
-    User.find({
-      where: {
-        userName: username
-      }
-    })
+    new Users({ username: username }).fetch()
     .then((user) => {
       console.log('didnt find anything what');
       if (!user) {
