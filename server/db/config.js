@@ -19,6 +19,35 @@ const db = bookshelf(knex);
 
 ////////create tables////////////
 
+
+// Addresses.sync().then(() => {
+//   console.log('addresses synced');
+//   Organizations.sync().then(() => {
+//     console.log('organizations synced');
+//     Vineyards.sync().then(() => {
+//       console.log('vineyard synced');
+//       Blocks.sync().then(() => {
+//         console.log('blocks synced');
+//         Rows.sync().then(() => {
+//           console.log('rows synced');
+//           Users.sync().then(() => {
+//             console.log('users synced');
+//             Notes.sync().then(() => {
+//               console.log('notes synced');
+//               Alerts.sync().then(() => {
+//                 console.log('alerts synced');
+//               });
+//             });
+//             Messages.sync().then(() => {
+//               console.log('messages synced');
+//             });
+//           });
+//         });
+//       });
+//     });
+//   });
+// });
+
 /*==================addresses====================*/
 db.knex.schema.createTableIfNotExists('Addresses', (address) => {
   console.log('creaeting');
@@ -66,6 +95,16 @@ db.knex.schema.createTableIfNotExists('Blocks', (block) => {
   console.log('wut'); 
 });
 
+
+/*==================VARIETALS====================*/
+
+db.knex.schema.createTableIfNotExists('Varietals', (varietal) => {
+	varietal.increments('id').primary();
+	varietal.string('name', 255).notNullable();
+}).then(() => {
+  console.log('wut'); 
+});
+
 /*==================ROWS====================*/
 db.knex.schema.createTableIfNotExists('Rows', (row) => {
 	row.increments('id').primary();
@@ -84,15 +123,6 @@ db.knex.schema.createTableIfNotExists('Rows', (row) => {
       'Post-harvest'
       ]).notNullable();
 	row.string('block', 255).references('Blocks.id');
-}).then(() => {
-  console.log('wut'); 
-});
-
-/*==================VARIETALS====================*/
-
-db.knex.schema.createTableIfNotExists('Varietals', (varietal) => {
-	varietal.increments('id').primary();
-	varietal.string('name', 255).notNullable();
 }).then(() => {
   console.log('wut'); 
 });
