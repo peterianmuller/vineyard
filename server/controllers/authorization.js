@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 import jwtOptions from '../config/auth/jwt';
 import { newUser } from '../db/controllers/users';
+import Users from '../db/models/users';
 
 export function login(req, res) {
   var payload = { id: req.user.id };
@@ -20,19 +21,8 @@ export function sendUserIdFromJwt(req, res, next) {
 }
 
 export function register(req, res, next) {
-  const params = {
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    userName: req.body.userName,
-    password: req.body.password,
-    phoneNumber: req.body.phoneNumber,
-    email: req.body.email,
-    securityQuestion: req.body.securityQuestion,
-    securityAnswer: req.body.securityAnswer,
-    birthdate: req.body.birthdate,
-    accountRestrictions: req.body.accountRestrictions
-  };
-  //
+  const params = req.body;
+  console.log(params, "params to be passed to New User")
   return newUser(params)
     .then((user) => {
       console.log('huh', user);
