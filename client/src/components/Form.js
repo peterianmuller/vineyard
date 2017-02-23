@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
 import NoteFormInput from './NoteFormInput';
-import { Button, Col, Form, Grid, Row } from 'react-bootstrap';
+//import { Button, Col, Form, Grid, Row } from 'react-bootstrap';
+import { Grid } from 'semantic-ui-react';
 import Loadable from 'react-loading-overlay';
 import Map from './Map';
 import LatLon from './LatLon';
@@ -55,10 +56,10 @@ export default class FormPage extends React.Component {
   
   render() {
     return (
-      <Grid>
+      <Grid columns="equal">
 
-        <Row>
-          <Col xsOffset={1} xs={10} smOffset={2} sm={8} mdOffset={3} md={6}>
+        <Grid.Row>
+          <Grid.Column>
             <p>{this.props.note.date}</p>
             <p>{this.props.login.username}</p>
             <Form onSubmit={this.handleSubmit.bind(this)}>
@@ -67,8 +68,8 @@ export default class FormPage extends React.Component {
               <NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
             </Form>
 
-            <Row>
-              <Col>
+            <Grid.Row>
+              <Grid.Column>
                   <div className='photoContainer'>
                     <Loadable
                       spinner
@@ -79,15 +80,15 @@ export default class FormPage extends React.Component {
                       <img src={this.props.note.selectedImg} className='uploadedPhoto' alt='Select image to upload' />
                     </Loadable>
                   </div>
-              </Col>
-            </Row>
+              </Grid.Column>
+            </Grid.Row>
 
-            <Row>
+            <Grid.Row>
               <input className='selectFileBtn' type='file' capture='camera' onChange={this.handleFileSelection.bind(this)} />
               <Button bsClass='btn btn-primary btn-lg formBtnNext pull-right' onClick={this.handleSubmit.bind(this)}>Next</Button>
-            </Row>
-          </Col>
-        </Row>
+            </Grid.Row>
+          </Grid.Column>
+        </Grid.Row>
       </Grid>
     );
   }
