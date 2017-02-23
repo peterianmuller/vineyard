@@ -1,40 +1,44 @@
 import React from 'react';
-import { Button, ControlLabel, FormControl, FormGroup, InputGroup } from 'react-bootstrap';
+import { Form, Header, Icon, Input, Label, Segment, TextArea } from 'semantic-ui-react';
 import { handleItemChange, startRecording } from '../helpers/changeHandlers';
 import { setCurrentlyRecording, setNoteFormItem } from '../actions/noteForm';
 
 export default props => (
-  <FormGroup
-    controlId="formBasicText"
-  >
-    <ControlLabel>{props.title}</ControlLabel>
-    <InputGroup>
-      <FormControl
-        name="title"
-        type="text"
-        value={props.value}
-        placeholder="Enter text"
-        onChange={ handleItemChange.bind(null, setNoteFormItem, props.field)}
-        componentClass={ props.isTextArea ? 'textarea' : 'input'}
-        disabled={ props.disabled ? true : false }
-      />
-      <FormControl.Feedback />
-      { 
-        props.disabled ? '' : 
-          (
-            <InputGroup.Addon
-              bsClass='input-group-addon btn btn-primary'
-                onClick={ 
-                  startRecording.bind(
-                    null, 
-                    setCurrentlyRecording, 
-                    props.field.toUpperCase()
-                )}
-            > 
-                <i className='fa fa-microphone' />
-            </InputGroup.Addon>
-          ) 
-      }
-    </InputGroup>
-  </FormGroup>
+  <div className='oneEm'>
+    <Header size='tiny'>{props.title}</Header>
+    { 
+      props.isTextArea ? (
+        <Segment>
+          <TextArea
+            value={props.value}
+            onChange={ handleItemChange.bind(null, setNoteFormItem, props.field)}
+          />
+          <Label 
+            attached='top right'
+            className='fa fa-microphone'
+            onClick={startRecording.bind(
+              null, 
+              setCurrentlyRecording, 
+              props.field.toUpperCase()
+            )}
+          />
+        </Segment>) : (
+        <Segment>
+          <Input
+            fluid
+            label={<Label className='fa fa-microphone'
+                    onClick={startRecording.bind(
+                      null, 
+                      setCurrentlyRecording, 
+                      props.field.toUpperCase()
+                    )}
+                  />}
+            labelPosition='right'
+            value={props.value}
+            onChange={ handleItemChange.bind(null, setNoteFormItem, props.field)}
+            disabled={ props.disabled ? true : false }
+          />
+        </Segment>)
+    }
+  </div>
 );

@@ -14,15 +14,14 @@ import MapWeatherValidation from './components/MapWeatherValidation.js';
 import store from './store';
 
 var Root = props => {
-
   const authTransition = (nextState, replace, callback) => {
-    const currentState = store.getState();
-    const currentUser = currentState.authStatus;
+    //const currentState = store.getState();
+    //const currentUser = currentState.authStatus;
 
-    if (!currentUser.username) {
-      
-      replace('/login');
-    }
+    //if (!currentUser.username) {
+    //  
+    //  replace('/login');
+    //}
     callback();
   };
 
