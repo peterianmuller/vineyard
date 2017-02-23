@@ -1,6 +1,6 @@
 import usersController from '../db/controllers/users';
 
-export function createUser(req, res, next) {
+export function newUser(req, res, next) {
   const params = {
     firstName: req.body.firstName,
     lastName: req.body.lastName,
