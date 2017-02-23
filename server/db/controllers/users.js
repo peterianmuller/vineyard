@@ -1,7 +1,6 @@
 import Users from '../models/users';
 
-
-const newUser = (params) => {
+export const newUser = (params) => {
   return new Users({
     firstname: params.firstName,
     lastname: params.lastName,
@@ -15,29 +14,6 @@ const newUser = (params) => {
   });
 };
 
-const getUserByUsername = (params) => {
+export const getUserByUsername = (params) => {
   return new Users({ username: params.username }).fetch();
 };
-
-
-/*==================need to refactor to BS/KNX=======================*/
-// const getUserById = params => {
-//   return Users.find({
-//     where: {
-//       id: params.id
-//     }
-//   });
-// };
-
-// const getUsers = (req, res, next) => {};
-// const updateUser = (req, res, next) => {};
-// const deleteUser = (req, res, next) => {};
-
-/*==================need to refactor to BS/KNX=======================*/
-export default {
-  newUser,
-  getUserByUsername
-  // getUsers,
-  // updateUser,
-  // deleteUser
-}
