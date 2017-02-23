@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import jwtOptions from '../auth/jwt';
-import { newUser } from '../../db/controllers/users';
+import jwtOptions from '../config/auth/jwt';
+import { newUser } from '../db/controllers/users';
 
 export function login(req, res) {
   var payload = { id: req.user.id };

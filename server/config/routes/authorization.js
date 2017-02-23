@@ -1,6 +1,6 @@
 import express from 'express';
 import passport from 'passport';
-import { login, logout, sendUserIdFromJwt, register } from '../auth/authFunctions';
+import { login, logout, sendUserIdFromJwt, register } from '../../controllers/authorization';
 
 const router = express.Router();
 
