@@ -1,25 +1,21 @@
-import Sequelize from 'sequelize';
-import sequelize from '../config';
+import db from '../config';
 import Addresses from './addresses';
 import Organizations from './organizations';
+import Blocks from './blocks';
 
-const Vineyards = sequelize.define('vineyard', {
-  name: {
-    type: Sequelize.STRING,
-    allowNull: false
+const Vineyards = db.Model.extend({
+  tableName: 'vineyards',
+  hasTimestamps: true,
+  organization: () => {
+    return this.belongsTo(Organizations);
   },
-  phoneNumber: Sequelize.STRING,
-  appellation: {
-    type: Sequelize.STRING,
-    allowNull: false
+  addresses: () => {
+    return this.hasOne(Addresses);
+  },
+  blocks: () => {
+    return this.hasMany(Blocks);
   }
 });
 
-Organizations.hasOne(Vineyards, {
-  foreignKey: 'organizationId'
-});
-Addresses.hasOne(Vineyards, {
-  foreignKey: 'addressId'
-});
-
 export default Vineyards;
+ 

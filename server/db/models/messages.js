@@ -1,17 +1,12 @@
-import Sequelize from 'sequelize';
-import sequelize from '../config';
-// import Rooms from './rooms';
+import db from '../config';
 import Users from './users';
 
-const Messages = sequelize.define('message', {
-  text: Sequelize.STRING
-});
-
-// Rooms.hasOne(Messages, {
-//   foreignKey: 'roomId'
-// });
-Users.hasOne(Messages, {
-  foreignKey: 'authorId'
+const Messages = db.Model.extend({
+	tableName: 'messages',
+	hasTimestamps: true,
+	users: () => {
+		return this.belongsTo(Users);
+	}
 });
 
 export default Messages;

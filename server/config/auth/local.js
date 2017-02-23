@@ -11,9 +11,10 @@ function serializeLogin (passport) {
   });
 
   passport.deserializeUser(function(id, done) {
-    User.findOne({
-      where: {id: id}
-    })
+    new Users({id: id}).fetch()
+    // User.findOne({
+    //   where: {id: id}
+    // })
     .then(user => done(null, user))
     .catch(err => done(err))
   });

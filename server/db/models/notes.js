@@ -1,36 +1,24 @@
-import Sequelize from 'sequelize';
-import sequelize from '../config';
+import db from '../config';
 import Users from './users';
 import Rows from './rows';
 import Blocks from './blocks';
 import Vineyards from './vineyards';
 
-const Notes = sequelize.define('note', {
-  title: Sequelize.STRING,
-  text: {
-    type: Sequelize.STRING,
-    allowNull: false
+const Notes = db.Model.extend({
+  tableName: 'notes',
+  hasTimestamps: true,
+  user: () => {
+    return this.belongsTo(Users);
   },
-  // ADD NOTE AUTHOR
-  location: {
-    // type: Sequelize.GEOGRAPHY(POINT),
-    type: Sequelize.STRING,
-    allowNull: false
+  rows: () => {
+    return this.belongsTo(Rows);
   },
-  image: Sequelize.STRING
-});
-
-Users.hasOne(Notes, {
-  foreignKey: 'authorId'
-});
-Rows.hasOne(Notes, {
-  foreignKey: 'rowId'
-});
-Blocks.hasOne(Notes, {
-  foreignKey: 'blockId'
-});
-Vineyards.hasOne(Notes, {
-  foreignKey: 'vineyardId'
+  blocks: () => {
+    return this.belongsTo(Blocks);
+  },
+  vineyards: () => {
+    return this.belongsTo(Vineyards);
+  }
 });
 
 export default Notes;
