@@ -20,9 +20,11 @@ export default class FormPage extends React.Component {
   }
   
   componentDidMount() {
+    var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
+
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
-    var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
+
     this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
 
