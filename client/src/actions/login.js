@@ -16,10 +16,8 @@ export function loginUser(userCredentials) {
     password: userCredentials.password
   })
   .then((val) => { 
-    console.log('hi im here', val);
     localStorage.setItem('token', val.data.token);
     
-    //dispatch(updateAuthStatus(val.data.token));
     dispatch(validateUser());
     dispatch(clearUserLogin());
   })

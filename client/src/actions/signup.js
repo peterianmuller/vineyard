@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { validateUser } from './navigation';
 
 export function setSignupItem(item, value) {
   var toReturn = {
@@ -12,8 +13,7 @@ export function setSignupItem(item, value) {
 
 
 export function signup(userAccount) {
-	console.log(userAccount, 'user obj to post in signup actions')
-  return dispatch => axios.post('/auth/signup', {
+  return dispatch => axios.post('/auth/register', {
     firstName: userAccount.first_name,
     lastName: userAccount.last_name,
     userName: userAccount.username,
@@ -25,7 +25,12 @@ export function signup(userAccount) {
     birthdate: userAccount.birthDay,
     accountRestrictions: 'Owner'
   })
-  .then(() => dispatch(clearSignup()))
+  .then(resp => {
+    localStorage.setItem('token', resp.data.token);
+
+    dispatch(validateUser());
+    dispatch(clearSignup());
+  })
   .catch((err) => {
     console.log(err);
   })

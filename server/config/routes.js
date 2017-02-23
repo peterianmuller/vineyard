@@ -3,6 +3,7 @@ import express from 'express';
 import jwt from 'jsonwebtoken';
 
 import jwtOptions from './auth/jwt';
+import { newUser } from '../db/controllers/users';
 
 // SERVER CONTROLLER DEPENDENCIES
 import organizationsRouter from './routes/organizations';
@@ -17,16 +18,6 @@ import alertsRouter from './routes/alerts';
 
 import { passport } from './auth/local';
 import weatherRoutes from './weather/routes';
-
-// CONTROLLER DEPENDENCIES
-import organizationsController from '../db/controllers/organizations';
-import addressesController from '../db/controllers/addresses';
-import vineyardsController from '../db/controllers/vineyards';
-import blocksController from '../db/controllers/blocks';
-import rowsController from '../db/controllers/rows';
-import usersController from '../db/controllers/users';
-import notesController from '../db/controllers/notes';
-import alertsController from '../db/controllers/alerts';
 
 export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
@@ -51,14 +42,16 @@ export default function routes(app, express) {
   app.use('/api/alert', alertsRouter);
   app.use('/api/weather', weatherRoutes);
 
-  // === LOGIN ROUTING ===
-  app.post('/auth/login',
-  passport.authenticate('local'), function(req, res){
+  var login = function(req, res) {
     var payload = { id: req.user.id };
     var token = jwt.sign(payload, jwtOptions.secretOrKey);
+    console.log('am i even in here', token);
 
     res.status(201).json({ message: "OK", token: token });
-  });
+  };
+  // === LOGIN ROUTING ===
+  app.post('/auth/login',
+  passport.authenticate('local'), login);
 
   // === LOGOUT ROUTING ===
   app.get('/auth/logout', function(req, res){
@@ -74,6 +67,27 @@ export default function routes(app, express) {
     }
   );
 
+  app.post('/auth/register', (req, res, next) => {
+    const params = {
+      firstName: req.body.firstName,
+      lastName: req.body.lastName,
+      userName: req.body.userName,
+      password: req.body.password,
+      phoneNumber: req.body.phoneNumber,
+      email: req.body.email,
+      securityQuestion: req.body.securityQuestion,
+      securityAnswer: req.body.securityAnswer,
+      birthdate: req.body.birthdate,
+      accountRestrictions: req.body.accountRestrictions
+    };
+    return newUser(params)
+      .then((user) => {
+        console.log('huh', user);
+        next();
+      }).catch((err) => {
+        console.log('could not add user ', err);
+      });
+  }, passport.authenticate('local'), login);
 
 
   // === WILDCARD ROUTING ===
