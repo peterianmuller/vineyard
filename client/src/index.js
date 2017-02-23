@@ -16,22 +16,21 @@ import store from './store';
 var Root = props => {
 
   const authTransition = (nextState, replace, callback) => {
-     // var currentState = store.getState();
-     // console.log(currentState.authStatus.username, "current store")
-     // var currentUser = currentState.authStatus.username;
-     // console.log(nextState, "next state")
-     // if(!currentUser) {
-     //   console.log(currentUser)
-     //   replace('/login');
-     // }
+    const currentState = store.getState();
+    const currentUser = currentState.authStatus;
+
+    if (!currentUser.username) {
+      
+      replace('/login');
+    }
     callback();
-  } 
+  };
 
   return (
     <Provider store={store}>
       <Router history={browserHistory}>
         <Route path='/' component={App}>
-          <IndexRedirect to='/login' />
+          <IndexRedirect to='/home' />
           <Route path='/home' component={Home} onEnter={authTransition} />
           <Route path='/login' component={Login} />
           <Route path='/signup' component={Signup} />

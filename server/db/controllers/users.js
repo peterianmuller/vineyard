@@ -1,6 +1,6 @@
 import Users from '../models/users';
 
-const newUser = (params) => {
+export const newUser = (params) => {
   return Users.create({
     firstName: params.firstName,
     lastName: params.lastName,
@@ -15,7 +15,7 @@ const newUser = (params) => {
   });
 };
 
-const getUserByUsername = (params) => {
+export const getUserByUsername = (params) => {
   return Users.find({
     where: {
       username: params.username
@@ -23,7 +23,7 @@ const getUserByUsername = (params) => {
   });
 };
 
-const getUserById = params => {
+export const getUserById = params => {
   return Users.find({
     where: {
       id: params.id
@@ -31,14 +31,6 @@ const getUserById = params => {
   });
 };
 
-const getUsers = (req, res, next) => {};
-const updateUser = (req, res, next) => {};
-const deleteUser = (req, res, next) => {};
-
-export default {
-  newUser,
-  getUserByUsername,
-  getUsers,
-  updateUser,
-  deleteUser
-}
+export const getUsers = (req, res, next) => {};
+export const updateUser = (req, res, next) => {};
+export const deleteUser = (req, res, next) => {};

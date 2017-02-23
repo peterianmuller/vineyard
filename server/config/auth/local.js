@@ -25,12 +25,14 @@ passport.use('local', new LocalStrategy({
   passReqToCallback : true
 },
   function(req, username, password, done) {
+    console.log('well i made it');
     User.find({
       where: {
         userName: username
       }
     })
     .then((user) => {
+      console.log('didnt find anything what');
       if (!user) {
         return done(null, false);
       }

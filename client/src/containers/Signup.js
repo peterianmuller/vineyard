@@ -1,6 +1,7 @@
 import React from 'react';
-import NameBirthdateInput from '../components/NameBirthdateInput';
+import { browserHistory } from 'react-router';
 import { Button, Col, ControlLabel, Form, FormControl, FormGroup, Grid, Row } from 'react-bootstrap';
+import NameBirthdateInput from '../components/NameBirthdateInput';
 import { handleItemChange } from '../helpers/changeHandlers';
 import { setSignupItem, signup } from '../actions/signup';
 
@@ -8,6 +9,12 @@ export default class Signup extends React.Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.username) {
+      browserHistory.push('/home');
+    }
   }
 
   getPasswordValidationState() {

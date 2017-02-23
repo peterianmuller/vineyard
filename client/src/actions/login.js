@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
+import { validateUser } from './navigation';
 
 
 export function setLoginItem(item, value) {
@@ -10,15 +11,14 @@ export function setLoginItem(item, value) {
 }
 
 export function loginUser(userCredentials) {
-  return dispatch => axios.post('/api/login', {
+  return dispatch => axios.post('/auth/login', {
     userName: userCredentials.username,
     password: userCredentials.password
   })
   .then((val) => { 
-    console.log('this is jwt', val);
-    localStorage.setItem('token', val.token);
-
-    dispatch(updateAuthStatus(val.data.userName));
+    localStorage.setItem('token', val.data.token);
+    
+    dispatch(validateUser());
     dispatch(clearUserLogin());
   })
   .then(() =>  {
@@ -35,10 +35,10 @@ export function clearUserLogin() {
   }
 }
 
-function updateAuthStatus(currentUser) {
+function updateAuthStatus(token) {
   return {
-    type: "SET_AUTHSTATUS_USERNAME",
-    value: currentUser
+    type: "SET_AUTHSTATUS_TOKEN",
+    value: token
   };
 }
 
