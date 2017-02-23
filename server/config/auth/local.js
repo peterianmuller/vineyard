@@ -27,9 +27,10 @@ passport.use('local', new LocalStrategy({
 },
   function(req, username, password, done) {
     console.log('well i made it');
+    console.log(username, "this is the user to find")
     new Users({ username: username }).fetch()
     .then((user) => {
-      console.log('didnt find anything what');
+      console.log('user that was created', user);
       if (!user) {
         return done(null, false);
       }

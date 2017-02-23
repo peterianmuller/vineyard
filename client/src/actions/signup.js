@@ -18,10 +18,11 @@ export function signup(userAccount) {
     lastName: userAccount.last_name,
     userName: userAccount.username,
     password: userAccount.password,
-    phoneNumber: '',
+    phoneNumber: '12091234567',
     email: userAccount.email,
-    birthdate: userAccount.birthDay,
+    birthdate: '05-23-1989',
     accountRestrictions: 'Owner'
+    // orgnaization: 'MyOrg'
   })
   .then(resp => {
     localStorage.setItem('token', resp.data.token);

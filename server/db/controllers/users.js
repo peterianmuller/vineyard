@@ -10,8 +10,9 @@ export const newUser = (params) => {
     email: params.email,
     birthdate: params.birthdate,
     account_restrictions: params.accountRestrictions,
-    organization: params.organization
-  });
+    // organization_id: params.organization
+  })
+  .save().fetch();
 };
 
 export const getUserByUsername = (params) => {
