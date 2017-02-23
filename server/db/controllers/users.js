@@ -1,36 +1,43 @@
 import Users from '../models/users';
 
-export const newUser = (params) => {
-  return Users.create({
-    firstName: params.firstName,
-    lastName: params.lastName,
-    userName: params.userName,
+
+const newUser = (params) => {
+  return new Users({
+    firstname: params.firstName,
+    lastname: params.lastName,
+    username: params.userName,
     password: params.password,
-    phoneNumber: params.phoneNumber,
+    phone_number: params.phoneNumber,
     email: params.email,
-    securityQuestion: params.securityQuestion,
-    securityAnswer: params.securityAnswer,
     birthdate: params.birthdate,
-    accountRestrictions: params.accountRestrictions
+    account_restrictions: params.accountRestrictions,
+    organization: params.organization
   });
 };
 
-export const getUserByUsername = (params) => {
-  return Users.find({
-    where: {
-      username: params.username
-    }
-  });
+const getUserByUsername = (params) => {
+  return new Users({ username: params.username }).fetch();
 };
 
-export const getUserById = params => {
-  return Users.find({
-    where: {
-      id: params.id
-    }
-  });
-};
 
-export const getUsers = (req, res, next) => {};
-export const updateUser = (req, res, next) => {};
-export const deleteUser = (req, res, next) => {};
+/*==================need to refactor to BS/KNX=======================*/
+// const getUserById = params => {
+//   return Users.find({
+//     where: {
+//       id: params.id
+//     }
+//   });
+// };
+
+// const getUsers = (req, res, next) => {};
+// const updateUser = (req, res, next) => {};
+// const deleteUser = (req, res, next) => {};
+
+/*==================need to refactor to BS/KNX=======================*/
+export default {
+  newUser,
+  getUserByUsername
+  // getUsers,
+  // updateUser,
+  // deleteUser
+}

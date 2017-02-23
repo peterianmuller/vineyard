@@ -20,8 +20,6 @@ export function signup(userAccount) {
     password: userAccount.password,
     phoneNumber: '',
     email: userAccount.email,
-    securityQuestion: '',
-    securityAnswer: '',
     birthdate: userAccount.birthDay,
     accountRestrictions: 'Owner'
   })

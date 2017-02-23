@@ -18,94 +18,6 @@ const db = bookshelf(knex);
 
 ////////create tables////////////
 
-/*=====================messages======================*/
-// sequelize.define('message', {
-//   text: Sequelize.STRING
-// });
-
-/*=====================Alerts======================*/
-// const Alerts = sequelize.define('alert', {
-//   text: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   location: Sequelize.STRING,
-//   // location: Sequelize.GEOMETRY(POINT),
-//   alertTime: Sequelize.STRING,
-// });
-
-
-/*=====================blocks======================*/
-// const Blocks = sequelize.define('block', {
-//   number: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   }
-// }, {
-//   timestamps: false
-// });
-
-/*=====================notes======================*/
-//title, text, image url, lat, long
-
-// const Notes = sequelize.define('note', {
-//   title: Sequelize.STRING,
-//   text: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   // ADD NOTE AUTHOR
-//   location: {
-//     // type: Sequelize.GEOGRAPHY(POINT),
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   image: Sequelize.STRING
-// });
-
-
-/*=====================rows======================*/
-// const Rows = sequelize.define('row', {
-//   number: {
-//     type: Sequelize.INTEGER,
-//     allowNull: false
-//   },
-//   point1: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   point2: {
-//     type: Sequelize.STRING,
-//     allowNull: false
-//   },
-//   clone: Sequelize.STRING,
-//   varietal: {
-//     type: Sequelize.ENUM,
-//     values: [
-//       'Pinot Noir',
-//       'Cabernet Sauvignon',
-//       'Viogner',
-//       'Acolon',
-//       'Albarossa',
-//       'Riesling'
-//     ]
-//   },
-//   rootStock: Sequelize.STRING,
-//   status: {
-//     type: Sequelize.ENUM,
-//     values: [
-//       'Pruned',
-//       'Bud-break',
-//       'Flowering',
-//       'Veraison',
-//       'Pre-harvest',
-//       'Post-harvest',
-//     ]
-//   }
-// }, {
-//   timestamps: false
-// });
-
 /*==================addresses====================*/
 db.knex.schema.createTableIfNotExists('Addresses', (address) => {
 	address.increment('id').primary();
@@ -133,9 +45,43 @@ db.knex.schema.createTableIfNotExists('Vineyards', (vineyard) => {
 	vineyard.string('name', 255).notNullable();
 	vineyard.string('phone_number', 255).notNullable();
 	vineyard.string('appellation', 255).notNullable();
-	vineyard.string('organizaton', 255).references('Organizations.id');
-	vineyard.string('address', 255).references('Addresses.id');
-})
+	vineyard.string('organizaton', 255).references('Organizations.id').notNullable();
+	vineyard.string('address', 255).references('Addresses.id').notNullable();
+});
+
+/*==================BLOCKS====================*/
+db.knex.schema.createTableIfNotExists('Blocks', (block) => {
+	block.increment('id').primary();
+	block.string('number', 255).notNullable();
+	block.string('vineyard', 255).references('Vineyards.id');
+});
+
+/*==================ROWS====================*/
+db.knex.schema.createTableIfNotExists('Rows', (row) => {
+	row.increment('id').primary();
+	row.string('number', 255).notNullable();
+	row.string('point1', 255).notNullable();
+	row.string('point2', 255).notNullable();
+	row.string('clone', 255).notNullable();
+	row.string('varietal', 255).references('Varietals.id').notNullable();
+	row.string('rootstock', 255).notNullable();
+	row.enu('status', [
+			'Pruned',
+      'Bud-break',
+      'Flowering',
+      'Veraison',
+      'Pre-harvest',
+      'Post-harvest'
+      ]).notNullable();
+	row.string('block', 255).references('Blocks.id');
+});
+
+/*==================VARIETALS====================*/
+
+db.knex.schema.createTableIfNotExists('Varietals', (varietal) => {
+	varietal.increment('id').primary();
+	varietal.string('name', 255).notNullable();
+});
 
 /*==================USERS====================*/
 
@@ -149,9 +95,36 @@ db.knex.schema.createTableIfNotExists('Users', (user) => {
 	user.string('email', 255).unique().notNullable();
 	user.date('birthdate', 255).notNullable();
 	user.enu('account_restrictions', ['Owner', 'Manager', 'Employee']).notNullable();
-	user.string('organization').references('Organizations.id');
-
+	user.string('organization').references('Organizations.id').notNullable();
 });
 
+/*==================NOTES====================*/
+db.knex.schema.createTableIfNotExists('Notes', (note) => {
+	note.increment('id').primary();
+	note.string('title', 255).notNullable();
+	note.string('text', 5000).notNullable();
+	note.data('date_time', 255).notNullable();
+	note.string('latitude', 255).notNullable();
+	note.string('longitude', 255).notNullable();
+	note.string('image_url');
+	note.string('author', 255).references('Users.id').notNullable();
+});
+
+/*==================ALERTS====================*/
+db.knex.schema.createTableIfNotExists('Alerts', (alert) => {
+	alert.increment('id').primary();
+	alert.string('text', 5000).notNullable();
+	alert.string('latitude', 255).notNullable();
+	alert.string('longitude', 255).notNullable();
+	alert.data('alert_time', 255).notNullable();
+	alert.string('author', 255).references('Users.id').notNullable();
+});
+
+/*==================MESSAGES====================*/
+db.knex.schema.createTableIfNotExists('Messages', (message) => {
+	message.increment('id').primary();
+	message.string('text', 2000).notNullable();
+	message.string('author', 255).references('Users.id').notNullable();
+});
 
 export default db;

@@ -18,3 +18,4 @@ const Vineyards = db.Model.extend({
 });
 
 export default Vineyards;
+ 

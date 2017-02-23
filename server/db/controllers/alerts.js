@@ -1,22 +1,26 @@
 import Alerts from '../models/alerts';
 
 const newAlert = (params) => {
-  return Alerts.create({
+  return new Alerts({
     text: params.text,
-    location: params.location,
-    alertTime: params.alertTime
+    alert_time: params.alertTime,
+    latitude: params.latitude,
+    longitude: params.longitude,
+    author: params.username
   });
 };
 
-const getAlert = (req, res, next) => {};
-const getAlerts = (req, res, next) => {};
-const updateAlert = (req, res, next) => {};
-const deleteAlert = (req, res, next) => {};
+/*==================need to refactor to BS/KNX=======================*/
+// const getAlert = (req, res, next) => {};
+// const getAlerts = (req, res, next) => {};
+// const updateAlert = (req, res, next) => {};
+// const deleteAlert = (req, res, next) => {};
+/*==================need to refactor to BS/KNX=======================*/
 
 export default {
-  newAlert,
-  getAlert,
-  getAlerts,
-  updateAlert,
-  deleteAlert
+  newAlert
+  // getAlert,
+  // getAlerts,
+  // updateAlert,
+  // deleteAlert
 };

@@ -1,5 +1,4 @@
-import Sequelize from 'sequelize';
-import sequelize from '../config';
+import db from '../config';
 import Users from './users';
 import Rows from './rows';
 import Blocks from './blocks';
