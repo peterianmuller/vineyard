@@ -6,8 +6,7 @@ import Loadable from 'react-loading-overlay';
 import Map from './Map';
 import LatLon from './LatLon';
 import { setLatLong } from '../helpers/changeHandlers';
-import { getWeather, postNote, setSelectedImage, uploadImgToImgur } from '../actions/noteForm';
-
+import { getWeather, postNote, setSelectedImage, uploadImgToImgur, setNoteFormItem } from '../actions/noteForm';
 import axios from 'axios';
 
 export default class FormPage extends React.Component {
@@ -23,6 +22,8 @@ export default class FormPage extends React.Component {
   componentDidMount() {
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
+    var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
+    this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
 
   handleSubmit(event) {
@@ -31,7 +32,7 @@ export default class FormPage extends React.Component {
     // this.props.dispatch(postNote(this.props.note));
     this.props.dispatch(uploadImgToImgur(this.props.note.selectedImg));
   }
-
+  
   pullWeather(e) {
     e.preventDefault();
     this.props.dispatch(getWeather(this.props.note));
@@ -53,8 +54,11 @@ export default class FormPage extends React.Component {
   render() {
     return (
       <Grid>
+
         <Row>
           <Col xsOffset={1} xs={10} smOffset={2} sm={8} mdOffset={3} md={6}>
+            <p>{this.props.note.date}</p>
+            <p>{this.props.login.username}</p>
             <Form onSubmit={this.handleSubmit.bind(this)}>
               <NoteFormInput title='Note Title' field='title' value={this.props.note.title} />
 
