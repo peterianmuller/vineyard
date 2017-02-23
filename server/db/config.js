@@ -14,8 +14,7 @@ const knex = original({
     database: 'vineyard'
   },
   debug: true
-
-});     
+});
 
 const db = bookshelf(knex);
 db.knex.schema.hasTable('Addresses').
@@ -108,7 +107,7 @@ then((exists) => {
 			message.integer('message_author_id').references('users.id').notNullable();
 		})
 		.then(() => {
-		  console.log('wut'); 
+		  console.log('wut');
 		})
 		.catch((err) => {
 			console.log(err, "error with table implementation");

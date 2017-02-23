@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js --exec babel-node",
     "build": "webpack -d --watch",
-    "test": "mocha -w test/client/config/testdom.js test/client/tests/*Tests.js",
+    "test": "mocha -w test/client/config/testdom.js test/client/tests/*Tests.js test/server/tests/notes.js",
     "test1": "mocha --recursive --compilers js:babel-core/register .:test/client/config/compiler.js test/client/tests/*Tests.js",
     "test:watch": "npm test --watch"
   },
@@ -81,6 +81,7 @@
     "postgresql": "0.0.1",
     "react-addons-test-utils": "^15.4.2",
     "redux-logger": "^2.8.1",
+    "should": "^11.2.0",
     "sinon": "^1.17.7",
     "superagent": "^3.4.3",
     "supertest": "^3.0.0",
