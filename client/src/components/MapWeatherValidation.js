@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Button } from 'semantic-ui-react'
 import { setLatLong } from '../helpers/changeHandlers';
 import Map from './Map';
 import Weather from './Weather';

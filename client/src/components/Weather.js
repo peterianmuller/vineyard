@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import LatLon from './LatLon';
 import { setLatLong } from '../helpers/changeHandlers';
-import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
+import { Button } from 'semantic-ui-react'
 import { getWeather, postNote } from '../actions/noteForm';
 import NoteFormInput from './NoteFormInput';
 
