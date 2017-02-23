@@ -26,6 +26,11 @@ export default class FormPage extends React.Component {
     this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
 
+
+  clickFileChooser(e) {
+    this.inputElement.click();
+  }
+
   handleSubmit(event) {
     event.preventDefault();  
 
@@ -66,15 +71,34 @@ export default class FormPage extends React.Component {
                       animate
                       text="Uploading photo to imgur"
                     >
-                      <img src={this.props.note.selectedImg} className='uploadedPhoto' alt='Select image to upload' />
+                      <img 
+                        src={this.props.note.selectedImg}
+                        className='uploadedPhoto'
+                        alt='Click here to upload image' 
+                        onClick={this.clickFileChooser.bind(this)}
+                      />
                     </Loadable>
                   </div>
               </Grid.Column>
             </Grid.Row>
 
             <Grid.Row>
-              <input className='selectFileBtn' type='file' capture='camera' onChange={this.handleFileSelection.bind(this)} />
-              <Button onClick={this.handleSubmit.bind(this)}>Next</Button>
+              <input 
+                ref={input => this.inputElement = input}
+                className='selectFileBtn'
+                style={ { display: 'none' } }
+                type='file'
+                capture='camera'
+                onChange={this.handleFileSelection.bind(this)}
+              />
+              <div className='oneEm'>
+                <Button 
+                  fluid
+                  primary
+                  onClick={this.handleSubmit.bind(this)}>
+                  Next
+                </Button>
+              </div>
             </Grid.Row>
           </Grid.Column>
         </Grid.Row>
