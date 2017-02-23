@@ -32,6 +32,7 @@ export function register(req, res, next) {
     birthdate: req.body.birthdate,
     accountRestrictions: req.body.accountRestrictions
   };
+  //
   return newUser(params)
     .then((user) => {
       console.log('huh', user);
