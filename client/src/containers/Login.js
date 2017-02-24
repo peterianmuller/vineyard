@@ -19,7 +19,10 @@ export default class Login extends React.Component {
 
   render() {
   	return (
-  	  <Grid columns='equal' centered padded>
+      <div className='max500width multiColumnInput'>
+  	  <Grid columns='equal' padding>
+        <Grid.Row>
+          <Grid.Column>
   	    <Form onSubmit={this.handleSubmit.bind(this)}>
   	      <Grid.Row>
   	        <Grid.Column>
@@ -44,7 +47,10 @@ export default class Login extends React.Component {
   	        </Grid.Column>
   	      </Grid.Row>
   	    </Form>
+      </Grid.Column>
+    </Grid.Row>
   	  </Grid>
+    </div>
     );
   }
 }
