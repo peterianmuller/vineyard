@@ -51,8 +51,11 @@ export function postNote(note) {
   return dispatch => axios.post('/api/note', {
     title: note.title,
     text: note.textArea,
-    location: '3',
-    image: ''
+    date_time: note.date,
+    latitude: note.lat,
+    longitude: note.lon,
+    image_url: note.uploadedImgUrl,
+    note_author_id: note.username
   }, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
   .then(() => dispatch(clearNoteFields()))
   .catch((err) => {
