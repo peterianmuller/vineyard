@@ -12,6 +12,17 @@ const getOrganization = (params) => {
   return new Organizations({ name: params.name }).fetch();
 };
 
+const findOrCreateNewOrg = (params) => {
+  getOrganization(params)
+  .then((org) => {
+    if(!org) {
+      return newOrganization(params).fetch();
+    } else {
+      return org;
+    }
+  })
+}
+
 /*==================need to refactor to BS/KNX=======================*/
 // const getOrganizations = (req, res, next) => {
 //   return Organizations.findAll()

@@ -1,5 +1,6 @@
 import Users from '../models/users';
 
+
 export const newUser = (params) => {
   return new Users({
     firstname: params.firstName,

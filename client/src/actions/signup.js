@@ -19,16 +19,17 @@ export function setSignupItem(item, value) {
 
 
 export function signup(userAccount) {
+  var combinedBirthdate = userAccount.birth_year + '-' + userAccount.birth_month  + '-' + userAccount.birth_day;
   return dispatch => axios.post('/auth/register', {
     firstName: userAccount.first_name,
     lastName: userAccount.last_name,
     userName: userAccount.username,
     password: userAccount.password,
-    phoneNumber: '12091234567',
+    phoneNumber: userAccount.phone_number,
     email: userAccount.email,
-    birthdate: '05-23-1989',
-    accountRestrictions: 'Owner'
-    // orgnaization: 'MyOrg'
+    birthdate: combinedBirthdate,
+    accountRestrictions: userAccount.account_restrictions,
+    orgnaization: userAccount.organization
   })
   .then(resp => {
     localStorage.setItem('token', resp.data.token);

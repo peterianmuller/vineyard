@@ -2,6 +2,7 @@ import jwt from 'jsonwebtoken';
 import jwtOptions from '../config/auth/jwt';
 import { newUser, getUserByUsername } from '../db/controllers/users';
 import Users from '../db/models/users';
+import { getOrganization, findOrCreateNewOrg } from '../db/controllers/organization';
 
 export function login(req, res) {
   var payload = { id: req.user.id };
@@ -23,6 +24,12 @@ export function sendUserIdFromJwt(req, res, next) {
 
 export function register(req, res, next) {
   const params = req.body;
+  findOrCreateNewOrg(params.organization)
+  .then((org) => {
+    return org.id;
+  })
+
+//need to edit to account for the found id
   newUser(params)
   .then(() => {
     getUserByUsername(params)
