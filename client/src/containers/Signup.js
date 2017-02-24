@@ -1,8 +1,15 @@
+//React requirements
 import React from 'react';
 import { browserHistory } from 'react-router';
+
+//UI
 import {  Col, ControlLabel,  FormControl, FormGroup, Row } from 'react-bootstrap';
 import { Button, Form, Grid } from 'semantic-ui-react';
+
+//Components
 import NameBirthdateInput from '../components/NameBirthdateInput';
+
+//Actions and Functions
 import { handleItemChange } from '../helpers/changeHandlers';
 import { setSignupItem, signup } from '../actions/signup';
 
@@ -41,7 +48,7 @@ export default class Signup extends React.Component {
   render() {
     return (
       <div className='oneEm max500width'>
-	      <Grid columns='equal'>
+	      <Grid columns='equal' padded>
           <Grid.Row>
             <Grid.Column>
               <h2>Sign up here!</h2>

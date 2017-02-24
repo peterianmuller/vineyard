@@ -1,16 +1,15 @@
+//React requirements
 import React from 'react';
-import { Button, Form, Grid, Input, Label } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
+
+//UI
+import { Button, Form, Grid, Input, Label } from 'semantic-ui-react';
+
+//Actions and functions
 import { handleItemChange } from '../helpers/changeHandlers';
 import { setLoginItem, loginUser } from '../actions/login';
 
 export default class Login extends React.Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.username) {
-      browserHistory.push('/home');
-    }
-  }
-
 	handleSubmit(e) {
 		e.preventDefault();
 
@@ -20,7 +19,7 @@ export default class Login extends React.Component {
   render() {
   	return (
       <div className='max500width multiColumnInput'>
-  	  <Grid columns='equal' padding>
+  	  <Grid columns='equal' padded>
         <Grid.Row>
           <Grid.Column>
   	    <Form onSubmit={this.handleSubmit.bind(this)}>

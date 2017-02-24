@@ -1,4 +1,7 @@
+//AJAX
 import axios from 'axios';
+
+//Actions
 import { validateUser } from './navigation';
 
 export function setSignupItem(item, value) {

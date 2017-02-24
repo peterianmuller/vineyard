@@ -1,21 +1,28 @@
+//React requirements
 import React from 'react';
 import { connect } from 'react-redux';
-import { Segment, Sidebar } from 'semantic-ui-react';
 import store from '../store';
+
+//UI
+import { Segment, Sidebar } from 'semantic-ui-react';
+
+//Components
 import MainNavBar from '../components/MainNavBar';
 import LeftSideBar from '../components/LeftSideBar';
+
+//Actions
 import { validateUser } from '../actions/navigation';
 
 class App extends React.Component {
-  componentWillMount() {
-    this.props.dispatch(validateUser());
-  }
+  //componentWillMount() {
+  //  this.props.dispatch(validateUser());
+  //}
 
   render() {
     return (
       <div>
         <Sidebar.Pushable as={Segment}>
-          <LeftSideBar nav={this.props.nav} auth={this.props.authStatus} />
+          <LeftSideBar dispatch={this.props.dispatch} nav={this.props.nav} auth={this.props.authStatus} />
 
           <Sidebar.Pusher>
             <MainNavBar dispatch={this.props.dispatch} auth={this.props.authStatus} /> 

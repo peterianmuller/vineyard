@@ -1,3 +1,4 @@
+//AJAX
 import axios from 'axios';
 
 export function addEvent(event) {

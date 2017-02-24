@@ -1,3 +1,4 @@
+//React requirements
 import store from '../store';
 
 // empty object for testing, new webkitSpeechRecognition for using
