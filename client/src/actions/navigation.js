@@ -1,3 +1,7 @@
+//React requirements
+import { browserHistory } from 'react-router';
+
+//AJAX
 import axios from 'axios';
 
 export function toggleLeftSidebar() {
@@ -10,6 +14,8 @@ export function logoutUser(userCredentials) {
   return dispatch => axios.get('/auth/logout')
   .then(() => { 
   	dispatch(clearAuthStatus());
+
+    window.localStorage.removeItem('token');
   	browserHistory.push('/login');
   })
   .catch((err) => {
@@ -32,7 +38,7 @@ export function validateUser() {
   };
 }
 
-function clearAuthStatus() {
+export function clearAuthStatus() {
   return {
     type: "CLEAR_AUTHSTATUS"
   }

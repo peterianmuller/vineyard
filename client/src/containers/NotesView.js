@@ -1,7 +1,13 @@
+//React requirements
 import React from 'react';
+
+//UI
 import { Divider, Button, Grid } from 'semantic-ui-react';
+
+//Components
 import Note from '../components/Note';
-import axios from 'axios';
+
+//Actions
 import { getNotes, addEvent } from '../actions/notesView';
 
 export default class NotesView extends React.Component {

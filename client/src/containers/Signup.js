@@ -1,8 +1,15 @@
+//React requirements
 import React from 'react';
 import { browserHistory } from 'react-router';
+
+//UI
 import {  Col, ControlLabel,  FormControl, FormGroup, Row } from 'react-bootstrap';
 import { Button, Form, Grid } from 'semantic-ui-react';
+
+//Components
 import NameBirthdateInput from '../components/NameBirthdateInput';
+
+//Actions and Functions
 import { handleItemChange } from '../helpers/changeHandlers';
 import { setSignupItem, signup } from '../actions/signup';
 

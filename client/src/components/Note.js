@@ -1,4 +1,7 @@
+//React requirements
 import React from 'react';
+
+//UI
 import { Grid, Divider } from 'semantic-ui-react';
 
 export default props => (

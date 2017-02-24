@@ -1,5 +1,8 @@
+//React requirements
 import React from 'react';
-import axios from 'axios';
+
+
+//Actions and Functions
 import { setLatLong } from '../helpers/changeHandlers';
 import { setNoteFormItem } from '../actions/noteForm';
 

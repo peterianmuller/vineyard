@@ -1,5 +1,8 @@
-import axios from 'axios';
+//React requirements
 import { browserHistory } from 'react-router';
+
+//AJAX
+import axios from 'axios';
 
 export function getWeather(note) {
   console.log(note);

@@ -1,7 +1,12 @@
+//Redux requirements
 import { applyMiddleware, createStore, combineReducers } from 'redux';
+
+//Redux middleware
 import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
 import logger from 'redux-logger';
+
+//Reducers
 import { navReducer } from './reducers/navigation';
 import { userLoginReducer } from './reducers/login';
 import { userSignupReducer } from './reducers/signup';

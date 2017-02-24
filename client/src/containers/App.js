@@ -15,7 +15,7 @@ class App extends React.Component {
     return (
       <div>
         <Sidebar.Pushable as={Segment}>
-          <LeftSideBar nav={this.props.nav} auth={this.props.authStatus} />
+          <LeftSideBar dispatch={this.props.dispatch} nav={this.props.nav} auth={this.props.authStatus} />
 
           <Sidebar.Pusher>
             <MainNavBar dispatch={this.props.dispatch} auth={this.props.authStatus} /> 

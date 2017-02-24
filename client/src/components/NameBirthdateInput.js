@@ -1,5 +1,10 @@
+//React requirements
 import React from 'react';
+
+//UI
 import { Button, Form, Grid } from 'semantic-ui-react';
+
+//Actions and functions
 import { handleItemChange } from '../helpers/changeHandlers';
 
 export default props => (

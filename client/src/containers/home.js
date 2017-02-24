@@ -1,6 +1,9 @@
+//React requirements
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
+
+//Components
 import MainNavBar from '../components/MainNavBar';
 
 class Home extends React.Component {

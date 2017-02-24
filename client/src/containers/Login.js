@@ -1,6 +1,11 @@
+//React requirements
 import React from 'react';
-import { Button, Form, Grid, Input, Label } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
+
+//UI
+import { Button, Form, Grid, Input, Label } from 'semantic-ui-react';
+
+//Actions and functions
 import { handleItemChange } from '../helpers/changeHandlers';
 import { setLoginItem, loginUser } from '../actions/login';
 

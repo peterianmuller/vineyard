@@ -1,5 +1,10 @@
-import axios from 'axios';
+//React requirements
 import { browserHistory } from 'react-router';
+
+//AJAX
+import axios from 'axios';
+
+//Actions
 import { validateUser } from './navigation';
 
 

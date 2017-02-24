@@ -1,7 +1,12 @@
+//React requirements
 import React from 'react';
-import { Menu } from 'semantic-ui-react';
 import { Link } from 'react-router';
 import store from '../store';
+
+//UI
+import { Menu } from 'semantic-ui-react';
+
+//Actions
 import { toggleLeftSidebar } from '../actions/navigation';
 
 export default class MenuItem extends React.Component {

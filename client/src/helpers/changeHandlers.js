@@ -1,4 +1,7 @@
+//React requirements
 import store from '../store';
+
+//Actions and helpers
 import recog from './recognition';
 import { setNoteFormItem } from '../actions/noteForm';
 

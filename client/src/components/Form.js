@@ -1,14 +1,18 @@
+//React requirements
 import React from 'react';
 import { Link, browserHistory } from 'react-router';
-import NoteFormInput from './NoteFormInput';
-//import { Button, Col, Form, Grid, Row } from 'react-bootstrap';
+
+//UI
 import { Button, Form, Grid } from 'semantic-ui-react';
 import Loadable from 'react-loading-overlay';
+
+//Components
+import NoteFormInput from './NoteFormInput';
 import Map from './Map';
-import LatLon from './LatLon';
+
+//Actions and Functions
 import { setLatLong } from '../helpers/changeHandlers';
 import { getWeather, postNote, setSelectedImage, uploadImgToImgur, setNoteFormItem } from '../actions/noteForm';
-import axios from 'axios';
 
 export default class FormPage extends React.Component {
   constructor(props) {
