@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, ControlLabel, FormControl, FormGroup, Grid, Row } from 'react-bootstrap';
+import { Button, Form, Grid, Input, Label } from 'semantic-ui-react';
 import { browserHistory } from 'react-router';
 import { handleItemChange } from '../helpers/changeHandlers';
 import { setLoginItem, loginUser } from '../actions/login';
@@ -19,36 +19,38 @@ export default class Login extends React.Component {
 
   render() {
   	return (
-  	  <Grid>
-  	    <Row>
-  	      <Col xsOffset={2} xs={8} mdOffset={4} md={4}>
-  	        <form onSubmit={this.handleSubmit.bind(this)}>
-  	          <FormGroup >
-  	            <ControlLabel>Username</ControlLabel>
-  	            <FormControl
-  	  						value={this.props.login.username}
-  	  						onChange={ handleItemChange.bind(null, setLoginItem, 'username') }
-  	  						placeholder='Enter username here...'
-  	  					/>
-  	            <ControlLabel>Password</ControlLabel>
-  	            <FormControl
-  	  						value={this.props.login.password}
-  	  						onChange={ handleItemChange.bind(null, setLoginItem, 'password') }
-  	  						placeholder='Enter password here...'
+      <div className='max500width multiColumnInput'>
+  	  <Grid columns='equal' padding>
+        <Grid.Row>
+          <Grid.Column>
+  	    <Form onSubmit={this.handleSubmit.bind(this)}>
+  	      <Grid.Row>
+  	        <Grid.Column>
+  	          <Form.Input
+                label='Username'
+  	  	  			value={this.props.login.username}
+  	  	  			onChange={ handleItemChange.bind(null, setLoginItem, 'username') }
+  	  	  			placeholder='Enter username here...'
+  	  	  		/>
+              </Grid.Column> 
+            </Grid.Row>
+            <Grid.Row>
+              <Grid.Column>
+  	            <Form.Input
+                  label='Password'
+  	  	  				value={this.props.login.password}
+  	  	  				onChange={ handleItemChange.bind(null, setLoginItem, 'password') }
+  	  	  				placeholder='Enter password here...'
                   type='password'
-  	  					/>
-  	          </FormGroup>
-  	  				<Button
-  	  					bsStyle="primary"
-  	  					bsClass="btn pull-right btn-primary buttonWithMargin"
-  	  					type='submit'
-  	  				>
-  	  					Submit
-  	  				</Button>
-  	        </form>
-  	      </Col>
-  	    </Row>
+  	  	  			/>
+  	  	  			<Button type='submit' primary>Submit</Button>
+  	        </Grid.Column>
+  	      </Grid.Row>
+  	    </Form>
+      </Grid.Column>
+    </Grid.Row>
   	  </Grid>
-    )
+    </div>
+    );
   }
 }

@@ -48,8 +48,13 @@
   height: auto;
 }
 
-.formBtnNext {
+.oneEm {
   margin: 1em;
+}
+
+.max500width {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
 .selectFileBtn {

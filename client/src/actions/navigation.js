@@ -1,5 +1,11 @@
 import axios from 'axios';
 
+export function toggleLeftSidebar() {
+  return {
+    type: "TOGGLE_LEFT_SIDEBAR"
+  };
+}
+
 export function logoutUser(userCredentials) {
   return dispatch => axios.get('/auth/logout')
   .then(() => { 
