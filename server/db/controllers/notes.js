@@ -5,7 +5,7 @@ const newNote = (params) => {
   return new Notes({
     title: params.title,
     text: params.text,
-    // date_time: params.datetime,
+    date_time: params.datetime,
     latitude: params.latitude,
     longitude: params.longitude,
     image_url: params.image,

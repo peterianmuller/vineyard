@@ -5,7 +5,7 @@ export function createNote(req, res, next) {
   const params = {
     title: req.body.title,
     text: req.body.text,
-    // date_time: req.body.date_time,
+    date_time: req.body.date_time,
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     image_url: req.body.image_url,

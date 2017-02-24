@@ -87,9 +87,9 @@ then((exists) => {
 			note.increments('id').primary();
 			note.string('title', 255).notNullable();
 			note.string('text', 5000).notNullable();
-			// note.date('date_time', 255);
-			note.string('latitude', 255);
-			note.string('longitude', 255);
+			note.string('date_time', 255).notNullable();
+			note.string('latitude', 255).notNullable();
+			note.string('longitude', 255).notNullable();
 			note.string('image_url');
 			note.integer('note_author_id').references('users.id');
 		})
