@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
+import { Button, Grid } from 'semantic-ui-react'
 import LatLon from './LatLon';
 import { setLatLong } from '../helpers/changeHandlers';
-import { Button, Grid } from 'semantic-ui-react'
 import { getWeather, postNote } from '../actions/noteForm';
 import NoteFormInput from './NoteFormInput';
 //import { postNote } from '../actions/noteForm';
