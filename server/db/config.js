@@ -17,11 +17,11 @@ const knex = original({
 });
 
 const db = bookshelf(knex);
-db.knex.schema.hasTable('Addresses').
+db.knex.schema.hasTable('addresses').
 then((exists) => {
 	if(!exists) {
-		db.knex.schema.createTable('Addresses', (address) => {
-		  console.log('creaeting');
+		db.knex.schema.createTable('addresses', (address) => {
+		  console.log('creating');
 			address.increments('id').primary();
 			address.string('street', 255).notNullable();
 			address.string('street_2', 255);
@@ -30,24 +30,24 @@ then((exists) => {
 			address.string('zip', 255).notNullable();
 			address.string('country', 255).notNullable();
 		})
-		.createTable('Organizations', (org) => {
+		.createTable('organizations', (org) => {
 			org.increments('id').primary();
 			org.string('name', 255).notNullable();
 			org.string('phone_number', 255).notNullable();
 			org.enu('tier', ['Hobbyist', 'Small', 'Large']);
 		})
-		.createTable('Vineyards', (vineyard) => {
+		.createTable('vineyards', (vineyard) => {
 			vineyard.increments('id').primary();
 			vineyard.string('name', 255).notNullable();
 			vineyard.string('phone_number', 255).notNullable();
 			vineyard.string('appellation', 255).notNullable();
-			vineyard.integer('organizaton_id').references('Organizations.id').notNullable();
-			vineyard.integer('address_id').references('Addresses.id').notNullable();
+			vineyard.integer('organizaton_id').references('organizations.id').notNullable();
+			vineyard.integer('address_id').references('addresses.id').notNullable();
 		})
-		.createTable('Blocks', (block) => {
+		.createTable('blocks', (block) => {
 			block.increments('id').primary();
 			block.string('number', 255).notNullable();
-			block.integer('vineyard_id').references('Vineyards.id');
+			block.integer('vineyard_id').references('vineyards.id');
 		})
 		.createTable('Varietals', (varietal) => {
 			varietal.increments('id').primary();
@@ -69,7 +69,7 @@ then((exists) => {
 		      'Pre-harvest',
 		      'Post-harvest'
 		      ]).notNullable();
-			row.integer('block_id').references('Blocks.id');
+			row.integer('block_id').references('blocks.id');
 		})
 		.createTable('users', (user) => {
 			user.increments('id').primary();
@@ -81,9 +81,9 @@ then((exists) => {
 			user.string('email', 255).unique().notNullable();
 			user.date('birthdate', 255).notNullable();
 			user.enu('account_restrictions', ['Owner', 'Manager', 'Employee']).notNullable();
-			// user.integer('organization_id').references('Organizations.id').notNullable();
+			// user.integer('organization_id').references('organizations.id').notNullable();
 		})
-		.createTable('Notes', (note) => {
+		.createTable('notes', (note) => {
 			note.increments('id').primary();
 			note.string('title', 255).notNullable();
 			note.string('text', 5000).notNullable();
@@ -93,7 +93,7 @@ then((exists) => {
 			note.string('image_url');
 			note.integer('note_author_id').references('users.id').notNullable();
 		})
-		.createTable('Alerts', (alert) => {
+		.createTable('alerts', (alert) => {
 			alert.increments('id').primary();
 			alert.string('text', 5000).notNullable();
 			alert.string('latitude', 255).notNullable();
@@ -101,7 +101,7 @@ then((exists) => {
 			alert.date('alert_time', 255).notNullable();
 			alert.integer('alert_author_id').references('users.id').notNullable();
 		})
-		.createTable('Messages', (message) => {
+		.createTable('messages', (message) => {
 			message.increments('id').primary();
 			message.string('text', 2000).notNullable();
 			message.integer('message_author_id').references('users.id').notNullable();

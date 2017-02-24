@@ -8,8 +8,8 @@ const newNote = (params) => {
     latitude: params.latitude,
     longitude: params.longitude,
     image_url: params.image,
-    author: params.username   
-  });
+    author: params.username
+  }).save();
 };
 
 const getAllNotes = () => {

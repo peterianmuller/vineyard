@@ -5,7 +5,12 @@ export function createNote(req, res, next) {
     title: req.body.title,
     text: req.body.text,
     location: req.body.location,
-    image: req.body.image
+    image: req.body.image,
+    date_time: req.body.date_time,
+    latitude: req.body.latitude,
+    longitude: req.body.longitude,
+    image_url: req.body.image_url,
+    note_author_id: req.body.note_author_id,
   };
   return notesController.newNote(params)
   .then((note) => {
