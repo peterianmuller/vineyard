@@ -107,7 +107,7 @@ then((exists) => {
 			message.integer('message_author_id').references('users.id').notNullable();
 		})
 		.then(() => {
-		  console.log('wut');
+		  console.log('database tables successfully created');
 		})
 		.catch((err) => {
 			console.log(err, "error with table implementation");
@@ -115,7 +115,7 @@ then((exists) => {
 	}
 })
 .catch((err) => {
-	console.log(err, "error with check existance of table");
+	console.log(err, "error: could not check if table exists");
 })
 
 export default db;

@@ -13,7 +13,6 @@ export function createNote(req, res, next) {
   };
   return notesController.newNote(params)
   .then((note) => {
-    console.log('inside create note server controller .then statement');
     if (note) {
       res.json(note);
     } else {
