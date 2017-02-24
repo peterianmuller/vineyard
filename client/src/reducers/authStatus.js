@@ -22,10 +22,10 @@ export function authStatusReducer(state = authStatus, action) {
         ...state,
         username: null
       }
-		case "SET_AUTHSTATUS_TOKEN":
+		case "SET_AUTHSTATUS_ID":
 			return {
 				...state,
-				token: action.value
+				username: action.value
 			};
 		default:
 			return state;

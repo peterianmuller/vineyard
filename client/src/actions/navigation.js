@@ -23,18 +23,25 @@ export function logoutUser(userCredentials) {
   });
 }
 
-export function validateUser() {
+export function validateUser(callback) {
+  return dispatch => axios.get('/auth/session', 
+    {
+      headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
+    })
+    .then(res => {
+      return dispatch(setUserCredentials(res.data.id));
+    })
+    .then(() => {
+      callback();
+    }).catch(err => {
+      callback(); 
+    });
+}
+
+function setUserCredentials(id) {
   return {
-    type: "SET_AUTHSTATUS_JWT",
-    payload: {
-      promise: axios.get('/auth/session', {
-        headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
-      })
-      .then(res => {
-        console.log(res); 
-        return res.data.id
-      })
-    }
+    type: "SET_AUTHSTATUS_JWT_FULFILLED",
+    payload: id
   };
 }
 

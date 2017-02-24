@@ -48,7 +48,7 @@ export default class Signup extends React.Component {
   render() {
     return (
       <div className='oneEm max500width'>
-	      <Grid columns='equal'>
+	      <Grid columns='equal' padded>
           <Grid.Row>
             <Grid.Column>
               <h2>Sign up here!</h2>

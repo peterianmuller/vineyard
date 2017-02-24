@@ -15,12 +15,6 @@ import { setLatLong } from '../helpers/changeHandlers';
 import { getWeather, postNote, setSelectedImage, uploadImgToImgur, setNoteFormItem } from '../actions/noteForm';
 
 export default class FormPage extends React.Component {
-  constructor(props) {
-    super(props);
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  
   componentDidMount() {
     var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
 
@@ -29,7 +23,6 @@ export default class FormPage extends React.Component {
 
     this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
-
 
   clickFileChooser(e) {
     this.inputElement.click();
@@ -77,7 +70,7 @@ export default class FormPage extends React.Component {
                     >
                       <img 
                         src={this.props.note.selectedImg}
-                        className='uploadedPhoto'
+                        className='uploadedPhoto textCenter'
                         alt='Click here to upload image' 
                         onClick={this.clickFileChooser.bind(this)}
                       />
