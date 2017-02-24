@@ -5,8 +5,7 @@ export default props => (
   <div>
     <h5>{props.title}</h5>
     <p>{props.text}</p>
-    <p>{props.lat}</p>
-    <p>{props.lon}</p>
+    <p>Latitude: {props.lat}, Longitude: {props.lon}</p>
     <Divider section />
   </div>
 

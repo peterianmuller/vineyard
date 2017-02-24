@@ -20,6 +20,7 @@ export default class NotesView extends React.Component {
     return(
       <div>
         <Button onClick={ this.handleSubmit.bind(this) }> Give me Notes!</Button>
+        <Button>Filter</Button>
         <Divider />
         <Grid columns="two" divided centered="true">
           <Grid.Row>
