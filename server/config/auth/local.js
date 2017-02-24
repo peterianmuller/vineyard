@@ -1,4 +1,5 @@
 import passport from 'passport';
+import bcrypt from 'bcrypt';
 import passportLocal from 'passport-local';
 
 import Users from '../../db/models/users';
@@ -26,22 +27,22 @@ passport.use('local', new LocalStrategy({
   passReqToCallback : true
 },
   function(req, username, password, done) {
-    console.log('well i made it');
+    console.log('this is the user to find: ', username)
     new Users({ username: username }).fetch()
     .then((user) => {
-      console.log('didnt find anything what');
+      console.log('user that was created: ', user);
       if (!user) {
         return done(null, false);
       }
-      if (!user.validPassword(password)) {
+      if(!bcrypt.compare(password, user.password)) {
           alert('invalid password');
           return done(null, false);
       }
-      console.log('user matched, done being calleds')
+      console.log('user matched, done being called')
       return done(null, user);
     })
     .catch((err) => {
-      console.log('error loging in user ', err);
+      console.log('error loging in user: ', err);
     });
   }
 ));

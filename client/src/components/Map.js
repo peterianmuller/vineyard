@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import { Button, Nav, Navbar, NavItem } from 'react-bootstrap';
 import { setLatLong } from '../helpers/changeHandlers';
 import { setNoteFormItem } from '../actions/noteForm';
 
@@ -16,7 +15,7 @@ export default class Map extends React.Component {
   render() {
     return (
       <div>
-        <div id='googleMaps' style = {{'margin': '0 auto', 'height': '50%', 'width': '50%', 'borderRadius': '3px' }}>
+        <div id='googleMaps' style = {{'margin': '0 auto', 'height': '40%', 'width': '50%', 'borderRadius': '3px' }}>
         </div>
         <div id="current" style={{'paddingTop': '25px'}}>Please move the note to a location</div>
       </div> 
@@ -45,6 +44,15 @@ export default class Map extends React.Component {
 
 
     function initMap() {
+      var styleArray = [
+         {
+          featureType: "poi",
+          elementType: "labels",
+          stylers: [
+            { visibility: "off" }
+          ]
+        }
+      ];
       //need to get current coordinates to center map where user is at
         //navigator is async, so we can only access these coords inside the 
       navigator.geolocation.getCurrentPosition(function(pos){
@@ -58,7 +66,8 @@ export default class Map extends React.Component {
           scaleControl: false,
           streetViewControl: false,
           rotateControl: false,
-          fullscreenControl: false
+          fullscreenControl: false,
+          styles: styleArray
         });
 
 
