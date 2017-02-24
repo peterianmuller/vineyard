@@ -5,9 +5,7 @@ var signupState = {
   email: '',
   'first_name': '',
   'last_name': '',
-  'birth_day': '',
-  'birth_month': '',
-  'birth_year': ''
+  'birthdate': '',
 };
 
 export function userSignupReducer(state = signupState, action) {
@@ -46,20 +44,10 @@ export function userSignupReducer(state = signupState, action) {
         ...state,
         'last_name': action.value
       }
-    case "SET_SIGNUP_BIRTH_DAY":
+    case "SET_SIGNUP_BIRTHDATE":
       return {
         ...state,
-        'birth_day': action.value
-      }
-    case "SET_SIGNUP_BIRTH_MONTH":
-      return {
-        ...state,
-        'birth_month': action.value
-      }
-    case "SET_SIGNUP_BIRTH_YEAR":
-      return {
-        ...state,
-        'birth_year': action.value
+        'birthdate': action.value
       }
     default:
       return state;

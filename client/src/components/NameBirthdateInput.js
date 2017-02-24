@@ -36,22 +36,11 @@ export default props => (
       <Grid.Column>
         <Form.Group widths='equal'>
           <Form.Input 
-            label='Day'
-	  	    	value={props.signup.birth_day} 
-	  	    	onChange={ handleItemChange.bind(null, props.setItem, 'birth_day') } 
+            type='date'
+            label='Birthdate'
+	  	    	value={props.signup.birthdate} 
+	  	    	onChange={ handleItemChange.bind(null, props.setItem, 'birthdate') } 
 	  	    	placeholder='Day' 
-	  	    />
-          <Form.Input 
-            label='Month'
-	  	    	value={props.signup.birth_month} 
-	  	    	onChange={ handleItemChange.bind(null, props.setItem, 'birth_month') } 
-	  	    	placeholder='Month' 
-	  	    />
-          <Form.Input 
-            label='Year'
-	  	    	value={props.signup.birth_year} 
-	  	    	onChange={ handleItemChange.bind(null, props.setItem, 'birth_year') } 
-	  	    	placeholder='Year' 
 	  	    />
         </Form.Group>
       </Grid.Column>
