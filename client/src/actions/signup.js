@@ -29,7 +29,8 @@ export function signup(userAccount) {
     email: userAccount.email,
     birthdate: combinedBirthdate,
     accountRestrictions: userAccount.account_restrictions,
-    orgnaization: userAccount.organization
+    organization: userAccount.organization,
+    address: 1
   })
   .then(resp => {
     localStorage.setItem('token', resp.data.token);

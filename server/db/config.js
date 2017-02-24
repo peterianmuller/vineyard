@@ -34,6 +34,7 @@ db.knex.schema.hasTable('addresses')
 			org.string('name', 255).notNullable();
 			org.string('phone_number', 255).notNullable();
 			org.string('tier', 255).notNullable();
+			org.integer('address_id').references('addresses.id').notNullable();
 			// org.enu('tier', ['Hobbyist', 'Small', 'Large']);
 		})
 		.createTable('vineyards', (vineyard) => {

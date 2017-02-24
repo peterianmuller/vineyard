@@ -2,7 +2,7 @@ import jwt from 'jsonwebtoken';
 import jwtOptions from '../config/auth/jwt';
 import { newUser, getUserByUsername } from '../db/controllers/users';
 import Users from '../db/models/users';
-import { getOrganization, findOrCreateNewOrg } from '../db/controllers/organization';
+import { getOrganization, findOrCreateNewOrg } from '../db/controllers/organizations';
 
 export function login(req, res) {
   var payload = { id: req.user.id };
@@ -23,26 +23,61 @@ export function sendUserIdFromJwt(req, res, next) {
 }
 
 export function register(req, res, next) {
-  const params = req.body;
-  findOrCreateNewOrg(params.organization)
+  // const params = req.body;
+  const org = {
+    name: req.body.organization
+  };
+  console.log('targetorg: ', org);
+  getOrganization(org)
   .then((org) => {
     return org.id;
   })
+// <<<<<<< HEAD
 
-//need to edit to account for the found id
-  newUser(params)
-  .then(() => {
-    getUserByUsername(params)
-      .then((user) => {
-        // console.log('user returned: ', user);
-        next();
-      })
-      .catch((err) => {
-        console.log('could not add user: ', err);
-      });
+// //need to edit to account for the found id
+//   newUser(params)
+//   .then(() => {
+//     getUserByUsername(params)
+//       .then((user) => {
+//         // console.log('user returned: ', user);
+//         next();
+//       })
+//       .catch((err) => {
+//         console.log('could not add user: ', err);
+//       });
 
-  })
-  .catch((err) => {
-    console.log('error with insert: ', err)
+//   })
+//   .catch((err) => {
+//     console.log('error with insert: ', err)
+// =======
+  .then((orgId) => {
+    console.log('this is the organization id: ', orgId);
+    console.log('request body: ', req.body)
+    const params = {
+    firstname: req.body.firstName,
+    lastname: req.body.lastName,
+    username: req.body.userName,
+    password: req.body.password,
+    phone_number: req.body.phoneNumber,
+    email: req.body.email,
+    birthdate: req.body.birthdate,
+    account_restrictions: req.body.accountRestrictions,
+    organization: orgId
+    }
+    newUser(params)
+    .then((username) => {
+      getUserByUsername(username)
+        .then((user) => {
+          console.log('user returned: ', user);
+          next();
+        })
+        .catch((err) => {
+          console.log('could not add user: ', err);
+        });
+      
+    })
+    .catch((err) => {
+      console.log('error with insert: ', err)
+    })    
   })
 }
