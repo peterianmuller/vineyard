@@ -1,14 +1,15 @@
 import Notes from '../models/notes';
 
 const newNote = (params) => {
+  console.log('inside create note db controller');
   return new Notes({
     title: params.title,
     text: params.text,
-    date_time: params.datetime,
+    // date_time: params.datetime,
     latitude: params.latitude,
     longitude: params.longitude,
     image_url: params.image,
-    author: params.username
+    note_author_id: params.username
   }).save();
 };
 

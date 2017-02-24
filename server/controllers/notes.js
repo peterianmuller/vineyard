@@ -1,12 +1,11 @@
 import notesController from '../db/controllers/notes';
 
 export function createNote(req, res, next) {
+  console.log('inside create note server controller');
   const params = {
     title: req.body.title,
     text: req.body.text,
-    location: req.body.location,
-    image: req.body.image,
-    date_time: req.body.date_time,
+    // date_time: req.body.date_time,
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     image_url: req.body.image_url,
@@ -14,6 +13,7 @@ export function createNote(req, res, next) {
   };
   return notesController.newNote(params)
   .then((note) => {
+    console.log('inside create note server controller .then statement');
     if (note) {
       res.json(note);
     } else {
