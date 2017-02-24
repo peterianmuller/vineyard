@@ -1,19 +1,14 @@
 import React from 'react';
-import { Grid } from 'semantic-ui-react';
+import { Grid, Divider } from 'semantic-ui-react';
 
 export default props => (
+  <div>
+    <h5>{props.title}</h5>
+    <p>{props.text}</p>
+    <p>{props.lat}</p>
+    <p>{props.lon}</p>
+    <Divider section />
+  </div>
 
-  <Grid>
-   <Grid.Row columns={1}>
-      <Grid.Column>
-        {props.title}
-      </Grid.Column>
-   </Grid.Row>  
-   <Grid.Row columns={1}>
-     <Grid.Column>
-        {props.text}
-     </Grid.Column> 
-   </Grid.Row>   
-  </Grid>  
 )
 
