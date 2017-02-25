@@ -49,3 +49,20 @@ export function getUserByUsername(req, res, next) {
     console.log('could not add user ', err);
   });
 }
+
+export function getUserById(req, res, next) {
+  const params = {
+    id: req.body.id
+  };
+  return usersController.getUserById(params)
+  .then((user) => {
+    if (user) {
+      res.json(user);
+    } else {
+      next();
+    }
+  })
+  .catch((err) => {
+    console.log('could not fetch user by id: ', err);
+  });
+}
