@@ -13,7 +13,7 @@ export const newUser = (params) => {
     account_restrictions: params.account_restrictions,
     organization_id: params.organization
   })
-  .save();
+  .save()
   return params.username;
 };
 

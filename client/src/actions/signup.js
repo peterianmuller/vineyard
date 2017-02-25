@@ -17,15 +17,7 @@ export function setSignupItem(item, value) {
   return toReturn;
 }
 
-// const formatBirthDate = (birthdate) => {
-//   var copy = birthdate.slice()
-//   var reFormat = copy.slice(6,10) + '-' + copy.slice(0,2) + '-' + copy.slice(3,5);
-//   return reFormat;
-// }
-
 export function signup(userAccount) {
-  console.log(userAccount.birthdate, "birthdate")
-  // var reformattedBirthDate = formatBirthDate(userAccount.birthdate);
   return dispatch => axios.post('/auth/register', {
     firstName: userAccount.first_name,
     lastName: userAccount.last_name,
