@@ -33,7 +33,6 @@ db.knex.schema.hasTable('addresses')
 			org.string('phone_number', 255).notNullable();
 			org.string('tier', 255).notNullable();
 			org.integer('address_id').references('addresses.id').notNullable();
-			// org.enu('tier', ['Hobbyist', 'Small', 'Large']);
 		})
 		.createTable('vineyards', (vineyard) => {
 			vineyard.increments('id').primary();
@@ -84,10 +83,9 @@ db.knex.schema.hasTable('addresses')
 		})
 		.createTable('notes', (note) => {
 			note.increments('id').primary();
-			note.date('created_At', 255).notNullable();
 			note.string('title', 255).notNullable();
 			note.string('text', 5000).notNullable();
-			note.string('date_time', 255).notNullable();
+			note.date('date_time', 255).notNullable();
 			note.string('latitude', 255).notNullable();
 			note.string('longitude', 255).notNullable();
 			note.string('image_url');

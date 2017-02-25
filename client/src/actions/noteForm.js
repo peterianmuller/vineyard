@@ -52,7 +52,7 @@ export function appendNoteFormItem(item, value) {
 //add in rest of cols in schema
 export function postNote(note) {
   console.log('inside postNote on the front end', note, 'then something else');
-
+  
   return dispatch => axios.post('/api/note', {
     title: note.title,
     text: note.textArea,

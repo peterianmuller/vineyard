@@ -2,7 +2,7 @@ import Users from '../models/users';
 
 
 export const newUser = (params) => {
-  new Users({
+  return new Users({
     firstname: params.firstname,
     lastname: params.lastname,
     username: params.username,
@@ -14,7 +14,6 @@ export const newUser = (params) => {
     organization_id: params.organization_id
   })
   .save()
-  return params.username
 };
 
 export const getUserByUsername = (params) => {

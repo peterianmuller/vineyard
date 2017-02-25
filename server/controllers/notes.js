@@ -2,6 +2,7 @@ import notesController from '../db/controllers/notes';
 
 export function createNote(req, res, next) {
   console.log('inside create note server controller');
+  console.log('user posting note:', req.body.note_author_id);
   const params = {
     title: req.body.title,
     text: req.body.text,
@@ -9,7 +10,7 @@ export function createNote(req, res, next) {
     latitude: req.body.latitude,
     longitude: req.body.longitude,
     image_url: req.body.image_url,
-    note_author_id: req.body.note_author_id,
+    note_author_id: req.body.note_author_id
   };
   return notesController.newNote(params)
   .then((note) => {
