@@ -3,7 +3,7 @@ import supertest from 'supertest';
 import chai from 'chai';
 let expect = chai.expect;
 
-describe('GET /users', function() {
+describe('GET /', function() {
   it('respond with json', function() {
     return request(app)
       .get('/users')
