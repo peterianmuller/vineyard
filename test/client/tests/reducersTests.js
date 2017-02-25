@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import chai from 'chai';
 import { userLoginReducer } from '../../../client/src/reducers/login';
 import { userSignupReducer } from '../../../client/src/reducers/signup';
@@ -47,13 +46,14 @@ describe('Reducers', () => {
       defaults = {
         username: '',
         password: '',
-        'confirm_password': '',
+        confirm_password: '',
         email: '',
-        'first_name': '',
-        'last_name': '',
-        'birth_day': '',
-        'birth_month': '',
-        'birth_year': ''
+        first_name: '',
+        last_name: '',
+        birthdate: '',
+        phone_number: '',
+        organization: '',
+        account_restrictions: ''
       };
     });
 
@@ -104,25 +104,11 @@ describe('Reducers', () => {
       })).to.deep.equal({ ...defaults, 'first_name': 'first_name' });
     });
     
-    it ('should return new state with changed birth day', () => {
+    it ('should return new state with changed birthdate', () => {
       expect(userSignupReducer(undefined, {
-        type: "SET_SIGNUP_BIRTH_DAY",
-        value: 'birth_day'
-      })).to.deep.equal({ ...defaults, 'birth_day': 'birth_day' });
-    });
-    
-    it ('should return new state with changed birth month', () => {
-      expect(userSignupReducer(undefined, {
-        type: "SET_SIGNUP_BIRTH_MONTH",
-        value: 'birth_month'
-      })).to.deep.equal({ ...defaults, 'birth_month': 'birth_month' });
-    });
-    
-    it ('should return new state with changed birth year', () => {
-      expect(userSignupReducer(undefined, {
-        type: "SET_SIGNUP_BIRTH_YEAR",
-        value: 'birth_year'
-      })).to.deep.equal({ ...defaults, 'birth_year': 'birth_year' });
+        type: "SET_SIGNUP_BIRTHDATE",
+        value: 'birthdate'
+      })).to.deep.equal({ ...defaults, 'birthdate': 'birthdate' });
     });
   });
 
@@ -134,14 +120,16 @@ describe('Reducers', () => {
         title: '',
         username:'',
         vineyard: '',
-        block: '',
-        row: '',
-        rowStart: '',
-        rowEnd: '',
         lat: '',
         lon: '',
         textArea: '',
-        currentlyRecording: ''
+        currentlyRecording: '',
+        selectedImg: '',
+        uploadedImgUrl: '',
+        uploadPending: false,
+        temperature: '',
+        humidity: '',
+        date: ''
       };
     });
 
@@ -169,34 +157,6 @@ describe('Reducers', () => {
         type: 'SET_NOTE_FORM_VINEYARD',
         value: 'new vineyard'
       })).to.deep.equal({...defaults, vineyard: 'new vineyard'});
-    });
-
-    it('should update the block', () => {
-      expect(noteFormReducer(undefined, {
-        type: 'SET_NOTE_FORM_BLOCK',
-        value: 'new block'
-      })).to.deep.equal({...defaults, block: 'new block'});
-    });
-
-    it('should update the row', () => {
-      expect(noteFormReducer(undefined, {
-        type: 'SET_NOTE_FORM_ROW',
-        value: 'new row'
-      })).to.deep.equal({...defaults, row: 'new row'});
-    });
-
-    it('should update the rowStart', () => {
-      expect(noteFormReducer(undefined, {
-        type: 'SET_NOTE_FORM_ROWSTART',
-        value: 'new rowStart'
-      })).to.deep.equal({...defaults, rowStart: 'new rowStart'});
-    });
-
-    it('should update the rowEnd', () => {
-      expect(noteFormReducer(undefined, {
-        type: 'SET_NOTE_FORM_ROWEND',
-        value: 'new rowEnd'
-      })).to.deep.equal({...defaults, rowEnd: 'new rowEnd'});
     });
 
     it('should update the lat', () => {
