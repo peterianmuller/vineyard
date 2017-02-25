@@ -8,10 +8,8 @@ var jwtOptions = {
 };
 
 passport.use(new JwtStrategy(jwtOptions, (jwt_payload, next) => {
-  // console.log('whats going on')
   return getUserById({ id: jwt_payload.id })
     .then(user => {
-      // console.log('inside auth', user);
       if (user) next(null, user);
     }).catch(err => {
       console.log('failed', err);
