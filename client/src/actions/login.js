@@ -1,7 +1,9 @@
-import axios from 'axios';
-import { browserHistory } from 'react-router';
-import { validateUser } from './navigation';
+//React requirements
+import { push } from 'react-router-redux';
+//import { browserHistory } from 'react-router';
 
+//AJAX
+import axios from 'axios';
 
 export function setLoginItem(item, value) {
   var toReturn =  { value };
@@ -18,11 +20,8 @@ export function loginUser(userCredentials) {
   .then((val) => {
     localStorage.setItem('token', val.data.token);
 
-    dispatch(validateUser());
     dispatch(clearUserLogin());
-  })
-  .then(() =>  {
-    browserHistory.push('/home');
+    dispatch(push('/'));
   })
   .catch((err) => {
     console.log('error dispatching login credentials ', err);
@@ -35,10 +34,10 @@ export function clearUserLogin() {
   }
 }
 
-function updateAuthStatus(token) {
+function updateAuthStatus(id) {
   return {
-    type: "SET_AUTHSTATUS_TOKEN",
-    value: token
+    type: "SET_AUTHSTATUS_ID",
+    value: id
   };
 }
 

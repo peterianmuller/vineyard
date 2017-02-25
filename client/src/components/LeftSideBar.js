@@ -1,23 +1,22 @@
+//React requirements
 import React from 'react';
-import axios from 'axios';
+
+//UI
 import { Menu, Sidebar } from 'semantic-ui-react';
+
+//Components
 import MenuLink from './MenuLink';
+
+//Actions
+import { logoutUser } from '../actions/navigation';
 
 export default props => {
   const handleLogout = (e) => {
     e.preventDefault();
-    axios.get('/auth/logout')
-    .then(() => {
-      props.dispatch(clearAuthStatus());
-      window.localStorage.removeItem('token');
-      browserHistory.push('/login');
-    })
-    .catch((err) => {
-      console.log('inside the axios catch', err);
-    });
+
+    props.dispatch(logoutUser());
   };
 
-  console.log(props.nav.leftSidebarVisible);
   return (
     <Sidebar 
       as={Menu} 
@@ -43,7 +42,7 @@ export default props => {
         <Menu.Menu position='right'>
           { 
             props.auth.username ? 
-              (<MenuLink name='logout' to='/' onClick={handleLogout} />) : 
+              (<Menu.Item name='logout' onClick={handleLogout} />) : 
               (<MenuLink name='login' />)
           }
           {

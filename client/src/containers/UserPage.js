@@ -1,4 +1,7 @@
+//React requirements
 import React from 'react';
+
+//UI
 import { Col, Row } from 'react-bootstrap';
 
 export default props => (
