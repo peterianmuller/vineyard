@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <link href="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.css" rel="stylesheet" />
+    <script
+     src="https://code.jquery.com/jquery-3.1.1.min.js"
+     integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+     crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/Automattic/expect.js/0.3.1/index.js"></script>
+    <script src="https://cdn.rawgit.com/mochajs/mocha/2.2.5/mocha.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.min.js'></script>
+    <script>
+      window.mocha.setup('bdd');
+      window.expect = chai.expect;
+
+      $(function() {
+        mocha.run();
+      });
+    </script> 
+  </head>
+  <body>
+    <script src='/test.js'></script>    
+    <h3>Tests</h3>
+    <div id="mocha"></div>
+  </body>
+</html>

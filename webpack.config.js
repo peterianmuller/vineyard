@@ -1,8 +1,11 @@
 module.exports = {
-  entry: './client/src/index.js',
+  entry: {
+    build: './client/src/index.js',
+    test: './test/client/index.js',
+  },
   output: {
     path: './client/dist',
-    filename: 'bundle.js'
+    filename: '[name].js'
   },
   module: {
     loaders: [
@@ -14,5 +17,11 @@ module.exports = {
         ]
       }
     ]
+  },
+  externals: {
+    'cheerio': 'window',
+    'react/addons': 'react',
+    'react/lib/ExecutionEnvironment': 'react',
+    'react/lib/ReactContext': 'react',
   }
 }

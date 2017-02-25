@@ -1,4 +1,3 @@
-import 'babel-polyfill';
 import chai from 'chai';
 import { userLoginReducer } from '../../../client/src/reducers/login';
 import { userSignupReducer } from '../../../client/src/reducers/signup';
@@ -47,13 +46,14 @@ describe('Reducers', () => {
       defaults = {
         username: '',
         password: '',
-        'confirm_password': '',
+        confirm_password: '',
         email: '',
-        'first_name': '',
-        'last_name': '',
-        'birth_day': '',
-        'birth_month': '',
-        'birth_year': ''
+        first_name: '',
+        last_name: '',
+        birthdate: '',
+        phone_number: '',
+        organization: '',
+        account_restrictions: ''
       };
     });
 
