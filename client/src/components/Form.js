@@ -17,10 +17,10 @@ import { getWeather, postNote, setSelectedImage, uploadImgToImgur, setNoteFormIt
 export default class FormPage extends React.Component {
   componentDidMount() {
     var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
+    console.log(formattedDate, "formatted date")
 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
-
     this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
 

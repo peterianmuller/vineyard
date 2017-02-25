@@ -50,8 +50,6 @@ export function register(req, res, next) {
     organization_id: orgId
     };
     return newUser(params)
-    // return new Users(params)
-    // .save()
     .then((user) => {
       console.log('new user', user)
       getUserByUsername(params.username)

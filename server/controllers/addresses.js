@@ -1,4 +1,4 @@
-import addressesController from '../db/controllers/addresses';
+import { newAddress } from '../db/controllers/addresses';
 
 export function createAddress(req, res, next) {
   const params = {
@@ -9,7 +9,7 @@ export function createAddress(req, res, next) {
     zip: req.body.zip,
     country: req.body.country
   };
-  return addressesController.newAddress(params)
+  return newAddress(params)
   .then((address) => {
     if (address) {
       res.json(address);
