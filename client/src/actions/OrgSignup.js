@@ -8,6 +8,7 @@ export function setOrgSignupItem(item, value) {
 }
 
 export function createOrg(org) {
+	console.log('org to create: ', org)
   return dispatch => axios.post('/api/organization', org, {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     }).then(() => { console.log('hi') });

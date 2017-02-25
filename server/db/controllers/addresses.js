@@ -15,6 +15,14 @@ export const newAddress = (params) => {
 };
 
 /*==================need to refactor to BS/KNX=======================*/
-export const getAddress = (req, res, next) => {
-  
+export const getAddressByStreet = (params) => {
+  return new Addresses({
+    street: params
+  })
+  .fetch()
+  .then( function(address) {
+    console.log('address found from fetch: ', address);
+    return address;
+  })
+
 };

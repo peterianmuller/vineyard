@@ -4,7 +4,6 @@ import Vineyards from './vineyards';
 
 const Organizations = db.Model.extend({
 	tableName: 'organizations',
-	hasTimestamps: true,
 	addresses: () => {
 		return this.hasOne(Addresses);
 	},

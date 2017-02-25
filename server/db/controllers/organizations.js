@@ -6,7 +6,7 @@ export const newOrganization = (params) => {
     phone_number: params.phoneNumber,
     tier: params.tier,
     address_id: params.address
-  });
+  }).save();
 }
 
 export const getOrganization = (params) => {
