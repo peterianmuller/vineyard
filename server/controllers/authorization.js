@@ -11,7 +11,6 @@ function formatPhoneNumber (phoneNumber) {
 export function login(req, res) {
   var payload = { id: req.user.id, username: req.user.username };
   var token = jwt.sign(payload, jwtOptions.secretOrKey);
-   console.log('I am even in here: ', token);
 
   res.status(201).json({ message: "OK", token: token, id: req.user.id });
 }
@@ -27,6 +26,7 @@ export function sendUserIdFromJwt(req, res, next) {
 }
 
 export function register(req, res, next) {
+<<<<<<< HEAD
   const org = {
     name: req.body.organization.toLowerCase()
   };
@@ -35,6 +35,19 @@ export function register(req, res, next) {
   getOrganization(org)
   .then((org) => {
     return org.id;
+=======
+  const params = req.body;
+  newUser(params)
+  .then(() => {
+    getUserByUsername(params)
+      .then((user) => {
+        next();
+      })
+      .catch((err) => {
+        console.log('could not add user: ', err);
+      });
+
+>>>>>>> Notes model and db controller tests working.
   })
   .then((orgId) => {
     console.log('this is the organization id: ', orgId);
@@ -60,10 +73,10 @@ export function register(req, res, next) {
         .catch((err) => {
           console.log('could not add user: ', err);
         });
-      
+
     })
     .catch((err) => {
       console.log('error with insert: ', err)
-    })    
+    })
   })
 }

@@ -151,7 +151,7 @@ db.knex.schema.hasTable('addresses')
     // 	coordsPolys.integer('poly_id').references('polygons.id').notNullable();
     // })
 		.then(() => {
-		  console.log('Tables created successfully!'); 
+		  console.log('Tables created successfully!');
 		})
 		.catch((err) => {
 			console.log('Error with table implementation: ', err);
