@@ -65,13 +65,15 @@ export function register(req, res, next) {
     email: req.body.email.toLowerCase(),
     birthdate: req.body.birthdate,
     account_restrictions: req.body.accountRestrictions,
-    organization: orgId
+    organization_id: orgId
     };
-    console.log('params', params)
-    newUser(params)
-    .then((username) => {
-      console.log(username)
-      getUserByUsername(username)
+    // console.log('params', params)
+    // return newUser(params)
+    return new Users(params)
+    .save()
+    .then((user) => {
+      console.log('new user', user)
+      getUserByUsername(params.username)
         .then((user) => {
           console.log('user returned: ', user);
           next();

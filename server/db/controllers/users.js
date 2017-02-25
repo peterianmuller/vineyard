@@ -11,18 +11,21 @@ export const newUser = (params) => {
     email: params.email,
     birthdate: params.birthdate,
     account_restrictions: params.account_restrictions,
-    organization_id: params.organization
+    organization_id: params.organization_id
   })
   .save()
-  return params.username;
+  return params.username
 };
 
 export const getUserByUsername = (params) => {
-  return new Users({
-    username: params.userName
+  //may need to modify back to params.username
+  return new Users({ 
+    username: params
+
   })
   .fetch()
-  .then((user) => {
+  .then( function(user) {
+    console.log(user, "user from fetch")
     return user;
   })
 };

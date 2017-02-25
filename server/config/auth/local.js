@@ -25,7 +25,8 @@ passport.use('local', new LocalStrategy({
 },
   function(req, username, password, done) {
     console.log('this is the user to find: ', username)
-    new Users({ username: username }).fetch()
+    var user_name_lower_case = username.toLowerCase();
+    new Users({ username: user_name_lower_case }).fetch()
     .then((user) => {
       console.log('user that was created: ', user);
       if (!user) {
