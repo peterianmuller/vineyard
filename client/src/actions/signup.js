@@ -3,7 +3,6 @@ import { push } from 'react-router-redux';
 
 //AJAX
 import axios from 'axios';
-
 //Actions
 import { validateUser } from './navigation';
 
@@ -11,7 +10,6 @@ export function setSignupItem(item, value) {
   var toReturn = {
     value
   };
-
   toReturn.type = "SET_SIGNUP_" + item.toUpperCase();
 
   return toReturn;
@@ -27,8 +25,7 @@ export function signup(userAccount) {
     email: userAccount.email,
     birthdate: userAccount.birthdate,
     accountRestrictions: userAccount.account_restrictions,
-    organization: userAccount.organization,
-    address: 1
+    organization: userAccount.organization
   })
   .then(resp => {
     localStorage.setItem('token', resp.data.token);

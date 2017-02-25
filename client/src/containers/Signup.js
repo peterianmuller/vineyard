@@ -32,11 +32,6 @@ export default class Signup extends React.Component {
   }
 
   buttonStatus() {
-    console.log(Object.keys(this.props.signup).reduce((acc, key)  => {
-      console.log('this.props.signup[key]: ', this.props.signup[key])
-      console.log('acc: ', acc);
-        return this.props.signup[key] !== '' && acc;
-      }, true))
     return !(this.props.signup.password === this.props.signup.confirm_password &&
       Object.keys(this.props.signup).reduce((acc, key)  => {
         return this.props.signup[key] !== '' && acc;
