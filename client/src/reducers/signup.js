@@ -6,8 +6,9 @@ var signupState = {
   first_name: '',
   last_name: '',
   birthdate: '',
-  account_restrictions: '',
-  organization: ''
+  phone_number: '',
+  organization: '',
+  account_restrictions: ''
 };
 
 export function userSignupReducer(state = signupState, action) {
@@ -25,22 +26,27 @@ export function userSignupReducer(state = signupState, action) {
       return {
         ...state,
         password: action.value
-      }
+      };
     case "SET_SIGNUP_CONFIRM_PASSWORD":
       return {
         ...state,
         'confirm_password': action.value
+      };
+    case "SET_SIGNUP_PHONE_NUMBER": 
+      return{
+        ...state,
+        phone_number: action.value
       }
     case "SET_SIGNUP_EMAIL":
       return {
         ...state,
         email: action.value
-      }
+      };
     case "SET_SIGNUP_FIRST_NAME":
       return {
         ...state,
         'first_name': action.value
-      }
+      };
     case "SET_SIGNUP_LAST_NAME":
       return {
         ...state,

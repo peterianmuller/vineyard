@@ -8,10 +8,9 @@ export function newUser(req, res, next) {
     password: req.body.password,
     phoneNumber: req.body.phoneNumber,
     email: req.body.email,
-    securityQuestion: req.body.securityQuestion,
-    securityAnswer: req.body.securityAnswer,
     birthdate: req.body.birthdate,
-    accountRestrictions: req.body.accountRestrictions
+    accountRestrictions: req.body.accountRestrictions,
+    organization: req.body.organization
   };
   return usersController.newUser(params)
   .then((user) => {

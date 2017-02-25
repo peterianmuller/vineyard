@@ -1,6 +1,7 @@
 //React requirements
 import React from 'react';
 import { browserHistory } from 'react-router';
+import axios from 'axios';
 
 //UI
 import { Button, Dropdown, Form, Grid, Header } from 'semantic-ui-react';
@@ -13,6 +14,16 @@ import { handleItemChange } from '../helpers/changeHandlers';
 import { setSignupItem, signup } from '../actions/signup';
 
 export default class Signup extends React.Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.auth.username) {
+      browserHistory.push('/home');
+    }
+  }
   getPasswordValidationState() {
     if (this.props.signup.password === '' &&
         this.props.signup.confirm_password === '') return null;
@@ -63,6 +74,13 @@ export default class Signup extends React.Component {
 	      	 	onChange={ handleItemChange.bind(null, setSignupItem, 'confirm_password') }
 	      	 	placeholder='Confirm password'
 	      	/>
+
+          <Form.Input
+            label='Phone Number'
+            value={this.props.signup.phone_number}
+            onChange={ handleItemChange.bind(null, setSignupItem, 'phone_number') }
+            placeholder='(XXX) XXX-XXXX'
+          />
 
           <Form.Input
             label='Organization'

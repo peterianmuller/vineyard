@@ -1,4 +1,3 @@
-//knex refactor in progress
 import original from 'knex';
 import bookshelf from 'bookshelf';
 
@@ -7,21 +6,19 @@ const knex = original({
   connection: {
     host: '127.0.0.1',
     port: '5432',
-    //user: null,
-    //password: null,
-    user: 'postgres',
-    password: '123',
+    user: null,
+    password: null,
     database: 'vineyard'
   },
   debug: true
 });
 
 const db = bookshelf(knex);
-db.knex.schema.hasTable('addresses').
-then((exists) => {
+db.knex.schema.hasTable('addresses')
+.then((exists) => {
 	if(!exists) {
 		db.knex.schema.createTable('addresses', (address) => {
-		  console.log('creating');
+		  console.log('creating tables');
 			address.increments('id').primary();
 			address.string('street', 255).notNullable();
 			address.string('street_2', 255);
@@ -34,7 +31,9 @@ then((exists) => {
 			org.increments('id').primary();
 			org.string('name', 255).notNullable();
 			org.string('phone_number', 255).notNullable();
-			org.enu('tier', ['Hobbyist', 'Small', 'Large']);
+			org.string('tier', 255).notNullable();
+			org.integer('address_id').references('addresses.id').notNullable();
+			// org.enu('tier', ['Hobbyist', 'Small', 'Large']);
 		})
 		.createTable('vineyards', (vineyard) => {
 			vineyard.increments('id').primary();
@@ -49,17 +48,17 @@ then((exists) => {
 			block.string('number', 255).notNullable();
 			block.integer('vineyard_id').references('vineyards.id');
 		})
-		.createTable('Varietals', (varietal) => {
+		.createTable('varietals', (varietal) => {
 			varietal.increments('id').primary();
 			varietal.string('name', 255).notNullable();
 		})
-		.createTable('Rows', (row) => {
+		.createTable('rows', (row) => {
 			row.increments('id').primary();
 			row.string('number', 255).notNullable();
 			row.string('point1', 255).notNullable();
 			row.string('point2', 255).notNullable();
 			row.string('clone', 255).notNullable();
-			row.integer('varietal_id').references('Varietals.id').notNullable();
+			row.integer('varietal_id').references('varietals.id').notNullable();
 			row.string('rootstock', 255).notNullable();
 			row.enu('status', [
 					'Pruned',
@@ -81,10 +80,11 @@ then((exists) => {
 			user.string('email', 255).unique().notNullable();
 			user.date('birthdate', 255).notNullable();
 			user.enu('account_restrictions', ['Owner', 'Manager', 'Employee']).notNullable();
-			// user.integer('organization_id').references('organizations.id').notNullable();
+			user.integer('organization_id').references('organizations.id').notNullable();
 		})
 		.createTable('notes', (note) => {
 			note.increments('id').primary();
+			note.date('created_At', 255).notNullable();
 			note.string('title', 255).notNullable();
 			note.string('text', 5000).notNullable();
 			note.string('date_time', 255).notNullable();
@@ -107,15 +107,15 @@ then((exists) => {
 			message.integer('message_author_id').references('users.id').notNullable();
 		})
 		.then(() => {
-		  console.log('database tables successfully created');
+		  console.log('Tables created successfully!'); 
 		})
 		.catch((err) => {
-			console.log(err, "error with table implementation");
+			console.log('Error with table implementation: ', err);
 		})
 	}
 })
 .catch((err) => {
-	console.log(err, "error: could not check if table exists");
+	console.log('error with check existance of table: ', err);
 })
 
 export default db;

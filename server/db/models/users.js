@@ -10,9 +10,9 @@ const Users = db.Model.extend({
   tableName: 'users',
   bcrypt: { field: 'password' },
   hasTimestamps: false,
-  // organization: () => {
-  //   return this.belongsTo(Organizations);
-  // }
+  organization: () => {
+    return this.belongsTo(Organizations);
+  }
 });
 
 export default Users;

@@ -13,9 +13,6 @@ function serializeLogin (passport) {
 
   passport.deserializeUser(function(id, done) {
     new Users({id: id}).fetch()
-    // User.findOne({
-    //   where: {id: id}
-    // })
     .then(user => done(null, user))
     .catch(err => done(err))
   });
@@ -24,11 +21,12 @@ function serializeLogin (passport) {
 passport.use('local', new LocalStrategy({
   usernameField: 'userName',
   passwordField: 'password',
-  passReqToCallback : true
+  passReqToCallback: true
 },
   function(req, username, password, done) {
     console.log('this is the user to find: ', username)
-    new Users({ username: username }).fetch()
+    var user_name_lower_case = username.toLowerCase();
+    new Users({ username: user_name_lower_case }).fetch()
     .then((user) => {
       console.log('user that was created: ', user);
       if (!user) {

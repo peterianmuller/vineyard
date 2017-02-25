@@ -3,7 +3,6 @@ import { push } from 'react-router-redux';
 
 //AJAX
 import axios from 'axios';
-
 //Actions
 import { validateUser } from './navigation';
 
@@ -11,12 +10,10 @@ export function setSignupItem(item, value) {
   var toReturn = {
     value
   };
-
   toReturn.type = "SET_SIGNUP_" + item.toUpperCase();
 
   return toReturn;
 }
-
 
 export function signup(userAccount) {
   return dispatch => axios.post('/auth/register', {
@@ -24,11 +21,11 @@ export function signup(userAccount) {
     lastName: userAccount.last_name,
     userName: userAccount.username,
     password: userAccount.password,
-    phoneNumber: '12091234567',
+    phoneNumber: userAccount.phone_number,
     email: userAccount.email,
-    birthdate: '05-23-1989',
-    accountRestrictions: 'Owner'
-    // orgnaization: 'MyOrg'
+    birthdate: userAccount.birthdate,
+    accountRestrictions: userAccount.account_restrictions,
+    organization: userAccount.organization
   })
   .then(resp => {
     localStorage.setItem('token', resp.data.token);
