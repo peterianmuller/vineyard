@@ -7,8 +7,8 @@ const newNote = (params) => {
     date_time: params.date_time,
     latitude: params.latitude,
     longitude: params.longitude,
-    image_url: params.image,
-    note_author_id: params.username
+    image_url: params.image_url,
+    note_author_id: params.note_author_id
   }).save();
 };
 
