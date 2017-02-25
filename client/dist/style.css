@@ -1,3 +1,6 @@
+.boxed {
+  min-width: 0px;
+}
 .multiColumnInput {
   width: 100% !important;
 }

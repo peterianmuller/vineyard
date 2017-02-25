@@ -4,14 +4,15 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 //UI
-import { Button, Dropdown, Form, Grid, Header } from 'semantic-ui-react';
+import { Form } from 'semantic-ui-react';
 
 //Components
 import NameBirthdateInput from '../components/NameBirthdateInput';
 
 //Actions and Functions
-import { handleItemChange } from '../helpers/changeHandlers';
 import { setSignupItem, signup } from '../actions/signup';
+import { genDropdownOptions } from '../helpers/lifeHax';
+import { handleItemChange } from '../helpers/changeHandlers';
 
 export default class Signup extends React.Component {
   constructor(props) {
@@ -94,26 +95,22 @@ export default class Signup extends React.Component {
             signup={ this.props.signup }
           />
 
-          <Header size='tiny'>Account Restriction</Header>
-          <Dropdown fluid selection 
+          <Form.Dropdown fluid selection 
+            label='Account Restriction'
             onChange={ this.handleDropdownChange.bind(this) }
             value={this.props.signup.account_restrictions}
-            options={ [
-              { key: 'Employee', text: 'Employee', value: 'Employee' },
-              { key: 'Manager', text: 'Manager', value: 'Manager' },
-              { key: 'Owner', text: 'Owner', value: 'Owner' }
-            ] } 
+            options={ genDropdownOptions('Employee', 'Manager', 'Owner') } 
           />
 
           <div className='topOneEm'>
-            <Button
+            <Form.Button
               primary
               fluid
               disabled={ this.buttonStatus() }
               type='submit'
             >
               Submit
-            </Button>
+            </Form.Button>
           </div>
 	      </Form>
       </div>
