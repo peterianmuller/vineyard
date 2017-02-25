@@ -1,6 +1,5 @@
 //React requirements
 import { push } from 'react-router-redux';
-//import { browserHistory } from 'react-router';
 
 //AJAX
 import axios from 'axios';

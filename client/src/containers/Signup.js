@@ -13,17 +13,6 @@ import { handleItemChange } from '../helpers/changeHandlers';
 import { setSignupItem, signup } from '../actions/signup';
 
 export default class Signup extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.username) {
-      browserHistory.push('/home');
-    }
-  }
-
   getPasswordValidationState() {
     if (this.props.signup.password === '' &&
         this.props.signup.confirm_password === '') return null;
@@ -53,7 +42,7 @@ export default class Signup extends React.Component {
       <div className='oneEm max500width'>
         <h2>Sign up here!</h2>
 
-        <Form onSubmit={ this.handleSubmit }>
+        <Form onSubmit={ this.handleSubmit.bind(this) }>
 	        <Form.Input
             label="Username"
 	      	 	value={this.props.signup.username}
