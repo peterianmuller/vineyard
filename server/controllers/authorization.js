@@ -36,24 +36,6 @@ export function register(req, res, next) {
   .then((org) => {
     return org.id;
   })
-// <<<<<<< HEAD
-
-// //need to edit to account for the found id
-//   newUser(params)
-//   .then(() => {
-//     getUserByUsername(params)
-//       .then((user) => {
-//         // console.log('user returned: ', user);
-//         next();
-//       })
-//       .catch((err) => {
-//         console.log('could not add user: ', err);
-//       });
-
-//   })
-//   .catch((err) => {
-//     console.log('error with insert: ', err)
-// =======
   .then((orgId) => {
     console.log('this is the organization id: ', orgId);
     const params = {
@@ -67,8 +49,6 @@ export function register(req, res, next) {
     account_restrictions: req.body.accountRestrictions,
     organization_id: orgId
     };
-    // console.log('params', params)
-    // return newUser(params)
     return new Users(params)
     .save()
     .then((user) => {
