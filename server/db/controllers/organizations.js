@@ -23,3 +23,11 @@ export const findOrCreateNewOrg = (params) => {
     }
   })
 };
+
+export const getAllOrgs = (params) => {
+  return Organizations.forge().fetchAll()
+  .then((orgs) => {
+    console.log('orgs collection from getAllOrgs: ', orgs)
+    return orgs;
+  });
+}

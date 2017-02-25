@@ -1,4 +1,4 @@
-import organizationsController from '../db/controllers/organizations';
+import { newOrganization, getOrganization, getAllOrgs } from '../db/controllers/organizations';
 
 export function createOrganization(req, res, next) {
   const params = {
@@ -6,7 +6,7 @@ export function createOrganization(req, res, next) {
     phoneNumber: req.body.phoneNumber,
     tier: req.body.tier
   };
-  return organizationsController.newOrganization(params)
+  return newOrganization(params)
   .then((organization) => {
     if (organization) {
       res.json(organization);
@@ -14,6 +14,8 @@ export function createOrganization(req, res, next) {
       next();
     }
   }).catch((err) => {
-    console.log('could not add organization ', err);
+    console.log('error adding organization: ', err);
   });
 }
+
+

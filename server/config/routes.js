@@ -12,6 +12,7 @@ import notesRouter from './routes/notes';
 import alertsRouter from './routes/alerts';
 import authRouter from './routes/authorization';
 import weatherRoutes from './routes/weather';
+// import allOrgsRoutes from './routes/organizationNames';
 // import messagesController from './routes/messages';
 
 import { passport } from './auth/local';
@@ -21,15 +22,18 @@ export default function routes(app, express) {
 
   app.use('/api', passport.authenticate('jwt', { session: false }));
   app.use('/api/organization', organizationsRouter);
-  app.use('/api/organization/vineyard', vineyardsRouter);
-  app.use('/api/organization/vineyard/block', blocksRouter);
-  app.use('/api/organization/vineyard/block/row', rowsRouter);
+  // app.use('/api/organization/vineyard', vineyardsRouter);
+  // app.use('/api/organization/vineyard/block', blocksRouter);
+  // app.use('/api/organization/vineyard/block/row', rowsRouter);
   app.use('/api/address', addressesRouter);
   app.use('/api/signup', usersRouter);
   app.use('/api/user', usersRouter);
   app.use('/api/note', notesRouter);
   app.use('/api/alert', alertsRouter);
   app.use('/api/weather', weatherRoutes);
+
+  //this is a temporary route!
+  // app.use('/allorgs', allOrgsRoutes);
 
   app.use('/auth', authRouter);
 
