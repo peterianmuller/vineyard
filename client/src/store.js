@@ -9,21 +9,23 @@ import promise from 'redux-promise-middleware';
 import logger from 'redux-logger';
 
 //Reducers
+import { authStatusReducer } from './reducers/authStatus';
 import { navReducer } from './reducers/navigation';
-import { userLoginReducer } from './reducers/login';
-import { userSignupReducer } from './reducers/signup';
 import { noteFormReducer } from './reducers/noteForm';
 import { notesViewReducer } from './reducers/notesView';
-import { authStatusReducer } from './reducers/authStatus';
+import orgSignupReducer from './reducers/OrgSignup';
+import { userLoginReducer } from './reducers/login';
+import { userSignupReducer } from './reducers/signup';
 
 const rootReducer = combineReducers({
-  nav: navReducer,
+  authStatus: authStatusReducer,
   login: userLoginReducer,
-	signup: userSignupReducer,
+  nav: navReducer,
   note: noteFormReducer,
   notesView: notesViewReducer,
-  authStatus: authStatusReducer,
-  routing: routerReducer
+  orgSignup: orgSignupReducer,
+  routing: routerReducer,
+	signup: userSignupReducer,
 });
 
 const middleware = applyMiddleware(routerMiddleware(browserHistory), logger(), promise(), thunk);

@@ -10,8 +10,9 @@ import store from './store';
 import App from './containers/App';
 import Home from './containers/home';
 import Login from './containers/Login';
-import Signup from './containers/Signup';
 import NotesView from './containers/NotesView';
+import OrgSignup from './containers/OrgSignup';
+import Signup from './containers/Signup';
 import UserPage from './containers/UserPage';
 
 //Components
@@ -34,15 +35,16 @@ var Root = props => {
       <Router history={history}>
         <Route path='/' component={App}>
           <IndexRedirect to='/home' />
-          <Route path='/home' component={Home} onEnter={validateLogin} />
-          <Route path='/login' component={Login} onEnter={isLoggedIn} />
-          <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
           <Route path='/form' component={Form} onEnter={validateLogin} />
           <Route path='/formValidation' component={MapWeatherValidation} />
-          <Route path='/notesView' component={NotesView} onEnter={validateLogin} />
+          <Route path='/home' component={Home} onEnter={validateLogin} />
+          <Route path='/login' component={Login} onEnter={isLoggedIn} />
           <Route path='/map' component={Map} onEnter={validateLogin} />
-          <Route path='/user' component={UserPage} onEnter={validateLogin} />
           <Route path='/notes' component={Note} />
+          <Route path='/notesView' component={NotesView} onEnter={validateLogin} />
+          <Route path='/orgSignup' component={OrgSignup} onEnter={validateLogin} />
+          <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
+          <Route path='/user' component={UserPage} onEnter={validateLogin} />
         </Route>
       </Router>
     </Provider>

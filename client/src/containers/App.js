@@ -29,12 +29,13 @@ class App extends React.Component {
             { 
               React.cloneElement(this.props.children, 
 	  		  			{
-	  		  				login: this.props.login,
-	  		  				signup: this.props.signup,
-                  note: this.props.note,
+                  auth: this.props.authStatus,
                   dispatch: this.props.dispatch,
+	  		  				login: this.props.login,
+                  note: this.props.note,
                   notesView: this.props.notesView,
-                  auth: this.props.authStatus
+                  orgSignup: this.props.orgSignup,
+	  		  				signup: this.props.signup,
 	  		  			}
 	  		  		)
 	  		  	}
