@@ -32,6 +32,11 @@ export function userSignupReducer(state = signupState, action) {
         ...state,
         'confirm_password': action.value
       };
+    case "SET_SIGNUP_PHONE_NUMBER": 
+      return{
+        ...state,
+        phone_number: action.value
+      }
     case "SET_SIGNUP_EMAIL":
       return {
         ...state,
