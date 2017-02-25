@@ -22,6 +22,10 @@ export function setLatLong(lat, lon) {
   store.dispatch(setNoteFormItem('lon', lon)); 
 }
 
+export function setUserId (id) {
+  store.dispatch(setNodeFormItem('username', id));
+}
+
 
 export function authTransition(route, isTrue, nextState, replace, callback) {
 
