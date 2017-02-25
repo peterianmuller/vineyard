@@ -6,7 +6,7 @@ import Users from '../db/models/users';
 export function login(req, res) {
   var payload = { id: req.user.id };
   var token = jwt.sign(payload, jwtOptions.secretOrKey);
-  // console.log('I am even in here: ', token);
+   console.log('I am even in here: ', token);
 
   res.status(201).json({ message: "OK", token: token, id: req.user.id });
 }
@@ -17,6 +17,7 @@ export function logout(req, res) {
 }
 
 export function sendUserIdFromJwt(req, res, next) {
+  console.log('hwhhsheh', req.user.id);
   res.status(200).json({ id: req.user.id });
 }
 

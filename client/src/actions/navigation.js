@@ -24,16 +24,19 @@ export function logoutUser(userCredentials) {
 }
 
 export function validateUser(callback) {
+  var test = 'huh';
   return dispatch => axios.get('/auth/session', 
     {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     })
     .then(res => {
+      console.log('this is test', test, 'shdjfkshdkfdsh')
       return dispatch(setUserCredentials(res.data.id));
     })
     .then(() => {
       callback();
     }).catch(err => {
+      console.log(err);
       callback(); 
     });
 }

@@ -26,5 +26,5 @@ export const getUserByUsername = (params) => {
 };
 
 export const getUserById = (params) => {
-  return new Users({ id: params.id}).fetch();
+  return new Users({ id: params.id }).fetch();
 }

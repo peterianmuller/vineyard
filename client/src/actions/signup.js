@@ -1,3 +1,6 @@
+//React requirements
+import { push } from 'react-router-redux';
+
 //AJAX
 import axios from 'axios';
 
@@ -30,8 +33,8 @@ export function signup(userAccount) {
   .then(resp => {
     localStorage.setItem('token', resp.data.token);
 
-    dispatch(validateUser());
     dispatch(clearSignup());
+    dispatch(push('/'));
   })
   .catch((err) => {
     console.log(err);

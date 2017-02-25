@@ -17,12 +17,12 @@ export default props => (
   <Grid centered='true' divided='vertically'>
     <Grid.Row columns={1}>
       <Grid.Column>
-        <Map dispatch={this.props.dispatch} />
+        <Map dispatch={props.dispatch} />
       </Grid.Column>
     </Grid.Row>  
     <Grid.Row columns={1}>
       <Grid.Column>
-        <Weather dispatch={this.props.dispatch} note={this.props.note}/>
+        <Weather dispatch={props.dispatch} note={props.note}/>
       </Grid.Column> 
     </Grid.Row>   
   </Grid>
