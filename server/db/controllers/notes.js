@@ -4,12 +4,12 @@ const newNote = (params) => {
   return new Notes({
     title: params.title,
     text: params.text,
-    date_time: params.datetime,
+    date_time: params.date_time,
     latitude: params.latitude,
     longitude: params.longitude,
     image_url: params.image,
-    author: params.username   
-  });
+    note_author_id: params.username
+  }).save();
 };
 
 const getAllNotes = () => {

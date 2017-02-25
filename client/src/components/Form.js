@@ -29,24 +29,29 @@ export default class FormPage extends React.Component {
   }
 
   handleSubmit(event) {
-    event.preventDefault();  
+    event.preventDefault();
 
     this.props.dispatch(uploadImgToImgur(this.props.note.selectedImg));
   }
-  
+
+  pullWeather(e) {
+    e.preventDefault();
+    this.props.dispatch(getWeather(this.props.note));
+  }
+
   handleFileSelection(e) {
     e.persist();
 
     var inputFile = e.target.files[0];
     var reader = new FileReader();
-    
+
     reader.onload = e => {
       this.props.dispatch(setSelectedImage(e.target.result));
     }
 
     reader.readAsDataURL(inputFile);
   }
-  
+
   render() {
     return (
       <Grid columns="equal">
@@ -68,10 +73,12 @@ export default class FormPage extends React.Component {
                       animate
                       text="Uploading photo to imgur"
                     >
-                      <img 
+                      <img
                         src={this.props.note.selectedImg}
+
                         className='uploadedPhoto textCenter'
                         alt='Click here to upload image' 
+
                         onClick={this.clickFileChooser.bind(this)}
                       />
                     </Loadable>
@@ -80,7 +87,7 @@ export default class FormPage extends React.Component {
             </Grid.Row>
 
             <Grid.Row>
-              <input 
+              <input
                 ref={input => this.inputElement = input}
                 className='selectFileBtn'
                 style={ { display: 'none' } }
@@ -89,7 +96,7 @@ export default class FormPage extends React.Component {
                 onChange={this.handleFileSelection.bind(this)}
               />
               <div className='oneEm'>
-                <Button 
+                <Button
                   fluid
                   primary
                   onClick={this.handleSubmit.bind(this)}>
@@ -103,4 +110,3 @@ export default class FormPage extends React.Component {
     );
   }
 }
-

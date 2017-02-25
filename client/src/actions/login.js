@@ -17,9 +17,9 @@ export function loginUser(userCredentials) {
     userName: userCredentials.username,
     password: userCredentials.password
   })
-  .then((val) => { 
+  .then((val) => {
     localStorage.setItem('token', val.data.token);
-    
+
     dispatch(clearUserLogin());
     dispatch(push('/'));
   })

@@ -6,7 +6,7 @@ import Users from '../db/models/users';
 export function login(req, res) {
   var payload = { id: req.user.id };
   var token = jwt.sign(payload, jwtOptions.secretOrKey);
-  console.log('I am even in here: ', token);
+  // console.log('I am even in here: ', token);
 
   res.status(201).json({ message: "OK", token: token, id: req.user.id });
 }
@@ -26,13 +26,13 @@ export function register(req, res, next) {
   .then(() => {
     getUserByUsername(params)
       .then((user) => {
-        console.log('user returned: ', user);
+        // console.log('user returned: ', user);
         next();
       })
       .catch((err) => {
         console.log('could not add user: ', err);
       });
-    
+
   })
   .catch((err) => {
     console.log('error with insert: ', err)

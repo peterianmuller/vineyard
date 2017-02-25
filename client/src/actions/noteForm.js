@@ -49,8 +49,10 @@ export function appendNoteFormItem(item, value) {
   return toReturn;
 }
 
-//add in rest of cols in schema 
+//add in rest of cols in schema
 export function postNote(note) {
+  console.log('inside postNote on the front end', note, 'then something else');
+
   return dispatch => axios.post('/api/note', {
     title: note.title,
     text: note.textArea,
@@ -76,21 +78,21 @@ export function uploadImgToImgur(image) {
   return {
     type: "SET_UPLOADED_IMG_URL",
     payload: {
-      promise: axios.post('https://api.imgur.com/3/image', 
-        { 
+      promise: axios.post('https://api.imgur.com/3/image',
+        {
           image: image.split(',')[1],
           type: 'base64'
-        }, 
+        },
         {
           headers: {
             Authorization: 'Client-ID d945621dec69149',
             Accept: 'application/json'
-          } 
-        }).then(resp => { 
-          browserHistory.push('/formValidation'); 
+          }
+        }).then(resp => {
+          browserHistory.push('/formValidation');
           return resp.data.data.link;
-        }).catch(err => { 
-          console.log('this is err', err); 
+        }).catch(err => {
+          console.log('this is err', err);
         })
     }
   }
