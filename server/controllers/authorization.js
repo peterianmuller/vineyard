@@ -49,8 +49,9 @@ export function register(req, res, next) {
     account_restrictions: req.body.accountRestrictions,
     organization_id: orgId
     };
-    return new Users(params)
-    .save()
+    return newUser(params)
+    // return new Users(params)
+    // .save()
     .then((user) => {
       console.log('new user', user)
       getUserByUsername(params.username)
