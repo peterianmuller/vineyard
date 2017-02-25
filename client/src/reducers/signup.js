@@ -1,11 +1,13 @@
 var signupState = {
   username: '',
   password: '',
-  'confirm_password': '',
+  confirm_password: '',
   email: '',
-  'first_name': '',
-  'last_name': '',
-  'birthdate': '',
+  first_name: '',
+  last_name: '',
+  birthdate: '',
+  account_restrictions: '',
+  organization: ''
 };
 
 export function userSignupReducer(state = signupState, action) {
@@ -49,6 +51,16 @@ export function userSignupReducer(state = signupState, action) {
         ...state,
         'birthdate': action.value
       }
+    case "SET_SIGNUP_ORGANIZATION":
+      return {
+        ...state,
+        organization: action.value
+      };
+    case 'SET_SIGNUP_ACCOUNT_RESTRICTIONS':
+      return {
+        ...state,
+        account_restrictions: action.value
+      };
     default:
       return state;
   }

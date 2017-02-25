@@ -3,8 +3,7 @@ import React from 'react';
 import { browserHistory } from 'react-router';
 
 //UI
-import {  Col, ControlLabel,  FormControl, FormGroup, Row } from 'react-bootstrap';
-import { Button, Form, Grid } from 'semantic-ui-react';
+import { Button, Dropdown, Form, Grid, Header } from 'semantic-ui-react';
 
 //Components
 import NameBirthdateInput from '../components/NameBirthdateInput';
@@ -39,72 +38,77 @@ export default class Signup extends React.Component {
       }, true));
   }
 
+  handleDropdownChange(e, { value }) {
+    this.props.dispatch(setSignupItem('account_restrictions', value));
+  }
+
   handleSubmit(e) {
     e.preventDefault();
-    console.log('button clicked');
+
     this.props.dispatch(signup(this.props.signup));
   }
 
   render() {
     return (
       <div className='oneEm max500width'>
-	      <Grid columns='equal' padded>
-          <Grid.Row>
-            <Grid.Column>
-              <h2>Sign up here!</h2>
-            </Grid.Column>
-          </Grid.Row>
-	        <Grid.Row>
-	          <Grid.Column>
-              <Form onSubmit={ this.handleSubmit }>
-                <Grid.Row>
-                  <Grid.Column>
-	                  <Form.Input
-                      label="Username"
-	      				    	value={this.props.signup.username}
-	      				    	onChange={ handleItemChange.bind(null, setSignupItem, 'username') }
-	      				    	placeholder='Username'
-	      				    />
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column>
-	                  <Form.Input
-                      label='Password'
-                      type='password'
-	      				    	value={this.props.signup.password}
-	      				    	onChange={ handleItemChange.bind(null, setSignupItem, 'password') }
-	      				    	placeholder='Password'
-	      				    />
-                  </Grid.Column>
-                </Grid.Row>
-                <Grid.Row>
-                  <Grid.Column>
-	                  <Form.Input
-                      label='Confirm Password'
-                      type='password'
-	      				    	value={this.props.signup.confirm_password}
-	      				    	onChange={ handleItemChange.bind(null, setSignupItem, 'confirm_password') }
-	      				    	placeholder='Confirm password'
-	      				    />
-                  </Grid.Column>
-                </Grid.Row>
-                <NameBirthdateInput
-                  setItem={ setSignupItem }
-                  signup={ this.props.signup }
-                />
-                <Button
-                  primary
-                  fluid
-                  disabled={ this.buttonStatus() }
-                  type='submit'
-                >
-                  Submit
-                </Button>
-	            </Form>
-	          </Grid.Column>
-	        </Grid.Row>
-	      </Grid>
+        <h2>Sign up here!</h2>
+
+        <Form onSubmit={ this.handleSubmit }>
+	        <Form.Input
+            label="Username"
+	      	 	value={this.props.signup.username}
+	      	 	onChange={ handleItemChange.bind(null, setSignupItem, 'username') }
+	      	 	placeholder='Username'
+	      	/>
+	        <Form.Input
+            label='Password'
+            type='password'
+	      	 	value={this.props.signup.password}
+	      	 	onChange={ handleItemChange.bind(null, setSignupItem, 'password') }
+	      	 	placeholder='Password'
+	      	/>
+	        <Form.Input
+            label='Confirm Password'
+            type='password'
+	      	 	value={this.props.signup.confirm_password}
+	      	 	onChange={ handleItemChange.bind(null, setSignupItem, 'confirm_password') }
+	      	 	placeholder='Confirm password'
+	      	/>
+
+          <Form.Input
+            label='Organization'
+            value={this.props.signup.organization}
+            onChange={ handleItemChange.bind(null, setSignupItem, 'organization') }
+            placeholder='Organization'
+          />
+
+          <NameBirthdateInput
+            setItem={ setSignupItem }
+            signup={ this.props.signup }
+          />
+
+          <Header size='tiny'>Account Restriction</Header>
+          <Dropdown fluid selection 
+            onChange={ this.handleDropdownChange.bind(this) }
+            value={this.props.signup.account_restrictions}
+            options={ [
+              { key: 'Employee', text: 'Employee', value: 'Employee' },
+              { key: 'Manager', text: 'Manager', value: 'Manager' },
+              { key: 'Owner', text: 'Owner', value: 'Owner' }
+            ] } 
+          />
+
+          <div className='topOneEm'>
+            <Button
+              primary
+              fluid
+              disabled={ this.buttonStatus() }
+              type='submit'
+            >
+              Submit
+            </Button>
+          </div>
+	      </Form>
       </div>
     );
   }
