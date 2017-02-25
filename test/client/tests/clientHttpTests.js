@@ -6,11 +6,11 @@ let expect = chai.expect;
 describe('GET /', function() {
   it('respond with json', function() {
     return request(app)
-      .get('/users')
+      .get('/api/note')
       .set('Accept', 'application/json')
       .expect(200)
       .then(response => {
-          assert(response.body.email, 'foo@bar.com')
+          assert(response.body, 'foo@bar.com')
       })
   });
 });
