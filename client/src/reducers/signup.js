@@ -8,6 +8,8 @@ var signupState = {
   birthdate: '',
   phone_number: '',
   organization: '',
+  organization_list: [],
+  orgs_loading: true,
   account_restrictions: ''
 };
 
@@ -61,6 +63,12 @@ export function userSignupReducer(state = signupState, action) {
       return {
         ...state,
         organization: action.value
+      };
+    case "SET_SIGNUP_ORG_LIST_FULFILLED":
+      return {
+        ...state,
+        organization_list: action.payload,
+        orgs_loading: false
       };
     case 'SET_SIGNUP_ACCOUNT_RESTRICTIONS':
       return {

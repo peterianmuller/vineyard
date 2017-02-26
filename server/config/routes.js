@@ -21,7 +21,6 @@ export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
 
   app.use('/api', passport.authenticate('jwt', { session: false }));
-  app.use('/api/organization', organizationsRouter);
   // app.use('/api/organization/vineyard', vineyardsRouter);
   // app.use('/api/organization/vineyard/block', blocksRouter);
   // app.use('/api/organization/vineyard/block/row', rowsRouter);
@@ -36,6 +35,7 @@ export default function routes(app, express) {
   // app.use('/allorgs', allOrgsRoutes);
 
   app.use('/auth', authRouter);
+  app.use('/orgAuth/organization', organizationsRouter);
 
   // === WILDCARD ROUTING ===
   app.use('*', (req, res, next) => {

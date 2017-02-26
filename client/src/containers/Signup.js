@@ -10,16 +10,17 @@ import { Form } from 'semantic-ui-react';
 import NameBirthdateInput from '../components/NameBirthdateInput';
 
 //Actions and Functions
-import { setSignupItem, signup } from '../actions/signup';
+import { getOrgs, setSignupItem, signup } from '../actions/signup';
 import { genDropdownOptions } from '../helpers/lifeHax';
 import { handleItemChange } from '../helpers/changeHandlers';
 
 export default class Signup extends React.Component {
   constructor(props) {
     super(props);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    
+    this.props.dispatch(getOrgs());
   }
-  
+
   getPasswordValidationState() {
     if (this.props.signup.password === '' &&
         this.props.signup.confirm_password === '') return null;
@@ -34,8 +35,8 @@ export default class Signup extends React.Component {
       }, true));
   }
 
-  handleDropdownChange(e, { value }) {
-    this.props.dispatch(setSignupItem('account_restrictions', value));
+  handleDropdownChange(item, e, { value }) {
+    this.props.dispatch(setSignupItem(item, value));
   }
 
   handleSubmit(e) {
@@ -45,6 +46,8 @@ export default class Signup extends React.Component {
   }
 
   render() {
+    const { signup: fields } = this.props;
+
     return (
       <div className='oneEm max500width'>
         <h2>Sign up here!</h2>
@@ -52,48 +55,51 @@ export default class Signup extends React.Component {
         <Form onSubmit={ this.handleSubmit.bind(this) }>
 	        <Form.Input
             label="Username"
-	      	 	value={this.props.signup.username}
+	      	 	value={fields.username}
 	      	 	onChange={ handleItemChange.bind(null, setSignupItem, 'username') }
 	      	 	placeholder='Username'
 	      	/>
 	        <Form.Input
             label='Password'
             type='password'
-	      	 	value={this.props.signup.password}
+	      	 	value={fields.password}
 	      	 	onChange={ handleItemChange.bind(null, setSignupItem, 'password') }
 	      	 	placeholder='Password'
 	      	/>
 	        <Form.Input
             label='Confirm Password'
             type='password'
-	      	 	value={this.props.signup.confirm_password}
+	      	 	value={fields.confirm_password}
 	      	 	onChange={ handleItemChange.bind(null, setSignupItem, 'confirm_password') }
 	      	 	placeholder='Confirm password'
 	      	/>
 
           <Form.Input
             label='Phone Number'
-            value={this.props.signup.phone_number}
+            value={fields.phone_number}
             onChange={ handleItemChange.bind(null, setSignupItem, 'phone_number') }
             placeholder='(XXX) XXX-XXXX'
           />
 
-          <Form.Input
+          <Form.Dropdown
             label='Organization'
-            value={this.props.signup.organization}
-            onChange={ handleItemChange.bind(null, setSignupItem, 'organization') }
-            placeholder='Organization'
+            loading={ fields.orgs_loading }
+            value={fields.organization}
+            onChange={ this.handleDropdownChange.bind(this, 'organization_list') }
+            options={ genDropdownOptions(
+              fields.organization_list.map(item => item.name)
+            ) }
           />
 
           <NameBirthdateInput
             setItem={ setSignupItem }
-            signup={ this.props.signup }
+            signup={ fields }
           />
 
           <Form.Dropdown fluid selection 
             label='Account Restriction'
-            onChange={ this.handleDropdownChange.bind(this) }
-            value={this.props.signup.account_restrictions}
+            onChange={ this.handleDropdownChange.bind(this, 'account_restrictions') }
+            value={fields.account_restrictions}
             options={ genDropdownOptions('Employee', 'Manager', 'Owner') } 
           />
 
