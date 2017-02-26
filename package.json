@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon server/index.js --exec babel-node",
     "build": "webpack -d --watch",
-    "test": "mocha -w test/client/config/testdom.js test/client/tests/*Tests.js test/server/*.js test/server/db/controllers/*.js test/server/controllers/*.js",
+    "test": "mocha -w test/client/config/testdom.js test/server/db/models/*.js test/server/db/controllers/*.js test/server/controllers/*.js",
     "test1": "mocha --recursive --compilers js:babel-core/register .:test/client/config/compiler.js test/client/tests/*Tests.js",
     "test:watch": "npm test --watch"
   },

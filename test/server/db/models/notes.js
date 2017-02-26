@@ -20,12 +20,13 @@ describe('notes database model', () => {
     .save()
     .then(() => {
       return Notes.where('title', 'should add note').fetch().then((note) => {
+        // console.log('lalala ', typeof note.attributes.title);
         expect(note.attributes.title).to.be.a('string');
       })
-    })
-    .catch((err) => {
-      console.log('failed in should add note test: ', err);
-    })
+      .catch((err) => {
+        console.log('failed in should add note test: ', err);
+      });
+    });
   });
   it('should not add note when title is null', () => {
     return new Notes({
