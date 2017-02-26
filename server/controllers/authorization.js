@@ -28,7 +28,7 @@ export function sendUserIdFromJwt(req, res, next) {
 
 export function register(req, res, next) {
   const org = {
-    name: req.body.organization
+    name: req.body.organization.toLowerCase()
   };
   const phoneNumber = formatPhoneNumber(req.body.phoneNumber);
   console.log('targetorg: ', org);
