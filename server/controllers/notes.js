@@ -2,6 +2,7 @@ import notesController from '../db/controllers/notes';
 
 export function createNote(req, res, next) {
   console.log('inside create note server controller');
+  console.log(req.body);
   console.log('user posting note:', req.body.note_author_id);
   console.log('this is the img url: ', req.body.image_url)
   const params = {
@@ -13,16 +14,18 @@ export function createNote(req, res, next) {
     image_url: req.body.image_url,
     note_author_id: req.body.note_author_id
   };
+
   return notesController.newNote(params)
-  .then((note) => {
-    if (note) {
-      res.json(note);
-    } else {
-      next();
-    }
-  }).catch((err) => {
-    console.log('could not add note ', err);
-  });
+    .then((note) => {
+      if (note) {
+        console.log('this is note in tehn', note);
+        res.json(note);
+      } else {
+        next();
+      }
+    }).catch((err) => {
+      console.log('could not add note ', err);
+    });
 }
 
 export function getAllNotes(req, res, next) {

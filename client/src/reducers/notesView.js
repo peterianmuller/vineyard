@@ -1,10 +1,10 @@
-
 export function notesViewReducer(state = [], action) {
   switch(action.type) {
     case "ADD_NOTES":
-    return state.concat(action.value);
+      console.log(action.value);
+      return state.concat(action.value);
     case "GET_NOTES":
-    return action.value;
+      return action.value;
     default:
       return state;
   }
