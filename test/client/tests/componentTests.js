@@ -2,6 +2,7 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { expect } from 'chai';
 import { ControlLabel, FormControl } from 'react-bootstrap';
+import { Form, Segment } from 'semantic-ui-react';
 import MainNavBar from '../../../client/src/components/MainNavBar';
 import NameBirthdateInput from '../../../client/src/components/NameBirthdateInput';
 import NoteForm from '../../../client/src/components/Form';
@@ -10,17 +11,19 @@ import NoteFormInput from '../../../client/src/components/NoteFormInput';
 
 describe('Components', () => {
   describe('<MainNavBar />', () => {
-    it('should not have any props but children', () => {
+    it('should have icon and children as props', () => {
       const wrapper = shallow(<MainNavBar />);   
       var props = wrapper.props();
-  
-      expect(Object.keys(props).length).to.equal(1);
-      expect(Object.keys(props)[0]).to.equal('children');
+      console.log('what are these props', Array.isArray(Object.keys(props)));
+      
+      expect(Object.keys(props).join(' ')).to.equal('icon children');
+      //expect(Object.keys(props).length).to.equal(1);
+      //expect(Object.keys(props)[0]).to.equal('children');
     });
   });
   
   describe('<NameBirthdateInput />', () => {
-    it('should render 6 FormControls', () => {
+    it('should render 4 Form.Input', () => {
       const wrapper = 
         shallow(<NameBirthdateInput setItem={ () => {} } signup={ {
           username: '',
@@ -34,10 +37,10 @@ describe('Components', () => {
           'birth_year': ''
         } }/>);
   
-      expect(wrapper.find(FormControl)).to.have.length(6);
+      expect(wrapper.find(Form.Input)).to.have.length(4);
     });
   
-    it('should render 4 ControlLabels', () => {
+    it('should render 2 Form.Group', () => {
       const wrapper = 
         shallow(<NameBirthdateInput setItem={ () => {} } signup={ {
           username: '',
@@ -51,7 +54,7 @@ describe('Components', () => {
           'birth_year': ''
         } }/>);
   
-      expect(wrapper.find(ControlLabel)).to.have.length(4);
+      expect(wrapper.find(Form.Group)).to.have.length(2);
     });
   
     it('should have labels for email, first name, last name, and birthdate', () => {
@@ -69,9 +72,15 @@ describe('Components', () => {
         } }/>);
   
       var textNodes = [];
-      wrapper.find(ControlLabel).forEach(item => { textNodes.push(item.children().text()) });
+
+      wrapper.find(Form.Input).forEach((item)=>{
+        textNodes.push(item.node.props.label);
+      });
+
+      //wrapper.find(Form.Input).forEach(item => { textNodes.push(item.node.props.label) });
+
   
-      expect(textNodes).to.deep.equal(['Email address', 'First name', 'Last name', 'Birthdate']);
+      expect(textNodes).to.deep.equal(['Email', 'First name', 'Last name', 'Birthdate']);
     });
   
     it('should have props signup and setItem', () => {
@@ -107,39 +116,31 @@ describe('Components', () => {
 
   describe('<NoteFormInput />', () => {
 
-    it('should render 1 FormControl', () => {
+    it('should render 1 Segment element', () => {
       const wrapper = mount(<NoteFormInput title='Note Title' field='title'/>);
 
-      expect(wrapper.find(FormControl)).to.have.length(1);
+      expect(wrapper.find(Segment)).to.have.length(1);
           
     });
 
-    it('should render 1 ControlLabel', () => {
-      const wrapper = mount(<NoteFormInput title='Note Title' field='title'/>);
-
-      expect(wrapper.find(ControlLabel)).to.have.length(1);
+    it('should have classname and children as props', () => {
+      const wrapper = shallow(<NoteFormInput title='Note Title' field='title'/>);   
+      var props = wrapper.props();
+      expect(Object.keys(props).join(' ')).to.equal('className children');
     })
   
   });
 
   describe('<Form />', () => {
     
-    it('should render 10 instances of <NoteFormInput>', () => {
+    it('should render 2 instances of <NoteFormInput>', () => {
       const wrapper = shallow(<NoteForm note={{
-        title: '',
-        username:'',
-        vineyard: '',
-        block: '',
-        row: '',
-        rowStart: '',
-        rowEnd: '',
-        lat: '',
-        lon: '',
-        textArea: '',
-        currentlyRecording: ''
-      }}/>);
-
-      expect(wrapper.find(NoteFormInput)).to.have.length(10);
+        date: '',
+      }}
+      login={{username: ''}}/>);
+      var props = wrapper.props();
+      console.log('what are da props', props);
+      expect(wrapper.find(NoteFormInput)).to.have.length(2);
     });
 
   });
