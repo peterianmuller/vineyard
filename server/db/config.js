@@ -83,7 +83,7 @@ db.knex.schema.hasTable('addresses')
 		})
 		.createTable('notes', (note) => {
 			note.increments('id').primary();
-			note.string('title', 255).notNullable();
+			note.string('title', 255).unique().notNullable();
 			note.string('text', 5000).notNullable();
 			note.date('date_time', 255).notNullable();
 			note.string('latitude', 255).notNullable();

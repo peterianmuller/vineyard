@@ -40,3 +40,14 @@ export function getAllNotes(req, res, next) {
     console.log('could not retrieve all notes ', err);
   });
 }
+
+export function deleteNote (req, res, next) {
+  var params = req.body
+  return notesController.deleteNote({title: params.title})
+  .then(() => {
+    res.json('Note delete successful');
+  })
+  .catch((err) => {
+    console.log('could not delete note: ', err);
+  })
+}
