@@ -33,7 +33,7 @@ const deleteNote = (params) => {
 
 export default {
   newNote,
-  getAllNotes
+  getAllNotes,
   // updateNote,
   deleteNote
 }
