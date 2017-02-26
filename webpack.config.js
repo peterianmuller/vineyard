@@ -1,6 +1,6 @@
 module.exports = {
   entry: {
-    build: './client/src/index.js',
+    bundle: './client/src/index.js',
     test: './test/client/index.js',
   },
   output: {

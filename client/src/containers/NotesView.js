@@ -29,6 +29,7 @@ export default class NotesView extends React.Component {
           {
             this.props.notesView.map((note, key) => (
               <Note 
+                image={note.image_url}
                 title={note.title} 
                 text={note.text} 
                 lat={note.lat} 

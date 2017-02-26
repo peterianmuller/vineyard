@@ -10,12 +10,11 @@ export default props => (
 
     <Item.Content>
       <Item.Header>{props.title}</Item.Header>
+
       <Item.Description>
         <p>{props.text}</p>
-        <p>Latitude: {props.lat}, Longitude: {props.lon}</p>
       </Item.Description>
     </Item.Content>
   </Item>
 
-)
-
+);
