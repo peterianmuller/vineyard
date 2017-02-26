@@ -19,12 +19,7 @@ export default class Signup extends React.Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.auth.username) {
-      browserHistory.push('/home');
-    }
-  }
+  
   getPasswordValidationState() {
     if (this.props.signup.password === '' &&
         this.props.signup.confirm_password === '') return null;
