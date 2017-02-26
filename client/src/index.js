@@ -42,7 +42,7 @@ var Root = props => {
           <Route path='/map' component={Map} onEnter={validateLogin} />
           <Route path='/notes' component={Note} />
           <Route path='/notesView' component={NotesView} onEnter={validateLogin} />
-          <Route path='/orgSignup' component={OrgSignup} onEnter={validateLogin} />
+          <Route path='/orgSignup' component={OrgSignup} onEnter={isLoggedIn} />
           <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
           <Route path='/user' component={UserPage} onEnter={validateLogin} />
         </Route>

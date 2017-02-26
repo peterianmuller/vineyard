@@ -38,6 +38,15 @@ export function signup(userAccount) {
   })
 }
 
+export function getOrgs() {
+  return {
+   type: "SET_SIGNUP_ORG_LIST", 
+    payload: {
+      promise: axios.get('/orgAuth/organization').then(res => res.data)
+    }
+  }
+}
+
 function clearSignup() {
   return {
     type: "CLEAR_SIGNUP_FIELDS"
