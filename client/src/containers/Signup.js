@@ -11,7 +11,7 @@ import NameBirthdateInput from '../components/NameBirthdateInput';
 
 //Actions and Functions
 import { getOrgs, setSignupItem, signup } from '../actions/signup';
-import { genDropdownOptions } from '../helpers/lifeHax';
+import { genDropdownOptions, genDropdownOptionsOgs } from '../helpers/lifeHax';
 import { handleItemChange } from '../helpers/changeHandlers';
 
 export default class Signup extends React.Component {
@@ -47,6 +47,13 @@ export default class Signup extends React.Component {
 
   render() {
     const { signup: fields } = this.props;
+    const allOrgs = genDropdownOptions(
+              fields.organization_list.map(item => item.name)
+            );
+
+    console.log('all orgs: ', fields.organization_list.map(item => item.name));
+
+
 
     return (
       <div className='oneEm max500width'>
@@ -81,13 +88,14 @@ export default class Signup extends React.Component {
             placeholder='(XXX) XXX-XXXX'
           />
 
-          <Form.Dropdown
+          <Form.Dropdown fluid selection
             label='Organization'
             loading={ fields.orgs_loading }
+            placeholder='Your Organization'
             value={fields.organization}
             onChange={ this.handleDropdownChange.bind(this, 'organization') }
-            options={ genDropdownOptions(
-              fields.organization_list.map(item => item.name)
+            options={ genDropdownOptionsOgs(
+              fields.organization_list.map(item => item.name.toUpperCase())
             ) }
           />
 

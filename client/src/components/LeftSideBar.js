@@ -49,6 +49,8 @@ export default props => {
             props.auth.username ? '' : 
               (<MenuLink name='signUp' />)
           }
+          { props.auth.username ? '': 
+          (<MenuLink name='orgSignup' />)}
         </Menu.Menu>
       </Sidebar>
   );
