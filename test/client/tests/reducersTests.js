@@ -53,6 +53,8 @@ describe('Reducers', () => {
         birthdate: '',
         phone_number: '',
         organization: '',
+        organization_list: [],
+        orgs_loading: true,
         account_restrictions: ''
       };
     });
