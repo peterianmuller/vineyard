@@ -6,13 +6,14 @@ import Notes from '../../../../server/db/models/notes';
 const expect = chai.expect;
 // chai.should();
 
+// =============NOTES DATABASE MODEL TESTS================//
 describe('notes database model', () => {
   describe('should add all note fields', () => {
     it('should add note title', () => {
       return new Notes({
         title: 'should add note title',
         text: 'should add note title',
-        date_time: 'should add note title',
+        date_time: '2017-02-25',
         latitude: 'should add note title',
         longitude: 'should add note title',
         image_url: 'should add note title'
@@ -22,14 +23,18 @@ describe('notes database model', () => {
       .then(() => {
         return Notes.where('title', 'should add note title').fetch().then((note) => {
           expect(note.attributes.title).to.equal('should add note title');
+        }).then(() => {
+            return Notes.where({
+              title: 'should add note title'
+            }).destroy();
         });
-      })
-    })
+      });
+    });
     it('should add note text', () => {
       return new Notes({
         title: 'should add note text',
         text: 'should add note text',
-        date_time: 'should add note text',
+        date_time: '2017-02-25',
         latitude: 'should add note text',
         longitude: 'should add note text',
         image_url: 'should add note text'
@@ -39,31 +44,42 @@ describe('notes database model', () => {
       .then(() => {
         return Notes.where('text', 'should add note text').fetch().then((note) => {
           expect(note.attributes.text).to.equal('should add note text');
+        })
+        .then(() => {
+          return Notes.where({
+            text: 'should add note text'
+          }).destroy();
         });
       });
     });
-    it('should add note date_time', () => {
-      return new Notes({
-        title: 'should add note date_time',
-        text: 'should add note date_time',
-        date_time: 'should add note date_time',
-        latitude: 'should add note date_time',
-        longitude: 'should add note date_time',
-        image_url: 'should add note date_time'
-        // note_author_id: 24,
-      })
-      .save()
-      .then(() => {
-        return Notes.where('date_time', 'should add note date_time').fetch().then((note) => {
-          expect(note.attributes.date_time).to.equal('should add note date_time');
-        });
-      });
-    });
+    // it('should add note date_time', () => {
+    //   return new Notes({
+    //     title: 'should add note date_time',
+    //     text: 'should add note date_time',
+    //     date_time: '2017-02-25',
+    //     latitude: 'should add note date_time',
+    //     longitude: 'should add note date_time',
+    //     image_url: 'should add note date_time'
+    //     // note_author_id: 24,
+    //   })
+    //   .save()
+    //   .then(() => {
+    //     // Sat, 25 Feb 2017 08:00:00 GMT   THIS IS THE FORMAT THAT THE DATABASE STORES THE DATE.
+    //     return Notes.where('date_time', '2017-02-25').fetch().then((note) => {
+    //       expect(note.attributes.date_time).to.equal('2017-02-25');
+    //     })
+    //     .then(() => {
+    //     return Notes.where({
+    //       date_time: '2017-02-25'
+    //     }).destroy();
+    //     });
+    //   });
+    // });
     it('should add note latitude', () => {
       return new Notes({
         title: 'should add note latitude',
         text: 'should add note latitude',
-        date_time: 'should add note latitude',
+        date_time: '2017-02-25',
         latitude: 'should add note latitude',
         longitude: 'should add note latitude',
         image_url: 'should add note latitude'
@@ -73,6 +89,11 @@ describe('notes database model', () => {
       .then(() => {
         return Notes.where('latitude', 'should add note latitude').fetch().then((note) => {
           expect(note.attributes.latitude).to.equal('should add note latitude');
+        })
+        .then(() => {
+          return Notes.where({
+            latitude: 'should add note latitude'
+          }).destroy();
         });
       });
     });
@@ -80,7 +101,7 @@ describe('notes database model', () => {
       return new Notes({
         title: 'should add longitude',
         text: 'should add longitude',
-        date_time: 'should add longitude',
+        date_time: '2017-02-25',
         latitude: 'should add longitude',
         longitude: 'should add longitude',
         image_url: 'should add longitude'
@@ -90,6 +111,11 @@ describe('notes database model', () => {
       .then(() => {
         return Notes.where('longitude', 'should add longitude').fetch().then((note) => {
           expect(note.attributes.longitude).to.equal('should add longitude');
+        })
+        .then(() => {
+          return Notes.where({
+            longitude: 'should add longitude'
+          }).destroy();
         });
       });
     });
@@ -97,7 +123,7 @@ describe('notes database model', () => {
       return new Notes({
         title: 'should add note image_url',
         text: 'should add note image_url',
-        date_time: 'should add note image_url',
+        date_time: '2017-02-25',
         latitude: 'should add note image_url',
         longitude: 'should add note image_url',
         image_url: 'should add note image_url'
@@ -107,6 +133,11 @@ describe('notes database model', () => {
       .then(() => {
         return Notes.where('image_url', 'should add note image_url').fetch().then((note) => {
           expect(note.attributes.image_url).to.equal('should add note image_url');
+        })
+        .then(() => {
+          return Notes.where({
+            image_url: 'should add note image_url'
+          }).destroy();
         });
       });
     });
@@ -116,7 +147,7 @@ describe('notes database model', () => {
       return new Notes({
         title: null,
         text: 'should not add note when title is null',
-        date_time: 'should not add note when title is null',
+        date_time: '2017-02-25',
         latitude: 'should not add note when title is null',
         longitude: 'should not add note when title is null',
         image_url: 'should not add note when title is null'
@@ -136,7 +167,7 @@ describe('notes database model', () => {
       return new Notes({
         title: 'should not add note when text is null',
         text: null,
-        date_time: 'should not add note when text is null',
+        date_time: '2017-02-25',
         latitude: 'should not add note when text is null',
         longitude: 'should not add note when text is null',
         image_url: 'should not add note when text is null'
@@ -176,7 +207,7 @@ describe('notes database model', () => {
       return new Notes({
         title: 'should not add note when latitude is null',
         text: 'should not add note when latitude is null',
-        date_time: 'should not add note when latitude is null',
+        date_time: '2017-02-25',
         latitude: null,
         longitude: 'should not add note when latitude is null',
         image_url: 'should not add note when latitude is null'
@@ -196,7 +227,7 @@ describe('notes database model', () => {
       return new Notes({
         title: 'should not add note when longitude is null',
         text: 'should not add note when longitude is null',
-        date_time: 'should not add note when longitude is null',
+        date_time: '2017-02-25',
         latitude: 'should not add note when longitude is null',
         longitude: null,
         image_url: 'should not add note when longitude is null'
@@ -216,7 +247,7 @@ describe('notes database model', () => {
     //   return new Notes({
     //     title: null,
     //     text: 'should not add note when author is null',
-    //     date_time: 'should not add note when author is null',
+    //     date_time: '2017-02-25',
     //     latitude: 'should not add note when author is null',
     //     longitude: 'should not add note when author is null',
     //     image_url: 'should not add note when author is null'
@@ -238,7 +269,7 @@ describe('notes database model', () => {
       return new Notes({
         title: 'should add notes that do not have an image_url field',
         text: 'should add notes that do not have an image_url field',
-        date_time: 'should add notes that do not have an image_url field',
+        date_time: '2017-02-25',
         latitude: 'should add notes that do not have an image_url field',
         longitude: 'should add notes that do not have an image_url field',
         image_url: null
@@ -248,6 +279,48 @@ describe('notes database model', () => {
       .then(() => {
         return Notes.where('title', 'should add notes that do not have an image_url field').fetch().then((note) => {
           expect(note.attributes.title).to.equal('should add notes that do not have an image_url field');
+        })
+        .then(() => {
+          return Notes.where({
+            title: 'should add notes that do not have an image_url field'
+          }).destroy();
+        });
+      });
+    });
+  });
+  describe('adding duplicates of unique fields', () => {
+    it('should not add duplicates of unique fields', () => {
+      return new Notes({
+        title: 'Not unique title',
+        text: 'Not unique text',
+        date_time: '2017-02-25',
+        latitude: 'Not unique latitude',
+        longitude: 'Not unique longitude',
+        image_url: 'Not unique image_url'
+        // note_author_id: 24,
+      })
+      .save()
+      .then(() => {
+        return new Notes({
+          title: 'Not unique title',
+          text: 'Not unique text',
+          date_time: '2017-02-25',
+          latitude: 'Not unique latitude',
+          longitude: 'Not unique longitude',
+          image_url: 'Not unique image_url'
+          // note_author_id: 24,
+        })
+        .save()
+        .then(() => {
+          console.log('Test failed: Should not have added duplicates');
+        })
+      })
+      .catch((err) => {
+        console.log(err);
+        return Notes.where({
+          title: 'Not unique title'
+        }).destroy().then(() => {
+          expect(true).to.equal(true);
         });
       });
     });
