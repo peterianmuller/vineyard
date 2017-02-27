@@ -10,10 +10,10 @@ export default function middleware(app, express) {
   app.use(bodyParser.json());
   app.use(session({
     secret: 'keyboard cat',
-    cookie: {maxAge: 1000*60*60},
+    cookie: {maxAge: 1000*60*60, secure: true},
     rolling: true,
     resave: true,
-    saveUnitialized: false }));
+    saveUninitialized: false }));
 	app.use(passport.initialize());
   app.use(passport.session());
   serializeLogin(passport);

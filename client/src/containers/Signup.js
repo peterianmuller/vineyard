@@ -85,7 +85,7 @@ export default class Signup extends React.Component {
             label='Organization'
             loading={ fields.orgs_loading }
             value={fields.organization}
-            onChange={ this.handleDropdownChange.bind(this, 'organization_list') }
+            onChange={ this.handleDropdownChange.bind(this, 'organization') }
             options={ genDropdownOptions(
               fields.organization_list.map(item => item.name)
             ) }
