@@ -113,12 +113,11 @@ describe('Containers', () => {
         email: "",
         first_name: "",
         last_name: "",
-        organization: ""
-     } } />);
+        organization: "",
+        organization_list: [{id:1, name:'pete\'s winary'}]
+     } } dispatch={ () => {} }  />);
 
-
-
-      expect(wrapper.find(Form.Input).length).to.equal(5);
+      expect(wrapper.find(Form.Input).length).to.equal(4);
     });
 
     // it('should have labels for username, password, and confirm pass', () => {
@@ -136,7 +135,16 @@ describe('Containers', () => {
     // });
 
     it('should render one NameBirthdateInput', () => {
-      const wrapper = mount(<Signup signup={ { username: '', password: '' } } />);
+      const wrapper = shallow(<Signup signup={ {
+        account_restrictions: "",
+        birthdate: "",
+        confirm_password: "",
+        email: "",
+        first_name: "",
+        last_name: "",
+        organization: "",
+        organization_list: [{id:1, name:'pete\'s winary'}]
+     } } dispatch={ () => {} }  />);
 
       expect(wrapper.find(NameBirthdateInput).length).to.equal(1);
     });
