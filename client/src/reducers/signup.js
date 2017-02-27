@@ -62,7 +62,7 @@ export function userSignupReducer(state = signupState, action) {
     case "SET_SIGNUP_ORGANIZATION":
       return {
         ...state,
-        organization: action.value[0]
+        organization: action.value
       };
     case "SET_SIGNUP_ORG_LIST_FULFILLED":
       return {
