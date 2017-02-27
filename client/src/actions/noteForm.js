@@ -75,26 +75,30 @@ function clearNoteFields() {
 }
 
 export function uploadImgToImgur(image) {
-  return {
-    type: "SET_UPLOADED_IMG_URL",
-    payload: {
-      promise: axios.post('https://api.imgur.com/3/image',
-        {
-          image: image.split(',')[1],
-          type: 'base64'
-        },
-        {
-          headers: {
-            Authorization: 'Client-ID d945621dec69149',
-            Accept: 'application/json'
-          }
-        }).then(resp => {
-          browserHistory.push('/formValidation');
-          return resp.data.data.link;
-        }).catch(err => {
-          console.log('this is err', err);
-        })
+  if (image !== '') {
+    return {
+      type: "SET_UPLOADED_IMG_URL",
+      payload: {
+        promise: axios.post('https://api.imgur.com/3/image',
+          {
+            image: image.split(',')[1],
+            type: 'base64'
+          },
+          {
+            headers: {
+              Authorization: 'Client-ID d945621dec69149',
+              Accept: 'application/json'
+            }
+          }).then(resp => {
+            browserHistory.push('/formValidation');
+            return resp.data.data.link;
+          }).catch(err => {
+            console.log('this is err', err);
+          })
+      }
     }
+  } else {
+    browserHistory.push('/formValidation');
   }
 }
 
