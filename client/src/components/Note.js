@@ -5,8 +5,8 @@ import React from 'react';
 import { Item } from 'semantic-ui-react';
 
 export default props => (
-  <Item>
-    <Item.Image size='small' src={ props.image ? props.image : 'http://semantic-ui.com/images/wireframe/image.png'} />
+  <Item className='textEllipses'>
+    <Item.Image spaced size='tiny' src={ props.image ? props.image : 'http://semantic-ui.com/images/wireframe/image.png'} />
 
     <Item.Content>
       <Item.Header>{props.title}</Item.Header>

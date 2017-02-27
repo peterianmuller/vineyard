@@ -69,3 +69,19 @@
   margin-top: 0px;
 }
 
+.img120h {
+  height: 100px !important;
+  width: 125px;
+  border: 1px solid black;
+  margin: 0 auto;
+}
+
+.img150w__img{
+  margin: 0 auto;
+  max-height: 100%;
+  max-width: auto;
+}
+
+.textEllipses {
+  text-overflow: ellipsis;
+}
