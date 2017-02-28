@@ -4,16 +4,29 @@ import { browserHistory } from 'react-router';
 //AJAX
 import axios from 'axios';
 
-export function getWeather(note) {
+export function getWeather(note, noteCheck) {
+  var cb = noteCheck ? setNoteWeather : setHomePageWeather;
   console.log(note);
   return dispatch => axios.post('/api/weather/byLatLon', {
     'lat': note.lat,
     'lon': note.lon
   }, { headers: { 'Authorization': 'JWT ' + localStorage.getItem('token') }
-  }).then(resp => dispatch(setNoteWeather(resp)))
+  }).then(resp => dispatch(cb(resp)))
     .catch(err => {
       console.log(err);
     });
+}
+
+//set up setHomePageWeather
+ //look at setNoteWeatherBelow
+
+// create a homepagereducer
+
+export function setHomePageWeather(value) {
+  return {
+    type: "UPDATE_TEMP",
+    value: value.data.current_observation.temp_f
+  };
 }
 
 export function setCurrentlyRecording(value) {
