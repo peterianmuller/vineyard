@@ -14,7 +14,7 @@ import { getWeather, postNote } from '../actions/noteForm';
 export default class Weather extends React.Component {
   pullWeather(e) {
     e.preventDefault();
-    this.props.dispatch(getWeather(this.props.note));
+    this.props.dispatch(getWeather(this.props.note, true));
   }
 
   handleSubmit(e){
