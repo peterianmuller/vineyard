@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
+import WeatherSummary from '../components/WeatherSummary';
 import { Button, Divider, Item, Grid, Form } from 'semantic-ui-react';
 
 //Components
@@ -37,12 +38,7 @@ class Home extends React.Component {
        </Grid.Column>
        <Grid.Column width={4}>
          <h1>Weather summary</h1>
-         <p>Next level tacos salvia, lumbersexual aesthetic woke plaid unicorn coloring book. 
-         Woke viral lyft williamsburg, cliche mlkshk gentrify shoreditch pop-up squid organic 
-         literally selvage beard prism. Cliche hoodie meditation hell of. Actually biodiesel 
-         cliche narwhal food truck. Gochujang intelligentsia tattooed distillery, man bun polaroid 
-         knausgaard ramps. Lyft freegan cronut godard bushwick. Butcher meditation williamsburg, 
-         gluten-free iPhone master cleanse disrupt hammock ennui everyday carry readymade.</p>
+           <WeatherSummary dispatch={this.props.dispatch} temperature={this.props.homePage.temperature} humditiy={this.props.humidity} homePage={this.props.homePage}/>
        </Grid.Column>
     </Grid>
     );

@@ -16,6 +16,7 @@ import { notesViewReducer } from './reducers/notesView';
 import orgSignupReducer from './reducers/OrgSignup';
 import { userLoginReducer } from './reducers/login';
 import { userSignupReducer } from './reducers/signup';
+import { homePageReducer } from './reducers/homePage';
 
 const rootReducer = combineReducers({
   authStatus: authStatusReducer,
@@ -25,7 +26,8 @@ const rootReducer = combineReducers({
   notesView: notesViewReducer,
   orgSignup: orgSignupReducer,
   routing: routerReducer,
-	signup: userSignupReducer,
+  signup: userSignupReducer,
+  homePage: homePageReducer,
 });
 
 const middleware = applyMiddleware(routerMiddleware(browserHistory), logger(), promise(), thunk);

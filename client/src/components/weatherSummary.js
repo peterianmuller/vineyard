@@ -9,39 +9,40 @@ import NoteFormInput from './NoteFormInput';
 
 //Actions and Functions
 import { setLatLong } from '../helpers/changeHandlers';
-import { getWeather, postNote } from '../actions/noteForm';
+import { getWeather, setHomePageWeather } from '../actions/noteForm';
 
-export default class Weather extends React.Component {
-  pullWeather(e) {
-    e.preventDefault();
-    this.props.dispatch(getWeather(this.props.note));
+export default class WeatherSummary extends React.Component {
+
+  componentDidMount() {
+    this.props = this.props;
+    let lat, lon;
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => { 
+        lat = coords.latitude;
+        lon = coords.longitude; 
+        console.log('lat and lon are: ', lat, lon);
+        console.log('this.props is: ', this.props);
+        console.log('homePage?', this.props.homePage)
+        this.props.dispatch(getWeather({lat:lat, lon:lon}, false));
+       } );
   }
-
-  handleSubmit(e){
-    e.preventDefault();
-    this.props.dispatch(postNote(this.props.note));
-  }
-
-  //get summary of weather stuff
+  
+  // get summary of weather stuff
+    // get other  
 
   render(){
     return (
       <Grid>
-        <Grid.Row centered='true' columns={4}>
+        <Grid.Row columns={4}>
           <Grid.Column>
-            <NoteFormInput title='Temperature: ' field='weather' value={this.props.note.temperature} />
+            <p>Weather stuff</p>
+            <p>{this.props.homePage.temperature}</p>
           </Grid.Column>
           <Grid.Column>
-            <NoteFormInput title='Humidity: ' field='weather' value={this.props.note.humidity} />
+            <p>More weather stuff </p>
+            <p>{this.props.homePage.humidity}</p>
           </Grid.Column>
-        </Grid.Row>     
-
-        <Grid.Row centered="true" columns={2}>
-          <Grid.Column>
-            <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
-            <Button onClick={this.handleSubmit.bind(this)}>Confirm and Save Note</Button>       
-          </Grid.Column>
-        </Grid.Row>    
+        </Grid.Row>         
       </Grid>
     )
   }

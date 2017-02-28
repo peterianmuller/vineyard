@@ -36,6 +36,7 @@ class App extends React.Component {
                   notesView: this.props.notesView,
                   orgSignup: this.props.orgSignup,
 	  		  				signup: this.props.signup,
+                  homePage: this.props.homePage
 	  		  			}
 	  		  		)
 	  		  	}
