@@ -12,6 +12,12 @@ const Users = db.Model.extend({
   hasTimestamps: false,
   organization: () => {
     return this.belongsTo(Organizations);
+  },
+  rooms: () => {
+  	return this.hasMany(Rooms);
+  },
+  messages: () => {
+  	return this.hasMany(Messages);
   }
 });
 

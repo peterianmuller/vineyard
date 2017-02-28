@@ -103,6 +103,11 @@ db.knex.schema.hasTable('addresses')
 			message.increments('id').primary();
 			message.string('text', 2000).notNullable();
 			message.integer('message_author_id').references('users.id').notNullable();
+			message.integer('room_id').references('users.id').notNullable();
+		})
+		.createTable('rooms', (room) => {
+			message.increments('id').primary();
+			message.string('room_name', 255).notNullable();
 		})
 		.then(() => {
 		  console.log('Tables created successfully!'); 
