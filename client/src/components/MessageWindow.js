@@ -46,11 +46,11 @@ export default props => {
   return (
     <div style={ { display: 'flex', justifyContent: 'center' } }>
     	<Comment.Group style={rowStyle}>
-    	  <ChatMessage author='Aaron' left={true} radius={ ['50px',  '50px'] } />
-    	  <ChatMessage author='Tim' left={false} radius={ ['50px', '50px'] } />
+    	  <ChatMessage author='Aaron' left={true} radius={ ['25px',  '25px'] } />
+    	  <ChatMessage author='Tim' left={false} radius={ ['25px', '25px'] } />
         {
           fakeMessages.map((value, key) => {
-            var radius = ['50px', '50px'];
+            var radius = ['25px', '25px'];
 
             if (key > 0 && fakeMessages[key - 1].author === value.author) {
               radius[0] = '5px';

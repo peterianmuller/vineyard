@@ -8,7 +8,7 @@ export default props => {
   var top = props.radius[1] === '5px';
   var bottom = props.radius[0] === '5px';
 
-  var solo = props.radius[0] === '50px' && props.radius[1] === '50px';
+  var solo = props.radius[0] === '25px' && props.radius[1] === '25px';
   var bottomOnly = bottom && !(bottom && top);
   var topOnly = top && !(bottom && top);
 
@@ -17,7 +17,7 @@ export default props => {
   };
 
   var contentStyle = {
-    width: '40%',
+    maxWidth: '40%',
     paddingRight: '0.5em',
     paddingLeft: '0.5em',
     marginRight: solo || bottomOnly ? '0px' : '35px',
@@ -35,12 +35,13 @@ export default props => {
   };
 
   var commentTextStyle = {
+    textAlign: 'left',
     border: '0 solid black',
     backgroundColor: props.left ? '#42cbf4' : '#d6d6d6', 
     borderRadius: props.left ? 
-                  props.radius[0] + ' 50px 50px ' + props.radius[1] : 
-                  '50px ' + props.radius.join(' ') + ' 50px',
-    padding: '1.5em',
+                  props.radius[0] + ' 25px 25px ' + props.radius[1] : 
+                  '25px ' + props.radius.join(' ') + ' 25px',
+    padding: '0.5em 1.5em 0.5em 1.5em',
     marginTop: '2px',
     marginBottom: '2px'
   };
