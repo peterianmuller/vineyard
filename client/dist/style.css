@@ -85,3 +85,40 @@
 .textEllipses {
   text-overflow: ellipsis;
 }
+
+.textRight {
+  text-align: right;
+}
+
+.avatar img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.lineBlock {
+  display: inline-block !important;
+}
+
+.inline {
+  display: inline !important;
+}
+
+.flex-box {
+  display: flex !important;
+}
+
+.flex-row-rev {
+  flex-direction: row-reverse;
+}
+
+.order1 {
+  order: 1;
+}
+
+.floatRight {
+  float: right !important;
+}
+
+.ui.comments .comment>.avatar~.content {
+  margin-left: 0px;
+}

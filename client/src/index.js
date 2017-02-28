@@ -16,6 +16,7 @@ import Signup from './containers/Signup';
 import UserPage from './containers/UserPage';
 
 //Components
+import MessageWindow from './components/MessageWindow';
 import Form from './components/Form';
 import Map from './components/Map';
 import Note from './components/Note';
@@ -46,7 +47,11 @@ var Root = props => {
           <Route path='/orgSignup' component={OrgSignup} onEnter={isLoggedIn} />
           <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
           <Route path='/user' component={UserPage} onEnter={validateLogin} />
+<<<<<<< e1bb57dd1913fb078a7825e464444b72cb20f09c
           <Route path='/dataForm' component={DataForm} onEnter={validateLogin} />
+=======
+          <Route path='/messages' component={MessageWindow} />
+>>>>>>> Add message view component
         </Route>
       </Router>
     </Provider>

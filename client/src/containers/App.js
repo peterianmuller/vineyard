@@ -2,6 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
+import io from 'socket.io-client';
 
 //UI
 import { Segment, Sidebar } from 'semantic-ui-react';
@@ -14,9 +15,15 @@ import LeftSideBar from '../components/LeftSideBar';
 import { validateUser } from '../actions/navigation';
 
 class App extends React.Component {
-  //componentWillMount() {
-  //  this.props.dispatch(validateUser());
-  //}
+  constructor(props) {
+    super(props);
+
+    var socket = io('localhost:3000');
+    socket.on('hello', data => {
+      console.log('HASHDFKAJSKFJAKSJFKJSKFJA');  
+      socket.emit('this test', "HEY THIS IS MORE TEStING OF SOCKETS");
+    });
+  }
 
   render() {
     return (
