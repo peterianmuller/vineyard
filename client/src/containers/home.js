@@ -2,7 +2,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
-import WeatherSummary from '../components/WeatherSummary';
+import WeatherSummary from '../components/weatherSummary';
 import { Button, Divider, Item, Grid, Form } from 'semantic-ui-react';
 
 //Components

@@ -20,7 +20,8 @@ export default props => {
     maxWidth: '40%',
     paddingRight: '0.5em',
     paddingLeft: '0.5em',
-    marginRight: solo || bottomOnly ? '0px' : '35px',
+    marginRight: !props.left && (solo || bottomOnly) ? '0px' : '35px',
+    marginLeft: props.left && (solo || bottomOnly) ? '0px' : '35px',
     marginTop: '0px',
   };
 
@@ -46,7 +47,6 @@ export default props => {
     marginBottom: '2px'
   };
 
-  console.log(props.text, top, bottom);
   return (
     <Comment style={commentStyle}>
       {
@@ -70,9 +70,7 @@ export default props => {
         }
 
     	  <Comment.Text style={commentTextStyle}>
-          { 
-            props.text ? props.text : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque tincidunt maximus eleifend. Mauris ornare arcu ultrices leo tincidunt euismod. Vivamus eget justo et leo ullamcorper euismod. Aliquam vitae dolor molestie, interdum quam id, fermentum sem. Donec pharetra tempor mi nec blandit. Phasellus ut aliquam risus. Morbi condimentum sapien nec ante laoreet, et condimentum augue feugiat. Ut auctor orci at ipsum semper consequat. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec egestas nunc vel augue mollis, ac feugiat risus suscipit. In eget tellus elit. Nullam eu augue cursus, elementum leo sagittis, sollicitudin mauris. Aliquam at gravida lectus. Proin laoreet a urna sit amet commodo.'
-          }
+          { props.text }
     	  </Comment.Text>
     	</Comment.Content>
     </Comment>
