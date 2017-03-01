@@ -1,6 +1,7 @@
 const defaultHomePageState = {
   temperature: '',
-  humidity: ''
+  humidity: '',
+  description: ''
 };
 
 export function homePageReducer(state = defaultHomePageState, action) {
@@ -8,7 +9,10 @@ export function homePageReducer(state = defaultHomePageState, action) {
     case "UPDATE_TEMP":
       return {
         ...state,
-        temperature: action.value
+        temperature: action.value.temp_f + 'f ,' + action.value.temp_c + 'c.',
+        humidity: action.value.relative_humidity,
+        description: action.value.weather.toLowerCase() + '.'
+        
       };
     default:
       return state;

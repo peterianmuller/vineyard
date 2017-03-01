@@ -17,15 +17,11 @@ export function getWeather(note, noteCheck) {
     });
 }
 
-//set up setHomePageWeather
- //look at setNoteWeatherBelow
-
-// create a homepagereducer
-
 export function setHomePageWeather(value) {
+  console.log(value.data);
   return {
     type: "UPDATE_TEMP",
-    value: value.data.current_observation.temp_f
+    value: value.data.current_observation
   };
 }
 
