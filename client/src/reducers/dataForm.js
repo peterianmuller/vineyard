@@ -5,8 +5,10 @@ const defaultDataForm = {
   clone: '',
   pH: '',
   brix: '',
-  NaOH: ''
+  NaOH: '' 
 };
+  
+  
 
 export function dataFormReducer(state = defaultDataForm, action) {
   switch(action.type) {

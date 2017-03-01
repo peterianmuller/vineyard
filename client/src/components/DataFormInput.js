@@ -11,7 +11,6 @@ import { appendDataFormItem } from '../actions/dataForm';
       
 export default props => (
   <div>
-    <Header size='tiny'>{props.title}</Header>
   <Segment>
     <Input
       fluid

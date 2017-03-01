@@ -35,6 +35,16 @@ export default class DataForm extends React.Component {
     e.preventDefault();
     this.props.dispatch(postData(this.props.dataForm));
   }
+      // <Form onSubmit={this.handleSubmit.bind(this)}>
+      //   <DataFormInput title='vineyard' field='vineyard' value={this.props.dataForm.title} />
+      //   <DataFormInput title='block' field='block' value={this.props.dataForm.block} />
+      //   <DataFormInput title='varietal' field='varietal' value={this.props.dataForm.varietal} />
+      //   <DataFormInput title='clone' field='clone' value={this.props.dataForm.clone} />
+      //   <DataFormInput title='pH' field='pH' value={this.props.dataForm.pH} />
+      //   <DataFormInput title='Brix' field='Brix' value={this.props.dataForm.Brix} />
+      //   <DataFormInput title='NaOH' field='NaOH' value={this.props.dataForm.NaOH} />
+      //   <Button>Submit Data</Button>
+      // </Form>
 
   //need to make this a grid
 
@@ -44,18 +54,6 @@ export default class DataForm extends React.Component {
 
         <p>Standardization</p>
         <p>NaOH: 0.10</p>
-
-      <Form onSubmit={this.handleSubmit.bind(this)}>
-        <DataFormInput title='vineyard' field='vineyard' value={this.props.dataForm.title} />
-        <DataFormInput title='block' field='block' value={this.props.dataForm.block} />
-        <DataFormInput title='varietal' field='varietal' value={this.props.dataForm.varietal} />
-        <DataFormInput title='clone' field='clone' value={this.props.dataForm.clone} />
-        <DataFormInput title='pH' field='pH' value={this.props.dataForm.pH} />
-        <DataFormInput title='Brix' field='Brix' value={this.props.dataForm.Brix} />
-        <DataFormInput title='NaOH' field='NaOH' value={this.props.dataForm.NaOH} />
-        <Button>Submit Data</Button>
-      </Form>
-
 
       <Table celled>
       <Table.Header>
@@ -72,13 +70,27 @@ export default class DataForm extends React.Component {
 
       <Table.Body>
         <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
+          <Table.Cell>
+            <DataFormInput title='vineyard' field='vineyard' value={this.props.dataForm.title} />
+          </Table.Cell>
+          <Table.Cell>
+            <DataFormInput title='block' field='block' value={this.props.dataForm.block} />
+          </Table.Cell>
+          <Table.Cell>
+            <DataFormInput title='varietal' field='varietal' value={this.props.dataForm.varietal} />
+          </Table.Cell>
+          <Table.Cell>
+            <DataFormInput title='clone' field='clone' value={this.props.dataForm.clone} />
+          </Table.Cell>
+          <Table.Cell>
+            <DataFormInput title='pH' field='pH' value={this.props.dataForm.pH} />
+          </Table.Cell>
+          <Table.Cell>
+            <DataFormInput title='Brix' field='Brix' value={this.props.dataForm.Brix} />
+          </Table.Cell>
+          <Table.Cell>
+            <DataFormInput title='NaOH' field='NaOH' value={this.props.dataForm.NaOH} />
+          </Table.Cell>
         </Table.Row>
         <Table.Row>
           <Table.Cell>Cell</Table.Cell>
@@ -92,6 +104,7 @@ export default class DataForm extends React.Component {
       </Table.Body>
 
     </Table>
+    <Button onClick={this.handleSubmit.bind(this)}>Submit Data</Button>
 
       </div>
     );
