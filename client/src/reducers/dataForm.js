@@ -45,7 +45,7 @@ export function dataFormReducer(state = defaultDataForm, action) {
         ...state,
         NaOH: action.value
       };
-    case "CLEAR_NOTE_FIELDS":
+    case "CLEAR_DATA_FORM_FIELDS":
       return {
         ...defaultDataForm
       };       
