@@ -4,7 +4,7 @@ import Rooms from './rooms';
 
 const Messages = db.Model.extend({
 	tableName: 'messages',
-	hasTimestamps: false,
+	hasTimestamps: true,
 	users: () => {
 		return this.belongsTo(Users);
 	},

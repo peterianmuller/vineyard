@@ -10,13 +10,13 @@ const Users = db.Model.extend({
   tableName: 'users',
   bcrypt: { field: 'password' },
   hasTimestamps: false,
-  organization: () => {
+  organization: function() {
     return this.belongsTo(Organizations);
   },
-  rooms: () => {
+  rooms: function() {
   	return this.hasMany(Rooms);
   },
-  messages: () => {
+  messages: function() {
   	return this.hasMany(Messages);
   }
 });
