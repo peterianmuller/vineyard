@@ -71,7 +71,11 @@ export function postNote(note) {
     image_url: note.uploadedImgUrl,
     note_author_id: note.username
   }, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
-  .then(() => dispatch(clearNoteFields()))
+  .then(() => {
+    dispatch(clearNoteFields());
+    browserHistory.push('/home');
+
+    })
   .catch((err) => {
     console.log(err);
   })

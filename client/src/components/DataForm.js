@@ -62,11 +62,20 @@ export default class DataForm extends React.Component {
 
   render() {
     return (
+      <div>
+        <p>Standardization</p>
+        <p>NaOH: 0.10</p>
+
       <Form>
         <DataFormInput title='vineyard' field='vineyard' />
         <DataFormInput title='block' field='block' />
-        <DataFormInput title='row' field='field' />
+        <DataFormInput title='varietal' field='varietal' />
+        <DataFormInput title='clone' field='clone' />
+        <DataFormInput title='pH' field='pH' />
+        <DataFormInput title='Brix' field='Brix' />
+        <DataFormInput title='NaOH' field='NaOH' />
       </Form>
+      </div>
     );
   }
 }
