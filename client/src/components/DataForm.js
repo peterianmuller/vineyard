@@ -68,8 +68,8 @@ export default class DataForm extends React.Component {
           <Table.HeaderCell>varietal</Table.HeaderCell>
           <Table.HeaderCell>clone</Table.HeaderCell>
           <Table.HeaderCell>pH</Table.HeaderCell>
-          <Table.HeaderCell>Brix</Table.HeaderCell>
-          <Table.HeaderCell>NaOh</Table.HeaderCell>
+          <Table.HeaderCell>brix</Table.HeaderCell>
+          <Table.HeaderCell>NaOH</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 
