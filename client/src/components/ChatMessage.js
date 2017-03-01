@@ -53,7 +53,8 @@ export default props => {
         solo || bottom && !(bottom && top) ? 
           (<Comment.Avatar 
              style={aviStyle}
-             src='http://imgur.com/Ojc222a.jpg' 
+             src={ props.left ? 'http://imgur.com/Ojc222a.jpg' :
+               'http://imgur.com/ZmDsi5u.jpg'}
            />) : ''
       }
     	<Comment.Content style={contentStyle}>
