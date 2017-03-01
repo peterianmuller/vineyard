@@ -5,7 +5,8 @@ const defaultDataForm = {
   clone: '',
   pH: '',
   brix: '',
-  NaOH: '' 
+  NaOH: '',
+  date: '' 
 };
   
   
@@ -16,6 +17,11 @@ export function dataFormReducer(state = defaultDataForm, action) {
       return {
         ...state,
         vineyard: action.value  
+      };
+    case "APPEND_DATA_FORM_DATE":
+      return {
+        ...state,
+        date: action.value  
       };
     case "APPEND_DATA_FORM_BLOCK":
       return {

@@ -12,17 +12,22 @@ import DataFormInput from './DataFormInput';
 
 //Actions and Functions
 //import { setLatLong } from '../helpers/changeHandlers';
-import { postData } from '../actions/dataForm';
+import { postData, appendDataFormItem } from '../actions/dataForm';
 
 export default class DataForm extends React.Component {
   componentDidMount() {
     // set he userid for the note
     // this.props.dispatch(setNoteFormItem('username', this.props.auth.username))
-    var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
-    console.log(formattedDate, "formatted date")
 
     // navigator.geolocation.getCurrentPosition(
     //   ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
+
+    const today = new Date();
+    var year = today.getFullYear();
+    var month = today.getMonth();
+    var day = today.getDate();
+    console.log('year: ', year, 'month: ', month, 'day: ', day)
+    this.props.dispatch(appendDataFormItem('date', Date.UTC(year, month, day)));
 
     // this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
