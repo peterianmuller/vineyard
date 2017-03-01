@@ -32,18 +32,12 @@ export default class WeatherSummary extends React.Component {
 
   render(){
     return (
-      <Grid>
-        <Grid.Row columns={4}>
-          <Grid.Column>
-            <p>Weather stuff</p>
-            <p>{this.props.homePage.temperature}</p>
-          </Grid.Column>
-          <Grid.Column>
-            <p>More weather stuff </p>
-            <p>{this.props.homePage.humidity}</p>
-          </Grid.Column>
-        </Grid.Row>         
-      </Grid>
+      <div>
+        <p>Temperature: {this.props.homePage.temperature}</p>
+        <p>Humidity: {this.props.homePage.humidity}</p>
+        <p>Today it's {this.props.homePage.description}</p>
+        <p></p>
+      </div>
     )
   }
 }

@@ -18,7 +18,7 @@ export default class Weather extends React.Component {
     this.props.dispatch(getWeather(this.props.note, true));
   }
 
-  handleSubmit(e){
+  handleSubmit(e) {
     e.preventDefault();
     this.props.dispatch(postNote(this.props.note));
   }

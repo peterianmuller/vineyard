@@ -17,15 +17,11 @@ export function getWeather(note, noteCheck) {
     });
 }
 
-//set up setHomePageWeather
- //look at setNoteWeatherBelow
-
-// create a homepagereducer
-
 export function setHomePageWeather(value) {
+  console.log(value.data);
   return {
     type: "UPDATE_TEMP",
-    value: value.data.current_observation.temp_f
+    value: value.data.current_observation
   };
 }
 
@@ -75,7 +71,11 @@ export function postNote(note) {
     image_url: note.uploadedImgUrl,
     note_author_id: note.username
   }, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
-  .then(() => dispatch(clearNoteFields()))
+  .then(() => {
+    dispatch(clearNoteFields());
+    browserHistory.push('/home');
+
+    })
   .catch((err) => {
     console.log(err);
   })
