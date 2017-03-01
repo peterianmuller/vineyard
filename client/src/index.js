@@ -8,6 +8,7 @@ import store from './store';
 
 //Containers
 import App from './containers/App';
+import ChatView from './containers/ChatView';
 import Home from './containers/home';
 import Login from './containers/Login';
 import NotesView from './containers/NotesView';
@@ -47,11 +48,9 @@ var Root = props => {
           <Route path='/orgSignup' component={OrgSignup} onEnter={isLoggedIn} />
           <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
           <Route path='/user' component={UserPage} onEnter={validateLogin} />
-<<<<<<< e1bb57dd1913fb078a7825e464444b72cb20f09c
           <Route path='/dataForm' component={DataForm} onEnter={validateLogin} />
-=======
           <Route path='/messages' component={MessageWindow} />
->>>>>>> Add message view component
+          <Route path='/messages' component={ChatView} />
         </Route>
       </Router>
     </Provider>

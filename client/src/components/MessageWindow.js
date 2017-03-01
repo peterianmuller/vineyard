@@ -2,7 +2,7 @@
 import React from 'react';
 
 //UI
-import { Button, Comment, Form, Grid, Header } from 'semantic-ui-react';
+import { Button, Comment, Grid, Header } from 'semantic-ui-react';
 
 //Components
 import ChatMessage from './ChatMessage';
