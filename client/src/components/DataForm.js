@@ -21,9 +21,10 @@ export default class DataForm extends React.Component {
     var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
     console.log(formattedDate, "formatted date")
 
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
-    this.props.dispatch(setNoteFormItem('date', formattedDate));
+    // navigator.geolocation.getCurrentPosition(
+    //   ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
+
+    // this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
 
 
@@ -67,14 +68,16 @@ export default class DataForm extends React.Component {
         <p>NaOH: 0.10</p>
 
       <Form>
-        <DataFormInput title='vineyard' field='vineyard' />
-        <DataFormInput title='block' field='block' />
-        <DataFormInput title='varietal' field='varietal' />
-        <DataFormInput title='clone' field='clone' />
-        <DataFormInput title='pH' field='pH' />
-        <DataFormInput title='Brix' field='Brix' />
-        <DataFormInput title='NaOH' field='NaOH' />
+        <DataFormInput title='vineyard' field='vineyard' value={this.props.dataForm.title} />
+        <DataFormInput title='block' field='block' value={this.props.dataForm.block} />
+        <DataFormInput title='varietal' field='varietal' value={this.props.dataForm.varietal} />
+        <DataFormInput title='clone' field='clone' value={this.props.dataForm.clone} />
+        <DataFormInput title='pH' field='pH' value={this.props.dataForm.pH} />
+        <DataFormInput title='Brix' field='Brix' value={this.props.dataForm.Brix} />
+        <DataFormInput title='NaOH' field='NaOH' value={this.props.dataForm.NaOH} />
       </Form>
+
+      <Button>Submit Data</Button>
       </div>
     );
   }

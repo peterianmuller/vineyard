@@ -37,7 +37,9 @@ class App extends React.Component {
                   orgSignup: this.props.orgSignup,
 	  		  				signup: this.props.signup,
                   homePage: this.props.homePage,
-                  mapHome: this.props.mapHome
+                  mapHome: this.props.mapHome,
+                  dataForm: this.props.dataForm,
+                  dataArray: this.props.dataArray
 	  		  			}
 	  		  		)
 	  		  	}

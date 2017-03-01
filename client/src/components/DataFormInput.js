@@ -7,6 +7,7 @@ import { Form, Header, Icon, Input, Label, Segment, TextArea } from 'semantic-ui
 //Actions and Functions
 import { handleItemChange, startRecording } from '../helpers/changeHandlers';
 import { setCurrentlyRecording } from '../actions/noteForm';
+import { appendDataFormItem } from '../actions/dataForm';
       
 export default props => (
   <div>
@@ -23,6 +24,7 @@ export default props => (
             />}
       labelPosition='right'
       value={props.value}
+      onChange={ handleItemChange.bind(null, appendDataFormItem, props.field)}
     />
   </Segment>
   </div>

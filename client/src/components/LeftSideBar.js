@@ -36,6 +36,7 @@ export default props => {
                 <MenuLink name='viewAlerts' to='alerts' />
                 <MenuLink name='writeNote' to='form' />
                 <MenuLink name='viewNotes' to='/notesView' />
+                <MenuLink name='recordData' to='/dataForm' />
               </Menu.Menu>
             ) : ''
         }
