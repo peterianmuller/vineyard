@@ -20,6 +20,7 @@ import Form from './components/Form';
 import Map from './components/Map';
 import Note from './components/Note';
 import MapWeatherValidation from './components/MapWeatherValidation.js';
+import DataForm from './components/DataForm'
 
 //Actions and functions
 import { authTransition } from './helpers/changeHandlers';
@@ -45,6 +46,7 @@ var Root = props => {
           <Route path='/orgSignup' component={OrgSignup} onEnter={isLoggedIn} />
           <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
           <Route path='/user' component={UserPage} onEnter={validateLogin} />
+          <Route path='/dataForm' component={DataForm} onEnter={validateLogin} />
         </Route>
       </Router>
     </Provider>
