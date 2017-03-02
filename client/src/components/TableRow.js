@@ -12,22 +12,22 @@ export default props => {
       <DataFormInput dispatch={props.dispatch} akey={props.akey} title='vineyard' field='vineyard' value={props.dataForm.vineyard} />
     </Table.Cell>
     <Table.Cell>
-      <DataFormInput title='block' field='block' value={props.dataForm.block} />
+      <DataFormInput dispatch={props.dispatch} akey={props.akey} title='block' field='block' value={props.dataForm.block} />
     </Table.Cell>
     <Table.Cell>
-      <DataFormInput title='varietal' field='varietal' value={props.dataForm.varietal} />
+      <DataFormInput dispatch={props.dispatch} akey={props.akey} title='varietal' field='varietal' value={props.dataForm.varietal} />
     </Table.Cell>
     <Table.Cell>
-      <DataFormInput title='clone' field='clone' value={props.dataForm.clone} />
+      <DataFormInput dispatch={props.dispatch} akey={props.akey} title='clone' field='clone' value={props.dataForm.clone} />
     </Table.Cell>
     <Table.Cell>
-      <DataFormInput title='pH' field='pH' value={props.dataForm.pH} />
+      <DataFormInput dispatch={props.dispatch} akey={props.akey} title='pH' field='pH' value={props.dataForm.pH} />
     </Table.Cell>
     <Table.Cell>
-      <DataFormInput title='Brix' field='Brix' value={props.dataForm.Brix} />
+      <DataFormInput dispatch={props.dispatch} akey={props.akey} title='Brix' field='Brix' value={props.dataForm.Brix} />
     </Table.Cell>
     <Table.Cell>
-      <DataFormInput title='NaOH' field='NaOH' value={props.dataForm.NaOH} />
+      <DataFormInput dispatch={props.dispatch} akey={props.akey} title='NaOH' field='NaOH' value={props.dataForm.NaOH} />
     </Table.Cell>
   </Table.Row>
 )};
