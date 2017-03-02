@@ -29,7 +29,9 @@ export default class MessageWindow extends React.Component {
 
   componentWillUpdate() {
     var node = ReactDOM.findDOMNode(this);
-    console.log(Math.ceil(node.scrollTop) + node.offsetHeight - 1, node.scrollHeight);
+    var heightDifference = node.scrollHeight - (Math.ceil(node.scrollTop) + node.offsetHeight);
+
+    this.shouldScrollBottom = heightDifference <= 5;
   }
    
   componentDidUpdate() {
