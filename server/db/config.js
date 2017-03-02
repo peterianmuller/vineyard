@@ -6,8 +6,8 @@ const knex = original({
   connection: {
     host: '127.0.0.1',
     port: '5432',
-    user: 'postgres',
-    password: '123',
+    user: null,
+    password: null,
     database: 'vineyard'
   },
   debug: true
@@ -37,28 +37,30 @@ db.knex.schema.hasTable('addresses')
 		.createTable('vineyards', (vineyard) => {
 			vineyard.increments('id').primary();
 			vineyard.string('name', 255).notNullable();
-			vineyard.string('phone_number', 255).notNullable();
+			// vineyard.string('phone_number', 255).notNullable();
 			vineyard.string('appellation', 255).notNullable();
-			vineyard.integer('organizaton_id').references('organizations.id').notNullable();
+			vineyard.integer('organization_id').references('organizations.id').notNullable();
 			vineyard.integer('address_id').references('addresses.id').notNullable();
 		})
 		.createTable('blocks', (block) => {
 			block.increments('id').primary();
-			block.string('number', 255).notNullable();
+			block.string('name', 255).notNullable();
 			block.integer('vineyard_id').references('vineyards.id');
 		})
 		.createTable('varietals', (varietal) => {
 			varietal.increments('id').primary();
 			varietal.string('name', 255).notNullable();
 		})
+		.createTable('clones', (clone) => {
+			clone.increments('id').primary();
+			clone.string('name', 255).notNullable();
+			clone.integer('varietal_id').references('varietals.id').notNullable();
+		})
 		.createTable('rows', (row) => {
 			row.increments('id').primary();
 			row.string('number', 255).notNullable();
 			row.string('point1', 255).notNullable();
 			row.string('point2', 255).notNullable();
-			row.string('clone', 255).notNullable();
-			row.integer('varietal_id').references('varietals.id').notNullable();
-			row.string('rootstock', 255).notNullable();
 			row.enu('status', [
 					'Pruned',
 		      'Bud-break',
@@ -67,6 +69,8 @@ db.knex.schema.hasTable('addresses')
 		      'Pre-harvest',
 		      'Post-harvest'
 		      ]).notNullable();
+			row.integer('clone_id').references('clones.id').notNullable();
+			// row.string('rootstock', 255).notNullable();
 			row.integer('block_id').references('blocks.id');
 		})
 		.createTable('users', (user) => {
@@ -80,6 +84,18 @@ db.knex.schema.hasTable('addresses')
 			user.date('birthdate', 255).notNullable();
 			user.enu('account_restrictions', ['Owner', 'Manager', 'Employee']).notNullable();
 			user.integer('organization_id').references('organizations.id').notNullable();
+		})
+		.createTable('methods', (method) => {
+			method.increments('id').primary();
+			method.string('name', 255).unique().notNullable();
+		})
+		.createTable('analysis', (data) => {
+			data.increments('id').primary();
+			data.integer('method_id').references('methods.id').notNullable();
+			data.integer('row_id').references('rows.id').notNullable();
+			data.integer('date').notNullable();
+			//precision and scale of result, may need to adjust
+			data.decimal('result', 3, 2).notNullable();
 		})
 		.createTable('notes', (note) => {
 			note.increments('id').primary();
@@ -106,8 +122,8 @@ db.knex.schema.hasTable('addresses')
 			message.integer('room_id').references('users.id').notNullable();
 		})
 		.createTable('rooms', (room) => {
-			message.increments('id').primary();
-			message.string('room_name', 255).notNullable();
+			room.increments('id').primary();
+			room.string('room_name', 255).notNullable();
 		})
 		.then(() => {
 		  console.log('Tables created successfully!'); 
