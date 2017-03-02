@@ -1,6 +1,6 @@
 import { newDataEntry } from '../db/controllers/data';
 
-export const addNewData (req, res, next) {
+export const addNewData = (req, res, next) => {
 	const params = {
 		method_id: params.method_id,
 		row_id: params.row_id,

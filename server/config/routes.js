@@ -12,6 +12,7 @@ import notesRouter from './routes/notes';
 import alertsRouter from './routes/alerts';
 import authRouter from './routes/authorization';
 import weatherRoutes from './routes/weather';
+import dataRoutes from './routes/data';
 
 
 // import allOrgsRoutes from './routes/organizationNames';
