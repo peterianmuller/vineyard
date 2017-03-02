@@ -14,6 +14,7 @@ import NotesView from './containers/NotesView';
 import OrgSignup from './containers/OrgSignup';
 import Signup from './containers/Signup';
 import UserPage from './containers/UserPage';
+import MapView from './containers/UserMap';
 
 //Components
 import Form from './components/Form';
@@ -47,6 +48,7 @@ var Root = props => {
           <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
           <Route path='/user' component={UserPage} onEnter={validateLogin} />
           <Route path='/dataForm' component={DataForm} onEnter={validateLogin} />
+          <Route path='/mapHome' component ={MapView} onEnter={validateLogin} />
         </Route>
       </Router>
     </Provider>
