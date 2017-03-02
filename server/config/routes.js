@@ -32,9 +32,8 @@ export default function routes(app, express) {
   app.use('/api/note', notesRouter);
   app.use('/api/alert', alertsRouter);
   app.use('/api/weather', weatherRoutes);
-
-  app.use('/nah/rooms', roomRouter);
-  app.use('/nah/messages', messageRouter);
+  app.use('/api/rooms', roomRouter);
+  app.use('/api/messages', messageRouter);
 
   //this is a temporary route!
   // app.use('/allorgs', allOrgsRoutes);

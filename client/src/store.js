@@ -15,6 +15,7 @@ import { navReducer } from './reducers/navigation';
 import { noteFormReducer } from './reducers/noteForm';
 import { notesViewReducer } from './reducers/notesView';
 import orgSignupReducer from './reducers/OrgSignup';
+import roomsReducer from './reducers/rooms';
 import { userLoginReducer } from './reducers/login';
 import { userSignupReducer } from './reducers/signup';
 import { homePageReducer } from './reducers/homePage';
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   note: noteFormReducer,
   notesView: notesViewReducer,
   orgSignup: orgSignupReducer,
+  rooms: roomsReducer,
   routing: routerReducer,
   signup: userSignupReducer,
   homePage: homePageReducer,

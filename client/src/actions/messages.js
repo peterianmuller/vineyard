@@ -23,7 +23,10 @@ export function textInputChange(text) {
 
 
 export function grabMessagesInRoom(roomId) {
-  return dispatch => axios.get('/nah/messages/byRoomId/' + roomId)
+  return dispatch => axios.get('/api/messages/byRoomId/' + roomId,
+    {
+      headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
+    })
     .then(messages => {
       console.log('these are the msgs', messages);
       dispatch(updateMessages(messages.data));
