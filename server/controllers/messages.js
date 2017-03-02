@@ -7,8 +7,7 @@ export function postMessage(req, res, next) {
     message_author_id: req.body.message_author_id
   };
 
-  messageController.postMessage(params).then(message => {
-    //sockets here
+  return messageController.postMessage(params).then(message => {
     res.end();
   });
 }
