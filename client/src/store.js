@@ -10,6 +10,7 @@ import logger from 'redux-logger';
 
 //Reducers
 import { authStatusReducer } from './reducers/authStatus';
+import messageReducer from './reducers/messages';
 import { navReducer } from './reducers/navigation';
 import { noteFormReducer } from './reducers/noteForm';
 import { notesViewReducer } from './reducers/notesView';
@@ -21,6 +22,7 @@ import { homePageReducer } from './reducers/homePage';
 const rootReducer = combineReducers({
   authStatus: authStatusReducer,
   login: userLoginReducer,
+  messages: messageReducer,
   nav: navReducer,
   note: noteFormReducer,
   notesView: notesViewReducer,
