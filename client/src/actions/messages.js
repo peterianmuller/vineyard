@@ -20,3 +20,11 @@ export function textInputChange(text) {
     value: text
   };
 }
+
+export function grabMessagesInRoom(roomId) {
+  return dispatch => axios.get('/nah/messages/byRoomId/' + roomId)
+    .then(messages => {
+      console.log('these are the msgs', messages);
+      dispatch(updateMessages(messages.data));
+    });
+}
