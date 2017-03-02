@@ -19,3 +19,11 @@ export function freshestRoom(req, res, next) {
       res.status(200).json(rooms); 
     });
 }
+
+export function getRoomById(req, res, next) {
+  console.log(req.params.id, 'afjklsjhkhs');
+  return roomsController.getRoomById(req.params.id)
+    .then(room => {
+      res.status(200).json(room); 
+    });
+}

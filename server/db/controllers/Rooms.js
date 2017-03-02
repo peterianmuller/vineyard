@@ -21,4 +21,8 @@ function getMostRecent() {
   }).fetchAll({})
 }
 
-export default { createRoom, getMostRecent };
+function getRoomById(id) {
+  return new Rooms({ id: id }).fetch();
+}
+
+export default { createRoom, getMostRecent, getRoomById };
