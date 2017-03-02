@@ -33,10 +33,10 @@ export function clearUserLogin() {
   }
 }
 
-function updateAuthStatus(id) {
+function updateAuthStatus(user) {
   return {
     type: "SET_AUTHSTATUS_ID",
-    value: id
+    value: user
   };
 }
 

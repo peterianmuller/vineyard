@@ -49,8 +49,7 @@ var Root = props => {
           <Route path='/signup' component={Signup} onEnter={isLoggedIn} />
           <Route path='/user' component={UserPage} onEnter={validateLogin} />
           <Route path='/dataForm' component={DataForm} onEnter={validateLogin} />
-          <Route path='/messages' component={MessageWindow} />
-          <Route path='/messages' component={ChatView} />
+          <Route path='/messages' component={ChatView} onEnter={validateLogin} />
         </Route>
       </Router>
     </Provider>

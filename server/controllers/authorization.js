@@ -9,7 +9,7 @@ function formatPhoneNumber (phoneNumber) {
 }
 
 export function login(req, res) {
-  var payload = { id: req.user.id };
+  var payload = { id: req.user.id, username: req.user.username };
   var token = jwt.sign(payload, jwtOptions.secretOrKey);
    console.log('I am even in here: ', token);
 
@@ -22,8 +22,8 @@ export function logout(req, res) {
 }
 
 export function sendUserIdFromJwt(req, res, next) {
-  console.log('hwhhsheh', req.user.id);
-  res.status(200).json({ id: req.user.id });
+  console.log('hwhhsheh', req.user.attributes.username);
+  res.status(200).json({ id: req.user.id, username: req.user.attributes.username });
 }
 
 export function register(req, res, next) {

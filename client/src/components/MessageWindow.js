@@ -58,7 +58,7 @@ export default class MessageWindow extends React.Component {
                   key={key}
                   author={value.author}
                   text={value.text} 
-                  left={!(value.author === 'Tim')} 
+                  left={!(value.message_author_id === this.props.user.id)} 
                   radius={radius}
                 />);
             })

@@ -9,7 +9,7 @@ import MessageWindow from '../components/MessageWindow';
 
 export default props => (
   <div className='max500width paddingOneEm'>
-    <MessageWindow dispatch={props.dispatch} messages={props.messages} />
-    <ChatInput dispatch={props.dispatch} messages={props.messages} />
+    <MessageWindow user={props.auth} dispatch={props.dispatch} messages={props.messages} />
+    <ChatInput user={props.auth} dispatch={props.dispatch} messages={props.messages} />
   </div>
 );

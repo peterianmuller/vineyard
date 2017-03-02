@@ -22,7 +22,7 @@ export default props => {
     socket.emit('new message', {
       text: props.messages.textInput,
       room_id: 1,
-      message_author_id: 1
+      message_author_id: props.user.id
     });
   };
 
