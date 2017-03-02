@@ -12,6 +12,8 @@ import notesRouter from './routes/notes';
 import alertsRouter from './routes/alerts';
 import authRouter from './routes/authorization';
 import weatherRoutes from './routes/weather';
+
+
 // import allOrgsRoutes from './routes/organizationNames';
 // import messagesController from './routes/messages';
 
@@ -30,9 +32,7 @@ export default function routes(app, express) {
   app.use('/api/note', notesRouter);
   app.use('/api/alert', alertsRouter);
   app.use('/api/weather', weatherRoutes);
-
-  //this is a temporary route!
-  // app.use('/allorgs', allOrgsRoutes);
+  app.use('/api/data', dataRoutes);
 
   app.use('/auth', authRouter);
   app.use('/orgAuth/organization', organizationsRouter);

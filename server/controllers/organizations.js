@@ -1,4 +1,4 @@
-import { newOrganization, getOrganization, getAllOrgs } from '../db/controllers/organizations';
+import { newOrganization, getOrganization, getAllOrgs, getAllOrgVineyardData } from '../db/controllers/organizations';
 import { newAddress, getAddressByStreet } from '../db/controllers/addresses';
 
 function formatPhoneNumber (phoneNumber) {
@@ -52,4 +52,11 @@ export function fetchAllOrgs (req, res, next) {
   })
 }
 
+export function fetchAllOrgVineyardData (req, res, next) {
+  return getAllOrgVineyardData()
+  .then ((vineyard_data) => {
+    //this will be saved as a cache/localstorage
+    res.json(vineyard_data);
+  })
+}
 
