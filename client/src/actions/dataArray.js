@@ -2,7 +2,6 @@
 import { browserHistory } from 'react-router';
 
 //update the state of the object at that key
-// 
 
 export function addDataToArray(key, prop, value) {
   var toReturn = { value, key };
