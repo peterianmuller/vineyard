@@ -18,6 +18,7 @@ import { userLoginReducer } from './reducers/login';
 import { userSignupReducer } from './reducers/signup';
 import { homePageReducer } from './reducers/homePage';
 import { dataFormReducer } from './reducers/dataForm';
+import { dataArrayReducer } from './reducers/dataArray';
 
 const rootReducer = combineReducers({
   authStatus: authStatusReducer,
@@ -29,7 +30,8 @@ const rootReducer = combineReducers({
   routing: routerReducer,
   signup: userSignupReducer,
   homePage: homePageReducer,
-  dataForm: dataFormReducer
+  dataForm: dataFormReducer,
+  dataArray: dataArrayReducer
 });
 
 const middleware = applyMiddleware(routerMiddleware(browserHistory), logger(), promise(), thunk);

@@ -9,10 +9,12 @@ import Loadable from 'react-loading-overlay';
 //Components
 import DataFormInput from './DataFormInput';
 //import Map from './Map';
+import TableRow from './TableRow';
 
 //Actions and Functions
 //import { setLatLong } from '../helpers/changeHandlers';
 import { postData, appendDataFormItem } from '../actions/dataForm';
+import { addRowToTable } from '../actions/dataArray';
 
 export default class DataForm extends React.Component {
   componentDidMount() {
@@ -39,27 +41,29 @@ export default class DataForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.dispatch(postData(this.props.dataForm));
+
   }
-      // <Form onSubmit={this.handleSubmit.bind(this)}>
-      //   <DataFormInput title='vineyard' field='vineyard' value={this.props.dataForm.title} />
-      //   <DataFormInput title='block' field='block' value={this.props.dataForm.block} />
-      //   <DataFormInput title='varietal' field='varietal' value={this.props.dataForm.varietal} />
-      //   <DataFormInput title='clone' field='clone' value={this.props.dataForm.clone} />
-      //   <DataFormInput title='pH' field='pH' value={this.props.dataForm.pH} />
-      //   <DataFormInput title='Brix' field='Brix' value={this.props.dataForm.Brix} />
-      //   <DataFormInput title='NaOH' field='NaOH' value={this.props.dataForm.NaOH} />
-      //   <Button>Submit Data</Button>
-      // </Form>
 
-  //need to make this a grid
+  addRow(e){
+    e.preventDefault();
+    //add one to the rows
+    //console.log(this);
+    console.log(this.props);
+    this.props.dispatch(addRowToTable());
 
-  render() {
+  }
+   
+   // need to have an add row button add new rows upon clicking
+   // need to keep track of how many rows to have on the form in a store in redux and for each
+   // row we add to redux we render it on the page
+
+  render(props) {
     return (
       <div>
 
         <p>Standardization</p>
         <p>NaOH: 0.10</p>
-
+   
       <Table celled>
       <Table.Header>
         <Table.Row>
@@ -74,42 +78,14 @@ export default class DataForm extends React.Component {
       </Table.Header>
 
       <Table.Body>
-        <Table.Row>
-          <Table.Cell>
-            <DataFormInput title='vineyard' field='vineyard' value={this.props.dataForm.title} />
-          </Table.Cell>
-          <Table.Cell>
-            <DataFormInput title='block' field='block' value={this.props.dataForm.block} />
-          </Table.Cell>
-          <Table.Cell>
-            <DataFormInput title='varietal' field='varietal' value={this.props.dataForm.varietal} />
-          </Table.Cell>
-          <Table.Cell>
-            <DataFormInput title='clone' field='clone' value={this.props.dataForm.clone} />
-          </Table.Cell>
-          <Table.Cell>
-            <DataFormInput title='pH' field='pH' value={this.props.dataForm.pH} />
-          </Table.Cell>
-          <Table.Cell>
-            <DataFormInput title='Brix' field='Brix' value={this.props.dataForm.Brix} />
-          </Table.Cell>
-          <Table.Cell>
-            <DataFormInput title='NaOH' field='NaOH' value={this.props.dataForm.NaOH} />
-          </Table.Cell>
-        </Table.Row>
-        <Table.Row>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-          <Table.Cell>Cell</Table.Cell>
-        </Table.Row>
+        <TableRow dataForm={this.props.dataForm} />
+        <TableRow dataForm={this.props.dataForm} />
       </Table.Body>
 
     </Table>
+
     <Button onClick={this.handleSubmit.bind(this)}>Submit Data</Button>
+    <Button onClick={this.addRow.bind(this)}>Add Row</Button>
 
       </div>
     );

@@ -1,3 +1,7 @@
+// const allData = [];
+// want to push all these objects to data array
+// all componenets should have access to this array
+
 const defaultDataForm = {
   vineyard: '',
   block: '',

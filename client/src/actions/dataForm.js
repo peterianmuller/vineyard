@@ -4,6 +4,9 @@ import { browserHistory } from 'react-router';
 //AJAX
 import axios from 'axios';
 
+//other actions 
+import { addToDataArray } from './dataArray';
+
 
 export function appendDataFormItem(item, value) {
   var toReturn = { value };
@@ -12,6 +15,8 @@ export function appendDataFormItem(item, value) {
 
   return toReturn;
 }
+
+
 
 
 // export function postData(data) {
@@ -36,8 +41,10 @@ export function appendDataFormItem(item, value) {
 // }
 
 export function postData(data) {
+  // add to data array on client-side	
   console.log(data);	
-  return {type: ''}
+  return addToDataArray(data);
+  //return clearDataFormFields();
 };
 
 function clearDataFormFields() {
