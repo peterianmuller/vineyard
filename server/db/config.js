@@ -108,6 +108,7 @@ db.knex.schema.hasTable('addresses')
 			message.string('text', 2000).notNullable();
 			message.integer('message_author_id').references('users.id').notNullable();
 			message.integer('room_id').references('rooms.id').notNullable();
+      message.timestamp('created_at').notNullable().defaultTo(db.knex.raw('now()'));
 		})
     .createTable('rooms_users', roomUser => {
       roomUser.increments('id').primary();

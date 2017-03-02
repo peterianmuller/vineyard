@@ -13,7 +13,7 @@ import alertsRouter from './routes/alerts';
 import authRouter from './routes/authorization';
 import weatherRoutes from './routes/weather';
 import roomRouter from './routes/rooms';
-import messageRouter from './router/messages';
+import messageRouter from './routes/messages';
 // import allOrgsRoutes from './routes/organizationNames';
 // import messagesController from './routes/messages';
 

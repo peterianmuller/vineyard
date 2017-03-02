@@ -12,3 +12,10 @@ export function newRoom(req, res, next) {
       res.end();
     });
 }
+
+export function freshestRoom(req, res, next) {
+  return roomsController.getMostRecent()
+    .then(rooms => {
+      res.status(200).json(rooms); 
+    });
+}

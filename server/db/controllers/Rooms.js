@@ -1,4 +1,5 @@
 import Rooms from '../models/rooms';
+import db from '../config';
 
 function createRoom(inputRoom) {
   return new Rooms({ 
@@ -9,4 +10,15 @@ function createRoom(inputRoom) {
   });
 }
 
-export default { createRoom };
+function getMostRecent() {
+  return new Rooms().query(q => {
+    q.select('messages.room_id', 'rooms.room_name', db.knex.raw('MAX(messages.created_at) as newest'))
+      .innerJoin('messages', function() {
+        this.on('rooms.id', '=', 'messages.room_id');
+      })
+      .groupBy('messages.room_id', 'rooms.room_name')
+      .orderBy('newest', 'desc');
+  }).fetchAll({})
+}
+
+export default { createRoom, getMostRecent };
