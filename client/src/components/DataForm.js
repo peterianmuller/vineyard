@@ -45,9 +45,9 @@ export default class DataForm extends React.Component {
   }
 
   addRow(e){
+    // add row to table
+    // start with two rows 
     e.preventDefault();
-    //add one to the rows
-    //console.log(this);
     console.log(this.props);
     this.props.dispatch(addRowToTable());
 
@@ -78,8 +78,9 @@ export default class DataForm extends React.Component {
       </Table.Header>
 
       <Table.Body>
-        <TableRow dataForm={this.props.dataForm} />
-        <TableRow dataForm={this.props.dataForm} />
+        {this.props.dataArray.map((element, key) => (
+          <TableRow dataForm={element} key={key} akey={key} dispatch={this.props.dispatch} />
+        ))}
       </Table.Body>
 
     </Table>

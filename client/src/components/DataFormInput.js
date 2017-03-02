@@ -5,26 +5,23 @@ import React from 'react';
 import { Form, Header, Icon, Input, Label, Segment, TextArea } from 'semantic-ui-react';
 
 //Actions and Functions
-import { handleItemChange, startRecording } from '../helpers/changeHandlers';
-import { setCurrentlyRecording } from '../actions/noteForm';
-import { appendDataFormItem } from '../actions/dataForm';
+import { handleItemChange } from '../helpers/changeHandlers';
+import { addDataToArray } from '../actions/dataArray';
       
-export default props => (
-  <div>
+export default props => {
+  var changeHandler = (e) => {
+    e.persist();
+    props.dispatch(addDataToArray(props.akey, props.field, e.target.value));
+  }
+
+  return(<div>
   <Segment>
     <Input
       fluid
-      label={<Label className='fa fa-microphone'
-              onClick={startRecording.bind(
-                null, 
-                setCurrentlyRecording, 
-                props.field.toUpperCase()
-              )}
-            />}
       labelPosition='right'
       value={props.value}
-      onChange={ handleItemChange.bind(null, appendDataFormItem, props.field)}
+      onChange={ changeHandler }
     />
   </Segment>
   </div>
-);
+)};

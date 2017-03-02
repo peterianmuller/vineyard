@@ -1,11 +1,12 @@
 //React requirements
 import { browserHistory } from 'react-router';
 
-export function addToDataArray(value) {
-  var toReturn = { value };
+//update the state of the object at that key
+// 
 
-  toReturn.type = "ADD_TO_DATA_ARRAY";
-
+export function addDataToArray(key, prop, value) {
+  var toReturn = { value, key };
+  toReturn.type = "SET_DATA_INPUT_" + prop.toUpperCase();
   return toReturn;
 }
 
@@ -14,3 +15,4 @@ export function addRowToTable() {
   	type: "ADD_ROW"
   }
 }
+

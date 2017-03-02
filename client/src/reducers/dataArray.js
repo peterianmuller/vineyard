@@ -1,19 +1,28 @@
-const dataArray = {
-	numRows: 0,
-	data: []
+const defaultDataForm = {
+  vineyard: '',
+  block: '',
+  varietal: '',
+  clone: '',
+  pH: '',
+  brix: '',
+  NaOH: '',
+  date: '' 
 };
 
+const dataArray = [{...defaultDataForm}];
 //
 
 export function dataArrayReducer(state = dataArray, action) {
   switch(action.type) {
-    case "ADD_TO_DATA_ARRAY":
-      return dataArray.data.concat([action.value]); 
     case "ADD_ROW":
-      return {
-      	...state,
-      	numRows: dataArray.numRows++,
-      }  
+      return state.concat([{...defaultDataForm}]);
+    case "SET_DATA_INPUT_VINEYARD": 
+      var newState = state.slice();
+      newState[action.key] = {
+        ...newState[action.key], 
+        vineyard: action.value
+      }
+      return newState;    
     default:
       return state;
   }
