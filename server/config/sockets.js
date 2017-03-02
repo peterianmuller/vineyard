@@ -15,6 +15,8 @@ export default server => {
       console.log('got the socket shit');
       messageController.postMessage(data).then(message => {
         console.log('created msg');
+        message.author_name = data.author_name;
+        console.log(message);
         io.in(data.room_id).emit('message created', message);
       });
     });

@@ -10,3 +10,8 @@ values ('Employee', '0008-09-08T07:00:00.000Z', '324234', 'a','a',1, 1, 's', 'i'
 insert into "users" (account_restrictions, birthdate, email, firstname, lastname, organization_id, password, phone_number, username)
 values ('Employee', '0008-09-08T07:00:00.000Z', '4339508', '3','3',1, 1, 's', 'kljlkj');
 
+insert into "users" (account_restrictions, birthdate, email, firstname, lastname, organization_id, password, phone_number, username)
+values ('Employee', '0008-09-08T07:00:00.000Z', '408', '3','3', 1, 'a', 's', 'a');
+
+insert into "rooms" (room_name)
+values ('Coyote');

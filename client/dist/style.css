@@ -127,3 +127,7 @@
   margin-left: 0px;
 }
 
+.scrollable {
+  overflow-y: auto;
+  height: 80%;
+}

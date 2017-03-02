@@ -1,5 +1,6 @@
 //React requirements
 import React from 'react';
+import ReactDOM from 'react-dom';
 
 //UI
 import { Button, Comment, Grid, Header } from 'semantic-ui-react';
@@ -8,7 +9,7 @@ import { Button, Comment, Grid, Header } from 'semantic-ui-react';
 import ChatMessage from './ChatMessage';
 
 //Actions and utilities
-import { grabMessagesInRoom, receivedMessage } from '../actions/messages';
+import { clearTextInput, grabMessagesInRoom, receivedMessage } from '../actions/messages';
 import socket from '../sockets';
 
 export default class MessageWindow extends React.Component {
@@ -17,13 +18,25 @@ export default class MessageWindow extends React.Component {
 
     this.props.dispatch(grabMessagesInRoom(1));
 
-    console.log(this.props.messages);
     socket.on('message created', function(data) {
       console.log('i see this coming in');
       props.dispatch(receivedMessage(data)); 
+      props.dispatch(clearTextInput());
     });
 
     socket.emit('initial room join', { room_id: 1 });
+  }
+
+  componentWillUpdate() {
+    var node = ReactDOM.findDOMNode(this);
+    console.log(Math.ceil(node.scrollTop) + node.offsetHeight - 1, node.scrollHeight);
+  }
+   
+  componentDidUpdate() {
+    if (this.shouldScrollBottom) {
+      var node = ReactDOM.findDOMNode(this);
+      node.scrollTop = node.scrollHeight;
+    }
   }
 
   render() {
@@ -37,18 +50,18 @@ export default class MessageWindow extends React.Component {
     const messages = this.props.messages.messages;
 
     return (
-      <div style={ { display: 'flex', justifyContent: 'center' } }>
+      <div className='scrollable' style={ { display: 'flex', justifyContent: 'center' } }>
       	<Comment.Group style={rowStyle}>
           {
             messages.map((value, key) => {
               var radius = ['25px', '25px'];
 
-              if (key > 0 && messages[key - 1].author === value.author) {
+              if (key > 0 && messages[key - 1].message_author_id === value.message_author_id) {
                 radius[0] = '5px';
               } 
               
               if (key + 1 < messages.length && 
-                  messages[key + 1].author === value.author) {
+                  messages[key + 1].message_author_id === value.message_author_id) {
                 radius[1] = '5px'; 
               }
 
@@ -56,7 +69,7 @@ export default class MessageWindow extends React.Component {
               return (
                 <ChatMessage 
                   key={key}
-                  author={value.author}
+                  author={value.author_name}
                   text={value.text} 
                   left={!(value.message_author_id === this.props.user.id)} 
                   radius={radius}

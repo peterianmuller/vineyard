@@ -22,7 +22,8 @@ export default props => {
     socket.emit('new message', {
       text: props.messages.textInput,
       room_id: 1,
-      message_author_id: props.user.id
+      message_author_id: props.user.id,
+      author_name: props.user.username
     });
   };
 
@@ -33,7 +34,7 @@ export default props => {
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Input size='large' fluid icon>
-        <input onChange={handleChange} />
+        <input value={props.messages.textInput} onChange={handleChange} />
         <Icon name='send' inverted circular link onClick={handleSubmit} />
       </Form.Input>
     </Form>

@@ -6,7 +6,8 @@ function postMessage(message) {
   return new Messages({
     text: message.text,
     room_id: message.room_id,
-    message_author_id: message.message_author_id
+    message_author_id: message.message_author_id,
+    author_name: message.author_name
   }).save();
 }
 

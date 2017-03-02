@@ -4,6 +4,11 @@ var defaults = {
 };
 export default (state=defaults, action) => {
   switch(action.type) {
+    case "CLEAR_TEXT_INPUT":
+      return {
+        ...state,
+        textInput: ''
+      };
     case 'UPDATE_MESSAGES':
       return {
         ...state,

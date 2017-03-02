@@ -4,7 +4,8 @@ export function postMessage(req, res, next) {
   const params = {
     text: req.body.text,
     room_id: req.body.room_id,
-    message_author_id: req.body.message_author_id
+    message_author_id: req.body.message_author_id,
+    author_name: req.body.author_name
   };
 
   return messageController.postMessage(params).then(message => {

@@ -105,6 +105,7 @@ db.knex.schema.hasTable('addresses')
 		})
 		.createTable('messages', (message) => {
 			message.increments('id').primary();
+      message.string('author_name', 255).notNullable();
 			message.string('text', 2000).notNullable();
 			message.integer('message_author_id').references('users.id').notNullable();
 			message.integer('room_id').references('rooms.id').notNullable();
