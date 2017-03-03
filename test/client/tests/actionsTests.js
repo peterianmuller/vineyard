@@ -100,8 +100,8 @@ describe('actions', () => {
 
   it('should have an action to clear note fields after a note has been submitted', () => {
     const expectedActionClear = {
-      type: 'CLEAR_NOTE_FORM_FIELDSaq' 
-    }:
+      type: 'CLEAR_NOTE_FORM_FIELDS' 
+    }
     expect(noteActions.clearDataFormFields()).to.deep.equal(expectedActionClear);
   });
   

@@ -12,14 +12,12 @@ import notesRouter from './routes/notes';
 import alertsRouter from './routes/alerts';
 import authRouter from './routes/authorization';
 import weatherRoutes from './routes/weather';
-<<<<<<< HEAD
 import roomRouter from './routes/rooms';
 import messageRouter from './routes/messages';
-=======
 import dataRoutes from './routes/data';
 
 
->>>>>>> d23fd0eb04c4646d15f83634b31d4eb9397f9455
+
 // import allOrgsRoutes from './routes/organizationNames';
 // import messagesController from './routes/messages';
 
