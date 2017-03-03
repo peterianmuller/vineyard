@@ -1,4 +1,4 @@
-import alertsController from '../db/controllers/alerts';
+import { newAlert } from '../db/controllers/alerts';
 
 export function createAlert(req, res, next) {
   const params = {
@@ -6,7 +6,7 @@ export function createAlert(req, res, next) {
     location: req.body.location,
     alertTime: req.body.alertTime
   };
-  return alertsController.newAlert(params)
+  return newAlert(params)
   .then((alert) => {
     if (alert) {
       res.json(alert);

@@ -26,7 +26,6 @@ export function sendUserIdFromJwt(req, res, next) {
 }
 
 export function register(req, res, next) {
-<<<<<<< HEAD
   const org = {
     name: req.body.organization.toLowerCase()
   };
@@ -35,19 +34,6 @@ export function register(req, res, next) {
   getOrganization(org)
   .then((org) => {
     return org.id;
-=======
-  const params = req.body;
-  newUser(params)
-  .then(() => {
-    getUserByUsername(params)
-      .then((user) => {
-        next();
-      })
-      .catch((err) => {
-        console.log('could not add user: ', err);
-      });
-
->>>>>>> Notes model and db controller tests working.
   })
   .then((orgId) => {
     console.log('this is the organization id: ', orgId);

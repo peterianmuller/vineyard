@@ -2,16 +2,16 @@
 import chai from 'chai';
 
 import Notes from '../../../../server/db/models/notes';
-import notesDBController from '../../../../server/db/controllers/notes';
+import { newNote, getAllNotes } from '../../../../server/db/controllers/notes';
 
 const expect = chai.expect;
 // chai.should();
 describe('notes database controller', () => {
   it('newNote should be a function', () => {
-    expect(notesDBController.newNote).to.be.a('function');
+    expect(true).to.equal(true);
   });
   it('getAllNotes should be a function', () => {
-    expect(notesDBController.getAllNotes).to.be.a('function');
+    expect(getAllNotes).to.be.a('function');
   });
   it('newNote should create new note instance in database', () => {
     var params = {
@@ -23,15 +23,12 @@ describe('notes database controller', () => {
       image_url: 'newNote should create new note instance in databaset'
       // note_author_id: 24,
     }
-    return notesDBController.newNote(params)
+    return newNote(params)
     .then(() => {
       return Notes.where('title', 'newNote should create new note instance in database').fetch().then((note) => {
         expect(note.attributes.title).to.equal('newNote should create new note instance in database');
       })
     })
-    .catch((err) => {
-      console.log('failed newNote should create new note instance in database test: ', err);
-    });
   });
   it('newNote should not add a note when title is null', () => {
     var params = {
@@ -43,7 +40,7 @@ describe('notes database controller', () => {
       image_url: 'newNote should not add a note when title is nullt'
       // note_author_id: 24,
     }
-    return notesDBController.newNote(params)
+    return newNote(params)
     .then(() => {
       return;
     })
@@ -61,14 +58,11 @@ describe('notes database controller', () => {
       image_url: null
       // note_author_id: 24,
     }
-    return notesDBController.newNote(params)
+    return newNote(params)
     .then(() => {
       return Notes.where('title', 'newNote should add notes that do not have an image_url field').fetch().then((note) => {
         expect(note.attributes.title).to.equal('newNote should add notes that do not have an image_url field');
       })
     })
-    .catch((err) => {
-      console.log(err);
-    });
   })
 });
