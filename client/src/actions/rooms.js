@@ -1,4 +1,5 @@
 import axios from 'axios';
+import client from '../elasticSearch';
 import socket from '../sockets';
 import { grabMessagesInRoom } from './messages';
 
@@ -50,4 +51,24 @@ export function addUserToRoom(userId, roomId) {
     }).then(resp => {
       console.log('not sure what to expect', resp);
     });
+}
+
+export function searchUsersForAddRoom(text) {
+  return dispatch => client.search({
+		index: "users",
+		type: "user", 
+		body: {
+	    "query": { 
+	      "multi_match": { 
+	        "fields": ["username", "firstname"], 
+	        "query": text, 
+	        "type": "phrase_prefix" 
+	      } 
+	    }
+	  }
+	}).then(results => {
+    console.log('this is what you searched for', results);
+  }).catch(err => {
+    console.log('this is the error', err); 
+  });
 }

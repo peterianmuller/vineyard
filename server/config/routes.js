@@ -15,7 +15,6 @@ import weatherRoutes from './routes/weather';
 import roomRouter from './routes/rooms';
 import messageRouter from './routes/messages';
 import dataRoutes from './routes/data';
-
 import coordRoutes from './routes/coordinates';
 import polyRoutes from './routes/polygons';
 
