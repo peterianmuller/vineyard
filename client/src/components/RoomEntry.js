@@ -17,6 +17,7 @@ export default class RoomEntry extends React.Component {
 
   render() {
     var active = this.props.room.id === this.props.currentRoom;
+    console.log('room name active', this.props.room.room_name, active);
 
     return (
       <a href="#" onClick={this.handleClick.bind(this)}>

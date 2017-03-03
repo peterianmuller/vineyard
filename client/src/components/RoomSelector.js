@@ -11,10 +11,20 @@ export default props => {
   const handleClick = function(e) {
      
   };
+
+  const addUserClick = function(e) {
+
+  };
    
   return (
     <div>
-      <div className='flex-box' style={ { justifyContent: 'flex-end' } }>
+      <div className='flex-box' style={ { justifyContent: 'space-between' } }>
+        <Icon
+          link
+          name='add user'
+          size='huge'
+          onClick={addUserClick}
+        />
         <Icon
           link
           name='edit'
@@ -28,9 +38,7 @@ export default props => {
             dispatch={props.dispatch}
             currentRoom={props.rooms.currentRoom}
             room={item}
-            key={key}>
-      	    {item.room_name} 
-      	  </RoomEntry>
+            key={key}/>
       	))
       }
     </div>

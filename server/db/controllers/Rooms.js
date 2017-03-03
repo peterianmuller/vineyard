@@ -17,7 +17,6 @@ function getMostRecent() {
         this.on('rooms.id', '=', 'messages.room_id');
       })
       .groupBy('rooms.id', 'rooms.room_name')
-    //.orderByRaw('case when "newest" is null then 0 else 1')
       .orderByRaw('newest desc nulls last');
   }).fetchAll({}).then(results => {
 

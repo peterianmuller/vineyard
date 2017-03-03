@@ -8,8 +8,9 @@ export function getRoomsRecentActivity() {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     }).then(rooms => {
       console.log('this is room data', rooms.data);
-      socket.emit('initial room join', { room_id: rooms.data[0].room_id });
+      socket.emit('initial room join', { room_id: rooms.data[0].id });
 
+      dispatch(setRoom(rooms.data[0].id));
       dispatch(updateRooms(rooms.data));
       dispatch(grabMessagesInRoom(rooms.data[0].id));
     });
