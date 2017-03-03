@@ -3,78 +3,100 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
 //UI
-import { Button, Form, Grid } from 'semantic-ui-react';
+import { Button, Form, Grid, Table, Icon, Label, Menu } from 'semantic-ui-react';
 import Loadable from 'react-loading-overlay';
 
 //Components
 import DataFormInput from './DataFormInput';
 //import Map from './Map';
+import TableRow from './TableRow';
 
 //Actions and Functions
-import { setLatLong } from '../helpers/changeHandlers';
-//import { getWeather, postNote, setSelectedImage, uploadImgToImgur, setNoteFormItem } from '../actions/noteForm';
+//import { setLatLong } from '../helpers/changeHandlers';
+import { postData, appendDataFormItem } from '../actions/dataForm';
+import { addRowToTable, postDataArray, clearDataFields } from '../actions/dataArray';
 
 export default class DataForm extends React.Component {
   componentDidMount() {
     // set he userid for the note
     // this.props.dispatch(setNoteFormItem('username', this.props.auth.username))
-    var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
-    console.log(formattedDate, "formatted date")
 
-    navigator.geolocation.getCurrentPosition(
-      ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
-    this.props.dispatch(setNoteFormItem('date', formattedDate));
+    // navigator.geolocation.getCurrentPosition(
+    //   ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
+
+    // const today = new Date();
+    // var year = today.getFullYear();
+    // var month = today.getMonth();
+    // var day = today.getDate();
+    // console.log('year: ', year, 'month: ', month, 'day: ', day)
+    // this.props.dispatch(appendDataFormItem('date', Date.UTC(year, month, day)));
+
+
+    // this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
-
-
-  // need to:
-    // create dataForm reducer 
-    // create dataForm actions (much like form actions) 
-    
 
   // clickFileChooser(e) {
   //   this.inputElement.click();
   // }
 
-  // handleSubmit(event) {
-  //   event.preventDefault();
+  handleSubmit(e) {
+    e.preventDefault();
+    postDataArray(this.props.dataArray);
 
-  //   this.props.dispatch(uploadImgToImgur(this.props.note.selectedImg));
-  // }
+  }
 
-  // pullWeather(e) {
-  //   e.preventDefault();
-  //   this.props.dispatch(getWeather(this.props.note));
-  // }
+  clearData(e){
+    e.preventDefault();
+    this.props.dispatch(clearDataFields());
+  }
 
-  // handleFileSelection(e) {
-  //   e.persist();
+  addRow(e){
+    // add row to table
+    // start with two rows 
+    e.preventDefault();
+    console.log(this.props);
+    this.props.dispatch(addRowToTable());
 
-  //   var inputFile = e.target.files[0];
-  //   var reader = new FileReader();
+  }
+   
+   // need to have an add row button add new rows upon clicking
+   // need to keep track of how many rows to have on the form in a store in redux and for each
+   // row we add to redux we render it on the page
 
-  //   reader.onload = e => {
-  //     this.props.dispatch(setSelectedImage(e.target.result));
-  //   }
-
-  //   reader.readAsDataURL(inputFile);
-  // }
-
-  render() {
+  render(props) {
     return (
       <div>
+
         <p>Standardization</p>
         <p>NaOH: 0.10</p>
+   
+      <Table celled>
+      <Table.Header>
+        <Table.Row>
+          <Table.HeaderCell>vineyard</Table.HeaderCell>
+          <Table.HeaderCell>row</Table.HeaderCell>
+          <Table.HeaderCell>block</Table.HeaderCell>
+          <Table.HeaderCell>varietal</Table.HeaderCell>
+          <Table.HeaderCell>clone</Table.HeaderCell>
+          <Table.HeaderCell>pH</Table.HeaderCell>
+          <Table.HeaderCell>brix</Table.HeaderCell>
+          <Table.HeaderCell>NaOH</Table.HeaderCell>
+          <Table.HeaderCell>titratable</Table.HeaderCell>
+        </Table.Row>
+      </Table.Header>
 
-      <Form>
-        <DataFormInput title='vineyard' field='vineyard' />
-        <DataFormInput title='block' field='block' />
-        <DataFormInput title='varietal' field='varietal' />
-        <DataFormInput title='clone' field='clone' />
-        <DataFormInput title='pH' field='pH' />
-        <DataFormInput title='Brix' field='Brix' />
-        <DataFormInput title='NaOH' field='NaOH' />
-      </Form>
+      <Table.Body>
+        {this.props.dataArray.map((element, key) => (
+          <TableRow dataForm={element} key={key} akey={key} dispatch={this.props.dispatch} />
+        ))}
+      </Table.Body>
+
+    </Table>
+
+    <Button onClick={this.handleSubmit.bind(this)}>Submit Data</Button>
+    <Button onClick={this.addRow.bind(this)}>Add Row</Button>
+    <Button onClick={this.clearData.bind(this)}>Clear Data</Button>
+
       </div>
     );
   }

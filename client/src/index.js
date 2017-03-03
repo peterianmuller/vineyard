@@ -15,6 +15,7 @@ import NotesView from './containers/NotesView';
 import OrgSignup from './containers/OrgSignup';
 import Signup from './containers/Signup';
 import UserPage from './containers/UserPage';
+import MapView from './containers/UserMap';
 
 //Components
 import MessageWindow from './components/MessageWindow';
@@ -50,6 +51,7 @@ var Root = props => {
           <Route path='/user' component={UserPage} onEnter={validateLogin} />
           <Route path='/dataForm' component={DataForm} onEnter={validateLogin} />
           <Route path='/messages' component={ChatView} onEnter={validateLogin} />
+          <Route path='/mapHome' component ={MapView} onEnter={validateLogin} />
         </Route>
       </Router>
     </Provider>

@@ -6,13 +6,13 @@ import Blocks from './blocks';
 const Vineyards = db.Model.extend({
   tableName: 'vineyards',
   hasTimestamps: true,
-  organization: () => {
+  organization: function() {
     return this.belongsTo(Organizations);
   },
-  addresses: () => {
+  addresses: function() {
     return this.hasOne(Addresses);
   },
-  blocks: () => {
+  blocks: function() {
     return this.hasMany(Blocks);
   }
 });
