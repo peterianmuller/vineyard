@@ -26,6 +26,9 @@ export default props => {
       <DataFormInput dispatch={props.dispatch} akey={props.akey} title='vineyard' field='vineyard' value={props.dataForm.vineyard} />
     </Table.Cell>
     <Table.Cell>
+      <DataFormInput dispatch={props.dispatch} akey={props.akey} title='row' field='row' value={props.dataForm.row} />
+    </Table.Cell>
+    <Table.Cell>
       <DataFormInput dispatch={props.dispatch} akey={props.akey} title='block' field='block' value={props.dataForm.block} />
     </Table.Cell>
     <Table.Cell>

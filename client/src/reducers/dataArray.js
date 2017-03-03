@@ -7,7 +7,8 @@ const defaultDataForm = {
   brix: '',
   NaOH: '',
   date: '',
-  titratable: ''
+  titratable: '',
+  row: ''
 };
 
 const dataArray = [{...defaultDataForm}];
@@ -24,6 +25,13 @@ export function dataArrayReducer(state = dataArray, action) {
         vineyard: action.value
       }
       return newState;   
+    case "SET_DATA_INPUT_ROW": 
+      var newState = state.slice();
+      newState[action.key] = {
+        ...newState[action.key], 
+        row: Number(action.value)
+      }
+      return newState;    
     case "SET_DATA_INPUT_BLOCK": 
       var newState = state.slice();
       newState[action.key] = {

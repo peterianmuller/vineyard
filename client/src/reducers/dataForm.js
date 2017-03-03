@@ -11,7 +11,8 @@ const defaultDataForm = {
   brix: '',
   NaOH: '',
   date: '',
-  titratable: '' 
+  titratable: '',
+  row: '' 
 };
   
   

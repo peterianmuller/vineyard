@@ -69,6 +69,7 @@ export default class DataForm extends React.Component {
       <Table.Header>
         <Table.Row>
           <Table.HeaderCell>vineyard</Table.HeaderCell>
+          <Table.HeaderCell>row</Table.HeaderCell>
           <Table.HeaderCell>block</Table.HeaderCell>
           <Table.HeaderCell>varietal</Table.HeaderCell>
           <Table.HeaderCell>clone</Table.HeaderCell>

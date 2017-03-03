@@ -31,6 +31,8 @@ export function postDataArray(data) {
   // add to data array on client-side 
   var dataToSend = data.map((experiment) => {
     return {row:experiment.row, date: experiment.date, results: {brix: experiment.brix, ph: experiment.pH, ta: experiment.titratable}};
+
+    
   });
 
   
