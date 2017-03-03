@@ -4,6 +4,8 @@ import ReactDom from 'react-dom';
 import { Map, TileLayer, Circle, FeatureGroup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
 
+import { addMapDataPoint } from '../actions/mapVis';
+
 let polyline;
 const subs = [ 'a', 'b', 'c', 'd' ];
 let counter = 0;
@@ -24,7 +26,7 @@ export default class MapView extends React.Component {
     console.log('Path edited !');
   }
 
-  
+
 
   _onCreate(e) {
     var label = prompt();
@@ -35,6 +37,12 @@ export default class MapView extends React.Component {
     let newPoly = e.layer._latlngs[0];
     //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
     console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
+
+    console.log(addMapDataPoint);
+    console.log('what does this look like', newPoly);
+    console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
+
+    this.props.dispatch(addMapDataPoint({label: label, coords: newPoly}));
     
     this.state.shapes.push([label, newPoly]);
     // this.state.shapes = this.state.shapes.concat([label, newPoly])
