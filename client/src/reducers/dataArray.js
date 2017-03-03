@@ -89,13 +89,6 @@ export function dataArrayReducer(state = dataArray, action) {
         titratable: action.value
       }
       return newState;    
-      case "SET_DATA_INPUT_DATE": 
-        var newState = state.slice();
-        newState[action.key] = {
-          ...newState[action.key], 
-          date: action.value
-        }
-        return newState;
       case "CLEAR_DATA_FIELDS":
       return dataArray;            
     default:
