@@ -81,7 +81,7 @@ export function postNote(note) {
   })
 }
 
-function clearNoteFields() {
+export function clearNoteFields() {
   return {
     type: "CLEAR_NOTE_FIELDS"
   };
