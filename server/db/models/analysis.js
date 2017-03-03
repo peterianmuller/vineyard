@@ -11,3 +11,5 @@ const Analysis = db.Model.extend({
 		return this.belongsTo(Rows);
 	}
 })
+
+export default Analysis;

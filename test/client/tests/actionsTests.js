@@ -1,6 +1,7 @@
 import chai from 'chai';
 import * as loginActions from '../../../client/src/actions/login'; 
 import * as noteActions from '../../../client/src/actions/noteForm';
+import * as dataActions from '../../../client/src/actions/dataArray';
 
 var expect = chai.expect;
 
@@ -87,11 +88,7 @@ describe('actions', () => {
   })
   
   it('should have an action to input a form in the database', () => {
-    //need get request to database to check in an entry has been entered in the db
-
-    //create a connection to a db
-    
-    //post a note to a db
+   
     noteActions.postNote({
       title: 'title',
       text: 'this row is bee-you-ti-ful',
@@ -101,6 +98,11 @@ describe('actions', () => {
 
   });
 
-  it('should have an action to clear note fields after a note has been submitted')
+  it('should have an action to clear note fields after a note has been submitted', () => {
+    // const expectedActionClear = {
+    //   type: 'CLEAR_NOTE_FORM_FIELDS' 
+    // }:
+    // expect()
+  });
   
 });

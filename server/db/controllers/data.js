@@ -1,4 +1,4 @@
-import Data from '../models/analysis';
+import Analysis from '../models/analysis';
 
 export const newDataEntry = (params) => {
 	return new Analysis({

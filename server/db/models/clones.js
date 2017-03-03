@@ -9,3 +9,5 @@ const Clones = db.Model.extend({
 	}
 });
 
+export default Clones;
+
