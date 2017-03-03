@@ -32,8 +32,6 @@ export default class MapView extends React.Component {
     var label = prompt();
     let type = e.layerType;
 
-    // polyline = e.layer;
-
     let newPoly = e.layer._latlngs[0];
     //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
     console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
