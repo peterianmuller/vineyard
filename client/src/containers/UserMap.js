@@ -28,11 +28,17 @@ export default class MapView extends React.Component {
     var label = prompt();
     let type = e.layerType;
 
+    console.log('is this an array of points? ', e.layer._latlngs);
     // polyline = e.layer;
+
     let newPoly = e.layer._latlngs[0];
-    console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
-    this.state.shapes.push([label, newPoly]);
-    console.log(this.state.shapes, 'shapes in the state', this.state, 'this is the state')
+    //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
+    console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
+    
+    this.state.shapes.push([label, e.layer._latlngs]);
+    // this.state.shapes = this.state.shapes.concat([label, newPoly])
+    console.log('shapes in the state: ', this.state.shapes);
+    console.log('this is the state: ', this.state);
     //polyline._latlngs[0] is the array of coordinates for that shape, 
     //in the array, each index is a L.LatLng object that holds lat and lon
     // To edit this polyline call : polyline.handler.enable()
