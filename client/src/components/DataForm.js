@@ -14,7 +14,7 @@ import TableRow from './TableRow';
 //Actions and Functions
 //import { setLatLong } from '../helpers/changeHandlers';
 import { postData, appendDataFormItem } from '../actions/dataForm';
-import { addRowToTable } from '../actions/dataArray';
+import { addRowToTable, postDataArray } from '../actions/dataArray';
 
 export default class DataForm extends React.Component {
   componentDidMount() {
@@ -24,12 +24,13 @@ export default class DataForm extends React.Component {
     // navigator.geolocation.getCurrentPosition(
     //   ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
 
-    const today = new Date();
-    var year = today.getFullYear();
-    var month = today.getMonth();
-    var day = today.getDate();
-    console.log('year: ', year, 'month: ', month, 'day: ', day)
-    this.props.dispatch(appendDataFormItem('date', Date.UTC(year, month, day)));
+    // const today = new Date();
+    // var year = today.getFullYear();
+    // var month = today.getMonth();
+    // var day = today.getDate();
+    // console.log('year: ', year, 'month: ', month, 'day: ', day)
+    // this.props.dispatch(appendDataFormItem('date', Date.UTC(year, month, day)));
+
 
     // this.props.dispatch(setNoteFormItem('date', formattedDate));
   }
@@ -40,7 +41,7 @@ export default class DataForm extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.dispatch(postData(this.props.dataForm));
+    postDataArray(this.props.dataArray);
 
   }
 
@@ -74,6 +75,7 @@ export default class DataForm extends React.Component {
           <Table.HeaderCell>pH</Table.HeaderCell>
           <Table.HeaderCell>brix</Table.HeaderCell>
           <Table.HeaderCell>NaOH</Table.HeaderCell>
+          <Table.HeaderCell>titratable</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 

@@ -6,7 +6,8 @@ const defaultDataForm = {
   pH: '',
   brix: '',
   NaOH: '',
-  date: '' 
+  date: '',
+  titratable: ''
 };
 
 const dataArray = [{...defaultDataForm}];
@@ -48,23 +49,43 @@ export function dataArrayReducer(state = dataArray, action) {
       var newState = state.slice();
       newState[action.key] = {
         ...newState[action.key], 
-        pH: action.value
+        pH: Number(action.value)
       }
       return newState;  
     case "SET_DATA_INPUT_BRIX": 
       var newState = state.slice();
       newState[action.key] = {
         ...newState[action.key], 
-        brix: action.value
+        brix: Number(action.value)
       }
       return newState;  
     case "SET_DATA_INPUT_NAOH": 
       var newState = state.slice();
+      const today = new Date();
+      var year = today.getFullYear();
+      var month = today.getMonth();
+      var day = today.getDate();
       newState[action.key] = {
         ...newState[action.key], 
-        NaOH: action.value
+        NaOH: action.value,
+        titratable: Number(Math.round((action.value * 0.10 * 7.5) +'e2')+'e-2'),
+        date: Date.UTC(year, month, day)
       }
-      return newState;        
+      return newState;
+    case "SET_DATA_INPUT_TITRATABLE": 
+      var newState = state.slice();
+      newState[action.key] = {
+        ...newState[action.key], 
+        titratable: action.value
+      }
+      return newState;    
+      case "SET_DATA_INPUT_DATE": 
+        var newState = state.slice();
+        newState[action.key] = {
+          ...newState[action.key], 
+          date: action.value
+        }
+        return newState;          
     default:
       return state;
   }

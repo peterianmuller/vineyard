@@ -19,26 +19,38 @@ export function appendDataFormItem(item, value) {
 
 
 
-// export function postData(data) {
+// export function postNoteExample(note) {
 //   console.log('inside postNote on the front end', note, 'then something else');
   
-//   return dispatch => axios.post('/api/data', {
-// 	  vineyard: dataForm.vineyard,
-// 	  block: dataForm.block,
-// 	  varietal: dataForm.varietal,
-// 	  clone: dataForm.clone,
-// 	  pH: dataForm.pH,
-// 	  brix: dataForm.brix,
-// 	  NaOH: dataForm.NaOH
+//   return dispatch => axios.post('/api/note', {
+//     title: note.title,
+//     text: note.textArea,
+//     date_time: note.date,
+//     latitude: note.lat,
+//     longitude: note.lon,
+//     image_url: note.uploadedImgUrl,
+//     note_author_id: note.username
 //   }, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
 //   .then(() => {
-//     dispatch(clearDataFormFields());
+//     dispatch(clearNoteFields());
 //     browserHistory.push('/home');
+
 //     })
 //   .catch((err) => {
 //     console.log(err);
 //   })
-// }
+// } 
+
+var obj = {
+    //should be row id, from the front end cache
+    row: 1,
+    date: 1488426073,
+    results: {
+        brix: 25.0,
+        ph: 3.02,
+        ta: 5.6
+    }
+}
 
 export function postData(data) {
   // add to data array on client-side	

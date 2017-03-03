@@ -10,7 +10,8 @@ const defaultDataForm = {
   pH: '',
   brix: '',
   NaOH: '',
-  date: '' 
+  date: '',
+  titratable: '' 
 };
   
   
