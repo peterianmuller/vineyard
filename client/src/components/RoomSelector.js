@@ -9,7 +9,8 @@ export default props => (
     {
     	props.rooms.rooms.map((item, key) => (
         <RoomEntry 
-          active={item.room_id === props.rooms.currentRoom}
+          dispatch={props.dispatch}
+          currentRoom={props.rooms.currentRoom}
           room={item}
           key={key}>
     	    {item.room_name} 

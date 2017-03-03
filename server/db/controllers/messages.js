@@ -12,7 +12,7 @@ function postMessage(message) {
 }
 
 function getMessagesByRoom(roomId) {
-  return new Messages({ room_id: roomId })
+  return new Messages().where({ room_id: roomId })
     .orderBy('created_at')
     .fetchAll();
   

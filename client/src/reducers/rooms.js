@@ -5,7 +5,7 @@ const defaults = {
 
 export default (state=defaults, action) => {
   switch(action.type) {
-    case "SET_CURRRENT_ROOM":
+    case "SET_CURRENT_ROOM":
       return {
         ...state,
         currentRoom: action.value

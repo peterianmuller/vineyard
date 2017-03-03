@@ -12,13 +12,18 @@ function createRoom(inputRoom) {
 
 function getMostRecent() {
   return new Rooms().query(q => {
-    q.select('messages.room_id', 'rooms.room_name', db.knex.raw('MAX(messages.created_at) as newest'))
-      .innerJoin('messages', function() {
+    q.select('rooms.id', 'rooms.room_name', db.knex.raw('MAX(messages.created_at) as newest'))
+      .leftOuterJoin('messages', function() {
         this.on('rooms.id', '=', 'messages.room_id');
       })
-      .groupBy('messages.room_id', 'rooms.room_name')
-      .orderBy('newest', 'desc');
-  }).fetchAll({})
+      .groupBy('rooms.id', 'rooms.room_name')
+    //.orderByRaw('case when "newest" is null then 0 else 1')
+      .orderBy('newest', 'desc nulls last');
+  }).fetchAll({}).then(results => {
+
+    console.log('here they are man!!!!!!!!!!!!!!!!!!!!', results.models);
+    return results;
+  })
 }
 
 function getRoomById(id) {

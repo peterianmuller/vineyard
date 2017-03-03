@@ -16,7 +16,7 @@ export default class MessageWindow extends React.Component {
   constructor(props) {
     super(props);
 
-    this.props.dispatch(grabMessagesInRoom(1));
+    //this.props.dispatch(grabMessagesInRoom(1));
 
     socket.on('message created', function(data) {
       console.log('i see this coming in');
@@ -24,7 +24,7 @@ export default class MessageWindow extends React.Component {
       props.dispatch(clearTextInput());
     });
 
-    socket.emit('initial room join', { room_id: 1 });
+    //socket.emit('initial room join', { room_id: 1 });
   }
 
   componentWillUpdate() {
