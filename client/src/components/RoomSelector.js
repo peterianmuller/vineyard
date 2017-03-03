@@ -7,13 +7,16 @@ import { Icon } from 'semantic-ui-react';
 //Components
 import RoomEntry from './RoomEntry';
 
+//Actions
+import { addUserToRoom } from '../actions/rooms';
+
 export default props => {
   const handleClick = function(e) {
      
   };
 
   const addUserClick = function(e) {
-
+    props.dispatch(addUserToRoom(3, props.rooms.currentRoom));
   };
    
   return (

@@ -10,9 +10,13 @@ function createRoom(inputRoom) {
   });
 }
 
-function getMostRecent() {
+function getMostRecent(userId) {
   return new Rooms().query(q => {
     q.select('rooms.id', 'rooms.room_name', db.knex.raw('MAX(messages.created_at) as newest'))
+      .innerJoin('rooms_users', function() {
+        this.on('rooms.id', '=', 'rooms_users.room_id')
+          .andOn('rooms_users.user_id', '=', userId);
+      })
       .leftOuterJoin('messages', function() {
         this.on('rooms.id', '=', 'messages.room_id');
       })
@@ -29,4 +33,9 @@ function getRoomById(id) {
   return new Rooms({ id: id }).fetch();
 }
 
-export default { createRoom, getMostRecent, getRoomById };
+function addUserToRoom(userId, roomId) {
+  return new Rooms({ id: roomId })
+    .users().attach(userId);
+}
+
+export default { addUserToRoom, createRoom, getMostRecent, getRoomById };

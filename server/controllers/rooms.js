@@ -14,16 +14,24 @@ export function newRoom(req, res, next) {
 }
 
 export function freshestRoom(req, res, next) {
-  return roomsController.getMostRecent()
+  return roomsController.getMostRecent(req.body.userId)
     .then(rooms => {
       res.status(200).json(rooms); 
     });
 }
 
 export function getRoomById(req, res, next) {
-  console.log(req.params.id, 'afjklsjhkhs');
   return roomsController.getRoomById(req.params.id)
     .then(room => {
       res.status(200).json(room); 
+    });
+}
+
+export function addUserToRoom(req, res, next) {
+  return roomsController
+    .addUserToRoom(req.body.userId, req.body.roomId)
+    .then(room => {
+      console.log('Hey the room was added', room);
+      res.end();
     });
 }

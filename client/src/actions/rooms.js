@@ -2,13 +2,15 @@ import axios from 'axios';
 import socket from '../sockets';
 import { grabMessagesInRoom } from './messages';
 
-export function getRoomsRecentActivity() {
-  return dispatch => axios.get('/api/rooms/mostRecent', 
+export function getRoomsRecentActivity(userId) {
+  return dispatch => axios.post('/api/rooms/mostRecent', 
+    {
+      userId
+    },
     {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     }).then(rooms => {
-      console.log('this is room data', rooms.data);
-      socket.emit('initial room join', { room_id: rooms.data[0].id });
+      socket.emit('enter rooms', rooms.data);
 
       dispatch(setRoom(rooms.data[0].id));
       dispatch(updateRooms(rooms.data));
@@ -24,8 +26,6 @@ function updateRooms(rooms) {
 }
 
 export function setCurrentRoom(old_room_id, new_room_id) {
-  socket.emit('room change', { old_room_id, new_room_id }); 
-
   return dispatch => dispatch(grabMessagesInRoom(new_room_id))
     .then(() => {
       dispatch(setRoom(new_room_id));
@@ -38,4 +38,16 @@ export function setRoom(room_id) {
     type: "SET_CURRENT_ROOM",
     value: room_id
   };
+}
+
+export function addUserToRoom(userId, roomId) {
+  return dispatch => axios.post('/api/rooms/addUserToRoom', 
+    {
+      userId, roomId
+    },
+    {
+      headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
+    }).then(resp => {
+      console.log('not sure what to expect', resp);
+    });
 }

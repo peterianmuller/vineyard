@@ -9,15 +9,20 @@ import ChatInput from '../components/ChatInput';
 import MessageWindow from '../components/MessageWindow';
 import RoomSelector from '../components/RoomSelector';
 
-//Actions
+//Actions and utilities
 import { getRoomsRecentActivity } from '../actions/rooms';
+import socket from '../sockets';
 
 export default class ChatView extends React.Component {
   constructor(props) {
     super(props);
 
-    this.props.dispatch(getRoomsRecentActivity());
-    console.log(this.props.rooms);
+    const dispatch = this.props.dispatch;
+    dispatch(getRoomsRecentActivity(props.auth.id));
+
+    socket.on('message created', function() {
+      dispatch(getRoomsRecentActivity(props.auth.id));
+    });
   }
 
   render() {
