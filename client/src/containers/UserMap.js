@@ -6,7 +6,7 @@ import { EditControl } from "react-leaflet-draw";
 
 let polyline;
 const subs = [ 'a', 'b', 'c', 'd' ];
-
+let counter = 0;
 
 export default class MapView extends React.Component {
 	constructor(props) {
@@ -15,7 +15,8 @@ export default class MapView extends React.Component {
       //vineyard coordinates
       lat: 38.384,
       lng: -122.865,
-      zoom: 20
+      zoom: 20,
+      shapes: []
     };
 	}
 
@@ -25,11 +26,14 @@ export default class MapView extends React.Component {
 
   _onCreate(e) {
     let type = e.layerType;
+
     // polyline = e.layer;
-    let newPoly = e.layer._latlngs[0];
+    let newPoly = e.layer._latlngs;
+    console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
+    this.setState({shapes: newPoly});
+    console.log(this.state.shapes, 'shapes in the state', this.state, 'this is the state')
     //polyline._latlngs[0] is the array of coordinates for that shape, 
     //in the array, each index is a L.LatLng object that holds lat and lon
-    console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
     // To edit this polyline call : polyline.handler.enable()
     console.log('Path created !');
   }
@@ -60,6 +64,7 @@ export default class MapView extends React.Component {
 
 	render() {
     const position = [this.state.lat, this.state.lng];
+    console.log(this.state, 'meow')
     return (
 			<div>
         <Map
@@ -73,7 +78,7 @@ export default class MapView extends React.Component {
             <EditControl
               position='topright'
               onEdited={this._onEditPath}
-              onCreated={this._onCreate}
+              onCreated={this._onCreate.bind(this)}
               onDeleted={this._onDeleted}
               onMounted={this._mounted}
               onEditStart={this._onEditStart}
