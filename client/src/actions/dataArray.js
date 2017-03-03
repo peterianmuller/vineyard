@@ -3,6 +3,8 @@ import { browserHistory } from 'react-router';
 
 //update the state of the object at that key
 
+import axios from 'axios';
+
 export function addDataToArray(key, prop, value) {
   var toReturn = { value, key };
   toReturn.type = "SET_DATA_INPUT_" + prop.toUpperCase();
@@ -32,7 +34,11 @@ export function postDataArray(data) {
   var dataToSend = data.map((experiment) => {
     return {row:experiment.row, date: experiment.date, results: {brix: experiment.brix, ph: experiment.pH, ta: experiment.titratable}};
 
-    
+   axios.post('/api/data' {
+     
+   }) 
+
+
   });
 
   
