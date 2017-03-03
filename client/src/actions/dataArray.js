@@ -32,6 +32,8 @@ export function postDataArray(data) {
   var dataToSend = data.map((experiment) => {
     return {row:experiment.row, date: experiment.date, results: {brix: experiment.brix, ph: experiment.pH, ta: experiment.titratable}};
   });
+
+  
   console.log(dataToSend);  
   //return clearDataFormFields();
 };
