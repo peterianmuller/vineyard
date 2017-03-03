@@ -38,7 +38,7 @@ export default function routes(app, express) {
   app.use('/api/weather', weatherRoutes);
   app.use('/api/rooms', roomRouter);
   app.use('/api/messages', messageRouter);
-
+  app.use('/api/organization', organizationsRouter);
   //this is a temporary route!
   // app.use('/allorgs', allOrgsRoutes);
   app.use('/api/data', dataRoutes);

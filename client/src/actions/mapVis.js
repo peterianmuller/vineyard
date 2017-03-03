@@ -41,22 +41,35 @@ export function clearDataPoints(value) {
 //   })
 // }
 
+export function testOrgs(name) {
+  axios.get('/api/organization/information', {
+    headers: {
+      'Authorization': 'JWT ' + localStorage.getItem('token')  
+    },
+    params: {
+      name: name
+    }
+  })  
+  .then((res) => {
+    console.log('this is the result from the axios call: ', res);
+  })
+  .catch((err)=> {
+    console.log(err);
+  })
+};
+
 export function postMapData(data) {
   // add to data array on client-side 
-
-  // var dataToSend = data.map((experiment) => {
-  //   return {row:experiment.row, date: experiment.date, results: {brix: experiment.brix, ph: experiment.pH, ta: experiment.titratable}};
-  // });
 
   console.log('data looks like', data);
   clearDataPoints();
 
-
-  // axios.post('/api/data', dataToSend, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
+  // axios.post('/api/mapData', data, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
   // .then((response) => {
   //   console.log(response);
   // }) 
   // .catch((err) => {
   //   console.log(err);
   // })
-}
+};
+
