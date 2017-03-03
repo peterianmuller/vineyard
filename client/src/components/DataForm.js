@@ -14,7 +14,7 @@ import TableRow from './TableRow';
 //Actions and Functions
 //import { setLatLong } from '../helpers/changeHandlers';
 import { postData, appendDataFormItem } from '../actions/dataForm';
-import { addRowToTable, postDataArray } from '../actions/dataArray';
+import { addRowToTable, postDataArray, clearDataFields } from '../actions/dataArray';
 
 export default class DataForm extends React.Component {
   componentDidMount() {
@@ -43,6 +43,11 @@ export default class DataForm extends React.Component {
     e.preventDefault();
     postDataArray(this.props.dataArray);
 
+  }
+
+  clearData(e){
+    e.preventDefault();
+    this.props.dispatch(clearDataFields());
   }
 
   addRow(e){
@@ -90,6 +95,7 @@ export default class DataForm extends React.Component {
 
     <Button onClick={this.handleSubmit.bind(this)}>Submit Data</Button>
     <Button onClick={this.addRow.bind(this)}>Add Row</Button>
+    <Button onClick={this.clearData.bind(this)}>Clear Data</Button>
 
       </div>
     );

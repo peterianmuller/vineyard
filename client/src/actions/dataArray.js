@@ -17,6 +17,12 @@ export function addRowToTable() {
   }
 }
 
+export function clearDataFields() {
+  return {
+    type: "CLEAR_DATA_FIELDS",
+  };
+}
+
 
 var obj = {
     //should be row id, from the front end cache
@@ -33,16 +39,17 @@ export function postDataArray(data) {
   // add to data array on client-side 
   var dataToSend = data.map((experiment) => {
     return {row:experiment.row, date: experiment.date, results: {brix: experiment.brix, ph: experiment.pH, ta: experiment.titratable}};
-
-   axios.post('/api/data' {
-     
-   }) 
-
-
   });
+  console.log('data sent to server', dataToSend);  
 
-  
-  console.log(dataToSend);  
+  axios.post('/api/data', dataToSend, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
+  .then((response) => {
+    console.log(response);
+  }) 
+  .catch((err) => {
+    console.log(err);
+  })
+
   //return clearDataFormFields();
 };
 

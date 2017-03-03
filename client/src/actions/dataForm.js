@@ -16,9 +16,6 @@ export function appendDataFormItem(item, value) {
   return toReturn;
 }
 
-
-
-
 // export function postNoteExample(note) {
 //   console.log('inside postNote on the front end', note, 'then something else');
   

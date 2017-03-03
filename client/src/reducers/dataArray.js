@@ -73,11 +73,13 @@ export function dataArrayReducer(state = dataArray, action) {
       var year = today.getFullYear();
       var month = today.getMonth();
       var day = today.getDate();
+      var date = Date.UTC(year, month, day);
+      date = Number(date.toString().split('').slice(0, -3).join(''));
       newState[action.key] = {
         ...newState[action.key], 
         NaOH: action.value,
         titratable: Number(Math.round((action.value * 0.10 * 7.5) +'e2')+'e-2'),
-        date: Date.UTC(year, month, day)
+        date: date
       }
       return newState;
     case "SET_DATA_INPUT_TITRATABLE": 
@@ -93,7 +95,9 @@ export function dataArrayReducer(state = dataArray, action) {
           ...newState[action.key], 
           date: action.value
         }
-        return newState;          
+        return newState;
+      case "CLEAR_DATA_FIELDS":
+      return dataArray;            
     default:
       return state;
   }
