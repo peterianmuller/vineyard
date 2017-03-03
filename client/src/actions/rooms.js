@@ -11,7 +11,7 @@ export function getRoomsRecentActivity() {
       socket.emit('initial room join', { room_id: rooms.data[0].room_id });
 
       dispatch(updateRooms(rooms.data));
-      dispatch(grabMessagesInRoom(rooms.data[0].room_id));
+      dispatch(grabMessagesInRoom(rooms.data[0].id));
     });
 }
 

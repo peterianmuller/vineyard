@@ -21,7 +21,7 @@ export default props => {
 
     socket.emit('new message', {
       text: props.messages.textInput,
-      room_id: 1,
+      room_id: props.currentRoom,
       message_author_id: props.user.id,
       author_name: props.user.username
     });

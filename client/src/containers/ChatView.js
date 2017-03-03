@@ -26,9 +26,13 @@ export default class ChatView extends React.Component {
         <div className='qtWidth'>
           <RoomSelector rooms={this.props.rooms} dispatch={this.props.dispatch} /> 
         </div>
-        <div className='paddingOneEm leftBorder halfWidth'>
+        <div className='paddingLeftRight leftBorder threeQtWidth'>
           <MessageWindow user={this.props.auth} dispatch={this.props.dispatch} messages={this.props.messages} />
-          <ChatInput user={this.props.auth} dispatch={this.props.dispatch} messages={this.props.messages} />
+          <ChatInput 
+            currentRoom={this.props.rooms.currentRoom}
+            user={this.props.auth} 
+            dispatch={this.props.dispatch}
+            messages={this.props.messages} />
         </div>
       </div>
     );

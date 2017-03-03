@@ -18,7 +18,7 @@ function getMostRecent() {
       })
       .groupBy('rooms.id', 'rooms.room_name')
     //.orderByRaw('case when "newest" is null then 0 else 1')
-      .orderBy('newest', 'desc nulls last');
+      .orderByRaw('newest desc nulls last');
   }).fetchAll({}).then(results => {
 
     console.log('here they are man!!!!!!!!!!!!!!!!!!!!', results.models);
