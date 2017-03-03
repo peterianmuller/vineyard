@@ -4,7 +4,7 @@ import ReactDom from 'react-dom';
 import { Map, TileLayer, Circle, FeatureGroup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
 
-import { addMapDataPoint } from '../actions/mapVis';
+import { addMapDataPoint, postMapData, clearDataPoints } from '../actions/mapVis';
 
 let polyline;
 const subs = [ 'a', 'b', 'c', 'd' ];
@@ -42,9 +42,15 @@ export default class MapView extends React.Component {
     console.log('what does this look like', newPoly);
     console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
 
+    //add polygon to 
     this.props.dispatch(addMapDataPoint({label: label, coords: newPoly}));
     
-    this.state.shapes.push([label, newPoly]);
+    //
+    postMapData(this.props.mapVis);
+
+    this.props.dispatch(clearDataPoints());
+
+    //this.state.shapes.push([label, newPoly]);
     // this.state.shapes = this.state.shapes.concat([label, newPoly])
     console.log('shapes in the state: ', this.state.shapes);
     console.log('this is the state: ', this.state);
@@ -79,7 +85,7 @@ export default class MapView extends React.Component {
   }
 
 	render() {
-    const position = [this.state.lat, this.state.lng];
+    const position = [38.384, -122.865];
     console.log(this.state, 'meow')
     return (
 			<div>

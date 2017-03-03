@@ -3,7 +3,7 @@ const defaultMapPoint = {
   coords: []
 };
 
-const mapVisArray = [{...defaultMapPoint}];
+const mapVisArray = [];
 
 export function mapVisReducer(state = mapVisArray, action) {
   switch(action.type) {
@@ -23,6 +23,8 @@ export function mapVisReducer(state = mapVisArray, action) {
     //     vineyard: action.value
     //   }
     //   return newState;  
+    case "CLEAR_MAP_POINTS":
+      return mapVisArray;   
     default:
       return state;
   }
