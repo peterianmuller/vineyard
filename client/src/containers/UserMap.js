@@ -25,12 +25,13 @@ export default class MapView extends React.Component {
   }
 
   _onCreate(e) {
+    var label = prompt();
     let type = e.layerType;
 
     // polyline = e.layer;
-    let newPoly = e.layer._latlngs;
+    let newPoly = e.layer._latlngs[0];
     console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
-    this.setState({shapes: newPoly});
+    this.state.shapes.push([label, newPoly]);
     console.log(this.state.shapes, 'shapes in the state', this.state, 'this is the state')
     //polyline._latlngs[0] is the array of coordinates for that shape, 
     //in the array, each index is a L.LatLng object that holds lat and lon
