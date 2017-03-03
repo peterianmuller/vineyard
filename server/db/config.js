@@ -95,7 +95,7 @@ db.knex.schema.hasTable('addresses')
 			data.integer('row_id').references('rows.id').notNullable();
 			data.integer('date').notNullable();
 			//precision and scale of result, may need to adjust
-			data.decimal('result', 3, 2).notNullable();
+			data.integer('result').notNullable();
 		})
 		.createTable('notes', (note) => {
 			note.increments('id').primary();
