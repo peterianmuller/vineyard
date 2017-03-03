@@ -2,7 +2,7 @@
 import React from 'react';
 
 //UI
-import { Button, Divider, Item } from 'semantic-ui-react';
+import { Button, Divider, Grid, Item } from 'semantic-ui-react';
 
 //Components
 import Note from '../components/Note';
@@ -25,21 +25,22 @@ export default class NotesView extends React.Component {
         <Button>Filter</Button>
         <Divider />
 
-        <Item.Group>
-          {
-            this.props.notesView.map((note, key) => (
-              <Note 
-                image={note.image_url}
-                title={note.title} 
-                text={note.text} 
-                lat={note.lat} 
-                lon={note.lon} 
-                key={key} 
-              />  
-            ))
-          }
-        </Item.Group>
-
+        <Grid padded>
+          <Item.Group>
+            {
+              this.props.notesView.map((note, key) => (
+                <Note 
+                  image={note.image_url}
+                  title={note.title} 
+                  text={note.text} 
+                  lat={note.lat} 
+                  lon={note.lon} 
+                  key={key} 
+                />  
+              ))
+            }
+          </Item.Group>
+        </Grid>
       </div>
     );
   }

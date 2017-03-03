@@ -3,12 +3,12 @@ import Users from './users';
 import Messages from './messages';
 
 const Rooms = db.Model.extend({
-  tableName: 'vineyards',
+  tableName: 'rooms',
   hasTimestamps: false,
-  users: () => {
-    return this.blongsToMany(Users);
+  users: function() {
+    return this.belongsToMany(Users);
   },
-  messages: () => {
+  messages: function() {
     return this.belongsToMany(Messages);
   }
 });

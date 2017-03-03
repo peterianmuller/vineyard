@@ -31,7 +31,8 @@ export function validateUser(callback) {
     })
     .then(res => {
       console.log('this is test', test, 'shdjfkshdkfdsh')
-      return dispatch(setUserCredentials(res.data.id));
+      console.log('idk man', res.data);
+      return dispatch(setUserCredentials({ id: res.data.id, username: res.data.username }));
     })
     .then(() => {
       callback();
@@ -41,10 +42,10 @@ export function validateUser(callback) {
     });
 }
 
-function setUserCredentials(id) {
+function setUserCredentials(user) {
   return {
     type: "SET_AUTHSTATUS_JWT_FULFILLED",
-    payload: id
+    payload: user
   };
 }
 

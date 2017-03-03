@@ -115,16 +115,23 @@ db.knex.schema.hasTable('addresses')
 			alert.date('alert_time', 255).notNullable();
 			alert.integer('alert_author_id').references('users.id').notNullable();
 		})
-		.createTable('messages', (message) => {
-			message.increments('id').primary();
-			message.string('text', 2000).notNullable();
-			message.integer('message_author_id').references('users.id').notNullable();
-			message.integer('room_id').references('users.id').notNullable();
-		})
 		.createTable('rooms', (room) => {
 			room.increments('id').primary();
 			room.string('room_name', 255).notNullable();
 		})
+		.createTable('messages', (message) => {
+			message.increments('id').primary();
+      message.string('author_name', 255).notNullable();
+			message.string('text', 2000).notNullable();
+			message.integer('message_author_id').references('users.id').notNullable();
+			message.integer('room_id').references('rooms.id').notNullable();
+      message.timestamp('created_at').notNullable().defaultTo(db.knex.raw('now()'));
+		})
+    .createTable('rooms_users', roomUser => {
+      roomUser.increments('id').primary();
+      roomUser.integer('room_id').references('rooms.id').notNullable();
+      roomUser.integer('user_id').references('users.id').notNullable();
+    })
 		.then(() => {
 		  console.log('Tables created successfully!'); 
 		})

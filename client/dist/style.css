@@ -62,6 +62,10 @@
   margin: 1em;
 }
 
+.paddingOneEm {
+  padding: 1em;
+} 
+
 .topOneEm {
   margin-top: 1em;
 }
@@ -69,6 +73,26 @@
 .max500width {
   max-width: 500px;
   margin: 0 auto;
+}
+
+.qtWidth {
+  width: 25%;
+}
+
+.halfWidth {
+  width: 50%;
+}
+
+.threeQtWidth {
+  width: 75%;
+}
+
+.max800width {
+  max-width: 800px;
+}
+
+.leftBorder {
+  border-left: 3px solid #d3d3d3;
 }
 
 .selectFileBtn {
@@ -91,4 +115,66 @@
 
 .textEllipses {
   text-overflow: ellipsis;
+}
+
+.textRight {
+  text-align: right;
+}
+
+.avatar img {
+  width: 100% !important;
+  height: auto !important;
+}
+
+.lineBlock {
+  display: inline-block !important;
+}
+
+.inline {
+  display: inline !important;
+}
+
+.flex-box {
+  display: flex !important;
+}
+
+.flex-row-rev {
+  flex-direction: row-reverse;
+}
+
+.flex-row {
+  flex-direction: row;
+}
+
+.order1 {
+  order: 1;
+}
+
+.floatRight {
+  float: right !important;
+}
+
+.ui.comments .comment>.avatar~.content {
+  margin-left: 0px;
+}
+
+.scrollable {
+  overflow-y: auto;
+  height: 86%;
+}
+
+.roomEntry {
+  width: 100%;
+  height: 5em;
+  padding: 1em;
+  text-align: center;
+  text-decoration: none;
+}
+
+.activeRoom, .roomEntry:hover {
+  background-color: #e6e6e6;
+}
+
+.paddingLeftRight {
+  padding: 0 1em 0 1em;
 }

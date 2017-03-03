@@ -14,10 +14,6 @@ import LeftSideBar from '../components/LeftSideBar';
 import { validateUser } from '../actions/navigation';
 
 class App extends React.Component {
-  //componentWillMount() {
-  //  this.props.dispatch(validateUser());
-  //}
-
   render() {
     return (
       <div>
@@ -32,9 +28,11 @@ class App extends React.Component {
                   auth: this.props.authStatus,
                   dispatch: this.props.dispatch,
 	  		  				login: this.props.login,
+                  messages: this.props.messages,
                   note: this.props.note,
                   notesView: this.props.notesView,
                   orgSignup: this.props.orgSignup,
+                  rooms: this.props.rooms,
 	  		  				signup: this.props.signup,
                   homePage: this.props.homePage,
                   mapHome: this.props.mapHome,

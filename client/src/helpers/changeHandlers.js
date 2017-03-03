@@ -33,7 +33,7 @@ export function authTransition(route, isTrue, nextState, replace, callback) {
     const currentState = store.getState();
     const currentUser = currentState.authStatus;
 
-    if (!!currentUser.username === isTrue) {
+    if (!!currentUser.id === isTrue) {
       replace(route);
     }
 

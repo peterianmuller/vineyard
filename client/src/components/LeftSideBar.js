@@ -28,7 +28,7 @@ export default props => {
     >
         <Menu.Item header>Vineyard</Menu.Item>
         {
-          props.auth.username ? 
+          props.auth.id ? 
             (
               <Menu.Menu>
                 <MenuLink name='home' />
@@ -42,15 +42,15 @@ export default props => {
         }
         <Menu.Menu position='right'>
           { 
-            props.auth.username ? 
+            props.auth.id ? 
               (<Menu.Item name='logout' onClick={handleLogout} />) : 
               (<MenuLink name='login' />)
           }
           {
-            props.auth.username ? '' : 
+            props.auth.id ? '' : 
               (<MenuLink name='signUp' />)
           }
-          { props.auth.username ? '': 
+          { props.auth.id ? '': 
           (<MenuLink name='orgSignup' />)}
         </Menu.Menu>
       </Sidebar>

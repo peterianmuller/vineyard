@@ -1,12 +1,17 @@
 import express from 'express';
-import routes from './config/routes';
+import http from 'http';
 import middleware from './config/middleware';
+import routes from './config/routes';
+import sockets from './config/sockets';
 
 var app = express();
+var server = http.createServer(app);
+
 middleware(app, express);
 routes(app, express);
+sockets(server);
 
-app.listen(3000, () => {
+server.listen(3000, () => {
   console.log('Server listening on port 3000');
 });
 

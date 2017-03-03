@@ -5,10 +5,10 @@ import Rooms from './rooms';
 const Messages = db.Model.extend({
 	tableName: 'messages',
 	hasTimestamps: false,
-	users: () => {
+	users: function() {
 		return this.belongsTo(Users);
 	},
-	room: () => {
+	room: function() {
 		return this.hasOne(Rooms);
 	}
 });
