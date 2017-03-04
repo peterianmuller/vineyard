@@ -1,10 +1,8 @@
-/*.leaflet-container {
-  height: 400px;
-  width: 100%;
-  margin: 0 auto;
+.leaflet-container {
+  height: 95% !important;
+  position: relative;
 }
 
-*/
 .boxed {
   min-width: 0px;
 }

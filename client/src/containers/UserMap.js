@@ -1,14 +1,34 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { Map, TileLayer, Circle, FeatureGroup } from 'react-leaflet';
+import { Map, TileLayer, Polygon, Marker, FeatureGroup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
+import L from 'leaflet';
 
 import { addMapDataPoint, postMapData, clearDataPoints, testOrgs } from '../actions/mapVis';
 
 let polyline;
 const subs = [ 'a', 'b', 'c', 'd' ];
-let counter = 0;
+const myShapes = [[
+  {lat: 38.384338, lng: -122.865},
+  {lat: 38.383137, lng: -122.8639},
+  {lat: 38.383331, lng: -122.8638},
+  {lat: 38.383438, lng: -122.8639},
+  {lat: 38.383461, lng: -122.8636},
+  {lat: 38.382484, lng: -122.8628},
+  {lat: 38.382557, lng: -122.8626},
+  {lat: 38.383877, lng: -122.8615},
+  {lat: 38.384178, lng: -122.8621},
+  {lat: 38.385948, lng: -122.8637}
+  ],
+  [
+  {lat: 38.383549, lng: -122.871},
+  {lat: 38.3876, lng: -122.8683},
+  {lat: 38.383564, lng: -122.8672}
+  ]];
+
+
+
 
 export default class MapView extends React.Component {
 	constructor(props) {
@@ -74,6 +94,7 @@ export default class MapView extends React.Component {
   }
 
   _onEditStart() {
+
     console.log('Edit is starting !');
   }
 
@@ -92,6 +113,16 @@ export default class MapView extends React.Component {
 	render() {
     const position = [38.384, -122.865];
     console.log(this.state, 'meow')
+    const grape_leaf = L.icon({
+      iconUrl: '/grape_leaf.png',
+      // shadowUrl: 'leaf-shadow.png',
+      iconSize:     [40, 40], // size of the icon
+      // shadowSize:   [50, 64], // size of the shadow
+      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
+      // shadowAnchor: [4, 62],  // the same for the shadow
+      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
+    });
+
     return (
 			<div>
         <Map
@@ -116,8 +147,10 @@ export default class MapView extends React.Component {
                 rectangle: false
               }}
             />
-            <Circle center={[51.51, -0.06]} radius={200} />
-  {/*          <Polygon positions={}/>*/}
+          {/*positions is an array of lat/lng objects*/}
+          {myShapes.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />))}
+          {myShapes.map((shape) => (<Marker icon={grape_leaf} position={shape[0]}/>))}
+
         </FeatureGroup>
         <FeatureGroup>
         </FeatureGroup>
