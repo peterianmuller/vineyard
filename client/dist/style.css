@@ -171,10 +171,15 @@
   text-decoration: none;
 }
 
-.activeRoom, .roomEntry:hover {
+.selectedUser, .userEntry:hover, .activeRoom, .roomEntry:hover {
   background-color: #e6e6e6;
 }
 
 .paddingLeftRight {
   padding: 0 1em 0 1em;
+}
+
+.isInRoom {
+  opacity: 0.6;
+  background-color: #FFFBFF
 }

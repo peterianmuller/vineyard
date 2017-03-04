@@ -10,7 +10,7 @@ import MessageWindow from '../components/MessageWindow';
 import RoomSelector from '../components/RoomSelector';
 
 //Actions and utilities
-import { getRoomsRecentActivity } from '../actions/rooms';
+import { getRoomsRecentActivity, getUsersInRoom } from '../actions/rooms';
 import socket from '../sockets';
 
 export default class ChatView extends React.Component {
@@ -29,7 +29,7 @@ export default class ChatView extends React.Component {
     return (
       <div className='flex-box flex-row'>
         <div className='qtWidth'>
-          <RoomSelector rooms={this.props.rooms} dispatch={this.props.dispatch} /> 
+          <RoomSelector rooms={this.props.rooms} dispatch={this.props.dispatch} auth={this.props.auth} /> 
         </div>
         <div className='paddingLeftRight leftBorder threeQtWidth'>
           <MessageWindow user={this.props.auth} dispatch={this.props.dispatch} messages={this.props.messages} />

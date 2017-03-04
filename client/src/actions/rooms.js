@@ -1,8 +1,41 @@
 import axios from 'axios';
+import client from '../elasticSearch';
 import socket from '../sockets';
 import { grabMessagesInRoom } from './messages';
 
-export function getRoomsRecentActivity(userId) {
+export function addRoom(roomName, userId) {
+  return dispatch => axios.post('/api/rooms/', 
+    {
+      users: userId,
+      room_name: roomName
+    },
+    {
+      headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
+    }).then(room => {
+      console.log('we made it into add room', room);
+      return dispatch(getRoomsRecentActivity(userId, room.data.id)) 
+    })
+}
+
+export function getUsersInRoom(roomId) {
+  console.log("THIS IS THE ROOM ID", roomId);
+  return dispatch => axios.get('/api/rooms/id/' + roomId + '/getUsers',
+    {
+      headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
+    }).then(users => {
+      console.log('this is users resp data', users.data);
+      dispatch(setUsersInRoom(users.data));
+    });
+}
+
+export function setUsersInRoom(users) {
+  return {
+    type: "SET_USERS_IN_ROOM",
+    value: users
+  };
+}
+
+export function getRoomsRecentActivity(userId, roomId) {
   return dispatch => axios.post('/api/rooms/mostRecent', 
     {
       userId
@@ -12,9 +45,13 @@ export function getRoomsRecentActivity(userId) {
     }).then(rooms => {
       socket.emit('enter rooms', rooms.data);
 
-      dispatch(setRoom(rooms.data[0].id));
+      var roomToRetrieve = roomId ? roomId : rooms.data[0].id;
+      console.log('this is to retrieve room', roomToRetrieve, roomId)
+
+      dispatch(setRoom(roomToRetrieve));
       dispatch(updateRooms(rooms.data));
-      dispatch(grabMessagesInRoom(rooms.data[0].id));
+      dispatch(grabMessagesInRoom(roomToRetrieve));
+      dispatch(getUsersInRoom(roomToRetrieve));
     });
 }
 
@@ -50,4 +87,58 @@ export function addUserToRoom(userId, roomId) {
     }).then(resp => {
       console.log('not sure what to expect', resp);
     });
+}
+
+export function searchUsersForAddRoom(text) {
+  return dispatch => client.search({
+		index: "users",
+		type: "user", 
+		body: {
+	    "query": { 
+	      "multi_match": { 
+	        "fields": ["username", "firstname"], 
+	        "query": text, 
+	        "type": "phrase_prefix" 
+	      } 
+	    }
+	  }
+	}).then(results => {
+    console.log('this is what you searched for', results);
+    dispatch(updateUserList(results.hits.hits));
+  }).catch(err => {
+    console.log('this is the error', err); 
+  });
+}
+
+export function updateUserList(list) {
+	return {
+		type: "UPDATE_USER_LIST",	
+    value: list
+	};
+}
+
+export function addPeopleToAdd(user) {
+  return {
+    type: "UPDATE_PEOPLE_TO_ADD",
+    value: user
+  };
+} 
+
+export function deletePeopleToAdd(user) {
+  return {
+    type: "DELETE_PERSON_TO_ADD",
+    value: user
+  }
+}
+
+export function toggleModal(isUser) {
+  return {
+    type: "MODAL_TOGGLE_" + (isUser ? "USER" : "ROOM")
+  }
+}
+
+export function closeModal(isUser) {
+  return {
+    type: "MODAL_CLOSE_" + (isUser ? "USER" : "ROOM")
+  }
 }

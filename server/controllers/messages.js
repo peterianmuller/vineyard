@@ -16,7 +16,6 @@ export function postMessage(req, res, next) {
 export function getAllMessagesByRoom(req, res, next) {
   return messageController.getMessagesByRoom(req.params.id)
     .then(messages => {
-      console.log(messages);
       res.json(messages);
     });
 }

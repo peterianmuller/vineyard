@@ -2,48 +2,30 @@
 import React from 'react';
 
 //Ui
-import { Icon } from 'semantic-ui-react';
+//import { } from 'semantic-ui-react';
 
 //Components
+import AddRoomModal from './AddRoomModal';
+import AddUserModal from './AddUserModal';
 import RoomEntry from './RoomEntry';
+import UsersInRoomList from './UsersInRoomList';
 
-//Actions
-import { addUserToRoom } from '../actions/rooms';
-
-export default props => {
-  const handleClick = function(e) {
-     
-  };
-
-  const addUserClick = function(e) {
-    props.dispatch(addUserToRoom(3, props.rooms.currentRoom));
-  };
-   
-  return (
-    <div>
-      <div className='flex-box' style={ { justifyContent: 'space-between' } }>
-        <Icon
-          link
-          name='add user'
-          size='huge'
-          onClick={addUserClick}
-        />
-        <Icon
-          link
-          name='edit'
-          size='huge'
-          onClick={handleClick}
-        />
-      </div>
-      {
-      	props.rooms.rooms.map((item, key) => (
-          <RoomEntry 
-            dispatch={props.dispatch}
-            currentRoom={props.rooms.currentRoom}
-            room={item}
-            key={key}/>
-      	))
-      }
+export default props => (
+  <div>
+    <div className='flex-box' style={ { justifyContent: 'space-between' } }>
+      <AddUserModal rooms={props.rooms} dispatch={props.dispatch} />
+      <UsersInRoomList rooms={props.rooms} />
+      <AddRoomModal rooms={props.rooms} dispatch={props.dispatch} auth={props.auth} /> 
     </div>
-  );
-}
+    {
+    	props.rooms.rooms.map((item, key) => (
+        <RoomEntry 
+          dispatch={props.dispatch}
+          currentRoom={props.rooms.currentRoom}
+          room={item}
+          key={key}/>
+    	))
+    }
+  </div>
+);
+
