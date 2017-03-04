@@ -45,11 +45,13 @@ export default class MapView extends React.Component {
     //add polygon to 
     this.props.dispatch(addMapDataPoint({label: label, coords: newPoly}));
     
-    //
+    
     postMapData(this.props.mapVis);
 
     this.props.dispatch(clearDataPoints());
 
+    //to test /api/organizations route comment out all above and use testOrgs('k') below
+    
     //testOrgs('k');
 
     //this.state.shapes.push([label, newPoly]);
