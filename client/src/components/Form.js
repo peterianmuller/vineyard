@@ -17,7 +17,8 @@ import { getWeather, postNote, setSelectedImage, uploadImgToImgur, setNoteFormIt
 export default class FormPage extends React.Component {
   componentDidMount() {
     //set he userid for the note
-    this.props.dispatch(setNoteFormItem('username', this.props.auth.username))
+    console.log('this.props.auth is:', this.props.auth);
+    this.props.dispatch(setNoteFormItem('username', this.props.auth.id))
     var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
     console.log(formattedDate, "formatted date")
 

@@ -4,6 +4,8 @@ import ReactDom from 'react-dom';
 import { Map, TileLayer, Circle, FeatureGroup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
 
+import { addMapDataPoint, postMapData, clearDataPoints, testOrgs } from '../actions/mapVis';
+
 let polyline;
 const subs = [ 'a', 'b', 'c', 'd' ];
 let counter = 0;
@@ -24,15 +26,38 @@ export default class MapView extends React.Component {
     console.log('Path edited !');
   }
 
+
+
   _onCreate(e) {
     var label = prompt();
     let type = e.layerType;
 
     // polyline = e.layer;
+
     let newPoly = e.layer._latlngs[0];
-    console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
-    this.state.shapes.push([label, newPoly]);
-    console.log(this.state.shapes, 'shapes in the state', this.state, 'this is the state')
+    //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
+    console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
+
+    console.log(addMapDataPoint);
+    console.log('what does this look like', newPoly);
+    console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
+
+    //add polygon to 
+    this.props.dispatch(addMapDataPoint({label: label, coords: newPoly}));
+    
+    
+    postMapData(this.props.mapVis);
+
+    this.props.dispatch(clearDataPoints());
+
+    //to test /api/organizations route comment out all above and use testOrgs('k') below
+    
+    //testOrgs('k');
+
+    //this.state.shapes.push([label, newPoly]);
+    // this.state.shapes = this.state.shapes.concat([label, newPoly])
+    console.log('shapes in the state: ', this.state.shapes);
+    console.log('this is the state: ', this.state);
     //polyline._latlngs[0] is the array of coordinates for that shape, 
     //in the array, each index is a L.LatLng object that holds lat and lon
     // To edit this polyline call : polyline.handler.enable()
@@ -64,7 +89,7 @@ export default class MapView extends React.Component {
   }
 
 	render() {
-    const position = [this.state.lat, this.state.lng];
+    const position = [38.384, -122.865];
     console.log(this.state, 'meow')
     return (
 			<div>

@@ -35,6 +35,7 @@ export const getAllOrgs = (params) => {
 //hypothetically, this should send a json tree of all the vineyard data for this org
 export const getAllOrgVineyardData = (params) => {
   //should return all vineyards and their blocks
+  console.log('inside getAllOrgVineyardData', params);
   return new Organizations({name: params.name})
     .fetchAll({
       withRelations: ['vineyards.blocks.rows.clones']
