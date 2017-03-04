@@ -62,8 +62,8 @@ export function postMapData(data) {
   // add to data array on client-side 
 
   console.log('data looks like', data);
-  clearDataPoints();
 
+  //below is the axios post request that can be used when the route is ready to go!
   // axios.post('/api/mapData', data, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
   // .then((response) => {
   //   console.log(response);
@@ -71,5 +71,10 @@ export function postMapData(data) {
   // .catch((err) => {
   //   console.log(err);
   // })
+
+  //clear state after posting
+  
+  clearDataPoints();
+
 };
 

@@ -30,27 +30,27 @@ export default class MapView extends React.Component {
 
   _onCreate(e) {
     var label = prompt();
-    // let type = e.layerType;
+    let type = e.layerType;
 
-    // // polyline = e.layer;
+    // polyline = e.layer;
 
-    // let newPoly = e.layer._latlngs[0];
-    // //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
-    // console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
+    let newPoly = e.layer._latlngs[0];
+    //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
+    console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
 
-    // console.log(addMapDataPoint);
-    // console.log('what does this look like', newPoly);
-    // console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
+    console.log(addMapDataPoint);
+    console.log('what does this look like', newPoly);
+    console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
 
-    // //add polygon to 
-    // this.props.dispatch(addMapDataPoint({label: label, coords: newPoly}));
+    //add polygon to 
+    this.props.dispatch(addMapDataPoint({label: label, coords: newPoly}));
     
-    // //
-    // postMapData(this.props.mapVis);
+    //
+    postMapData(this.props.mapVis);
 
-    // this.props.dispatch(clearDataPoints());
+    this.props.dispatch(clearDataPoints());
 
-    testOrgs('k');
+    //testOrgs('k');
 
     //this.state.shapes.push([label, newPoly]);
     // this.state.shapes = this.state.shapes.concat([label, newPoly])
