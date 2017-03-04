@@ -4,6 +4,7 @@ import * as noteActions from '../../../client/src/actions/noteForm';
 import * as dataActions from '../../../client/src/actions/dataArray';
 import * as dataFormItemActions from '../../../client/src/actions/dataForm';
 import * as userMapActions from '../../../client/src/actions/mapVis';
+import * as noteFormActions from '../../../client/src/actions/noteForm';
 
 
 var expect = chai.expect;
@@ -159,19 +160,30 @@ describe('actions', () => {
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
   });
 
   it('should have an action to add a plot to the map', () => {
-      
+    const expectedActionAddPlot = {
+        type: 'ADD_MAP_POINT',
+        value: {label:'label', coords:[{lat:124.222, lng:-45}, {lat:130, lng:-33.1}]}
+      }
+
+    expect(userMapActions.addMapDataPoint({label:'label', coords:[{lat:124.222, lng:-45}, {lat:130, lng:-33.1}]})).to.deep.equal(expectedActionAddPlot);      
+  
   });
 
+  it('should have an action to clear plot points form the mapVis', () => {
+    const expectedActionClear = {
+      type: 'CLEAR_MAP_POINTS'
+    }
+    expect(userMapActions.clearDataPoints()).to.deep.equal(expectedActionClear);
+  });
 
+  xit('should have an action to post map points to db')
 
-
-
-
-
-
+  it('should have an action to get weather data', () => {
+    noteFormActions.getWeather({lat:122.33, lon: -38}, false);
+  });
   
 });
