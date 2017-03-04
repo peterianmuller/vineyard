@@ -68,7 +68,41 @@ export function searchUsersForAddRoom(text) {
 	  }
 	}).then(results => {
     console.log('this is what you searched for', results);
+    dispatch(updateUserList(results.hits.hits));
   }).catch(err => {
     console.log('this is the error', err); 
   });
+}
+
+export function updateUserList(list) {
+	return {
+		type: "UPDATE_USER_LIST",	
+    value: list
+	};
+}
+
+export function addPeopleToAdd(user) {
+  return {
+    type: "UPDATE_PEOPLE_TO_ADD",
+    value: user
+  };
+} 
+
+export function deletePeopleToAdd(user) {
+  return {
+    type: "DELETE_PERSON_TO_ADD",
+    value: user
+  }
+}
+
+export function toggleModal() {
+  return {
+    type: "ROOM_MODAL_TOGGLE"
+  }
+}
+
+export function userAddRoomFinish() {
+  return {
+    type: "USER_ADD_ROOM_FINISH"
+  }
 }
