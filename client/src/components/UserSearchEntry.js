@@ -14,9 +14,8 @@ export default class UserSearchEntry extends React.Component {
     var user = this.props.user;
     var hasBeenAdded = this.props.toAdd[user.id]; 
 
-    if (hasBeenAdded) 
-      this.props.dispatch(deletePeopleToAdd(user));
-    else
+    hasBeenAdded ? 
+      this.props.dispatch(deletePeopleToAdd(user)) :
       this.props.dispatch(addPeopleToAdd(user));
   }
 

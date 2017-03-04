@@ -1,6 +1,7 @@
 const defaults = {
   currentRoom: 1,
-  modalOpen: false,
+  addUserModalOpen: false,
+  addRoomModalOpen: false,
   peopleToAdd: {},
   userList: [],
   rooms: []
@@ -8,15 +9,30 @@ const defaults = {
 
 export default (state=defaults, action) => {
   switch(action.type) {
-    case "ROOM_MODAL_TOGGLE":
+    case "MODAL_TOGGLE_USER":
       return {
         ...state,
-        modalOpen: !state.modalOpen
+        addUserModalOpen: !state.addUserModalOpen
+      };
+    case "MODAL_TOGGLE_ROOM":
+      return {
+        ...state,
+        addRoomModalOpen: !state.addRoomModalOpen
+      };
+    case "MODAL_CLOSE_ROOM":
+      return {
+        ...state,
+        addRoomModalOpen: false
+      };
+    case "MODAL_CLOSE_USER":
+      return {
+        ...state,
+        addUserModalOpen: false
       };
     case "USER_ADD_ROOM_FINISH":
       return {
         ...state,
-        modalOpen: false,
+        addUserModalOpen: false,
         peopleToAdd: {},
         userList: []
       };

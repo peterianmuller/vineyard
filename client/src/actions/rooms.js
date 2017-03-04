@@ -95,9 +95,15 @@ export function deletePeopleToAdd(user) {
   }
 }
 
-export function toggleModal() {
+export function toggleModal(isUser) {
   return {
-    type: "ROOM_MODAL_TOGGLE"
+    type: "MODAL_TOGGLE_" + (isUser ? "USER" : "ROOM")
+  }
+}
+
+export function closeModal(isUser) {
+  return {
+    type: "MODAL_CLOSE_" + (isUser ? "USER" : "ROOM")
   }
 }
 
