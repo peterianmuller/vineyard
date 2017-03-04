@@ -178,3 +178,8 @@
 .paddingLeftRight {
   padding: 0 1em 0 1em;
 }
+
+.isInRoom {
+  opacity: 0.6;
+  background-color: #FFFBFF
+}

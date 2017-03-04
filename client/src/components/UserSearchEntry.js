@@ -8,6 +8,12 @@ import { List } from 'semantic-ui-react';
 import { addPeopleToAdd, deletePeopleToAdd } from '../actions/rooms';
 
 export default class UserSearchEntry extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.isInRoom = props.inRoom.reduce((acc, val) => acc || props.user.id === val.id, false);
+  }
+
   handleClick(e) {
     e.preventDefault();
 
@@ -22,8 +28,10 @@ export default class UserSearchEntry extends React.Component {
   render() {
     return (
       <List.Item className={(this.props.toAdd[this.props.user.id] ? 
-          'selectedUser ' : '') + 'userEntry'}>
-        <List.Content as='a' onClick={this.handleClick.bind(this)}>
+        'selectedUser ' : '') + 
+        (this.isInRoom ? 'isInRoom' : 'userEntry')}>
+        <List.Content as={this.isInRoom ? 'div' : 'a'}  
+            onClick={this.isInRoom ? false : this.handleClick.bind(this)}>
           <List.Header as='h2'>
             {this.props.user.username}
           </List.Header>

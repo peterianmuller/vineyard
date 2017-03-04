@@ -70,6 +70,7 @@ export default class AddUserModal extends React.Component {
                   dispatch={this.props.dispatch}
                   toAdd={this.props.rooms.peopleToAdd}
                   user={person} 
+                  inRoom={this.props.rooms.peopleInRoom} 
                   key={person.id} 
                 />
               ), this)

@@ -2,7 +2,7 @@
 import React from 'react';
 
 //Ui
-import { Icon } from 'semantic-ui-react';
+//import { } from 'semantic-ui-react';
 
 //Components
 import AddRoomModal from './AddRoomModal';
