@@ -44,7 +44,7 @@ db.knex.schema.hasTable('addresses')
 		})
 		.createTable('polygons', (poly) => {
 			poly.increments('id').primary();
-			poly.string('name', 30).notNullable();
+			poly.string('name', 30).unique().notNullable();
 		})
 		.createTable('blocks', (block) => {
 			block.increments('id').primary();
@@ -115,8 +115,8 @@ db.knex.schema.hasTable('addresses')
 		})
 		.createTable('coordinates', (coord) => {
 			coord.increments('id').primary();
-			coord.decimal('lat', 20, 20).notNullable();
-			coord.decimal('lon', 20, 20).notNullable();
+			coord.float('lat', 20, 25).notNullable();
+			coord.float('lon', 20, 25).notNullable();
 			coord.integer('polygon_id').references('polygons.id');
 			coord.integer('note_id').references('notes.id');
 		})

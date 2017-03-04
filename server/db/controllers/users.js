@@ -20,7 +20,6 @@ export const getUserByUsername = (params) => {
   //may need to modify back to params.username
   return new Users({ 
     username: params
-
   })
   .fetch()
   .then( function(user) {

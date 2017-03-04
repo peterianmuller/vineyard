@@ -42,9 +42,9 @@ export function postMapData(data) {
   console.log('data looks like', data);
 
   //below is the axios post request that can be used when the route is ready to go!
-  axios.post('/api/mapData', data, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
+  axios.post('/api/polygons', data, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
   .then((response) => {
-    console.log(response);
+    console.log('MEOOOOOOOWOWOWOWOWOWWOWOWOWOWOW', response);
     clearDataPoints();
   }) 
   .catch((err) => {

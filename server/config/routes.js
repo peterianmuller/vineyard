@@ -17,7 +17,7 @@ import messageRouter from './routes/messages';
 import dataRoutes from './routes/data';
 
 import coordRoutes from './routes/coordinates';
-import polyRoutes from './routes/coordinates';
+import polyRoutes from './routes/polygons';
 
 import { passport } from './auth/local';
 

@@ -1,6 +1,6 @@
-import { Polygons } from '../models/polygons';
+import Polygons from '../models/polygons';
 
-export newPolygon = (params) => {
+export const newPolygon = (params) => {
 	return new Polygons({
 		name: params.name
 	})
@@ -8,14 +8,11 @@ export newPolygon = (params) => {
 }
 
 
-export const getPolygonByName = (params) => {
-  return new Polygon({
-    name: params
-  })
-  .fetch()
-  .then( function(polygon) {
-    console.log('polygon found from fetch: ', polygon);
-    return polygon;
-  })
+export const getPolygonByName = (name) => {
+  return new Polygons({ name: name }).fetch();
+  // .then(function (polygon) {
+  //   console.log('polygon found from fetch: ', polygon);
+  //   return polygon;
+  // })
 
 };

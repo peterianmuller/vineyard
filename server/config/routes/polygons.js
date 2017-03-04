@@ -1,3 +1,5 @@
+import express from 'express';
+
 import { insertNewPolygon } from '../../controllers/polygons';
 
 const router = express.Router();
