@@ -30,7 +30,15 @@ export function addUserToRoom(req, res, next) {
   return roomsController
     .addUserToRoom(req.body.userId, req.body.roomId)
     .then(room => {
-      console.log('Hey the room was added', room);
       res.end();
+    });
+}
+
+
+export function getUsersInRoom(req, res, next) {
+  console.log("This is inserted param", req.params.id);
+  return roomsController.getUsersInRoom(req.params.id)
+    .then(rooms => {
+      res.json(rooms); 
     });
 }

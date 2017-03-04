@@ -17,6 +17,16 @@ export function addRoom(roomName, userId) {
     })
 }
 
+export function getUsersInRoom(roomId) {
+  console.log("THIS IS THE ROOM ID", roomId);
+  return dispatch => axios.get('/api/rooms/id/' + roomId + '/getUsers',
+    {
+      headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
+    }).then(users => {
+      console.log('GETUSERSINROOM', users);
+    });
+}
+
 export function getRoomsRecentActivity(userId, roomId) {
   return dispatch => axios.post('/api/rooms/mostRecent', 
     {

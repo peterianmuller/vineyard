@@ -23,11 +23,7 @@ function getMostRecent(userId) {
       })
       .groupBy('rooms.id', 'rooms.room_name')
       .orderByRaw('newest desc nulls last');
-  }).fetchAll({}).then(results => {
-
-    console.log('here they are man!!!!!!!!!!!!!!!!!!!!', results.models);
-    return results;
-  })
+  }).fetchAll({})
 }
 
 function getRoomById(id) {
@@ -39,4 +35,13 @@ function addUserToRoom(userId, roomId) {
     .users().attach(userId);
 }
 
-export default { addUserToRoom, createRoom, getMostRecent, getRoomById };
+function getUsersInRoom(roomId) {
+  return new Rooms({ id: roomId })
+    .users().fetch()
+    .then(rooms => {
+      console.log("THIS IS THE ROOMS MAMANANA", rooms);
+      return rooms;
+    });
+}
+
+export default { addUserToRoom, createRoom, getMostRecent, getRoomById, getUsersInRoom };

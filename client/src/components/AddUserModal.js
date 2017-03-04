@@ -8,7 +8,7 @@ import { Icon, Input, List, Modal } from 'semantic-ui-react';
 import UserSearchEntry from './UserSearchEntry';
 
 //Actions
-import { addUserToRoom, closeModal, searchUsersForAddRoom, toggleModal, userAddRoomFinish } from '../actions/rooms';
+import { addUserToRoom, closeModal, getUsersInRoom, searchUsersForAddRoom, toggleModal, userAddRoomFinish } from '../actions/rooms';
 
 export default class AddUserModal extends React.Component {
   constructor(props) {
@@ -18,6 +18,7 @@ export default class AddUserModal extends React.Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    this.props.dispatch(getUsersInRoom(this.props.rooms.currentRoom));
     this.toIterate = Object.values(nextProps.rooms.peopleToAdd)
       .concat(nextProps.rooms.userList.map(item => item._source));
   }
