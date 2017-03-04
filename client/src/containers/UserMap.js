@@ -113,7 +113,7 @@ export default class MapView extends React.Component {
               }}
             />
             <Circle center={[51.51, -0.06]} radius={200} />
-            <Polygon positions={}/>
+  {/*          <Polygon positions={}/>*/}
         </FeatureGroup>
         <FeatureGroup>
         </FeatureGroup>

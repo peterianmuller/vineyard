@@ -54,17 +54,18 @@ export function dataArrayReducer(state = dataArray, action) {
       }
       return newState;     
     case "SET_DATA_INPUT_PH": 
+      // console.log(typeof parseFloat(action.value));
       var newState = state.slice();
       newState[action.key] = {
         ...newState[action.key], 
-        pH: Number(action.value)
+        pH: action.value
       }
       return newState;  
     case "SET_DATA_INPUT_BRIX": 
       var newState = state.slice();
       newState[action.key] = {
         ...newState[action.key], 
-        brix: Number(action.value)
+        brix: action.value
       }
       return newState;  
     case "SET_DATA_INPUT_NAOH": 
