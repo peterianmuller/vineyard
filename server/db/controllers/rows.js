@@ -10,7 +10,8 @@ const newRow = (params) => {
     rootStock: params.rootStock,
     status: params.status,
     block: params.block
-  });
+  })
+  .save();
 };
 // TODO: FIGURE OUT HOW TO SEARCH BY ANY PARAMETER BY WHICH WE'RE LOOKING FOR A ROW, EITHER BY LOCATION, NUMBER, ROOTSTOCK
 // const getRow = (req, res, next) => {

@@ -1,6 +1,7 @@
 import db from '../config';
 import Vineyards from './vineyards';
 import Rows from './rows';
+import Polygons from './polygons';
 
 const Blocks = db.Model.extend({
 	tableName: 'blocks',
@@ -10,6 +11,9 @@ const Blocks = db.Model.extend({
 	},
 	rows: function () {
 		return this.hasMany(Rows);
+	},
+	polygons: function () {
+		return this.hasOne(Polygons);
 	}
 });
 

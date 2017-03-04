@@ -14,7 +14,6 @@ export const newAddress = (params) => {
   }).save();
 };
 
-/*==================need to refactor to BS/KNX=======================*/
 export const getAddressByStreet = (params) => {
   return new Addresses({
     street: params

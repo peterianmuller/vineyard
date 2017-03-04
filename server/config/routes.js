@@ -16,10 +16,8 @@ import roomRouter from './routes/rooms';
 import messageRouter from './routes/messages';
 import dataRoutes from './routes/data';
 
-
-
-// import allOrgsRoutes from './routes/organizationNames';
-// import messagesController from './routes/messages';
+import coordRoutes from './routes/coordinates';
+import polyRoutes from './routes/polygons';
 
 import { passport } from './auth/local';
 
@@ -27,9 +25,6 @@ export default function routes(app, express) {
   app.use(express.static(path.join(__dirname, '../../client/dist')));
 
   app.use('/api', passport.authenticate('jwt', { session: false }));
-  // app.use('/api/organization/vineyard', vineyardsRouter);
-  // app.use('/api/organization/vineyard/block', blocksRouter);
-  // app.use('/api/organization/vineyard/block/row', rowsRouter);
   app.use('/api/address', addressesRouter);
   app.use('/api/signup', usersRouter);
   app.use('/api/user', usersRouter);
@@ -38,9 +33,9 @@ export default function routes(app, express) {
   app.use('/api/weather', weatherRoutes);
   app.use('/api/rooms', roomRouter);
   app.use('/api/messages', messageRouter);
-  app.use('/api/organization', organizationsRouter);
-  //this is a temporary route!
-  // app.use('/allorgs', allOrgsRoutes);
+  app.use('/api/organization', organizationsRouter)
+  app.use('/api/coordinates', coordRoutes);
+  app.use('/api/polygons', polyRoutes);
   app.use('/api/data', dataRoutes);
 
   app.use('/auth', authRouter);

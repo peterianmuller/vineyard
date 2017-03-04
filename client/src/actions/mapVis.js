@@ -19,28 +19,6 @@ export function clearDataPoints(value) {
   }  
 }
 
-// export function postNote(note) {
-//   console.log('inside postNote on the front end', note, 'then something else');
-  
-//   return dispatch => axios.post('/api/note', {
-//     title: note.title,
-//     text: note.textArea,
-//     date_time: note.date,
-//     latitude: note.lat,
-//     longitude: note.lon,
-//     image_url: note.uploadedImgUrl,
-//     note_author_id: note.username
-//   }, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
-//   .then(() => {
-//     dispatch(clearNoteFields());
-//     browserHistory.push('/home');
-
-//     })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-// }
-
 export function testOrgs(name) {
   axios.get('/api/organization/information', {
     headers: {
@@ -64,17 +42,17 @@ export function postMapData(data) {
   console.log('data looks like', data);
 
   //below is the axios post request that can be used when the route is ready to go!
-  // axios.post('/api/mapData', data, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
-  // .then((response) => {
-  //   console.log(response);
-  // }) 
-  // .catch((err) => {
-  //   console.log(err);
-  // })
+  axios.post('/api/polygons', data, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
+  .then((response) => {
+    console.log('MEOOOOOOOWOWOWOWOWOWWOWOWOWOWOW', response);
+    clearDataPoints();
+  }) 
+  .catch((err) => {
+    console.log(err);
+  })
 
   //clear state after posting
   
-  clearDataPoints();
 
 };
 

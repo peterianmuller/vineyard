@@ -42,11 +42,17 @@ db.knex.schema.hasTable('addresses')
 			vineyard.integer('organization_id').references('organizations.id').notNullable();
 			vineyard.integer('address_id').references('addresses.id').notNullable();
 		})
+		.createTable('polygons', (poly) => {
+			poly.increments('id').primary();
+			poly.string('name', 30).unique().notNullable();
+		})
 		.createTable('blocks', (block) => {
 			block.increments('id').primary();
 			block.string('name', 255).notNullable();
 			block.integer('vineyard_id').references('vineyards.id');
+			block.integer('polygon_id').references('polygons.id');
 		})
+		//need to add gis geocolumn to this table!!!!
 		.createTable('varietals', (varietal) => {
 			varietal.increments('id').primary();
 			varietal.string('name', 255).notNullable();
@@ -95,7 +101,7 @@ db.knex.schema.hasTable('addresses')
 			data.integer('row_id').references('rows.id').notNullable();
 			data.integer('date').notNullable();
 			//precision and scale of result, may need to adjust
-			data.integer('result').notNullable();
+			data.float('result', 20, 20).notNullable();
 		})
 		.createTable('notes', (note) => {
 			note.increments('id').primary();
@@ -106,6 +112,13 @@ db.knex.schema.hasTable('addresses')
 			note.string('longitude', 255).notNullable();
 			note.string('image_url');
 			note.integer('note_author_id').references('users.id');
+		})
+		.createTable('coordinates', (coord) => {
+			coord.increments('id').primary();
+			coord.float('lat', 20, 25).notNullable();
+			coord.float('lon', 20, 25).notNullable();
+			coord.integer('polygon_id').references('polygons.id');
+			coord.integer('note_id').references('notes.id');
 		})
 		.createTable('alerts', (alert) => {
 			alert.increments('id').primary();
@@ -132,6 +145,11 @@ db.knex.schema.hasTable('addresses')
       roomUser.integer('room_id').references('rooms.id').notNullable();
       roomUser.integer('user_id').references('users.id').notNullable();
     })
+    // .createTable('coordinates_polygons', (coordsPolys) => {
+    // 	coordsPolys.increments('id').primary();
+    // 	coordsPolys.integer('coord_id').references('coordinates.id').notNullable();
+    // 	coordsPolys.integer('poly_id').references('polygons.id').notNullable();
+    // })
 		.then(() => {
 		  console.log('Tables created successfully!'); 
 		})

@@ -31,9 +31,6 @@ export default class MapView extends React.Component {
   _onCreate(e) {
     var label = prompt();
     let type = e.layerType;
-
-    // polyline = e.layer;
-
     let newPoly = e.layer._latlngs[0];
     //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
     console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
@@ -116,6 +113,7 @@ export default class MapView extends React.Component {
               }}
             />
             <Circle center={[51.51, -0.06]} radius={200} />
+  {/*          <Polygon positions={}/>*/}
         </FeatureGroup>
         <FeatureGroup>
         </FeatureGroup>

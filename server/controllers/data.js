@@ -15,7 +15,7 @@ function parseDataEntry (dataArray) {
 			collection.push({
 				//method_id will also be from a front end cache
 				method_id: myMethods[key],
-				result: data.results[key],
+				result: +(parseFloat(data.results[key])).toFixed(2),
 				date: data.date,
 				row_id: data.row
 			})
