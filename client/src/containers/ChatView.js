@@ -10,7 +10,7 @@ import MessageWindow from '../components/MessageWindow';
 import RoomSelector from '../components/RoomSelector';
 
 //Actions and utilities
-import { getRoomsRecentActivity } from '../actions/rooms';
+import { getRoomsRecentActivity, getUsersInRoom } from '../actions/rooms';
 import socket from '../sockets';
 
 export default class ChatView extends React.Component {

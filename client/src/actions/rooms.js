@@ -23,8 +23,16 @@ export function getUsersInRoom(roomId) {
     {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     }).then(users => {
-      console.log('GETUSERSINROOM', users);
+      console.log('this is users resp data', users.data);
+      dispatch(setUsersInRoom(users.data));
     });
+}
+
+export function setUsersInRoom(users) {
+  return {
+    type: "SET_USERS_IN_ROOM",
+    value: users
+  };
 }
 
 export function getRoomsRecentActivity(userId, roomId) {
@@ -43,6 +51,7 @@ export function getRoomsRecentActivity(userId, roomId) {
       dispatch(setRoom(roomToRetrieve));
       dispatch(updateRooms(rooms.data));
       dispatch(grabMessagesInRoom(roomToRetrieve));
+      dispatch(getUsersInRoom(roomToRetrieve));
     });
 }
 

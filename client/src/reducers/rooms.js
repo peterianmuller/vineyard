@@ -3,6 +3,7 @@ const defaults = {
   addUserModalOpen: false,
   addRoomModalOpen: false,
   peopleToAdd: {},
+  peopleInRoom: [{ username: 'This room is empty' }],
   userList: [],
   rooms: []
 };
@@ -37,6 +38,11 @@ export default (state=defaults, action) => {
       return {
         ...state,
         currentRoom: action.value
+      };
+    case "SET_USERS_IN_ROOM":
+      return {
+        ...state,
+        peopleInRoom: action.value 
       };
     case "UPDATE_PEOPLE_TO_ADD":
       var newPeople = {...state.peopleToAdd};
