@@ -42,6 +42,7 @@ export default class DataForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     postDataArray(this.props.dataArray);
+    this.props.dispatch(clearDataFields());
 
   }
 

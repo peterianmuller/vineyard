@@ -37,6 +37,10 @@ export default class MapView extends React.Component {
 
     console.log(addMapDataPoint);
     console.log('what does this look like', newPoly);
+    for (var i = 0; i < newPoly.length - 1; i++) {
+      console.log('are these objects? ', newPoly[i]);
+      console.log('what type are these? ', typeof newPoly[i]);
+    }
     console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
 
     //add polygon to 

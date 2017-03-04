@@ -19,6 +19,7 @@ export function clearDataPoints(value) {
   }  
 }
 
+
 export function testOrgs(name) {
   axios.get('/api/organization/information', {
     headers: {
@@ -52,7 +53,9 @@ export function postMapData(data) {
   })
 
   //clear state after posting
-  
+
+  clearDataPoints();
+
 
 };
 
