@@ -15,6 +15,19 @@ export default props => {
   }
 
   return(<div>
+  {  
+  (props.field === 'pH' || props.field === 'Brix' || props.field === 'NaOH') ? (  
+  <Segment>
+    <Input
+      fluid
+      type="number"
+      step="0.01"
+      labelPosition='right'
+      value={props.value}
+      onChange={ changeHandler }
+    />
+  </Segment>
+  ) : (  
   <Segment>
     <Input
       fluid
@@ -23,5 +36,7 @@ export default props => {
       onChange={ changeHandler }
     />
   </Segment>
+  )
+  }
   </div>
 )};
