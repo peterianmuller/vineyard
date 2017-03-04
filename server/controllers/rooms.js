@@ -8,8 +8,7 @@ export function newRoom(req, res, next) {
 
   return roomsController.createRoom(params)
     .then(room => {
-      console.log(room);
-      res.end();
+      res.json(room);
     });
 }
 

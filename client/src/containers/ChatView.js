@@ -29,7 +29,7 @@ export default class ChatView extends React.Component {
     return (
       <div className='flex-box flex-row'>
         <div className='qtWidth'>
-          <RoomSelector rooms={this.props.rooms} dispatch={this.props.dispatch} /> 
+          <RoomSelector rooms={this.props.rooms} dispatch={this.props.dispatch} auth={this.props.auth} /> 
         </div>
         <div className='paddingLeftRight leftBorder threeQtWidth'>
           <MessageWindow user={this.props.auth} dispatch={this.props.dispatch} messages={this.props.messages} />

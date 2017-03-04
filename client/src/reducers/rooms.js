@@ -22,14 +22,11 @@ export default (state=defaults, action) => {
     case "MODAL_CLOSE_ROOM":
       return {
         ...state,
-        addRoomModalOpen: false
+        addRoomModalOpen: false,
+        peopleToAdd: {},
+        userList: []
       };
     case "MODAL_CLOSE_USER":
-      return {
-        ...state,
-        addUserModalOpen: false
-      };
-    case "USER_ADD_ROOM_FINISH":
       return {
         ...state,
         addUserModalOpen: false,

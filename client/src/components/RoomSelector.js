@@ -5,9 +5,9 @@ import React from 'react';
 import { Icon } from 'semantic-ui-react';
 
 //Components
+import AddRoomModal from './AddRoomModal';
 import AddUserModal from './AddUserModal';
 import RoomEntry from './RoomEntry';
-import UserSearchEntry from './UserSearchEntry';
 
 
 export default props => {
@@ -19,12 +19,7 @@ export default props => {
     <div>
       <div className='flex-box' style={ { justifyContent: 'space-between' } }>
         <AddUserModal rooms={props.rooms} dispatch={props.dispatch} />
-        <Icon
-          link
-          name='edit'
-          size='huge'
-          onClick={handleClick}
-        />
+        <AddRoomModal rooms={props.rooms} dispatch={props.dispatch} auth={props.auth} /> 
       </div>
       {
       	props.rooms.rooms.map((item, key) => (

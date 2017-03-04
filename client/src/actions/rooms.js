@@ -3,7 +3,21 @@ import client from '../elasticSearch';
 import socket from '../sockets';
 import { grabMessagesInRoom } from './messages';
 
-export function getRoomsRecentActivity(userId) {
+export function addRoom(roomName, userId) {
+  return dispatch => axios.post('/api/rooms/', 
+    {
+      users: userId,
+      room_name: roomName
+    },
+    {
+      headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
+    }).then(room => {
+      console.log('we made it into add room', room);
+      return dispatch(getRoomsRecentActivity(userId, room.data.id)) 
+    })
+}
+
+export function getRoomsRecentActivity(userId, roomId) {
   return dispatch => axios.post('/api/rooms/mostRecent', 
     {
       userId
@@ -13,9 +27,12 @@ export function getRoomsRecentActivity(userId) {
     }).then(rooms => {
       socket.emit('enter rooms', rooms.data);
 
-      dispatch(setRoom(rooms.data[0].id));
+      var roomToRetrieve = roomId ? roomId : rooms.data[0].id;
+      console.log('this is to retrieve room', roomToRetrieve, roomId)
+
+      dispatch(setRoom(roomToRetrieve));
       dispatch(updateRooms(rooms.data));
-      dispatch(grabMessagesInRoom(rooms.data[0].id));
+      dispatch(grabMessagesInRoom(roomToRetrieve));
     });
 }
 
@@ -104,11 +121,5 @@ export function toggleModal(isUser) {
 export function closeModal(isUser) {
   return {
     type: "MODAL_CLOSE_" + (isUser ? "USER" : "ROOM")
-  }
-}
-
-export function userAddRoomFinish() {
-  return {
-    type: "USER_ADD_ROOM_FINISH"
   }
 }

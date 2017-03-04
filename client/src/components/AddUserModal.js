@@ -37,7 +37,7 @@ export default class AddUserModal extends React.Component {
       if (keys.length > 0) {
         this.props.dispatch(addUserToRoom(keys, this.props.rooms.currentRoom))
           .then(() => { 
-            this.props.dispatch(userAddRoomFinish()) 
+            this.props.dispatch(closeModal(true));
           });
       }
     }
@@ -50,7 +50,7 @@ export default class AddUserModal extends React.Component {
   }
    
   render() {
-    return(
+    return (
       <Modal open={this.props.rooms.addUserModalOpen}
         trigger={<Icon link name='add user' size='huge' onClick={this.addUserClick.bind(this)} />}
         onClose={this.handleClose.bind(this)}

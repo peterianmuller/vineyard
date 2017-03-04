@@ -7,6 +7,7 @@ function createRoom(inputRoom) {
   }).save().then(room => {
     return new Rooms({id: room.id})
       .users().attach(inputRoom.users)
+      .then(() => room);
   });
 }
 
