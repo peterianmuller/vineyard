@@ -5,10 +5,10 @@ import Polygons from './polygons';
 const Coordinates = db.Model.extend({
 	tableName: 'coordinates',
 	hasTimestamps: false,
-	notes: () => {
+	notes: function () {
 		return this.belongsTo(Notes);
 	},
-	polygons: () => {
+	polygons: function () {
 		return this.belongsTo(Polygons);
 	}
 });
