@@ -1,11 +1,13 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
+import { Button } from 'semantic-ui-react';
 import { Map, TileLayer, Polygon, Marker, FeatureGroup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
 import L from 'leaflet';
+import {addPolys} from '../actions/mapVis';
 
-import { addMapDataPoint, postMapData, clearDataPoints, testOrgs } from '../actions/mapVis';
+import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
 
 let polyline;
 const subs = [ 'a', 'b', 'c', 'd' ];
@@ -27,9 +29,6 @@ const myShapes = [[
   {lat: 38.383564, lng: -122.8672}
   ]];
 
-
-
-
 export default class MapView extends React.Component {
 	constructor(props) {
 		super(props)
@@ -41,6 +40,13 @@ export default class MapView extends React.Component {
       shapes: []
     };
 	}
+
+  showShapes(e) {
+    e.preventDefault();
+    console.log('show shapes button going')
+    this.props.dispatch(getShapeData());
+  }
+
 
   _onEditPath(e) {
     console.log('Path edited !');
@@ -159,6 +165,10 @@ export default class MapView extends React.Component {
 
 
         </Map>
+        <Button>MEow</Button>
+        <Button onClick={this.showShapes.bind(this)}>Show Blocks</Button>
+        <Button>Hide Blocks</Button>
+
       </div>
 		)
 	}
