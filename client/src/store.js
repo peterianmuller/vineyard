@@ -23,6 +23,7 @@ import { dataFormReducer } from './reducers/dataForm';
 import { dataArrayReducer } from './reducers/dataArray';
 import { mapVisReducer } from './reducers/mapVis';
 import { polygonsReducer } from './reducers/polygons';
+import { dataVisReducer } from './reducers/dataVis';
 
 const rootReducer = combineReducers({
   authStatus: authStatusReducer,
@@ -39,7 +40,9 @@ const rootReducer = combineReducers({
   dataForm: dataFormReducer,
   dataArray: dataArrayReducer,
   mapVis: mapVisReducer,
-  polygons: polygonsReducer
+  polygons: polygonsReducer,
+  dataVis: dataVisReducer
+
 });
 
 const middleware = applyMiddleware(routerMiddleware(browserHistory), logger(), promise(), thunk);

@@ -39,7 +39,8 @@ class App extends React.Component {
                   dataForm: this.props.dataForm,
                   dataArray: this.props.dataArray,
                   mapVis: this.props.mapVis,
-                  polygons: this.props.polygons
+                  polygons: this.props.polygons,
+                  dataVis: this.props.dataVis
 	  		  			}
 	  		  		)
 	  		  	}
