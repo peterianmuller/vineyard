@@ -12,7 +12,6 @@ const defaultDataForm = {
 };
 
 const dataArray = [{...defaultDataForm}];
-//
 
 export function dataArrayReducer(state = dataArray, action) {
   switch(action.type) {

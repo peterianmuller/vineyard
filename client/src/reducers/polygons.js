@@ -1,5 +1,6 @@
 const defaultPolygons = {
-	polygons: []
+	polygons: [],
+	show_polys: false
 }
 
 export function polygonsReducer(state = defaultPolygons, action) {
@@ -8,6 +9,11 @@ export function polygonsReducer(state = defaultPolygons, action) {
 			return {
 				...state,
 				polygons: state.polygons.concat(action.value)
+			}
+		case "RENDER_POLYGONS":
+			return {
+				...state,
+				show_polys: !state.show_polys
 			}
 		default: 
 		return state;

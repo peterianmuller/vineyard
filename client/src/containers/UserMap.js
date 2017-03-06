@@ -5,6 +5,7 @@ import { Button } from 'semantic-ui-react';
 import { Map, TileLayer, Polygon, Marker, FeatureGroup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
 import L from 'leaflet';
+import { showPolygonsOnMap } from '../actions/polygons';
 import {addPolys} from '../actions/mapVis';
 
 import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
@@ -64,8 +65,9 @@ export default class MapView extends React.Component {
 
   showShapes(e) {
     e.preventDefault();
+    //toggle to boolean in the props store
     console.log('show shapes button going');
-    return;
+    this.props.dispatch(showPolygonsOnMap());
   }
 
 
@@ -137,7 +139,6 @@ export default class MapView extends React.Component {
 
 	render() {
     const position = [38.384, -122.865];
-    console.log(this.state, 'meow')
     const grape_leaf = L.icon({
       iconUrl: '/grape_leaf.png',
       // shadowUrl: 'leaf-shadow.png',
@@ -147,7 +148,8 @@ export default class MapView extends React.Component {
       // shadowAnchor: [4, 62],  // the same for the shadow
       popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
-    // const myShapes = this.props.polygons.polygons
+    const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
+    console.log('myshapes: ', myShapes)
 
     return (
 			<div>
@@ -174,8 +176,10 @@ export default class MapView extends React.Component {
               }}
             />
           {/*positions is an array of lat/lng objects*/}
-          {myShapes.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />))}
-          {myShapes.map((shape) => (<Marker icon={grape_leaf} position={shape[0]}/>))}
+          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
+          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Marker icon={grape_leaf} position={shape[0]}/>)) : ''}
+
+
 
         </FeatureGroup>
         <FeatureGroup>
