@@ -11,5 +11,14 @@ export const newCoordinates = (params) => {
 			polygon_id: params.polygon_id
 		}).save();
 	})
+}
 
+
+export const findCoordsByPolyId = (params) => {
+	//input param should be a polygon id
+	return new Coordinates({polygon_id: params})
+	.fetchAll()
+	.then((coords) => {
+		return coords;
+	})
 }

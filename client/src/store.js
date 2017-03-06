@@ -22,6 +22,7 @@ import { homePageReducer } from './reducers/homePage';
 import { dataFormReducer } from './reducers/dataForm';
 import { dataArrayReducer } from './reducers/dataArray';
 import { mapVisReducer } from './reducers/mapVis';
+import { polygonsReducer } from './reducers/polygons';
 
 const rootReducer = combineReducers({
   authStatus: authStatusReducer,
@@ -37,7 +38,8 @@ const rootReducer = combineReducers({
   homePage: homePageReducer,
   dataForm: dataFormReducer,
   dataArray: dataArrayReducer,
-  mapVis: mapVisReducer
+  mapVis: mapVisReducer,
+  polygons: polygonsReducer
 });
 
 const middleware = applyMiddleware(routerMiddleware(browserHistory), logger(), promise(), thunk);

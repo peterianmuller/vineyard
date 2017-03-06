@@ -6,8 +6,8 @@ const knex = original({
   connection: {
     host: '127.0.0.1',
     port: '5432',
-    user: 'postgres',
-    password: '123',
+    user: null,
+    password: null,
     database: 'vineyard'
   },
   debug: true
@@ -45,6 +45,7 @@ db.knex.schema.hasTable('addresses')
 		.createTable('polygons', (poly) => {
 			poly.increments('id').primary();
 			poly.string('name', 30).unique().notNullable();
+			poly.integer('org_id').notNullable();
 		})
 		.createTable('blocks', (block) => {
 			block.increments('id').primary();
@@ -145,11 +146,11 @@ db.knex.schema.hasTable('addresses')
       roomUser.integer('room_id').references('rooms.id').notNullable();
       roomUser.integer('user_id').references('users.id').notNullable();
     })
-    // .createTable('coordinates_polygons', (coordsPolys) => {
-    // 	coordsPolys.increments('id').primary();
-    // 	coordsPolys.integer('coord_id').references('coordinates.id').notNullable();
-    // 	coordsPolys.integer('poly_id').references('polygons.id').notNullable();
-    // })
+    .createTable('organizations_polygons', (coordsPolys) => {
+    	coordsPolys.increments('id').primary();
+    	coordsPolys.integer('org_id').references('organizations.id').notNullable();
+    	coordsPolys.integer('poly_id').references('polygons.id').notNullable();
+    })
 		.then(() => {
 		  console.log('Tables created successfully!'); 
 		})
