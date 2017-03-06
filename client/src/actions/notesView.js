@@ -31,7 +31,9 @@ export function setNotes(data) {
   };
 }
 
-export function getOldestDataArea(data) {
+export function sortNotesByDate(data) {
+  //notes already sorted by posting. This function needs to figure out the oldest locations that haven't been looked at in a while
+
   var plots = [];
   var oldest = {time:'', lat:'', lng:'' };
   // parse data and find oldest data by area
@@ -48,10 +50,8 @@ export function getOldestDataArea(data) {
 
   });
 
-
-  plots.push({lat:1, lng:1, time: ['2015','01', '03'], title: 'yas',text: 'yasss'});
-  plots.push({lat:1, lng:1, time: ['2017','01', '03'], title: 'yas',text: 'yasss'});
-
+   plots.push({lat:1, lng:1, time: ['2015','01', '03'], title: 'yas',text: 'yasss'});
+   plots.push({lat:1, lng:1, time: ['2017','01', '03'], title: 'yas',text: 'yasss'});
 
   // sort notes by oldest
   plots.sort((a,b) => {
@@ -61,12 +61,21 @@ export function getOldestDataArea(data) {
       return 1;
     } else {
       return 0;
-    }   
+    }  
   });
 
+  //return data we need and then dispatch reducer on componenet
+  return plots;
+
+  // plots is now the array that we want to post to the page
+    // in order to post to the page, we need to store this aray in state somewhere
+
+  //perhaps write another reducer for OldestData, populate it as an array and then list out the oldest notes via map
+  //eventually turn these old notes into areas on the map
+
+  // reducer created
 
 
-  console.log('plots is: ', plots);
-  
+
 
 }

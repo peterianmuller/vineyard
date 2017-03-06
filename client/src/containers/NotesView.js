@@ -8,7 +8,7 @@ import { Button, Divider, Grid, Item } from 'semantic-ui-react';
 import Note from '../components/Note';
 
 //Actions
-import { getNotes, addEvent, getOldestDataArea } from '../actions/notesView';
+import { getNotes, addEvent, sortNotesByDate } from '../actions/notesView';
 
 export default class NotesView extends React.Component {
   handleSubmit(e) {
@@ -22,7 +22,10 @@ export default class NotesView extends React.Component {
     console.log('run algo');
     // have an action to find oldest data
     console.log('this.props is: ', this.props);
-    getOldestDataArea(this.props.notesView);
+
+    //update oldest notes by dispatching action to populate new store for oldest notes
+    
+    sortNotesByDate(this.props.notesView);
   }
 
   
@@ -49,7 +52,6 @@ export default class NotesView extends React.Component {
             }
           </Item.Group>
         </Grid>
-      
       </div>
     );
   }
