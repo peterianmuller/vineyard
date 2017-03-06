@@ -70,6 +70,13 @@ export default class MapView extends React.Component {
     this.props.dispatch(showPolygonsOnMap());
   }
 
+  hideShapes(e) {
+    e.preventDefault();
+    //toggle to boolean in the props store
+    console.log('show shapes button going');
+    this.props.dispatch(showPolygonsOnMap());
+  }
+
 
   _onEditPath(e) {
     console.log('Path edited !');
@@ -187,7 +194,7 @@ export default class MapView extends React.Component {
         </Map>
         <Button>MEow</Button>
         <Button onClick={this.showShapes.bind(this)}>Show Blocks</Button>
-        <Button>Hide Blocks</Button>
+        <Button onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
 
       </div>
 		)
