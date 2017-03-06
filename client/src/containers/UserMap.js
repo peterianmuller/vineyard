@@ -11,24 +11,6 @@ import {addPolys} from '../actions/mapVis';
 import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
 
 let polyline;
-// const subs = [ 'a', 'b', 'c', 'd' ];
-// const myShapes = [[
-//   {lat: 38.384338, lng: -122.865},
-//   {lat: 38.383137, lng: -122.8639},
-//   {lat: 38.383331, lng: -122.8638},
-//   {lat: 38.383438, lng: -122.8639},
-//   {lat: 38.383461, lng: -122.8636},
-//   {lat: 38.382484, lng: -122.8628},
-//   {lat: 38.382557, lng: -122.8626},
-//   {lat: 38.383877, lng: -122.8615},
-//   {lat: 38.384178, lng: -122.8621},
-//   {lat: 38.385948, lng: -122.8637}
-//   ],
-//   [
-//   {lat: 38.383549, lng: -122.871},
-//   {lat: 38.3876, lng: -122.8683},
-//   {lat: 38.383564, lng: -122.8672}
-//   ]];
 
 export default class MapView extends React.Component {
 	constructor(props) {
@@ -70,14 +52,6 @@ export default class MapView extends React.Component {
     this.props.dispatch(showPolygonsOnMap());
   }
 
-  hideShapes(e) {
-    e.preventDefault();
-    //toggle to boolean in the props store
-    console.log('show shapes button going');
-    this.props.dispatch(showPolygonsOnMap());
-  }
-
-
   _onEditPath(e) {
     console.log('Path edited !');
   }
@@ -109,8 +83,6 @@ export default class MapView extends React.Component {
     
     //testOrgs('k');
 
-    //this.state.shapes.push([label, newPoly]);
-    // this.state.shapes = this.state.shapes.concat([label, newPoly])
     console.log('shapes in the state: ', this.state.shapes);
     console.log('this is the state: ', this.state);
     //polyline._latlngs[0] is the array of coordinates for that shape, 
@@ -185,16 +157,10 @@ export default class MapView extends React.Component {
           {/*positions is an array of lat/lng objects*/}
           {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
           {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Marker icon={grape_leaf} position={shape[0]}/>)) : ''}
-
-
-
-        </FeatureGroup>
-        <FeatureGroup>
         </FeatureGroup>
         </Map>
-        <Button>MEow</Button>
-        <Button onClick={this.showShapes.bind(this)}>Show Blocks</Button>
-        <Button onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
+        <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>
+        <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
 
       </div>
 		)

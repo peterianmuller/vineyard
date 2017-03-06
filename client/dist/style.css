@@ -1,6 +1,10 @@
 .leaflet-container {
-  height: 80% !important;
+  height: 90% !important;
   position: relative;
+}
+
+.map_buttons {
+  z-index: 9999999;
 }
 
 .boxed {
