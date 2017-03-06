@@ -74,15 +74,15 @@ export default class DataForm extends React.Component {
       <Table celled>
       <Table.Header>
         <Table.Row>
-          <Table.HeaderCell>vineyard</Table.HeaderCell>
-          <Table.HeaderCell>row</Table.HeaderCell>
-          <Table.HeaderCell>block</Table.HeaderCell>
-          <Table.HeaderCell>varietal</Table.HeaderCell>
-          <Table.HeaderCell>clone</Table.HeaderCell>
+          <Table.HeaderCell>Vineyard</Table.HeaderCell>
+          <Table.HeaderCell>Row</Table.HeaderCell>
+          <Table.HeaderCell>Block</Table.HeaderCell>
+          <Table.HeaderCell>Varietal</Table.HeaderCell>
+          <Table.HeaderCell>Clone</Table.HeaderCell>
           <Table.HeaderCell>pH</Table.HeaderCell>
           <Table.HeaderCell>brix</Table.HeaderCell>
-          <Table.HeaderCell>NaOH</Table.HeaderCell>
-          <Table.HeaderCell>titratable</Table.HeaderCell>
+          <Table.HeaderCell>∆ NaOH(mL)</Table.HeaderCell>
+          <Table.HeaderCell>Titratable Acidity</Table.HeaderCell>
         </Table.Row>
       </Table.Header>
 

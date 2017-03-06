@@ -116,19 +116,30 @@ export default class MapView extends React.Component {
     console.log('Delete is stopping !');
   }
 
+  createIcon(text) {
+    var inputText = text.toString();
+    return L.divIcon({
+      className: "labelClass",
+      html: inputText
+    })
+  }
+
 	render() {
     const position = [38.384, -122.865];
-    const grape_leaf = L.icon({
-      iconUrl: '/grape_leaf.png',
-      // shadowUrl: 'leaf-shadow.png',
-      iconSize:     [40, 40], // size of the icon
-      // shadowSize:   [50, 64], // size of the shadow
-      iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-      // shadowAnchor: [4, 62],  // the same for the shadow
-      popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-    });
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
-    console.log('myshapes: ', myShapes)
+    if(myShapes.length > 0 ) { console.log(myShapes, 'these are the shapes') }
+    const icon = L.divIcon({ 
+      className: "labelClass",
+      html: "meow"
+    });
+    if(myShapes.length > 0) {
+      const icons = myShapes.map((shape) => {
+        return this.createIcon(shape[0].polygon_id);
+      });
+      console.log('icons: ', icons)
+    }
+    console.log(icon, 'the is the single icon')
+
 
     return (
 			<div>
@@ -156,7 +167,7 @@ export default class MapView extends React.Component {
             />
           {/*positions is an array of lat/lng objects*/}
           {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
-          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Marker icon={grape_leaf} position={shape[0]}/>)) : ''}
+         {/* {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Marker icon={this.props.createIcon(shape[0].polygon_id)} position={shape[0]}/>)) : ''}*/}
         </FeatureGroup>
         </Map>
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>

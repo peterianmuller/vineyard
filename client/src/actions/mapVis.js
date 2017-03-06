@@ -78,4 +78,3 @@ export function getShapeData() {
     console.log('error getting shape data: ', err);
   })
 }
-
