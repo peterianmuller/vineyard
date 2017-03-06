@@ -10,24 +10,24 @@ import {addPolys} from '../actions/mapVis';
 import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
 
 let polyline;
-const subs = [ 'a', 'b', 'c', 'd' ];
-const myShapes = [[
-  {lat: 38.384338, lng: -122.865},
-  {lat: 38.383137, lng: -122.8639},
-  {lat: 38.383331, lng: -122.8638},
-  {lat: 38.383438, lng: -122.8639},
-  {lat: 38.383461, lng: -122.8636},
-  {lat: 38.382484, lng: -122.8628},
-  {lat: 38.382557, lng: -122.8626},
-  {lat: 38.383877, lng: -122.8615},
-  {lat: 38.384178, lng: -122.8621},
-  {lat: 38.385948, lng: -122.8637}
-  ],
-  [
-  {lat: 38.383549, lng: -122.871},
-  {lat: 38.3876, lng: -122.8683},
-  {lat: 38.383564, lng: -122.8672}
-  ]];
+// const subs = [ 'a', 'b', 'c', 'd' ];
+// const myShapes = [[
+//   {lat: 38.384338, lng: -122.865},
+//   {lat: 38.383137, lng: -122.8639},
+//   {lat: 38.383331, lng: -122.8638},
+//   {lat: 38.383438, lng: -122.8639},
+//   {lat: 38.383461, lng: -122.8636},
+//   {lat: 38.382484, lng: -122.8628},
+//   {lat: 38.382557, lng: -122.8626},
+//   {lat: 38.383877, lng: -122.8615},
+//   {lat: 38.384178, lng: -122.8621},
+//   {lat: 38.385948, lng: -122.8637}
+//   ],
+//   [
+//   {lat: 38.383549, lng: -122.871},
+//   {lat: 38.3876, lng: -122.8683},
+//   {lat: 38.383564, lng: -122.8672}
+//   ]];
 
 export default class MapView extends React.Component {
 	constructor(props) {
@@ -40,19 +40,38 @@ export default class MapView extends React.Component {
       shapes: []
     };
 	}
+  componentDidMount() {
+    this.props.dispatch(getShapeData());
+  }
+
+  parsePolygonArray(dbResults) {
+    var polygonIds = {}, polygonCollection = [];
+    dbResults.forEach((coord) => {
+      if(!polygonIds[coord.polygon_id]) {
+        polygonIds[coord.polygon_id] = 0;
+      }
+    });
+    for (var key in polygonIds) {
+      polygonCollection.push(
+        dbResults.filter((coords) => {
+          console.log(coords.polygon_id, key)
+          return coords.polygon_id.toString() === key;
+        })
+      )
+    }
+    return polygonCollection;
+  }
 
   showShapes(e) {
     e.preventDefault();
-    console.log('show shapes button going')
-    this.props.dispatch(getShapeData());
+    console.log('show shapes button going');
+    return;
   }
 
 
   _onEditPath(e) {
     console.log('Path edited !');
   }
-
-
 
   _onCreate(e) {
     var label = prompt();
@@ -128,6 +147,7 @@ export default class MapView extends React.Component {
       // shadowAnchor: [4, 62],  // the same for the shadow
       popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
     });
+    // const myShapes = this.props.polygons.polygons
 
     return (
 			<div>
@@ -160,10 +180,6 @@ export default class MapView extends React.Component {
         </FeatureGroup>
         <FeatureGroup>
         </FeatureGroup>
-
-
-
-
         </Map>
         <Button>MEow</Button>
         <Button onClick={this.showShapes.bind(this)}>Show Blocks</Button>
