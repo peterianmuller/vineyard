@@ -4,10 +4,10 @@ import bookshelf from 'bookshelf';
 const knex = original({
   client: 'pg',
   connection: {
-    host: '127.0.0.1',
+    host: 'vineyarddb.ct23pvub5oym.us-west-1.rds.amazonaws.com',
     port: '5432',
-    user: 'postgres',
-    password: '123',
+    user: 'vineyardadmin',
+    password: 'zydecovineyard',
     database: 'vineyard'
   },
   debug: true

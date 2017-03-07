@@ -2,11 +2,11 @@ import elasticsearch from 'elasticsearch';
 
 var client = new elasticsearch.Client({
   host: {
-    host: 'localhost',
-    port: 9200,
+   host: 'search-vineyardes-ugmurjjdrnaiidevupbgaoudg4.us-west-1.es.amazonaws.com',
+   port: 80,
     headers: {
       'Content-Type': 'text/plain'
-    }
+    },
   }
 });
 
