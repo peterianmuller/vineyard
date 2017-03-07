@@ -32,7 +32,7 @@ export function validateUser(callback) {
     .then(res => {
       console.log('this is test', test, 'shdjfkshdkfdsh')
       console.log('idk man', res.data);
-      return dispatch(setUserCredentials({ id: res.data.id, username: res.data.username }));
+      return dispatch(setUserCredentials({ id: res.data.id, username: res.data.username, org_id: res.data.org_id }));
     })
     .then(() => {
       callback();

@@ -14,10 +14,12 @@ export function authStatusReducer(state = authStatus, action) {
         ...state
       };
     case "SET_AUTHSTATUS_JWT_FULFILLED":
+      console.log('payload', action.payload)
       return {
         ...state,
         username: action.payload.username,
-        id: action.payload.id
+        id: action.payload.id,
+        org_id: action.payload.org_id
       };
     case "SET_AUTHSTATUS_JWT_REJECTED":
       return {
@@ -28,7 +30,8 @@ export function authStatusReducer(state = authStatus, action) {
 			return {
 				...state,
         username: action.value.username,
-        id: action.value.id
+        id: action.value.id,
+        org_id: action.value.org_id
 			};
 		default:
 			return state;

@@ -2,7 +2,8 @@ import Polygons from '../models/polygons';
 
 export const newPolygon = (params) => {
 	return new Polygons({
-		name: params.name
+		name: params.name,
+    org_id: params.org_id
 	})
 	.save();
 }

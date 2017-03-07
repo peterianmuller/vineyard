@@ -114,10 +114,11 @@ db.knex.schema.hasTable('addresses')
 			note.string('image_url');
 			note.integer('note_author_id').references('users.id');
 		})
+		//lat and long were 10, 8 and 11, 8 respectively
 		.createTable('coordinates', (coord) => {
 			coord.increments('id').primary();
-			coord.float('lat', 20, 25).notNullable();
-			coord.float('lon', 20, 25).notNullable();
+			coord.decimal('lat', 18, 14).notNullable();
+			coord.decimal('lon', 19, 14).notNullable();
 			coord.integer('polygon_id').references('polygons.id');
 			coord.integer('note_id').references('notes.id');
 		})
