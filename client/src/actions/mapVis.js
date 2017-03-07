@@ -71,7 +71,10 @@ export function getShapeData() {
   console.log('meow, get shape data being ran');
   return dispatch => axios.get('api/polygons', { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }})
   .then((res) => {
+
     console.log('this should be : ', res.data);
+    console.log('these are allllll the shapppppeeees: ', res);
+
     dispatch(addPolys(res.data));
   })
   .catch((err) => {
