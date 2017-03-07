@@ -11,7 +11,6 @@ function formatPhoneNumber (phoneNumber) {
 export function login(req, res) {
   var payload = { id: req.user.id, username: req.user.username };
   var token = jwt.sign(payload, jwtOptions.secretOrKey);
-   console.log('I am even in here: ', token);
 
   res.status(201).json({ message: "OK", token: token, id: req.user.id });
 }
@@ -22,7 +21,6 @@ export function logout(req, res) {
 }
 
 export function sendUserIdFromJwt(req, res, next) {
-  console.log('hwhhsheh', req.user.attributes.username);
   res.status(200).json({ id: req.user.id, username: req.user.attributes.username });
 }
 
@@ -30,24 +28,23 @@ export function register(req, res, next) {
   const org = {
     name: req.body.organization.toLowerCase()
   };
+
   const phoneNumber = formatPhoneNumber(req.body.phoneNumber);
-  console.log('targetorg: ', org);
   getOrganization(org)
   .then((org) => {
     return org.id;
   })
   .then((orgId) => {
-    console.log('this is the organization id: ', orgId);
     const params = {
-    firstname: req.body.firstName.toLowerCase(),
-    lastname: req.body.lastName.toLowerCase(),
-    username: req.body.userName.toLowerCase(),
-    password: req.body.password,
-    phone_number: phoneNumber,
-    email: req.body.email.toLowerCase(),
-    birthdate: req.body.birthdate,
-    account_restrictions: req.body.accountRestrictions,
-    organization_id: orgId
+      firstname: req.body.firstName.toLowerCase(),
+      lastname: req.body.lastName.toLowerCase(),
+      username: req.body.userName.toLowerCase(),
+      password: req.body.password,
+      phone_number: phoneNumber,
+      email: req.body.email.toLowerCase(),
+      birthdate: req.body.birthdate,
+      account_restrictions: req.body.accountRestrictions,
+      organization_id: orgId
     };
     return newUser(params)
     .then((user) => {

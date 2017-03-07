@@ -90,19 +90,23 @@ export function addUserToRoom(userId, roomId) {
 }
 
 export function searchUsersForAddRoom(text) {
-  return dispatch => client.search({
-		index: "users",
-		type: "user", 
-		body: {
-	    "query": { 
-	      "multi_match": { 
-	        "fields": ["username", "firstname"], 
-	        "query": text, 
-	        "type": "phrase_prefix" 
-	      } 
-	    }
-	  }
-	}).then(results => {
+  return dispatch => axios.get('http://search-vineyardes-ugmurjjdrnaiidevupbgaoudg4.us-west-1.es.amazonaws.com')
+    .then(results => {
+    
+    
+    //  client.search({
+		//  index: "users",
+		//  type: "user", 
+		//  body: {
+	  //    "query": { 
+	  //      "multi_match": { 
+	  //        "fields": ["username", "firstname"], 
+	  //        "query": text, 
+	  //        "type": "phrase_prefix" 
+	  //      } 
+	  //    }
+	  //  }
+    //}).then(results => {
     console.log('this is what you searched for', results);
     dispatch(updateUserList(results.hits.hits));
   }).catch(err => {

@@ -21,6 +21,7 @@ export function loginUser(userCredentials) {
 
     dispatch(clearUserLogin());
     dispatch(push('/'));
+    return val;
   })
   .catch((err) => {
     console.log('error dispatching login credentials ', err);
