@@ -2,11 +2,15 @@ import db from '../config';
 import Varietals from './varietals';
 
 const Clones = db.Model.extend({
-	tableName: 'clone',
+	tableName: 'clones',
 	hasTimestamps: false,
-	varietal: () => {
+	varietals: function() {
 		return this.belongsTo(Varietals)
-	}
+	},
+  rows: function() {
+    return this.hasMany(Rows);
+  }
+
 });
 
 export default Clones;

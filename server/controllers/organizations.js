@@ -53,9 +53,13 @@ export function fetchAllOrgs (req, res, next) {
 }
 
 export function fetchAllOrgVineyardData (req, res, next) {
-  return getAllOrgVineyardData(req.body)
+  //console.log('req params in fetchAllOrgs is: ', req);
+  //console.log('res in fetchAllOrgs is: ', res);
+  console.log('req query: ', req.query.name);
+  return getAllOrgVineyardData(req.query.name)
   .then ((vineyard_data) => {
     //this will be saved as a cache/localstorage
+    console.log('vineyard_data is: ', vineyard_data);
     res.json(vineyard_data);
   })
 }

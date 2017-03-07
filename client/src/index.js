@@ -24,6 +24,7 @@ import Map from './components/Map';
 import Note from './components/Note';
 import MapWeatherValidation from './components/MapWeatherValidation.js';
 import DataForm from './components/DataForm'
+import DataVis from './containers/DataVis'
 
 //Actions and functions
 import { authTransition } from './helpers/changeHandlers';
@@ -52,6 +53,7 @@ var Root = props => {
           <Route path='/dataForm' component={DataForm} onEnter={validateLogin} />
           <Route path='/messages' component={ChatView} onEnter={validateLogin} />
           <Route path='/mapHome' component ={MapView} onEnter={validateLogin} />
+          <Route path='/DataVis' component ={DataVis} onEnter={validateLogin} />
         </Route>
       </Router>
     </Provider>

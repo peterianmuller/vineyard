@@ -5,11 +5,11 @@ import Clones from './clones';
 const Rows = db.Model.extend({
   tableName: 'rows',
   hasTimestamps: false,
-  blocks: () => {
+  blocks: function() {
     return this.belongsTo(Blocks);
   }, 
-  clones: () => {
-  	return this.hasOne(Clones);
+  clones: function() {
+  	return this.belongsTo(Clones);
   }
 });
 
