@@ -16,7 +16,7 @@ export function getAnalysis() {
 
 export function setAnaylsis(data) {
   return {
-    type: "GET_NOTES",
+    type: "GET_ANALYSIS",
     value: data
   };
 }

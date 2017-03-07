@@ -18,6 +18,7 @@ import { addRowToTable, postDataArray, clearDataFields } from '../actions/dataAr
 
 export default class DataForm extends React.Component {
   componentDidMount() {
+    
     // set he userid for the note
     // this.props.dispatch(setNoteFormItem('username', this.props.auth.username))
 

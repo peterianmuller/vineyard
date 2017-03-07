@@ -5,10 +5,35 @@ import store from '../store';
 import WeatherSummary from '../components/weatherSummary';
 import { Button, Divider, Item, Grid, Form } from 'semantic-ui-react';
 
+import axios from 'axios'
+
 //Components
 import MainNavBar from '../components/MainNavBar';
 
 class Home extends React.Component {
+  
+  componentDidMount(){
+    this.testOrgs(); 
+    // make api call to /organization/data to set 
+  }
+
+  testOrgs() {
+    axios.get('/api/organization/information', {
+      headers: {
+        'Authorization': 'JWT ' + localStorage.getItem('token')  
+      },
+      params: {
+        name: this.props.auth.username
+      }
+    })  
+    .then((res) => {
+      //here save vinyard name to local storage
+      console.log('this is the result from the axios call: ', res);
+    })
+    .catch((err)=> {
+      console.log(err);
+    })
+  };
 
   render() {
     return (

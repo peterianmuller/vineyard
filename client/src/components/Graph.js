@@ -18,8 +18,6 @@ export default class Graph extends React.Component {
 
     componentDidMount() {
 
-        console.log('ReactDOM is', ReactDOM);
-
         var chart = new Highcharts.Chart({
         chart: {
         type: 'spline',

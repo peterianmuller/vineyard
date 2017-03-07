@@ -6,7 +6,6 @@ export default class DataVis extends React.Component {
     super(props);
   }
 
-  // <Graph data={this.props.dataVis}/>
  render() {
   return(
     <div>

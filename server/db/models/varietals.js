@@ -5,10 +5,10 @@ import Clones from './clones';
 const Varietals = db.Model.extend({
 	tableName: 'varietal',
 	hasTimestamps: false,
-	row: () => {
+	rows: function() {
 		return this.belongsToMany(Rows)
 	},
-	clone: () => {
+	clones: function() {
 		return this.hasMany(Clones);
 	}
 })
