@@ -195,7 +195,6 @@ export default class MapView extends React.Component {
             <Marker position={[note.latitude, note.longitude]} key={key}> 
               <Popup>
                 <span>{note.title}</span>
-                <span>{note.text}</span>
               </Popup>
             </Marker>  
           ))
