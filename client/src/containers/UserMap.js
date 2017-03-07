@@ -17,8 +17,9 @@ export default class MapView extends React.Component {
 		super(props)
     this.state = {
       //vineyard coordinates
-      lat: 38.384,
-      lng: -122.865,
+      // -45.0197557,169.1879725
+      lat: -45.0197557,
+      lng: 169.1879725,
       zoom: 20,
       shapes: []
     };
@@ -28,20 +29,26 @@ export default class MapView extends React.Component {
   }
 
   parsePolygonArray(dbResults) {
+    console.log(dbResults, 'from the database')
     var polygonIds = {}, polygonCollection = [];
     dbResults.forEach((coord) => {
+      console.log(coord.lat, 'latitude')
       if(!polygonIds[coord.polygon_id]) {
         polygonIds[coord.polygon_id] = 0;
       }
     });
     for (var key in polygonIds) {
-      polygonCollection.push(
-        dbResults.filter((coords) => {
+      var collection = dbResults.filter((coords) => {
           console.log(coords.polygon_id, key)
           return coords.polygon_id.toString() === key;
-        })
-      )
+        }).sort(function(a, b) {
+          // console.log(a.id, 'this is the a comparator')
+        return a.id > b.id;
+      })
+      console.log('collection after filter: ', collection)
+      polygonCollection.push(collection)
     }
+    console.log(polygonCollection, 'collection being returned')
     return polygonCollection;
   }
 
@@ -60,19 +67,18 @@ export default class MapView extends React.Component {
     var label = prompt();
     let type = e.layerType;
     let newPoly = e.layer._latlngs[0];
-    //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
-    console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
-
-    console.log(addMapDataPoint);
-    console.log('what does this look like', newPoly);
-    for (var i = 0; i < newPoly.length - 1; i++) {
-      console.log('are these objects? ', newPoly[i]);
-      console.log('what type are these? ', typeof newPoly[i]);
-    }
-    console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
+    console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
+    console.log('props inside polygon create: ', this.props.auth)
+    // console.log(addMapDataPoint);
+    // console.log('what does this look like', newPoly);
+    // for (var i = 0; i < newPoly.length - 1; i++) {
+    //   console.log('are these objects? ', newPoly[i]);
+    //   console.log('what type are these? ', typeof newPoly[i]);
+    // }
+    // console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
 
     //add polygon to 
-    this.props.dispatch(addMapDataPoint({label: label, coords: newPoly}));
+    this.props.dispatch(addMapDataPoint({label: label, coords: newPoly, org_id: this.props.auth.org_id}));
     
     
     postMapData(this.props.mapVis);

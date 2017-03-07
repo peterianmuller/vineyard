@@ -5,12 +5,13 @@ export const insertNewPolygon = (req, res, next) => {
 	const shapesArray = req.body;
 	console.log('inside insert polygon', shapesArray)
 	return shapesArray.forEach((shape) => {
-		console.log(shape.coords, 'this is the shape coords in polygon controller')
+		console.log(shape.org_id, 'this is the shape coords in polygon controller')
 		return newPolygon({
-			name: shape.label
+			name: shape.label,
+			org_id: shape.org_id
 		})
 		.then((poly) => {
-			console.log('is ploy available here? ', poly);
+			console.log('is poly available here? ', poly);
 			console.log('is shape here?: ', shape.coords)
 			var polyId = poly.attributes.id;
 			const params = {

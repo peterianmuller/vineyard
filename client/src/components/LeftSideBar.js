@@ -32,7 +32,7 @@ export default props => {
             (
               <Menu.Menu>
                 <MenuLink name='home' />
-                <MenuLink name='viewData' to='/data/view' />
+                <MenuLink name='viewData' to='/dataVis' />
                 <MenuLink name='viewAlerts' to='alerts' />
                 <MenuLink name='writeNote' to='form' />
                 <MenuLink name='viewNotes' to='/notesView' />

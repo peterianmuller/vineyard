@@ -13,7 +13,8 @@ export function mapVisReducer(state = mapVisArray, action) {
       newState.push({
         ...defaultMapPoint,
         label: action.value.label,
-        coords: action.value.coords
+        coords: action.value.coords,
+        org_id: action.value.org_id
       })
       return newState;
     // case "SET_DATA_INPUT_VINEYARD": 
