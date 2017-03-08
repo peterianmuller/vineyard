@@ -19,12 +19,14 @@ export default props => {
   var handleSubmit = function(e) {
     e.preventDefault();
 
-    socket.emit('new message', {
-      text: props.messages.textInput,
-      room_id: props.currentRoom,
-      message_author_id: props.user.id,
-      author_name: props.user.username
-    });
+    if (props.messages.textInput.length > 0) {
+      socket.emit('new message', {
+        text: props.messages.textInput,
+        room_id: props.currentRoom,
+        message_author_id: props.user.id,
+        author_name: props.user.username
+      });
+    }
   };
 
   var handleChange = function(e) {

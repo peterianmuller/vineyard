@@ -52,7 +52,7 @@ export default class AddUserModal extends React.Component {
   render() {
     return (
       <Modal open={this.props.rooms.addUserModalOpen}
-        trigger={<Icon link name='add user' size='huge' onClick={this.addUserClick.bind(this)} />}
+        trigger={<Icon link name='add user' size={this.props.modalSize} onClick={this.addUserClick.bind(this)} />}
         onClose={this.handleClose.bind(this)}
       >
         <Modal.Header>Add users to room</Modal.Header>
