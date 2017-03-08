@@ -17,8 +17,8 @@ export function displayDataResults(value) {
 
 const parseData = (input) => {
     return input.map((data_point) => {
-        console.log('type of result', typeof data_point.result)
-        return [data_point.date, data_point.result]
+        console.log('parse string to number', parseInt(data_point.date))
+        return [parseInt(data_point.date), data_point.result]
     })
 }
 

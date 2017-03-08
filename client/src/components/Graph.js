@@ -20,7 +20,6 @@ export default class Graph extends React.Component {
     }
 
     componentDidMount() {
-        console.log(this.props.props, 'graphs props')
         var chart = new Highcharts.Chart({
         chart: {
         type: 'spline',
@@ -66,18 +65,6 @@ export default class Graph extends React.Component {
         
             // that in JavaScript, months start at 0 for January, 1 for February etc.
             data: this.props.props.length > 0 ? this.props.props : [],
-            // data: [ [ 1467331200000, 3.07 ],
-            //     [ 1467504000000, 3.01 ],
-            //     [ 1468108800000, 3.05 ],
-            //     [ 1469059200000, 3.11 ],
-            //     [ 1469232000000, 2.94 ],
-            //     [ 1469318400000, 3.02 ],
-            //     [ 1469404800000, 2.98],
-            //     [ 1470096000000, 3.02 ],
-            //     [ 1470182400000, 3.01 ],
-            //     [ 1470268800000, 3.05 ],
-            //     [ 1470441600000, 3.05 ]
-            //    ], 
             showLegend: true,
             dataLabels: {
                 enabled: true
@@ -87,7 +74,6 @@ export default class Graph extends React.Component {
     };
 
     render(){
-    console.log(this.props.props, 'data vis props?')
       return(
            <div id='container'>
              

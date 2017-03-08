@@ -114,7 +114,7 @@ db.knex.schema.hasTable('addresses')
 			data.increments('id').primary();
 			data.integer('method_id').references('methods.id').notNullable();
 			data.integer('row_id').references('rows.id').notNullable();
-			data.integer('date').notNullable();
+			data.bigInteger('date').notNullable();
 			//precision and scale of result, may need to adjust
 			data.float('result', 20, 20).notNullable();
 		})

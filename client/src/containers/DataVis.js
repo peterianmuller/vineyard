@@ -38,7 +38,7 @@ export default class DataVis extends React.Component {
 
  render() {
   this.findBlock.bind(this);
- 	const vineyardData = JSON.parse(window.localStorage.getItem('vineyards')).org_info;
+ 	const vineyardData = JSON.parse(window.localStorage.getItem('vineyards')).vineyards;
  	const methods = [
  		[1, 'brix'],
  		[2, 'ph'],
