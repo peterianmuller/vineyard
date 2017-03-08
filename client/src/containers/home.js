@@ -19,7 +19,6 @@ import { setHomeLocation, testOrgs } from '../actions/homeView';
 //Styles
 import styles from '../styles/HomeStyles';
 
-
 class Home extends React.Component {
  
   componentDidMount(){
@@ -31,10 +30,9 @@ class Home extends React.Component {
       ({ coords }) => { 
         var lat = coords.latitude;
         var lng = coords.longitude; 
-        context.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
+        this.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
     })   
   }
-
 
   render() {
     return (
