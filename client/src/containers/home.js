@@ -42,7 +42,7 @@ class Home extends React.Component {
       //here save vinyard name to local storage
       console.log('this is the result from the axios call: ', res.data);
       var vineyards = {
-        org_info: res.data
+        org_info: res.data.vineyards
       }
 
       window.localStorage.setItem('vineyards', JSON.stringify(vineyards));
