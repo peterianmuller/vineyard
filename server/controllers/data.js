@@ -51,3 +51,4 @@ export const addNewData = (req, res, next) => {
 	});
 }
 
+

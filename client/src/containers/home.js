@@ -11,13 +11,14 @@ import axios from 'axios'
 import MainNavBar from '../components/MainNavBar';
 
 class Home extends React.Component {
-  
+ 
   componentDidMount(){
     this.testOrgs(); 
     // make api call to /organization/data to set 
   }
 
   testOrgs() {
+    console.log('test orgs running')
     axios.get('/api/organization/information', {
       headers: {
         'Authorization': 'JWT ' + localStorage.getItem('token')  
@@ -28,7 +29,12 @@ class Home extends React.Component {
     })  
     .then((res) => {
       //here save vinyard name to local storage
-      console.log('this is the result from the axios call: ', res);
+      console.log('this is the result from the axios call: ', res.data);
+      var vineyards = {
+        org_info: res.data
+      }
+
+      window.localStorage.setItem('vineyards', JSON.stringify(vineyards));
     })
     .catch((err)=> {
       console.log(err);
@@ -36,6 +42,7 @@ class Home extends React.Component {
   };
 
   render() {
+    console.log(JSON.parse(window.localStorage.getItem('vineyards')), 'local')
     return (
      <Grid columns={16}>
         <Grid.Column width={4}>
