@@ -22,8 +22,10 @@ export default {
   },
 
   mainNavBar: {
+    marginLeft: '3em',
     zIndex: 1,
-    backgroundColor: 'rgb(114, 47, 55)',
+    backgroundColor: '#fafafa',
+    fontFamily: 'Parisienne',
   },
   
   leftSideBarInner: { 
@@ -33,7 +35,6 @@ export default {
   logo: {
     backgroundColor: 'rgb(114, 47, 55)',
     fontFamily: 'Parisienne',
-    fontSize: '2em',
   },
 
 }

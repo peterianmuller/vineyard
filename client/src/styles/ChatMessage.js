@@ -49,7 +49,7 @@ export default {
 
   roomSelectorSegment: {
     margin: '0em 1em 1em 1em',
-    height: '91%',
+    height: '87%',
   },
 
   chatBox: {
@@ -62,7 +62,7 @@ export default {
     display: 'flex',
     justifyContent: 'center', 
     width: '100%',
-    height: '82%',
+    height: '75%',
     flex: 1
   },
   

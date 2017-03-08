@@ -29,7 +29,9 @@ export default props => {
       width='thin'
       style={ styles.leftSideBarInner }
     >
-      <Menu.Item header style={styles.logo}>Vineyard</Menu.Item>
+      <Menu.Item header style={styles.logo}>
+        <img src='/wine-icon-22.png' /> 
+      </Menu.Item>
       {
         props.auth.id ? 
           (

@@ -182,7 +182,7 @@ body {
 }
 
 .ui.labeled.icon.menu .item>.icon:not(.dropdown) {
-  font-size: 4em !important;
+  font-size: 3em !important;
 }
 
 .ui.menu {
