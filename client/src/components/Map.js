@@ -19,7 +19,7 @@ export default class Map extends React.Component {
 
   updateHomeLocationBtn(e){
     e.preventDefault();    
-
+    
     var context = this;
  
     axios.get('/api/address', {
@@ -48,7 +48,6 @@ export default class Map extends React.Component {
     .catch((err) => {
       console.log(err);
     })
-
 
   }
 

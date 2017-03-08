@@ -150,14 +150,6 @@ export default class MapView extends React.Component {
     })
   }
 
-  // createIcon(text) {
-  //   var inputText = text.toString();
-  //   return L.divIcon({
-  //     className: "noteIcon",
-  //     html: inputText
-  //   })
-  // }
-
   createNoteIcon(text) {
     //var inputText = text.toString();
     return L.icon({
@@ -173,7 +165,6 @@ export default class MapView extends React.Component {
     e.preventDefault();
     this.props.dispatch(getNotes());
   }
-
 
 	render() {
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
