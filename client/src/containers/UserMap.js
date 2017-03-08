@@ -146,13 +146,13 @@ export default class MapView extends React.Component {
     })
   }
 
-  // createIcon(text) {
-  //   var inputText = text.toString();
-  //   return L.divIcon({
-  //     className: "noteIcon",
-  //     html: inputText
-  //   })
-  // }
+  createIcon(text) {
+    var inputText = text.toString();
+    return L.divIcon({
+      className: "noteIcon",
+      html: inputText
+    })
+  }
 
   createNoteIcon(text) {
     //var inputText = text.toString();
