@@ -146,6 +146,25 @@ export default class MapView extends React.Component {
     })
   }
 
+  // createIcon(text) {
+  //   var inputText = text.toString();
+  //   return L.divIcon({
+  //     className: "noteIcon",
+  //     html: inputText
+  //   })
+  // }
+
+  createNoteIcon(text) {
+    //var inputText = text.toString();
+    return L.icon({
+      iconUrl: 'redPin.png',
+      iconRetinaUrl: 'redPin.png',
+      iconSize: [17, 17],
+      //iconAnchor: [22, 94],
+      //popupAnchor: [-3, -76]
+    })
+  }
+
   showNotes(e) {
     e.preventDefault();
     this.props.dispatch(getNotes());
@@ -192,7 +211,7 @@ export default class MapView extends React.Component {
 
         {
           this.props.notesView.map((note, key) => (
-            <Marker position={[note.latitude, note.longitude]} key={key}> 
+            <Marker position={[note.latitude, note.longitude]} key={key} icon={this.createNoteIcon()}> 
               <Popup>
                 <span>{note.title}</span>
               </Popup>
