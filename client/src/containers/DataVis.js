@@ -3,13 +3,12 @@ import Graph from '../components/Graph';
 import {Form} from 'semantic-ui-react';
 
 import { genDropdownOptions, genDropdownOptionsOgs } from '../helpers/lifeHax';
-import { setAnalysisItem } from '../actions/dataVis';
+import { setAnalysisItem, getAnalysis } from '../actions/dataVis';
 
 export default class DataVis extends React.Component {
   constructor(props){
     super(props);
   }
-
 
   handleDropdownChange(item, e, { value }) {
     this.props.dispatch(setAnalysisItem(item, value));
@@ -38,6 +37,12 @@ export default class DataVis extends React.Component {
   	return vinObj.rows
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log('submit pressed, this props', this.props.dataVis)
+    this.props.dispatch(getAnalysis(this.props.dataVis));
+  }
+
 
  render() {
   this.findBlock.bind(this);
@@ -60,7 +65,7 @@ export default class DataVis extends React.Component {
 	}
   return(
     <div>
-
+    <Form onSubmit={ this.handleSubmit.bind(this) }>
     <Form.Dropdown selection
       label='Method'
       // loading={ fields.orgs_loading }
@@ -83,7 +88,6 @@ export default class DataVis extends React.Component {
       ) }
     />
 
-
     <Form.Dropdown selection
       label='Block'
       // loading={ fields.orgs_loading }
@@ -94,7 +98,6 @@ export default class DataVis extends React.Component {
          blocks.map(item => item.name)
       ) }
     />
-
 
     <Form.Dropdown selection
       label='Row'
@@ -108,7 +111,10 @@ export default class DataVis extends React.Component {
     />
 
 
-
+    <Form.Button primary fluid type='submit'>
+      Get Data
+    </Form.Button>
+  </Form>
       <Graph />
     </div>
 
@@ -116,3 +122,5 @@ export default class DataVis extends React.Component {
   )
  }
 }
+
+       {/* <Form onSubmit={ this.handleSubmit.bind(this) }>*/}

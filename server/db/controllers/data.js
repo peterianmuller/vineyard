@@ -30,7 +30,7 @@ export const findRowId = (params) => {
 				block_id: block_id
 			})
 			.fetch()
-			.then((row) {
+			.then((row) => {
 				let row_id = row.attributes.id.toString();
 				return row_id;
 			})
