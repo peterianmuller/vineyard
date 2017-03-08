@@ -17,7 +17,10 @@ export default props => {
 
   return (
     <Menu icon>
-      <Menu.Item icon="talk outline" content="Messages" position='right' />
+      <Menu.Item  position='right'>
+        Messages
+        <Icon name='talk outline' />
+      </Menu.Item>
     </Menu>
   );
 };

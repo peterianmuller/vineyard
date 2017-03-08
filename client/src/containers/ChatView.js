@@ -2,7 +2,7 @@
 import React from 'react';
 
 //UI
-import { Divider } from 'semantic-ui-react';
+import { Segment } from 'semantic-ui-react';
 
 //Components
 import ChatInput from '../components/ChatInput';
@@ -12,6 +12,10 @@ import RoomSelector from '../components/RoomSelector';
 //Actions and utilities
 import { getRoomsRecentActivity, getUsersInRoom } from '../actions/rooms';
 import socket from '../sockets';
+
+
+//Styles
+import styles from '../styles/ChatMessage';
 
 export default class ChatView extends React.Component {
   constructor(props) {
@@ -27,18 +31,18 @@ export default class ChatView extends React.Component {
 
   render() {
     return (
-      <div className='flex-box flex-row'>
+      <div className='flex-box flex-row' style={styles.chatView}>
         <div className='qtWidth'>
           <RoomSelector rooms={this.props.rooms} dispatch={this.props.dispatch} auth={this.props.auth} /> 
         </div>
-        <div className='paddingLeftRight leftBorder threeQtWidth'>
+        <Segment style={styles.chatBox}>
           <MessageWindow user={this.props.auth} dispatch={this.props.dispatch} messages={this.props.messages} />
           <ChatInput 
             currentRoom={this.props.rooms.currentRoom}
             user={this.props.auth} 
             dispatch={this.props.dispatch}
             messages={this.props.messages} />
-        </div>
+        </Segment>
       </div>
     );
   }

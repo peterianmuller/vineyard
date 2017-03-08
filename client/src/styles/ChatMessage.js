@@ -17,6 +17,7 @@ export default {
       flexAlign: left ? 'flex-start' : 'flex-end',
       textAlign: left ? 'left' : 'right',
       margin: 0,
+      width: '100%',
       paddingTop: solo || topOnly ? '1.5em' : '0px',
       paddingBottom: solo || bottomOnly ? '1.5em': '0px',
     };
@@ -38,5 +39,38 @@ export default {
 
   aviStyle: {
     float: 'none'
-  }
+  },
+
+  roomSelector: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    padding: '0 1em 0 1em',
+  },
+
+  roomSelectorSegment: {
+    margin: '0em 1em 1em 1em',
+    height: '91%',
+  },
+
+  chatBox: {
+    width: '75%',
+    margin: '0em 1em 1em 1em',
+    padding: '1em 1em 0 1em',
+  },
+  
+  messageWindow: { 
+    display: 'flex',
+    justifyContent: 'center', 
+    width: '100%',
+    height: '82%',
+    flex: 1
+  },
+  
+  rowStyle: {
+    display: 'contents',
+    breakAfter: 'always',
+    justifyContent: 'flex-start',
+    width: '90%',
+    maxWidth: '90%',
+  },
 };

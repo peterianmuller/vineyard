@@ -12,6 +12,9 @@ import ChatMessage from './ChatMessage';
 import { clearTextInput, grabMessagesInRoom, receivedMessage } from '../actions/messages';
 import socket from '../sockets';
 
+//Styles
+import styles from '../styles/ChatMessage';
+
 export default class MessageWindow extends React.Component {
   constructor(props) {
     super(props);
@@ -38,23 +41,17 @@ export default class MessageWindow extends React.Component {
   }
 
   render() {
-    var rowStyle = {
-      display: 'contents',
-      breakAfter: 'always',
-      justifyContent: 'flex-start',
-      width: '100%'
-    };
-      
     const messages = this.props.messages.messages;
 
     return (
-      <div className='scrollable' style={ { display: 'flex', justifyContent: 'center' } }>
-      	<Comment.Group style={rowStyle}>
+      <div className='scrollable' style={styles.messageWindow}>
+      	<Comment.Group style={styles.rowStyle}>
           {
             messages.map((value, key) => {
               var radius = ['25px', '25px'];
 
-              if (key > 0 && messages[key - 1].message_author_id === value.message_author_id) {
+              if (key > 0 
+                  && messages[key - 1].message_author_id === value.message_author_id) {
                 radius[0] = '5px';
               } 
               
@@ -62,7 +59,6 @@ export default class MessageWindow extends React.Component {
                   messages[key + 1].message_author_id === value.message_author_id) {
                 radius[1] = '5px'; 
               }
-
 
               return (
                 <ChatMessage 
