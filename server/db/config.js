@@ -1,29 +1,20 @@
 import original from 'knex';
 import bookshelf from 'bookshelf';
 
-import seed from './seed/seed';
-import Addresses from '../models/adddresses';
-import Organizations from '../models/organizations';
-import Methods from '../models/methods';
-import Varietals from '../models/varietals';
-import Clones from '../models/clones';
-import Vineyards from '../models/vineyards';
-import Blocks from '../models/blocks';
-import Rows from '../models/rows';
-
-
 // FOR DEVELOPMENT:
 const knex = original({
   client: 'pg',
   connection: {
     host: 'localhost',
     port: '5432',
-    user: 'postgres',
-    password: '123',
+    user: null,
+    password: null,
     database: 'vineyard'
   },
   debug: true
 });
+
+const db = bookshelf(knex);
 // FOR PRODUCTION:
 // const knex = original({
 //   client: 'pg',
@@ -38,7 +29,7 @@ const knex = original({
 // })
 
 
-const db = bookshelf(knex);
+// const db = bookshelf(knex);
 db.knex.schema.hasTable('addresses')
 .then((exists) => {
 	if(!exists) {
@@ -165,15 +156,7 @@ db.knex.schema.hasTable('addresses')
     	coordsPolys.integer('poly_id').references('polygons.id').notNullable();
     })
 		.then(() => {
-		  console.log('Tables created successfully, seeding commence!');
-		  return seed()
-		  .then(() => {
-		  	console.log('DB seeded successfully!');
-		  })
-		  .catch((err)=> {
-		  	console.log('Error with db seeding: ', err);
-		  })
-
+		  console.log('Tables created successfully!');
 		})
 		.catch((err) => {
 			console.log('Error with table implementation: ', err);

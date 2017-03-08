@@ -22,15 +22,14 @@ import styles from '../styles/HomeStyles';
 class Home extends React.Component {
  
   componentDidMount(){
+
     var context = this;
-    console.log(context);
     testOrgs(); 
-    console.log('do I get here?');
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { 
         var lat = coords.latitude;
         var lng = coords.longitude; 
-        this.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
+        context.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
     })   
   }
 
