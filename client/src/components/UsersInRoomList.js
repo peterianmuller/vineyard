@@ -6,7 +6,7 @@ import { Icon, List, Popup } from 'semantic-ui-react';
 
 export default props => (
   <Popup position='bottom left' 
-    on='click' trigger={<Icon size='huge' name='users' />}>
+    on='click' trigger={<Icon size={props.modalSize} name='users' />}>
     <List divided>
       <List.Item>
         <List.Header>

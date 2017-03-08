@@ -26,7 +26,7 @@ export default props => {
       width='thin'
       style={ { position: 'relative' } }
     >
-        <Menu.Item header>Vineyard</Menu.Item>
+        <Menu.Item header style={ { backgroundColor: 'rgb(114, 47, 55)' } }>Vineyard</Menu.Item>
         {
           props.auth.id ? 
             (

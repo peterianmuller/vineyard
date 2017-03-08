@@ -184,3 +184,9 @@ body {
 .ui.labeled.icon.menu .item>.icon:not(.dropdown) {
   font-size: 4em !important;
 }
+
+.ui.menu {
+  border-radius: 0 !important;
+  background-color: #f1f1f1;
+  border: 0 !important;
+}

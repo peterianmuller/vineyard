@@ -18,12 +18,13 @@ import styles from '../styles/ChatMessage';
 export default class RoomSelector extends React.Component { 
   
   render() {
+    var modalSize = 'big';
     return (
       <Segment style={styles.roomSelectorSegment}>
         <div style={styles.roomSelector}>
-          <AddUserModal rooms={this.props.rooms} dispatch={this.props.dispatch} />
-          <UsersInRoomList rooms={this.props.rooms} />
-          <AddRoomModal rooms={this.props.rooms} dispatch={this.props.dispatch} auth={this.props.auth} /> 
+          <AddUserModal modalSize={modalSize} rooms={this.props.rooms} dispatch={this.props.dispatch} />
+          <UsersInRoomList modalSize={modalSize} rooms={this.props.rooms} />
+          <AddRoomModal modalSize={modalSize} rooms={this.props.rooms} dispatch={this.props.dispatch} auth={this.props.auth} /> 
         </div>
 
         <Divider />
