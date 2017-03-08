@@ -5,6 +5,8 @@ import store from '../store';
 import WeatherSummary from '../components/weatherSummary';
 import { Button, Divider, Item, Grid, Form } from 'semantic-ui-react';
 
+import { setHomeLocation } from '../actions/homeView';
+
 import axios from 'axios'
 
 //Components
@@ -13,8 +15,17 @@ import MainNavBar from '../components/MainNavBar';
 class Home extends React.Component {
  
   componentDidMount(){
+    // here set lat and lng of home page so we can set the userMap to that if we want
+    
     this.testOrgs(); 
     // make api call to /organization/data to set 
+    console.log('do I get here?');
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => { 
+        var lat = coords.latitude;
+        var lng = coords.longitude; 
+        this.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
+    })   
   }
 
   testOrgs() {

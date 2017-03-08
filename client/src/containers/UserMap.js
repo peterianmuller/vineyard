@@ -174,12 +174,10 @@ export default class MapView extends React.Component {
     const position = [38.384, -122.865];
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
 
-    // <Marker position={[38.384, -122.865]}> 
-    //   <Popup>
-    //         <span>Some stuff</span>
-    //       </Popup>
-    // </Marker>
     
+    // go to the vineyard button - now we either hard code address in or can use current location
+      // need to be able to go to vineyard
+
     return (
 			<div>
         <Map

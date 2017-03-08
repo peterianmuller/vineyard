@@ -1,7 +1,9 @@
 const defaultHomePageState = {
   temperature: '',
   humidity: '',
-  description: ''
+  description: '',
+  lat: '',
+  lng: '',
 };
 
 export function homePageReducer(state = defaultHomePageState, action) {
@@ -11,9 +13,15 @@ export function homePageReducer(state = defaultHomePageState, action) {
         ...state,
         temperature: action.value.temp_f + 'f ,' + action.value.temp_c + 'c.',
         humidity: action.value.relative_humidity,
-        description: action.value.weather.toLowerCase() + '.'
-        
+        description: action.value.weather.toLowerCase() + '.' 
       };
+    case "UPDATE_LOCATION":
+    console.log('action is:', action);
+    return {
+      ...state,
+      lat: action.value.lat,
+      lng: action.value.lng
+    };  
     default:
       return state;
   }
