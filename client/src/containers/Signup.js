@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import axios from 'axios';
 
 //UI
-import { Form } from 'semantic-ui-react';
+import { Form, Segment } from 'semantic-ui-react';
 
 //Components
 import NameBirthdateInput from '../components/NameBirthdateInput';
@@ -13,6 +13,9 @@ import NameBirthdateInput from '../components/NameBirthdateInput';
 import { getOrgs, setSignupItem, signup } from '../actions/signup';
 import { genDropdownOptions, genDropdownOptionsOgs } from '../helpers/lifeHax';
 import { handleItemChange } from '../helpers/changeHandlers';
+
+//Styles
+import styles from '../styles/AuthStyles';
 
 export default class Signup extends React.Component {
   constructor(props) {
@@ -51,15 +54,11 @@ export default class Signup extends React.Component {
               fields.organization_list.map(item => item.name)
             );
 
-    console.log('all orgs: ', fields.organization_list.map(item => item.name));
-
-
-
     return (
-      <div className='oneEm max500width'>
+      <Segment style={styles.segment}>
         <h2>Sign up here!</h2>
 
-        <Form onSubmit={ this.handleSubmit.bind(this) }>
+        <Form onSubmit={ ::this.handleSubmit }>
 	        <Form.Input
             label="Username"
 	      	 	value={fields.username}
@@ -122,7 +121,7 @@ export default class Signup extends React.Component {
             </Form.Button>
           </div>
 	      </Form>
-      </div>
+      </Segment>
     );
   }
 }

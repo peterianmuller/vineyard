@@ -27,6 +27,11 @@ export default class ChatView extends React.Component {
     socket.on('message created', function() {
       dispatch(getRoomsRecentActivity(props.auth.id));
     });
+
+    socket.on('added to room', function() {
+      console.log('ive been added');
+      dispatch(getRoomsRecentActivity(props.auth.id));
+    });
   }
 
   render() {

@@ -22,7 +22,7 @@ export default class MenuItem extends React.Component {
   render() {
     return (
       <Menu.Item name={this.props.name} onClick={::this.handleClick}>
-        <Icon size='huge' name='video play' />
+        <Icon size='huge' name={this.props.icon} />
         {this.props.name}
       </Menu.Item>
     );
