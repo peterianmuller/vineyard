@@ -52,6 +52,9 @@ export default class DataVis extends React.Component {
 	if(this.props.dataVis.block) {
 		rows = this.findRow(blocks);
 	}
+
+  console.log(this.props.dataVis.results, 'results?')
+
   return(
     <div>
       <Form onSubmit={ this.handleSubmit.bind(this) }>
@@ -94,7 +97,7 @@ export default class DataVis extends React.Component {
         <Form.Button primary fluid type='submit'>Get Data</Form.Button>
       </Form>
 
-      <Graph />
+      {this.props.dataVis.results.length > 0 ? (<Graph props={this.props.dataVis.results}/>) : ''}
 
     </div>
 
