@@ -1,5 +1,6 @@
 //React requirements
 import React from 'react';
+import axios from 'axios';
 
 
 //Actions and Functions
@@ -20,19 +21,39 @@ export default class Map extends React.Component {
     e.preventDefault();    
     //get address here
     var context = this;
-    console.log('is this the address id? ', JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id);
-    // have the address id
-    var geocoder = new google.maps.Geocoder();
-    geocoder.geocode({'address': '1601 Rose St. Berkeley CA'}, function(results, status){
+    console.log('this is props inside updateHomeLocationBtn:', context.props);
 
-      if (status === google.maps.GeocoderStatus.OK) {
-        var latitude = results[0].geometry.location.lat();
-        var longitude = results[0].geometry.location.lng();
-        context.props.dispatch(setHomeLocation({lat:latitude, lng:longitude}));
+    console.log('is this the address id? ', JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id);
+    // have the address id, send axios 
+    axios.get('/api/address', {
+      params: {
+        id: JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id
+      },
+      headers: {
+        'Authorization': 'JWT ' + localStorage.getItem('token') 
       }
-    });
-    console.log('this.createMap is:', this.createMap);
-    //this.createMap();
+    })  
+    .then((response) => {
+      console.log('response is', response);
+      var address = response.data.street + ' ' + response.data.city + ' ' + response.data.state + ' ' + response.data.zip;
+
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({'address': address}, function(results, status){
+
+        if (status === google.maps.GeocoderStatus.OK) {
+          var latitude = results[0].geometry.location.lat();
+          var longitude = results[0].geometry.location.lng();
+          context.props.dispatch(setHomeLocation({lat:latitude, lng:longitude}));
+        }
+      })
+        this.createMap();
+      //console.log('this.createMap is:', this.createMap);
+    }) 
+    .catch((err) => {
+      console.log(err);
+    })
+
+
   }
 
   showMap(e){
@@ -41,6 +62,7 @@ export default class Map extends React.Component {
   }
 
     //setNoteFormItem = setNoteFormItem.bind(this);
+        //<Button onClick={this.showMap.bind(this)}>Update homePage location</Button>
 
 
   render() {
@@ -49,8 +71,7 @@ export default class Map extends React.Component {
         <div id='googleMaps' style = {{'margin': '0 auto', 'height': '40%', 'width': '50%', 'borderRadius': '3px' }}>
         </div>
         <div id="current" style={{'paddingTop': '25px'}}>Please move the note to a location</div>
-        <Button onClick={this.updateHomeLocationBtn.bind(this)}>Update homePage location</Button>
-        <Button onClick={this.showMap.bind(this)}>Update homePage location</Button>
+        <Button onClick={this.updateHomeLocationBtn.bind(this)}>Go to Vineyard</Button>
       </div> 
   )};
 
