@@ -1,5 +1,6 @@
 import io from 'socket.io-client'
 
+<<<<<<< HEAD
 // FOR DEVELOPMENT
 export default io('http://localhost:3000/');
 // FOR PRODUCTION
