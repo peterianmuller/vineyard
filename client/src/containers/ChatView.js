@@ -4,9 +4,10 @@ import React from 'react';
 //UI
 import { Segment } from 'semantic-ui-react';
 
+//Containers
+import Chatroom from './Chatroom';
+
 //Components
-import ChatInput from '../components/ChatInput';
-import MessageWindow from '../components/MessageWindow';
 import RoomSelector from '../components/RoomSelector';
 
 //Actions and utilities
@@ -40,14 +41,12 @@ export default class ChatView extends React.Component {
         <div className='qtWidth'>
           <RoomSelector rooms={this.props.rooms} dispatch={this.props.dispatch} auth={this.props.auth} /> 
         </div>
-        <Segment style={styles.chatBox}>
-          <MessageWindow user={this.props.auth} dispatch={this.props.dispatch} messages={this.props.messages} />
-          <ChatInput 
-            currentRoom={this.props.rooms.currentRoom}
-            user={this.props.auth} 
-            dispatch={this.props.dispatch}
-            messages={this.props.messages} />
-        </Segment>
+        <Chatroom 
+          messages={this.props.messages}
+          dispatch={this.props.dispatch}
+          user={this.props.auth}
+          currentRoom={this.props.rooms.currentRoom}
+        />
       </div>
     );
   }
