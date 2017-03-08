@@ -67,9 +67,10 @@ export const getDataByRowId = (req, res, next) => {
 		console.log('this should be the row_id: ', row_id);
 		console.log('should still have access to the method id: ', method_id);
 		const params = {
-			method_id: method_id,
-			row_id: row_id
+			method_id: method_id.toString(),
+			row_id: row_id.toString()
 		}
+		console.log('++++++++++++++++++++ params into find data: ', params);
 		return findDatabyRowId(params)
 		.then((dataArray) => {
 			if(dataArray) {

@@ -39,13 +39,18 @@ export const findRowId = (params) => {
 }
 
 export const findDatabyRowId = (params) => {
-	return new Analysis({
+	// return new Analysis({
+	// 	row_id: params.row_id,
+	// 	method_id: params.method_id
+	// })
+	return Analysis
+	.where({
 		row_id: params.row_id,
-		id: params.method_id
+		method_id: params.method_id
 	})
-	.fetch()
+	.fetchAll()
 	.then((data) => {
-		console.log('this is the data from the db query for row and id data: ', data);
+		console.log('************this is the data from the db query for row and id data: ', data);
 		return data;
 	})
 }
