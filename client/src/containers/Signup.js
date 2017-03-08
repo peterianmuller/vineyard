@@ -27,7 +27,8 @@ export default class Signup extends React.Component {
   getPasswordValidationState() {
     if (this.props.signup.password === '' &&
         this.props.signup.confirm_password === '') return null;
-    else if (this.props.signup.password !== this.props.signup.confirm_password) return 'error';
+    else if (this.props.signup.password !== 
+              this.props.signup.confirm_password) return 'error';
     else return 'success';
   }
 

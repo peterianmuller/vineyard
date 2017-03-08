@@ -35,6 +35,10 @@ export default {
   logo: {
     backgroundColor: 'rgb(114, 47, 55)',
     fontFamily: 'Parisienne',
+    paddingBottom: '0.4em',
   },
 
+  img: {
+    paddingBottom: '0.6em',
+  },
 }

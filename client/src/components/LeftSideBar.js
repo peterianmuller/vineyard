@@ -30,7 +30,8 @@ export default props => {
       style={ styles.leftSideBarInner }
     >
       <Menu.Item header style={styles.logo}>
-        <img src='/wine-icon-22.png' /> 
+        <img style={styles.img} src='/wine-icon-22.png' /> 
+        Vineyard
       </Menu.Item>
       {
         props.auth.id ? 
@@ -49,7 +50,7 @@ export default props => {
           ) : (
             <Menu.Menu>
               <MenuLink name='Sign in' to='/login' icon='sign in'/>
-              <MenuLink name='Sign Up' to='/signup' icon='user circle' />
+              <MenuLink name='Sign Up' to='/signup' icon='user' />
               <MenuLink name='Organization Signup' to='/orgsignup' icon='university' />
             </Menu.Menu>
           )
