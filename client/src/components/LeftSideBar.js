@@ -2,7 +2,7 @@
 import React from 'react';
 
 //UI
-import { Menu } from 'semantic-ui-react';
+import { Menu, Sidebar } from 'semantic-ui-react';
 
 //Components
 import MenuLink from './MenuLink';
@@ -18,11 +18,13 @@ export default props => {
   };
 
   return (
-    <Menu 
+    <Sidebar as={Menu}
+      icon='labeled'
       vertical 
-      width='thin' 
       inverted 
       fixed='left'
+      visible
+      width='thin'
     >
         <Menu.Item header>Vineyard</Menu.Item>
         {
@@ -52,6 +54,6 @@ export default props => {
           { props.auth.id ? '': 
           (<MenuLink name='orgSignup' />)}
         </Menu.Menu>
-      </Menu>
+      </Sidebar>
   );
 }

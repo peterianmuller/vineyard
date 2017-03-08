@@ -17,9 +17,7 @@ export default props => {
 
   return (
     <Menu icon>
-        <Menu.Item name="content" onClick={ handleClick }>
-          <Icon name="content" />
-      </Menu.Item>
+      <Menu.Item icon="talk outline" content="  Messages" />
     </Menu>
   );
 };

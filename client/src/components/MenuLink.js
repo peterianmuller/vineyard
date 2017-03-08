@@ -4,9 +4,10 @@ import { Link } from 'react-router';
 import store from '../store';
 
 //UI
-import { Menu } from 'semantic-ui-react';
+import { Icon, Menu } from 'semantic-ui-react';
 
 //Actions
+import { push } from 'react-router-redux';
 import { toggleLeftSidebar } from '../actions/navigation';
 
 export default class MenuItem extends React.Component {
@@ -14,17 +15,16 @@ export default class MenuItem extends React.Component {
     if (this.props.onClick) 
       this.props.onClick();
 
-    store.dispatch(toggleLeftSidebar()); 
+    var toGo = this.props.to ? this.props.to : this.props.name;
+    store.dispatch(push(toGo)); 
   }
 
   render() {
     return (
-      <Menu.Item 
-        as={Link}
-        name={this.props.name}
-        to={ this.props.to ? this.props.to : this.props.name }
-        onClick={this.handleClick.bind(this)}
-      />
+      <Menu.Item name={this.props.name} onClick={::this.handleClick}>
+        <Icon size='large' name='video play' />
+        {this.props.name}
+      </Menu.Item>
     );
   }
 }
