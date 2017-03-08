@@ -183,3 +183,7 @@
   opacity: 0.6;
   background-color: #FFFBFF
 }
+
+.ui.labeled.icon.menu .item>.icon:not(.dropdown) {
+  font-size: 4em !important;
+}

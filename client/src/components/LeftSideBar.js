@@ -18,13 +18,13 @@ export default props => {
   };
 
   return (
-    <Sidebar as={Menu}
+    <Menu
       icon='labeled'
       vertical 
-      inverted 
       fixed='left'
-      visible
+      inverted 
       width='thin'
+      style={ { position: 'relative' } }
     >
         <Menu.Item header>Vineyard</Menu.Item>
         {
@@ -54,6 +54,6 @@ export default props => {
           { props.auth.id ? '': 
           (<MenuLink name='orgSignup' />)}
         </Menu.Menu>
-      </Sidebar>
+      </Menu>
   );
 }

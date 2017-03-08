@@ -22,14 +22,16 @@ import styles from '../styles/AppStyles.js';
 export default class App extends React.Component {
   render() {
     return (
-      <Sidebar.Pushable as={Segment}>
-        <LeftSideBar 
-          dispatch={this.props.dispatch} 
-          nav={this.props.nav} 
-          auth={this.props.authStatus} />
+      <div style={styles.flexbox}>
+        <div style={styles.leftSideBar}>
+          <LeftSideBar 
+            dispatch={this.props.dispatch} 
+            nav={this.props.nav} 
+            auth={this.props.authStatus} />
+        </div>
 
-        <Sidebar.Pusher>
-          <MainNavBar dispatch={this.props.dispatch} auth={this.props.authStatus} /> 
+        <div style={styles.innerCol}>
+          <MainNavBar  dispatch={this.props.dispatch} auth={this.props.authStatus} /> 
           { 
             React.cloneElement(this.props.children, 
 	  		  	  {
@@ -50,8 +52,8 @@ export default class App extends React.Component {
 	  		  	  }
 	  		    )
 	  	    }
-        </Sidebar.Pusher>
-      </Sidebar.Pushable>
+        </div>
+      </div>
     );
   }
 }
