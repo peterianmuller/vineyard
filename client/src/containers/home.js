@@ -57,16 +57,6 @@ class Home extends React.Component {
     return (
      <Grid columns={16}>
         <Grid.Column width={4}>
-          <h1>Alerts</h1>
-          <p>IPhone yuccie health goth helvetica man bun. 
-          Poutine intelligentsia chartreuse ennui, celiac readymade microdosing. 
-          Chicharrones pitchfork chambray, la croix readymade gentrify mixtape. Blog you probably haven't 
-          heard of them narwhal biodiesel literally. Ethical fap venmo bespoke bicycle rights, 
-          pinterest chia PBR&B gentrify. Neutra cronut fam squid lomo pitchfork hashtag. 
-          Raw denim poke small batch polaroid 
-          umami roof party schlitz, post-ironic shoreditch.</p>
-        </Grid.Column>
-        <Grid.Column width={4}>
           <h1>Basic Data Setup</h1> 
           <p>Disrupt green juice deep v ethical shabby chic, 
           kogi hella flexitarian prism letterpress. 
