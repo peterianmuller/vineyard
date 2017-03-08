@@ -1,13 +1,13 @@
 import Blocks from '../models/blocks';
 
-const newBlock = (params) => {
+export const newBlock = (params) => {
   return new Blocks({
     number: params.number,
     vineyard: params.vineyard
   })
 };
 
-const getBlock = (params) => {
+export const getBlock = (params) => {
   return new Blocks({number: params.number, vineyard: params.vineyard}).fetch();
 };
 
@@ -43,11 +43,3 @@ const getBlock = (params) => {
 //   });
 // };
 /*==================need to refactor to BS/KNX=======================*/
-
-export default {
-  newBlock,
-  getBlock
-  // getBlock,
-  // updateBlock,
-  // deleteBlock
-};

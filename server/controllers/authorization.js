@@ -11,7 +11,6 @@ function formatPhoneNumber (phoneNumber) {
 export function login(req, res) {
   var payload = { id: req.user.id, org_id: req.user.org_id, username: req.user.username};
   var token = jwt.sign(payload, jwtOptions.secretOrKey);
-   console.log('I am even in here: ', token);
 
   res.status(201).json({ message: "OK", token: token, id: req.user.id });
 }
@@ -59,10 +58,10 @@ export function register(req, res, next) {
         .catch((err) => {
           console.log('could not add user: ', err);
         });
-      
+
     })
     .catch((err) => {
       console.log('error with insert: ', err)
-    })    
+    })
   })
 }

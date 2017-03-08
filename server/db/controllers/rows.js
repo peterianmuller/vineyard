@@ -1,6 +1,6 @@
 import Rows from '../models/rows';
 
-const newRow = (params) => {
+export const newRow = (params) => {
   return new Rows({
     number: params.number,
     point1: params.point1,
@@ -26,11 +26,3 @@ const newRow = (params) => {
 // };
 // const updateRow = (req, res, next) => {};
 // const deleteRow = (req, res, next) => {};
-
-export default {
-  newRow
-  // getRow,
-  // getRows,
-  // updateRow,
-  // deleteRow
-}

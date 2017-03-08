@@ -36,7 +36,7 @@ passport.use('local', new LocalStrategy({
           alert('invalid password');
           return done(null, false);
       }
-      console.log('user matched, done being called')
+      console.log('user matched by passport local auth');
       return done(null, user);
     })
     .catch((err) => {

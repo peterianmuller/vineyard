@@ -1,6 +1,6 @@
 import Alerts from '../models/alerts';
 
-const newAlert = (params) => {
+export const newAlert = (params) => {
   return new Alerts({
     text: params.text,
     alert_time: params.alertTime,
@@ -16,11 +16,3 @@ const newAlert = (params) => {
 // const updateAlert = (req, res, next) => {};
 // const deleteAlert = (req, res, next) => {};
 /*==================need to refactor to BS/KNX=======================*/
-
-export default {
-  newAlert
-  // getAlert,
-  // getAlerts,
-  // updateAlert,
-  // deleteAlert
-};

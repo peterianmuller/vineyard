@@ -37,6 +37,7 @@ export const getAllOrgs = (params) => {
 export const getAllOrgVineyardData = (params) => {
   //should return all vineyards and their blocks
   console.log('inside getAllOrgVineyardData', params);
+
   return new Users({username: params})
   .fetch()
   .then((user) => {

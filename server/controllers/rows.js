@@ -1,4 +1,4 @@
-import rowsController from '../db/controllers/rows';
+import { newRow } from '../db/controllers/rows';
 
 export function createRow(req, res, next) {
   const params = {
@@ -10,7 +10,7 @@ export function createRow(req, res, next) {
     rootStock: req.body.rootStock,
     status: req.body.status
   };
-  return rowsController.newRow(params)
+  return newRow(params)
   .then((row) => {
     if (row) {
       res.json(row);

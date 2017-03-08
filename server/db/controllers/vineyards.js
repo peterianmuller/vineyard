@@ -1,6 +1,6 @@
 import Vineyards from '../models/vineyards';
 
-const newVineyard = (params) => {
+export const newVineyard = (params) => {
   return new Vineyards ({
     name: params.name,
     phoneNumber: params.phoneNumber,

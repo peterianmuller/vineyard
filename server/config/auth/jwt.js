@@ -10,11 +10,10 @@ var jwtOptions = {
 passport.use(new JwtStrategy(jwtOptions, (jwt_payload, next) => {
   return getUserById({ id: jwt_payload.id })
     .then(user => {
-      console.log('user', user);
       if (user) next(null, user);
       else throw new Error;
     }).catch(err => {
-      console.log('failed', err);
+      console.log('error in jwt authorization', err);
       next(null, false);
     });
 }));

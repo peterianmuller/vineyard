@@ -1,6 +1,7 @@
 import Notes from '../models/notes';
 
-const newNote = (params) => {
+export const newNote = (params) => {
+  console.log('inside newNote db controller ', params);
   return new Notes({
     title: params.title,
     text: params.text,
@@ -12,7 +13,7 @@ const newNote = (params) => {
   }).save();
 };
 
-const getAllNotes = () => {
+export const getAllNotes = () => {
   return Notes.forge().orderBy('date_time','DESC').fetchAll();
 };
 
