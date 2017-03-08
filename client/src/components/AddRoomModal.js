@@ -31,7 +31,7 @@ export default class AddRoomModal extends React.Component {
     const rooms = this.props.rooms;
     return (
       <Modal open={rooms.addRoomModalOpen}
-        trigger={<Icon link name='edit' size='huge' onClick={this.addRoomClick.bind(this)} />}
+        trigger={<Icon link name='edit' size={this.props.modalSize} onClick={this.addRoomClick.bind(this)} />}
         onClose={this.handleClose.bind(this)}
       >
         <Modal.Header>Create new room</Modal.Header>

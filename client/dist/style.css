@@ -1,3 +1,7 @@
+body {
+  background-color: rgba(249, 246, 233, 0.9);
+}
+
 .leaflet-container {
   height: 90% !important;
   position: relative;
@@ -191,4 +195,14 @@
 .isInRoom {
   opacity: 0.6;
   background-color: #FFFBFF
+}
+
+.ui.labeled.icon.menu .item>.icon:not(.dropdown) {
+  font-size: 3em !important;
+}
+
+.ui.menu {
+  border-radius: 0 !important;
+  background-color: #f1f1f1;
+  border: 0 !important;
 }

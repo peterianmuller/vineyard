@@ -9,6 +9,7 @@ import store from './store';
 //Containers
 import App from './containers/App';
 import ChatView from './containers/ChatView';
+import Chatroom from './containers/Chatroom';
 import Home from './containers/home';
 import Login from './containers/Login';
 import NotesView from './containers/NotesView';

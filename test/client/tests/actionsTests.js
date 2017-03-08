@@ -10,24 +10,32 @@ import * as dataFormItemActions from '../../../client/src/actions/dataForm';
 import * as userMapActions from '../../../client/src/actions/mapVis';
 import * as noteFormActions from '../../../client/src/actions/noteForm';
 
-
 var expect = chai.expect;
 
 describe('Actions', () => {
+  var sandbox;
+  var server;
+
+  var sendResp = function(status, data) {
+    setTimeout(() => server.respond(
+      [
+        status,
+        { 'Content-Type': 'application/json' },
+        JSON.stringify(data)
+      ]), 0);
+  };
+
+  beforeEach(() => {
+    sandbox = sinon.sandbox.create();
+    server = sandbox.useFakeServer();
+  });
+
+  afterEach(() => {
+    server.restore();
+    sandbox.restore();
+  });
+
   describe('Login', () => {
-    var sandbox;
-    var server;
-
-    beforeEach(() => {
-      sandbox = sinon.sandbox.create();
-      server = sandbox.useFakeServer();
-    });
-
-    afterEach(() => {
-      server.restore();
-      sandbox.restore();
-    });
-
     it('should create an action to set login item',  () => {
       const expectedActionPassword = {
         type: "SET_LOGIN_PASSWORD",
@@ -46,15 +54,29 @@ describe('Actions', () => {
     });
 
     it('should send HTTP request with username and password', (done) => {
+
       store.dispatch(loginActions.loginUser({username: 'username', password: 'password'}))
         .then(resp => {
-          console.log(resp);
           done();
-
         });
-      setTimeout(() => server.respond([200,
-        { 'Content-Type': 'application/json' },
-        '[]']), 0);
+
+        sendResp(200, []);
+    });
+
+    it('should return and set the token', done => {
+      var token = { token: 'hi' };
+
+      store.dispatch(loginActions.loginUser({username: 'username', password: 'password'}))
+        .then(resp => {
+          expect(resp.data).to.deep.equal(token);
+
+          console.log(store.getState());
+          push.restore();
+          done();
+        });
+
+      sendResp(200, token);
+
     });
 
   });
@@ -143,6 +165,10 @@ describe('Actions', () => {
       }
       expect(noteActions.clearNoteFields()).to.deep.equal(expectedActionClear);
     });
+
+    it('should send a request to a server', done => {
+      done();   
+    });
   });
 
   describe('Data form', () => {
@@ -229,6 +255,9 @@ describe('Actions', () => {
   });
   
   describe('Messenger', () => {
-    
+    store.dispatch(noteFormActions.getWeather({ lat: 30, lon: 30 }))
+      .then(resp => {
+        
+      });
   });
 });
