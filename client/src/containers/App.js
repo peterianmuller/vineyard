@@ -31,24 +31,28 @@ export default class App extends React.Component {
         </div>
 
         <div style={styles.innerCol}>
-          <MainNavBar  dispatch={this.props.dispatch} auth={this.props.authStatus} /> 
+          <MainNavBar weather={this.props.homePage} 
+            dispatch={this.props.dispatch}
+            auth={this.props.authStatus}
+          /> 
           { 
             React.cloneElement(this.props.children, 
 	  		  	  {
                 auth: this.props.authStatus,
+                dataArray: this.props.dataArray,
+                dataForm: this.props.dataForm,
                 dispatch: this.props.dispatch,
+                homePage: this.props.homePage,
 	  		  	  	login: this.props.login,
+                mapHome: this.props.mapHome,
+                mapVis: this.props.mapVis,
                 messages: this.props.messages,
                 note: this.props.note,
                 notesView: this.props.notesView,
                 orgSignup: this.props.orgSignup,
+                polygons: this.props.polygons,
                 rooms: this.props.rooms,
 	  		  	  	signup: this.props.signup,
-                homePage: this.props.homePage,
-                mapHome: this.props.mapHome,
-                dataForm: this.props.dataForm,
-                dataArray: this.props.dataArray,
-                mapVis: this.props.mapVis
 	  		  	  }
 	  		    )
 	  	    }

@@ -10,5 +10,13 @@ export default {
   segmentSize: {
     margin: 0,
     width: '30%',  
+  },
+
+  cardItem: {
+
+  },
+
+  stackedCard: {
+    height: '30%'
   }
 };
