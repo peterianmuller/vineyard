@@ -18,7 +18,19 @@ export default class Map extends React.Component {
 
   updateHomeLocationBtn(e){
     e.preventDefault();    
-    this.props.dispatch(setHomeLocation({lat:60, lng:100}));
+    //get address here
+    var context = this;
+    console.log('is this the address id? ', JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id);
+    // have the address id
+    var geocoder = new google.maps.Geocoder();
+    geocoder.geocode({'address': '1601 Rose St. Berkeley CA'}, function(results, status){
+
+      if (status === google.maps.GeocoderStatus.OK) {
+        var latitude = results[0].geometry.location.lat();
+        var longitude = results[0].geometry.location.lng();
+        context.props.dispatch(setHomeLocation({lat:latitude, lng:longitude}));
+      }
+    });
     console.log('this.createMap is:', this.createMap);
     //this.createMap();
   }
@@ -44,6 +56,9 @@ export default class Map extends React.Component {
 
   
   componentDidMount() {
+    console.log('inside componentDidMount');
+    //console.log('is this the address id? ', JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id);
+    //
     //console.log('this.props is: ', this.props);
     this.createMap();
   };

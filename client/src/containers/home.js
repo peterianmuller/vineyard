@@ -16,6 +16,8 @@ class Home extends React.Component {
  
   componentDidMount(){
     // here set lat and lng of home page so we can set the userMap to that if we want
+
+
     
     this.testOrgs(); 
     // make api call to /organization/data to set 
@@ -42,10 +44,13 @@ class Home extends React.Component {
       //here save vinyard name to local storage
       console.log('this is the result from the axios call: ', res.data);
       var vineyards = {
-        org_info: res.data.vineyards
+        vineyards: res.data.vineyards
       }
-
+      var org_info = {
+        orgs: res.data
+      }
       window.localStorage.setItem('vineyards', JSON.stringify(vineyards));
+      window.localStorage.setItem('orgs', JSON.stringify(org_info));
     })
     .catch((err)=> {
       console.log(err);
