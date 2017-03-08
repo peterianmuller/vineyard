@@ -67,6 +67,7 @@ export default class MessageWindow extends React.Component {
               return (
                 <ChatMessage 
                   key={key}
+                  time={value.created_at}
                   author={value.author_name}
                   text={value.text} 
                   left={!(value.message_author_id === this.props.user.id)} 

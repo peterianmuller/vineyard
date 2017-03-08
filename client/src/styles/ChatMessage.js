@@ -39,4 +39,4 @@ export default {
   aviStyle: {
     float: 'none'
   }
-}
+};

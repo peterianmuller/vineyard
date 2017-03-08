@@ -18,6 +18,11 @@ export default class extends React.Component {
     var bottomOnly = bottom && !(bottom && top);
     var topOnly = top && !(bottom && top);
 
+    var dateOptions = {
+      year: "numeric", month: "short",
+      day: "numeric", hour: "2-digit", minute: "2-digit"
+    };
+
     return (
       <Comment style={styles.commentStyle(this.props.left, solo, bottomOnly, topOnly)}>
         {
@@ -37,7 +42,7 @@ export default class extends React.Component {
           }
           { 
             solo || top && !(bottom && top) ? (<Comment.Metadata style={ { display: 'inline' } }> 
-                    Time info 
+                    { new Date(this.props.time).toLocaleTimeString('en-us', dateOptions).toString() }
                   </Comment.Metadata>) : ''
           }
 
