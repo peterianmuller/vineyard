@@ -1,4 +1,5 @@
 import Organizations from '../models/organizations';
+import Users from '../models/users';
 
 export const newOrganization = (params) => {
   return new Organizations({
@@ -36,17 +37,24 @@ export const getAllOrgs = (params) => {
 export const getAllOrgVineyardData = (params) => {
   //should return all vineyards and their blocks
   console.log('inside getAllOrgVineyardData', params);
-  return new Organizations({name: params.name})
-    .fetchAll({
-      withRelations: ['vineyards.blocks.rows.clones']
-    })
-    .then((data) => {
-      if(data) {
-        console.log('this the vineyard data returned from the db', JSON.stringify(data))
-        res.json(data)
-      }
-    })
-    .catch((err) => {
-      console.log('err with getting all vineyards info')
-    })
+
+  return new Users({username: params})
+  .fetch()
+  .then((user) => {
+    console.log('user.attributes is: ', user.attributes);
+    let org_id = String(user.attributes.organization_id);
+    new Organizations({id: org_id})
+      .fetch({
+        withRelated: ['vineyards.blocks.rows.clones']
+      })
+      .then((data) => {
+        if(data) {
+          console.log('this the vineyard data returned from the db', JSON.stringify(data))
+          return data;    
+        }
+      })
+      .catch((err) => {
+        console.log('catch inside getAllOrgVineyardData:', err);
+      })
+  })  
 }

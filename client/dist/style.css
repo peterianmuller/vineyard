@@ -1,10 +1,19 @@
-/*.leaflet-container {
-  height: 400px;
-  width: 100%;
-  margin: 0 auto;
+.leaflet-container {
+  height: 90% !important;
+  position: relative;
 }
 
-*/
+.map_buttons {
+  z-index: 9999999;
+}
+
+.labelClass{
+  white-space:nowrap;
+  text-shadow: 0 0 0.1em black, 0 0 0.1em black,
+        0 0 0.1em black,0 0 0.1em black,0 0 0.1em;
+  color: yellow
+}
+
 .boxed {
   min-width: 0px;
 }

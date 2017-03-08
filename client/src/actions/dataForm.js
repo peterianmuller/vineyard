@@ -16,28 +16,6 @@ export function appendDataFormItem(item, value) {
   return toReturn;
 }
 
-// export function postNoteExample(note) {
-//   console.log('inside postNote on the front end', note, 'then something else');
-  
-//   return dispatch => axios.post('/api/note', {
-//     title: note.title,
-//     text: note.textArea,
-//     date_time: note.date,
-//     latitude: note.lat,
-//     longitude: note.lon,
-//     image_url: note.uploadedImgUrl,
-//     note_author_id: note.username
-//   }, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
-//   .then(() => {
-//     dispatch(clearNoteFields());
-//     browserHistory.push('/home');
-
-//     })
-//   .catch((err) => {
-//     console.log(err);
-//   })
-// } 
-
 export function postData(data) {
   // add to data array on client-side	
   console.log(data);	

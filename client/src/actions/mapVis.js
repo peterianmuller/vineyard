@@ -1,5 +1,6 @@
 //React requirements
 import { browserHistory } from 'react-router';
+import { dispatch } from 'react-redux';
 
 
 //update the state of the object at that key
@@ -18,6 +19,7 @@ export function clearDataPoints(value) {
     type: 'CLEAR_MAP_POINTS'
   }  
 }
+
 
 export function testOrgs(name) {
   axios.get('/api/organization/information', {
@@ -52,7 +54,27 @@ export function postMapData(data) {
   })
 
   //clear state after posting
-  
+
+  clearDataPoints();
+
 
 };
 
+function addPolys(value) {
+  return {
+    type: 'APPEND_POLYGONS',
+    value: value
+  }
+}
+
+export function getShapeData() {
+  console.log('meow, get shape data being ran');
+  return dispatch => axios.get('api/polygons', { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }})
+  .then((res) => {
+    console.log('these are allllll the shapppppeeees: ', res);
+    dispatch(addPolys(res.data));
+  })
+  .catch((err) => {
+    console.log('error getting shape data: ', err);
+  })
+}

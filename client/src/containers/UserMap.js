@@ -1,46 +1,84 @@
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { Map, TileLayer, Circle, FeatureGroup } from 'react-leaflet';
+import { Button } from 'semantic-ui-react';
+import { Map, TileLayer, Polygon, Marker, FeatureGroup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
+import L from 'leaflet';
+import { showPolygonsOnMap } from '../actions/polygons';
+import {addPolys} from '../actions/mapVis';
 
-import { addMapDataPoint, postMapData, clearDataPoints, testOrgs } from '../actions/mapVis';
+import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
 
 let polyline;
-const subs = [ 'a', 'b', 'c', 'd' ];
-let counter = 0;
 
 export default class MapView extends React.Component {
 	constructor(props) {
 		super(props)
     this.state = {
       //vineyard coordinates
-      lat: 38.384,
-      lng: -122.865,
+      // -45.0197557,169.1879725
+      lat: -45.0197557,
+      lng: 169.1879725,
       zoom: 20,
       shapes: []
     };
 	}
+  componentDidMount() {
+    this.props.dispatch(getShapeData());
+  }
+
+  parsePolygonArray(dbResults) {
+    console.log(dbResults, 'from the database')
+    var polygonIds = {}, polygonCollection = [];
+    dbResults.forEach((coord) => {
+      console.log(coord.lat, 'latitude')
+      if(!polygonIds[coord.polygon_id]) {
+        polygonIds[coord.polygon_id] = 0;
+      }
+    });
+    for (var key in polygonIds) {
+      var collection = dbResults.filter((coords) => {
+          console.log(coords.polygon_id, key)
+          return coords.polygon_id.toString() === key;
+        }).sort(function(a, b) {
+          // console.log(a.id, 'this is the a comparator')
+        return a.id > b.id;
+      })
+      console.log('collection after filter: ', collection)
+      polygonCollection.push(collection)
+    }
+    console.log(polygonCollection, 'collection being returned')
+    return polygonCollection;
+  }
+
+  showShapes(e) {
+    e.preventDefault();
+    //toggle to boolean in the props store
+    console.log('show shapes button going');
+    this.props.dispatch(showPolygonsOnMap());
+  }
 
   _onEditPath(e) {
     console.log('Path edited !');
   }
 
-
-
   _onCreate(e) {
     var label = prompt();
     let type = e.layerType;
     let newPoly = e.layer._latlngs[0];
-    //console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
-    console.log('new user shape drawn with multiple points: ', e.layer._latlngs , 'layer type: ', type);
-
-    console.log(addMapDataPoint);
-    console.log('what does this look like', newPoly);
-    console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
+    console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
+    console.log('props inside polygon create: ', this.props.auth)
+    // console.log(addMapDataPoint);
+    // console.log('what does this look like', newPoly);
+    // for (var i = 0; i < newPoly.length - 1; i++) {
+    //   console.log('are these objects? ', newPoly[i]);
+    //   console.log('what type are these? ', typeof newPoly[i]);
+    // }
+    // console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
 
     //add polygon to 
-    this.props.dispatch(addMapDataPoint({label: label, coords: newPoly}));
+    this.props.dispatch(addMapDataPoint({label: label, coords: newPoly, org_id: this.props.auth.org_id}));
     
     
     postMapData(this.props.mapVis);
@@ -51,8 +89,6 @@ export default class MapView extends React.Component {
     
     //testOrgs('k');
 
-    //this.state.shapes.push([label, newPoly]);
-    // this.state.shapes = this.state.shapes.concat([label, newPoly])
     console.log('shapes in the state: ', this.state.shapes);
     console.log('this is the state: ', this.state);
     //polyline._latlngs[0] is the array of coordinates for that shape, 
@@ -70,6 +106,7 @@ export default class MapView extends React.Component {
   }
 
   _onEditStart() {
+
     console.log('Edit is starting !');
   }
 
@@ -85,9 +122,31 @@ export default class MapView extends React.Component {
     console.log('Delete is stopping !');
   }
 
+  createIcon(text) {
+    var inputText = text.toString();
+    return L.divIcon({
+      className: "labelClass",
+      html: inputText
+    })
+  }
+
 	render() {
     const position = [38.384, -122.865];
-    console.log(this.state, 'meow')
+    const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
+    if(myShapes.length > 0 ) { console.log(myShapes, 'these are the shapes') }
+    const icon = L.divIcon({ 
+      className: "labelClass",
+      html: "meow"
+    });
+    if(myShapes.length > 0) {
+      const icons = myShapes.map((shape) => {
+        return this.createIcon(shape[0].polygon_id);
+      });
+      console.log('icons: ', icons)
+    }
+    console.log(icon, 'the is the single icon')
+
+
     return (
 			<div>
         <Map
@@ -112,16 +171,14 @@ export default class MapView extends React.Component {
                 rectangle: false
               }}
             />
-            <Circle center={[51.51, -0.06]} radius={200} />
-  {/*          <Polygon positions={}/>*/}
+          {/*positions is an array of lat/lng objects*/}
+          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
+         {/* {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Marker icon={this.props.createIcon(shape[0].polygon_id)} position={shape[0]}/>)) : ''}*/}
         </FeatureGroup>
-        <FeatureGroup>
-        </FeatureGroup>
-
-
-
-
         </Map>
+        <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>
+        <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
+
       </div>
 		)
 	}

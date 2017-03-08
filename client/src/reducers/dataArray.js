@@ -12,7 +12,6 @@ const defaultDataForm = {
 };
 
 const dataArray = [{...defaultDataForm}];
-//
 
 export function dataArrayReducer(state = dataArray, action) {
   switch(action.type) {
@@ -54,11 +53,20 @@ export function dataArrayReducer(state = dataArray, action) {
       }
       return newState;     
     case "SET_DATA_INPUT_PH": 
+
       // console.log(typeof parseFloat(action.value));
       var newState = state.slice();
       newState[action.key] = {
         ...newState[action.key], 
         pH: action.value
+      
+      // changing input to float on form 
+      // action.value = parseFloat(action.value);
+      // console.log(typeof action.value); 
+      // var newState = state.slice();
+      // newState[action.key] = {
+      //   ...newState[action.key], 
+      //   pH: parseFloat(action.value)
       }
       return newState;  
     case "SET_DATA_INPUT_BRIX": 
