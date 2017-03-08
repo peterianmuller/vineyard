@@ -42,7 +42,6 @@ const rootReducer = combineReducers({
   mapVis: mapVisReducer,
   polygons: polygonsReducer,
   dataVis: dataVisReducer
-
 });
 
 const middleware = applyMiddleware(routerMiddleware(browserHistory), logger(), promise(), thunk);

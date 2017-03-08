@@ -45,7 +45,6 @@ var Root = props => {
           <Route path='/formValidation' component={MapWeatherValidation} />
           <Route path='/home' component={Home} onEnter={validateLogin} />
           <Route path='/login' component={Login} onEnter={isLoggedIn} />
-          <Route path='/map' component={Map} onEnter={validateLogin} />
           <Route path='/notes' component={Note} />
           <Route path='/notesView' component={NotesView} onEnter={validateLogin} />
           <Route path='/orgSignup' component={OrgSignup} onEnter={isLoggedIn} />

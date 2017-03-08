@@ -4,3 +4,9 @@ export function setHomeLocation(data){
     value: data
   };
 }
+
+export function setFOrC() {
+  return {
+    type: "SET_F_OR_C",
+  };
+}

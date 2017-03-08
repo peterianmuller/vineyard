@@ -25,7 +25,11 @@ export default {
     marginLeft: '3em',
     zIndex: 1,
     backgroundColor: '#fafafa',
-    fontFamily: 'Parisienne',
+  },
+
+  weatherElement: {
+    marginRight: '3em',
+
   },
   
   leftSideBarInner: { 
