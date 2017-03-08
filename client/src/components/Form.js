@@ -19,12 +19,15 @@ export default class FormPage extends React.Component {
     //set he userid for the note
     console.log('this.props.auth is:', this.props.auth);
     this.props.dispatch(setNoteFormItem('username', this.props.auth.id))
+
     var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
     console.log(formattedDate, "formatted date")
 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
-    this.props.dispatch(setNoteFormItem('date', formattedDate));
+    if (!this.props.note.date) {
+      this.props.dispatch(setNoteFormItem('date', formattedDate));
+    }
   }
 
   clickFileChooser(e) {

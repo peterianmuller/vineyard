@@ -2,13 +2,14 @@ import React from 'react';
 import ReactDom from 'react-dom';
 
 import { Button } from 'semantic-ui-react';
-import { Map, TileLayer, Polygon, Marker, FeatureGroup } from 'react-leaflet';
+import { Map, TileLayer, Polygon, Marker, FeatureGroup, Popup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
 import L from 'leaflet';
 import { showPolygonsOnMap } from '../actions/polygons';
 import {addPolys} from '../actions/mapVis';
 
 import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
+import { getNotes } from '../actions/notesView';
 
 let polyline;
 
@@ -25,7 +26,13 @@ export default class MapView extends React.Component {
     };
 	}
   componentDidMount() {
-    this.props.dispatch(getShapeData());
+
+    //issue: only showing 2 ploygons.
+      //need to show new 
+    console.log('polygons?', this.props.polygons.polygons.length);
+    if (this.props.polygons.polygons.length === 0) {
+      this.props.dispatch(getShapeData());
+    }
   }
 
   parsePolygonArray(dbResults) {
@@ -139,9 +146,37 @@ export default class MapView extends React.Component {
     })
   }
 
+  createIcon(text) {
+    var inputText = text.toString();
+    return L.divIcon({
+      className: "noteIcon",
+      html: inputText
+    })
+  }
+
+  createNoteIcon(text) {
+    //var inputText = text.toString();
+    return L.icon({
+      iconUrl: 'redPin.png',
+      iconRetinaUrl: 'redPin.png',
+      iconSize: [17, 17],
+      //iconAnchor: [22, 94],
+      //popupAnchor: [-3, -76]
+    })
+  }
+
+  showNotes(e) {
+    e.preventDefault();
+    this.props.dispatch(getNotes());
+  }
+
 	render() {
     const position = [38.384, -122.865];
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
+
+    
+    // go to the vineyard button - now we either hard code address in or can use current location
+      // need to be able to go to vineyard
 
     return (
 			<div>
@@ -171,9 +206,20 @@ export default class MapView extends React.Component {
           {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
           {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Marker icon={this.createIcon(myShapes.names[shape[0].polygon_id])} key={shape[0].lat} position={shape[0]}/>)) : ''}
         </FeatureGroup>
+
+        {
+          this.props.notesView.map((note, key) => (
+            <Marker position={[note.latitude, note.longitude]} key={key} icon={this.createNoteIcon()}> 
+              <Popup>
+                <span>{note.title}</span>
+              </Popup>
+            </Marker>  
+          ))
+        }
         </Map>
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
+        <Button onClick={this.showNotes.bind(this)}>Show Notes</Button>
 
       </div>
 		)

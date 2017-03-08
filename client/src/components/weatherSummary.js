@@ -25,6 +25,7 @@ export default class WeatherSummary extends React.Component {
         console.log('homePage?', this.props.homePage)
         this.props.dispatch(getWeather({lat:lat, lon:lon}, false));
        } );
+    console.log('this.props is:', this.props);
   }
   
   // get summary of weather stuff

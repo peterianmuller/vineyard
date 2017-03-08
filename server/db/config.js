@@ -5,6 +5,7 @@ const knex = original({
   client: 'pg',
   connection: {
     host: 'vineyarddb.ct23pvub5oym.us-west-1.rds.amazonaws.com',
+    //host: 'localhost',
     port: '5432',
     user: null,
     password: null,
