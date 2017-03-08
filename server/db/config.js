@@ -18,8 +18,8 @@ const knex = original({
   connection: {
     host: 'localhost',
     port: '5432',
-    user: null,
-    password: null,
+    user: 'postgres',
+    password: '123',
     database: 'vineyard'
   },
   debug: true

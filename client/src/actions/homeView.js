@@ -11,7 +11,6 @@ export function setFOrC() {
   };
 }
 
-
 export function testOrgs() {
     var context;
     console.log('test orgs running')

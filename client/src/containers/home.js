@@ -13,6 +13,7 @@ import MainNavBar from '../components/MainNavBar';
 import WeatherSummary from '../components/weatherSummary';
 
 //Actions
+
 import { setHomeLocation, testOrgs } from '../actions/homeView';
 
 //Styles
@@ -36,7 +37,7 @@ class Home extends React.Component {
 
   render() {
     return (
-      <div style={styles.flexBox}>
+
         <div style={ { flexDirection: 'column', justifyContent: 'space-between', alignContent: 'space-between', flex: '1 auto' } }>
           <HomeCard title='Notes' />
           <HomeCard title='Data' />
