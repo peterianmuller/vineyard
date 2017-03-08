@@ -22,7 +22,10 @@ export const getAllPolygonIds = () => {
   .then((polygons) => {
     console.log('these are the polygons returned', polygons);
     let polygonIds = polygons.map((poly) => {
-      return poly.attributes.id;
+      return {
+        id: poly.attributes.id,
+        label: poly.attributes.name
+      }
     })
     console.log('this should be an array of polygon ids', polygonIds)
     return polygonIds;

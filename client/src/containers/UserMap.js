@@ -29,27 +29,36 @@ export default class MapView extends React.Component {
   }
 
   parsePolygonArray(dbResults) {
-    console.log(dbResults, 'from the database')
-    var polygonIds = {}, polygonCollection = [];
-    dbResults.forEach((coord) => {
-      console.log(coord.lat, 'latitude')
-      if(!polygonIds[coord.polygon_id]) {
-        polygonIds[coord.polygon_id] = 0;
+    if(this.props.polygons.polygons.length > 0) {
+      var coordinateResults = dbResults[0].coords;
+      // console.log('coordinateResults: ', coordinateResults)
+      var polygonIds = {}, polygonCollection = [];
+      coordinateResults.forEach((coord) => {
+        if(!polygonIds[coord.polygon_id]) {
+          polygonIds[coord.polygon_id] = 0;
+        }
+      });
+      for (var key in polygonIds) {
+        var collection = coordinateResults.filter((coords) => {
+            return coords.polygon_id.toString() === key;
+          }).sort(function(a, b) {
+            // console.log(a.id, 'this is the a comparator')
+          return a.id > b.id;
+        })
+        polygonCollection.push(collection)
       }
-    });
-    for (var key in polygonIds) {
-      var collection = dbResults.filter((coords) => {
-          console.log(coords.polygon_id, key)
-          return coords.polygon_id.toString() === key;
-        }).sort(function(a, b) {
-          // console.log(a.id, 'this is the a comparator')
-        return a.id > b.id;
-      })
-      console.log('collection after filter: ', collection)
-      polygonCollection.push(collection)
+      const polyArray = Object.keys(polygonIds);
+      const labels = dbResults[0].labels;
+      const namesObj = {}
+      for(var i = 0; i < labels.length; i++) {
+        namesObj[polyArray[i]] = labels[i];
+      }
+      return {
+        polygonCollection: polygonCollection,
+        names: namesObj
+      };
+      
     }
-    console.log(polygonCollection, 'collection being returned')
-    return polygonCollection;
   }
 
   showShapes(e) {
@@ -67,8 +76,8 @@ export default class MapView extends React.Component {
     var label = prompt();
     let type = e.layerType;
     let newPoly = e.layer._latlngs[0];
-    console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
-    console.log('props inside polygon create: ', this.props.auth)
+    // console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
+    // console.log('props inside polygon create: ', this.props.auth)
     // console.log(addMapDataPoint);
     // console.log('what does this look like', newPoly);
     // for (var i = 0; i < newPoly.length - 1; i++) {
@@ -89,8 +98,8 @@ export default class MapView extends React.Component {
     
     //testOrgs('k');
 
-    console.log('shapes in the state: ', this.state.shapes);
-    console.log('this is the state: ', this.state);
+    // console.log('shapes in the state: ', this.state.shapes);
+    // console.log('this is the state: ', this.state);
     //polyline._latlngs[0] is the array of coordinates for that shape, 
     //in the array, each index is a L.LatLng object that holds lat and lon
     // To edit this polyline call : polyline.handler.enable()
@@ -133,19 +142,6 @@ export default class MapView extends React.Component {
 	render() {
     const position = [38.384, -122.865];
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
-    if(myShapes.length > 0 ) { console.log(myShapes, 'these are the shapes') }
-    const icon = L.divIcon({ 
-      className: "labelClass",
-      html: "meow"
-    });
-    if(myShapes.length > 0) {
-      const icons = myShapes.map((shape) => {
-        return this.createIcon(shape[0].polygon_id);
-      });
-      console.log('icons: ', icons)
-    }
-    console.log(icon, 'the is the single icon')
-
 
     return (
 			<div>
@@ -171,9 +167,9 @@ export default class MapView extends React.Component {
                 rectangle: false
               }}
             />
-          {/*positions is an array of lat/lng objects*/}
-          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
-         {/* {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.map((shape) => (<Marker icon={this.props.createIcon(shape[0].polygon_id)} position={shape[0]}/>)) : ''}*/}
+          {console.log('create icon?', this.createIcon)}
+          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
+          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Marker icon={this.createIcon(myShapes.names[shape[0].polygon_id])} key={shape[0].lat} position={shape[0]}/>)) : ''}
         </FeatureGroup>
         </Map>
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>

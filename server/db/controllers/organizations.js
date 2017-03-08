@@ -36,20 +36,19 @@ export const getAllOrgs = (params) => {
 //hypothetically, this should send a json tree of all the vineyard data for this org
 export const getAllOrgVineyardData = (params) => {
   //should return all vineyards and their blocks
-  console.log('inside getAllOrgVineyardData', params);
-
+  console.log('*************inside getAllOrgVineyardData', params);
   return new Users({username: params})
   .fetch()
   .then((user) => {
-    console.log('user.attributes is: ', user.attributes);
+    // console.log('user.attributes is: ', user.attributes);
     let org_id = String(user.attributes.organization_id);
-    new Organizations({id: org_id})
+    return new Organizations({id: org_id})
       .fetch({
         withRelated: ['vineyards.blocks.rows.clones']
       })
       .then((data) => {
         if(data) {
-          console.log('this the vineyard data returned from the db', JSON.stringify(data))
+          console.log('******************this the vineyard data returned from the db', data)
           return data;    
         }
       })

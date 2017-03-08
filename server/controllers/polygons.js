@@ -37,14 +37,21 @@ export const insertNewPolygon = (req, res, next) => {
 export const findPolygonIds = (req, res, next) => {
 	return getAllPolygonIds()
 	.then((polyIds) => {
+		console.log('should be an array of obj wiht id and name: ', polyIds)
+		// id: poly.attributes.id,
+  	//label: poly.attributes.name
 		//get all coordinates from that id
-		polyIds.forEach((id) => {
+		let labels = []
+		polyIds.forEach((obj) => {
 			//find coordinates by polygon id
-			console.log('id found: ', id);
-			return findCoordsByPolyId(id)
+			console.log('this is the obj: ', obj);
+			labels.push(obj.label);
+			return findCoordsByPolyId(obj.id)
 			.then((coords) => {
+				console.log('is the name still available: ', obj.label)
+				console.log('labels for objects', labels)
 				if(coords) {
-					res.json(coords)
+					res.json({coords: coords, labels: labels})
 				} else {
 					next();
 				}
