@@ -17,7 +17,7 @@ export default props => (
   <Grid centered='true' divided='vertically'>
     <Grid.Row columns={1}>
       <Grid.Column>
-        <Map dispatch={props.dispatch} />
+        <Map dispatch={props.dispatch} homePage={props.homePage} />
       </Grid.Column>
     </Grid.Row>  
     <Grid.Row columns={1}>

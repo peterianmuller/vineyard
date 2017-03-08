@@ -10,6 +10,8 @@ import {addPolys} from '../actions/mapVis';
 
 import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
 import { getNotes } from '../actions/notesView';
+import { setHomeLocation } from '../actions/homeView';
+
 
 let polyline;
 
@@ -170,8 +172,17 @@ export default class MapView extends React.Component {
     this.props.dispatch(getNotes());
   }
 
+  updateHomeLocationBtn(e){
+    e.preventDefault();    
+    //
+    this.props.dispatch(setHomeLocation({lat:60, lng:100}));
+    //this.createMap();
+  }
+
+  //update position to home
 	render() {
-    const position = [38.384, -122.865];
+    //const position = [38.384, -122.865];
+    const position = [this.props.homePage.lat, this.props.homePage.lng];
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
 
     
@@ -217,9 +228,12 @@ export default class MapView extends React.Component {
           ))
         }
         </Map>
+
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
         <Button onClick={this.showNotes.bind(this)}>Show Notes</Button>
+
+        <Button onClick={this.updateHomeLocationBtn.bind(this)}>Vineyard!</Button>
 
       </div>
 		)
