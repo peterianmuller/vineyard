@@ -1,5 +1,9 @@
 export default () => {
 
+	var addresses = [{street: '91 Burn Cottage Rd'], street_2: null, city: 'Cromwell', state: '', zip: '9384', country: 'new zealand'}];
+
+	var orgs = [{name: 'burn cottage vineyard', phone_number: '17072345678', tier: 'Basic', address_id: '1'}]
+
 	var methods = [{name: 'brix', name: 'ph,', name: 'ta'}];
 
 	var varietals = [{name: 'pinot noir'}];
@@ -17,12 +21,38 @@ export default () => {
 	{number: 1, clone_id: 1, block_id: 3}, {number: 2, clone_id: 1, block_id: 3}, {number: 3, clone_id: 2, block_id: 3}, {number: 4, clone_id: 2, block_id: 3}, {number: 5, clone_id: 3, block_id: 3}, {number: 6, clone_id: 3, block_id: 3}];
 
 	var input = {
+		addresses: addresses,
+		orgs: orgs
 		methods: methods,
 		varietals: varietals,
 		clones: clones,
 		vineyards: vineyards,
 		blocks: blocks,
 		rows: rows
+	}
+
+	var addAddress = (addresses) => {
+		addresses.forEach((address) => {
+			return new Addresses({
+				street: address.street,
+				street_2: address.street_2,
+				city: address.city,
+				state: address.state,
+				zip: address.zip,
+				country: address.country
+			}).save()
+		})
+	}
+
+	var addOrg = (orgs) => {
+		orgs.forEach((org) => {
+			return new Organizations({
+			name: org.name,
+			phone_number: org.phone_number,
+			tier: org.tier,
+			integer: org.integer
+			}).save();
+		})
 	}
 
 	var addMethods = (methods) => {
@@ -82,19 +112,25 @@ export default () => {
 
 
 	var seed = (meow) => {
-		return addMethods(meow.methods)
+		return addAddress(meow.addresses)
 		.then((meow) => {
-			return addVarietal(meow.varietals)
+			return addOrg(meow.orgs)
 			.then((meow) => {
-				return addClones(meow.clones)
+				return addMethods(meow.methods)
 				.then((meow) => {
-					return newVineyard(meow.vineyards)
+					return addVarietal(meow.varietals)
 					.then((meow) => {
-						return newBlocks(meow.blocks)
+						return addClones(meow.clones)
 						.then((meow) => {
-							return newRows(meow.rows)
-							.then(() => {
-								console.log('all added successfully!')
+							return newVineyard(meow.vineyards)
+							.then((meow) => {
+								return newBlocks(meow.blocks)
+								.then((meow) => {
+									return newRows(meow.rows)
+									.then(() => {
+										console.log('all added successfully!')
+									})
+								})
 							})
 						})
 					})
@@ -102,7 +138,5 @@ export default () => {
 			})
 		})
 	}
-
 	return seed(input);
-
 }

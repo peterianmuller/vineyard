@@ -2,6 +2,15 @@ import original from 'knex';
 import bookshelf from 'bookshelf';
 
 import seed from './seed/seed';
+import Addresses from '../models/adddresses';
+import Organizations from '../models/organizations';
+import Methods from '../models/methods';
+import Varietals from '../models/varietals';
+import Clones from '../models/clones';
+import Vineyards from '../models/vineyards';
+import Blocks from '../models/blocks';
+import Rows from '../models/rows';
+
 
 // FOR DEVELOPMENT:
 const knex = original({
