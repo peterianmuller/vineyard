@@ -1,6 +1,8 @@
 import original from 'knex';
 import bookshelf from 'bookshelf';
 
+import seed from './seed/seed';
+
 // FOR DEVELOPMENT:
 const knex = original({
   client: 'pg',
@@ -80,18 +82,7 @@ db.knex.schema.hasTable('addresses')
 		.createTable('rows', (row) => {
 			row.increments('id').primary();
 			row.string('number', 255).notNullable();
-			row.string('point1', 255).notNullable();
-			row.string('point2', 255).notNullable();
-			row.enu('status', [
-					'Pruned',
-		      'Bud-break',
-		      'Flowering',
-		      'Veraison',
-		      'Pre-harvest',
-		      'Post-harvest'
-		      ]).notNullable();
 			row.integer('clone_id').references('clones.id').notNullable();
-			// row.string('rootstock', 255).notNullable();
 			row.integer('block_id').references('blocks.id');
 		})
 		.createTable('users', (user) => {
@@ -115,7 +106,6 @@ db.knex.schema.hasTable('addresses')
 			data.integer('method_id').references('methods.id').notNullable();
 			data.integer('row_id').references('rows.id').notNullable();
 			data.bigInteger('date').notNullable();
-			//precision and scale of result, may need to adjust
 			data.float('result', 20, 20).notNullable();
 		})
 		.createTable('notes', (note) => {
@@ -128,7 +118,6 @@ db.knex.schema.hasTable('addresses')
 			note.string('image_url');
 			note.integer('note_author_id').references('users.id');
 		})
-		//lat and long were 10, 8 and 11, 8 respectively
 		.createTable('coordinates', (coord) => {
 			coord.increments('id').primary();
 			coord.decimal('lat', 18, 14).notNullable();
@@ -167,7 +156,15 @@ db.knex.schema.hasTable('addresses')
     	coordsPolys.integer('poly_id').references('polygons.id').notNullable();
     })
 		.then(() => {
-		  console.log('Tables created successfully!');
+		  console.log('Tables created successfully, seeding commence!');
+		  return seed()
+		  .then(() => {
+		  	console.log('DB seeded successfully!');
+		  })
+		  .catch((err)=> {
+		  	console.log('Error with db seeding: ', err);
+		  })
+
 		})
 		.catch((err) => {
 			console.log('Error with table implementation: ', err);
