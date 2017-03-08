@@ -17,29 +17,21 @@ export default class DataVis extends React.Component {
   findBlock(inputArray) {
   	var context = this;
   	var vinObj = inputArray.filter(function(obj) {
-  		console.log('here!', context.props.dataVis.vineyard)
   		return obj.name === context.props.dataVis.vineyard;
   	})[0];
-  	console.log('should be a vineyard  object: ', vinObj);
-  	console.log(vinObj.blocks, 'blocks array?')
   	return vinObj.blocks
   }
 
   findRow(inputArray) {
-  	console.log('find row called')
   	var context = this;
   	var vinObj = inputArray.filter(function(obj) {
-  		console.log('here!', context.props.dataVis.vineyard)
   		return obj.name === context.props.dataVis.block;
   	})[0];
-  	console.log('should be a vineyard  object: ', vinObj);
-  	console.log(vinObj.rows, 'row array?')
   	return vinObj.rows
   }
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('submit pressed, this props', this.props.dataVis)
     this.props.dispatch(getAnalysis(this.props.dataVis));
   }
 
@@ -47,7 +39,6 @@ export default class DataVis extends React.Component {
  render() {
   this.findBlock.bind(this);
  	const vineyardData = JSON.parse(window.localStorage.getItem('vineyards')).org_info;
- 	console.log('meowoowowowowo', vineyardData);
  	const methods = [
  		[1, 'brix'],
  		[2, 'ph'],
@@ -55,72 +46,59 @@ export default class DataVis extends React.Component {
  	];
  	let blocks = [];
 	if(this.props.dataVis.vineyard) {
-		console.log('updated vineyard', this.props)
 		blocks = this.findBlock(vineyardData);
 	}
 	let rows = [];
 	if(this.props.dataVis.block) {
-		console.log('meow meow rows: ', this.props)
 		rows = this.findRow(blocks);
 	}
   return(
     <div>
-    <Form onSubmit={ this.handleSubmit.bind(this) }>
-    <Form.Dropdown selection
-      label='Method'
-      // loading={ fields.orgs_loading }
-      placeholder='Method'
-    
-      onChange={ this.handleDropdownChange.bind(this, 'method') }
-      options={ genDropdownOptionsOgs(
-        methods.map(item => item[1])
-      ) }
-    />
+      <Form onSubmit={ this.handleSubmit.bind(this) }>
+        <Form.Dropdown selection
+          label='Method'
+          placeholder='Method'
+          onChange={ this.handleDropdownChange.bind(this, 'method') }
+          options={ genDropdownOptionsOgs(
+            methods.map(item => item[1])
+          ) }
+        />
 
-    <Form.Dropdown selection
-      label='Vineyard'
-      // loading={ fields.orgs_loading }
-      placeholder='Vineyard'
-    
-      onChange={ this.handleDropdownChange.bind(this, 'vineyard') }
-      options={ genDropdownOptionsOgs(
-        vineyardData.map(item => item.name)
-      ) }
-    />
+        <Form.Dropdown selection
+          label='Vineyard'
+          placeholder='Vineyard'
+          onChange={ this.handleDropdownChange.bind(this, 'vineyard') }
+          options={ genDropdownOptionsOgs(
+            vineyardData.map(item => item.name)
+          ) }
+        />
 
-    <Form.Dropdown selection
-      label='Block'
-      // loading={ fields.orgs_loading }
-      placeholder='Block'
-    
-      onChange={ this.handleDropdownChange.bind(this, 'block') }
-   	  options={ genDropdownOptionsOgs(
-         blocks.map(item => item.name)
-      ) }
-    />
+        <Form.Dropdown selection
+          label='Block'
+          placeholder='Block'
+          onChange={ this.handleDropdownChange.bind(this, 'block') }
+       	  options={ genDropdownOptionsOgs(
+             blocks.map(item => item.name)
+          ) }
+        />
 
-    <Form.Dropdown selection
-      label='Row'
-      // loading={ fields.orgs_loading }
-      placeholder='Row'
-    
-      onChange={ this.handleDropdownChange.bind(this, 'row') }
-      options={ genDropdownOptionsOgs(
-        rows.map(item => item.number)
-      ) }
-    />
+        <Form.Dropdown selection
+          label='Row'
+          placeholder='Row'
+          onChange={ this.handleDropdownChange.bind(this, 'row') }
+          options={ genDropdownOptionsOgs(
+            rows.map(item => item.number)
+          ) }
+        />
 
+        <Form.Button primary fluid type='submit'>Get Data</Form.Button>
+      </Form>
 
-    <Form.Button primary fluid type='submit'>
-      Get Data
-    </Form.Button>
-  </Form>
       <Graph />
+
     </div>
 
 
   )
  }
 }
-
-       {/* <Form onSubmit={ this.handleSubmit.bind(this) }>*/}

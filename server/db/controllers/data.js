@@ -39,10 +39,6 @@ export const findRowId = (params) => {
 }
 
 export const findDatabyRowId = (params) => {
-	// return new Analysis({
-	// 	row_id: params.row_id,
-	// 	method_id: params.method_id
-	// })
 	return Analysis
 	.where({
 		row_id: params.row_id,

@@ -2,7 +2,8 @@ const defaultDataParams = {
 	method: '',
 	vineyard: '',
 	block: '',
-	row: ''
+	row: '',
+    results: []
 };
 
 
@@ -10,7 +11,7 @@ export function dataVisReducer(state = [], action) {
   switch(action.type) {
     case "SET_ANALYSIS":
       console.log(action.value);
-      return state.concat(action.value);
+      return state.results.concat(action.value);
     case "GET_ANALYSIS":
       return action.value;
     case "SET_METHOD":
