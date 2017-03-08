@@ -1,13 +1,18 @@
-import { newDataEntry } from '../db/controllers/data';
+import { newDataEntry, findRowId, findDatabyRowId } from '../db/controllers/data';
 
 
-function parseDataEntry (dataArray) {
-	const myMethods = {
-		brix: 1,
-		ph: 2,
-		ta: 3
-	}
+const myMethods = {
+	brix: 1,
+	ph: 2,
+	ta: 3
+}
 
+const matchMethod = function (method) {
+	console.log(method, 'method in match method')
+	return myMethods[method];
+}
+
+const parseDataEntry = function (dataArray) {
 	console.log('dataArray is: ', dataArray);
 	var collection = [];
 	dataArray.forEach(function(data) {
@@ -51,4 +56,30 @@ export const addNewData = (req, res, next) => {
 	});
 }
 
+export const getDataByRowId = (req, res, next) => {
+	console.log('****************************request to getData: ', JSON.parse(req.query.data));
+	let input = JSON.parse(req.query.data);
+	//match to the method name coming in on the request
+	let method_id = matchMethod(input.method);
+	console.log(method_id, 'method matched')
+	return findRowId(input)
+	.then((row_id)=> {
+		console.log('this should be the row_id: ', row_id);
+		console.log('should still have access to the method id: ', method_id);
+		const params = {
+			method_id: method_id.toString(),
+			row_id: row_id.toString()
+		}
+		console.log('++++++++++++++++++++ params into find data: ', params);
+		return findDatabyRowId(params)
+		.then((dataArray) => {
+			if(dataArray) {
+				res.json(dataArray)
+			} else {
+				next();
+			}
+		})
+	})
 
+
+}
