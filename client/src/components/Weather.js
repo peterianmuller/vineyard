@@ -2,7 +2,7 @@
 import React from 'react';
 
 //UI
-import { Button, Grid } from 'semantic-ui-react'
+import { Button, Form, Segment } from 'semantic-ui-react'
 
 //Components
 import NoteFormInput from './NoteFormInput';
@@ -12,17 +12,6 @@ import { setLatLong } from '../helpers/changeHandlers';
 import { getWeather, postNote } from '../actions/noteForm';
 
 export default class Weather extends React.Component {
-/**
- * @function pullWeather
- * @param {e} event 
- * @description Dispatches an action that requests weather info from Weather Underground API. Toggles boolean on store to true, indicating that there is a weather property for the note object sent to the database.
- * @memberOf Weather Component
- */
-  pullWeather(e) {
-    e.preventDefault();
-    this.props.dispatch(getWeather(this.props.note, true));
-  }
-
   handleSubmit(e) {
     e.preventDefault();
     this.props.dispatch(postNote(this.props.note));
@@ -30,23 +19,23 @@ export default class Weather extends React.Component {
 
   render(){
     return (
-      <Grid>
-        <Grid.Row centered='true' columns={4}>
-          <Grid.Column>
-            <NoteFormInput title='Temperature: ' field='weather' value={this.props.note.temperature} />
-          </Grid.Column>
-          <Grid.Column>
-            <NoteFormInput title='Humidity: ' field='weather' value={this.props.note.humidity} />
-          </Grid.Column>
-        </Grid.Row>     
+      <Form>
+        <Segment>
+          <Form.Group style={ { margin: '0 auto' } }>
+            <Form.Input
+              label="Temperature :"
+              value={ this.props.note.showF ? this.props.note.tempF : this.props.note.tempC } />
+            
+            <Form.Input 
+              label="Humidity :"
+              value={this.props.note.humidity} />
+          </Form.Group>
+        </Segment>
 
-        <Grid.Row centered="true" columns={2}>
-          <Grid.Column>
-            <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
-            <Button onClick={this.handleSubmit.bind(this)}>Confirm and Save Note</Button>       
-          </Grid.Column>
-        </Grid.Row>    
-      </Grid>
-    )
+        <Button primary fluid onClick={this.handleSubmit.bind(this)}>
+          Confirm and Save Note
+        </Button>       
+      </Form>
+    );
   }
 }

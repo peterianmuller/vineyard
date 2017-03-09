@@ -1,3 +1,9 @@
+export function incrementTime() {
+  return {
+    type: "INCREMENT_TIME", 
+  };
+}
+
 export function setHomeLocation(data){
   return {
     type: "UPDATE_LOCATION",

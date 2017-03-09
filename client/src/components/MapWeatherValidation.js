@@ -22,7 +22,7 @@ export default props => (
     </Grid.Row>  
     <Grid.Row columns={1}>
       <Grid.Column>
-        <Weather dispatch={props.dispatch} note={props.note}/>
+        <Weather dispatch={props.dispatch} note={props.homePage}/>
       </Grid.Column> 
     </Grid.Row>   
   </Grid>

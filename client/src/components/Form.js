@@ -72,8 +72,7 @@ export default class FormPage extends React.Component {
       <Grid columns="equal">
         <Grid.Row>
           <Grid.Column>
-            <p>{this.props.note.date}</p>
-            <p>{this.props.login.username}</p>
+            <h1>Create a new note</h1>
             <Form onSubmit={this.handleSubmit.bind(this)}>
               <NoteFormInput title='Note Title' field='title' value={this.props.note.title} />
               <NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
@@ -81,7 +80,9 @@ export default class FormPage extends React.Component {
 
             <Grid.Row>
               <Grid.Column>
-                  <div className='photoContainer'>
+                <div className='photoContainer'
+                  onClick={this.clickFileChooser.bind(this)}
+                >
                     <Loadable
                       spinner
                       active={ this.props.note.uploadPending }
@@ -94,7 +95,6 @@ export default class FormPage extends React.Component {
                         className='uploadedPhoto textCenter'
                         alt='Click here to upload image' 
 
-                        onClick={this.clickFileChooser.bind(this)}
                       />
                     </Loadable>
                   </div>

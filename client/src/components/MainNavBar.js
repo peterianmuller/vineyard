@@ -11,7 +11,7 @@ import MenuLink from './MenuLink';
 import { push } from 'react-router-redux';
 import { toggleLeftSidebar } from '../actions/navigation';
 import { getWeather } from '../actions/noteForm';
-import { setFOrC } from '../actions/homeView';
+import { incrementTime, setFOrC } from '../actions/homeView';
 
 //Style
 import moment from 'moment';
@@ -19,6 +19,12 @@ import styles from '../styles/AppStyles';
 
 export default class MainNavBar extends React.Component {
   componentDidMount() {
+    if (!this.props.weather.incrementing) {
+      setInterval(() => {
+        this.props.dispatch(incrementTime()); 
+      }, 1000);
+    }
+
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { 
         let lat = coords.latitude;
@@ -43,7 +49,7 @@ export default class MainNavBar extends React.Component {
           this.props.weather.icon ? (
             <Menu.Menu position='right' style={ styles.weatherElement }>
               <Menu.Item>
-                { moment().format('dddd, MMMM Do YYYY, h:mm:ss A') }
+                { this.props.weather.time.format('dddd, MMMM Do YYYY, h:mm:ss A') }
               </Menu.Item>
               <Menu.Item
                 onClick={::this.handleClick} 
