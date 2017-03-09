@@ -21,16 +21,39 @@ export default class HomeCard extends React.Component {
 
         <div style={ styles.innerScroll }>
           { 
-            this.props.children ? this.props.children : (
+            this.props.title==='Notes'? (
               <List>
                 { 
-                  ['a', 's', '324', '32', '34'].map((item, key) => (
+                  this.props.children.map((item, key) => (
                     <List.Item key={key}>
-                      <Image avatar src={pusheen} />
+                      <Image avatar src={item.image_url ? item.image_url : pusheen} />
                       <List.Content>
-                        <List.Header> Lorem ipsum </List.Header>
+                        <List.Header> {item.title} </List.Header>
                         <List.Description>
-                          FizzBuzz seems like a better choice
+                          {item.text}
+                        </List.Description>
+                      </List.Content>
+                      <Divider />
+                    </List.Item> 
+                  ))
+                }
+              </List>)
+            : !this.props.children[0].vineyard ? (
+              <List>
+
+
+              </List>
+  
+              ) :(
+              <List>
+                {
+                  this.props.children.map((item, key) => (
+                    <List.Item key={key}>
+                      <Image avatar src={item.image_url ? item.image_url : pusheen} />
+                      <List.Content>
+                        <List.Header> {item.vineyard + ', row: '} {item.row} { 'block : ' + item.block + '.'} </List.Header>
+                        <List.Description>
+                         titratable is: {item.titratable}
                         </List.Description>
                       </List.Content>
                       <Divider />

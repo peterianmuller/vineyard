@@ -14,13 +14,14 @@ import WeatherSummary from '../components/weatherSummary';
 //Actions
 
 import { setHomeLocation, testOrgs } from '../actions/homeView';
+import { getNotes } from '../actions/notesView';
 
 //Styles
 import styles from '../styles/HomeStyles';
 
 export default class Home extends React.Component {
  
-  componentDidMount(){
+  componentDidMount() {
     var context = this;
     testOrgs(); 
     navigator.geolocation.getCurrentPosition(
@@ -28,8 +29,13 @@ export default class Home extends React.Component {
         var lat = coords.latitude;
         var lng = coords.longitude; 
         context.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
-    })   
+    })
+
+    this.props.dispatch(getNotes());   
   }
+
+ // dummy data for data array
+ // !this.props.dataArray[0].block ? [{row:'5', block:'10', titratable: '3.4', vineyard:'Rosella'}, {row:'2', titratable: '5.4', block:'17', vineyard:'Gatos Locos'}] :
 
   render() {
     return (
@@ -37,8 +43,8 @@ export default class Home extends React.Component {
         <SplashCard />
 
         <div style={styles.stackedCardContainer}>
-          <HomeCard title='Notes' stacked />
-          <HomeCard title='Data' stacked />
+          <HomeCard title='Notes' stacked children={this.props.notesView.slice(0,9)}/>
+          <HomeCard title='Data' stacked children={this.props.dataArray}/>
         </div>
 
       </div>
