@@ -30,7 +30,8 @@ export const insertNewPolygon = (req, res, next) => {
 }
 
 export const findPolygonIds = (req, res, next) => {
-	let org = req.query.data;
+	let org = req.query.data.toString();
+	console.log('ORGGGGGGGGGGGGGGGGG in poly controller: ', org)
 	return getAllPolygonIds(org)
 	.then((polyIds) => {
 		let labels = [];

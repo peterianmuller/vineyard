@@ -14,6 +14,7 @@ export const getPolygonByName = (name) => {
 };
 
 export const getAllPolygonIds = (org) => {
+  console.log('@@@@@@@@@@@@@@@@@@@@@@ org in db controller: ', org)
   return Polygons
   .where({org_id: org})
   .fetchAll()
