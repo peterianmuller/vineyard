@@ -110,6 +110,7 @@ export default class Map extends React.Component {
           lng = context.props.lng;
         }
         var map = new google.maps.Map(document.getElementById('googleMaps'), {
+
           center: { lat: lat, lng: lng },
           zoom: 19,
           zoomControl: false,

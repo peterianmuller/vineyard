@@ -166,8 +166,16 @@ export default class MapView extends React.Component {
     this.props.dispatch(getNotes());
   }
 
+<<<<<<< HEAD
 	render() {
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
+=======
+
+	render() {
+
+    const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
+
+>>>>>>> Notes view goes to vineyard address and usermap shows Napa
     return (
 			<div>
         <Map
