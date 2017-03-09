@@ -13,6 +13,13 @@ export function toggleLeftSidebar() {
   };
 }
 
+/**
+ * User logout.
+ * @function logoutUser
+ * @param {object} userCredentials
+ * @description Handles user logout; dispatches action to logout user.
+ * @memberOf Navigation Actions
+ */
 export function logoutUser(userCredentials) {
   return dispatch => axios.get('/auth/logout')
   .then(() => { 
@@ -28,15 +35,19 @@ export function logoutUser(userCredentials) {
   });
 }
 
+/**
+ * User validation.
+ * @function validateUser
+ * @param {function} callback
+ * @description Handles user validation via JWT token auth and Passport.js Local Strategy.
+ * @memberOf Navigation Actions
+ */
 export function validateUser(callback) {
-  var test = 'huh';
   return dispatch => axios.get('/auth/session', 
     {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     })
     .then(res => {
-      console.log('this is test', test, 'shdjfkshdkfdsh')
-      console.log('idk man', res.data);
       return dispatch(setUserCredentials({ id: res.data.id, username: res.data.username, org_id: res.data.org_id }));
     })
     .then(() => {

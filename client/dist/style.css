@@ -214,3 +214,7 @@ body {
 .ui.segment {
 box-shadow: 2px 3px 7px 2px rgba(34,36,38,.15);
 }
+
+.ui.table td {
+  padding: 0;
+}

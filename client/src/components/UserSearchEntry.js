@@ -14,6 +14,13 @@ export default class UserSearchEntry extends React.Component {
     this.isInRoom = props.inRoom.reduce((acc, val) => acc || props.user.id === val.id, false);
   }
 
+/**
+ * Handles user seach for chat room member selection.
+ * @function handleClick
+ * @param {e} event
+ * @memberOf UserSearchEntry
+ * @description After user is selected to join a room, an action is dispatched to remove the user from the search results of users whom can be added.
+ */
   handleClick(e) {
     e.preventDefault();
 

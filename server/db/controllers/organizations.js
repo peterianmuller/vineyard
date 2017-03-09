@@ -32,9 +32,7 @@ export const getAllOrgs = (params) => {
   });
 }
 
-//hypothetically, this should send a json tree of all the vineyard data for this org
 export const getAllOrgVineyardData = (params) => {
-  //should return all vineyards and their blocks
   return new Users({username: params})
   .fetch()
   .then((user) => {

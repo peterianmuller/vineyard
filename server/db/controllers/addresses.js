@@ -1,8 +1,5 @@
 import Addresses from '../models/addresses';
 
-// QUESTION: ALSO, IS IT BETTER TO NAME THE FILES ADDRESSESMODEL.JS AND ADDRESSESCONTROLLER.JS?
-
-// QUESTION: ARE THESE THE BASIC FUNCTION: NEW, GET, GETALL, UPDATE, DELETE?
 export const newAddress = (params) => {
   return new Addresses({
     street: params.street,
@@ -22,9 +19,7 @@ export const getAddressByStreet = (params) => {
   .then( function(address) {
     return address;
   })
-
 };
-
 
 export const getAddressById = (params) => {
   return new Addresses({

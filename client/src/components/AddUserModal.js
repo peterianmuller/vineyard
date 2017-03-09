@@ -21,7 +21,7 @@ export default class AddUserModal extends React.Component {
     this.toIterate = Object.values(nextProps.rooms.peopleToAdd)
       .concat(nextProps.rooms.userList.map(item => item._source));
   }
-
+  
   addUserClick(e) {
     this.props.dispatch(toggleModal(true));
   }

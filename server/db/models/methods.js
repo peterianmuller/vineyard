@@ -5,5 +5,4 @@ const Methods = db.Model.extend({
 	hasTimeStamps: false
 })
 
-//literally just a collection of all of the analytical methods:
-//rn, this is just: brix, pH, TA
+export default Methods;

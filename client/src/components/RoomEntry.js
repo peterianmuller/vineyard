@@ -5,19 +5,25 @@ import React from 'react';
 import { setCurrentRoom } from '../actions/rooms';
 
 export default class RoomEntry extends React.Component {
+
+/**
+ * Set user's current room.
+ * @function handleClick
+ * @param {e} event 
+ * @memberOf RoomEntry
+ * @description On user click dispatches action that sets current chat room.
+ */
   handleClick(e) {
     e.preventDefault();
 
     var currentRoom = this.props.currentRoom;
     var newRoom = this.props.room.id;
-    console.log(this.props.room);
 
     this.props.dispatch(setCurrentRoom(currentRoom, newRoom));
   }
 
   render() {
     var active = this.props.room.id === this.props.currentRoom;
-    console.log('room name active', this.props.room.room_name, active);
 
     return (
       <a href="#" onClick={this.handleClick.bind(this)}>

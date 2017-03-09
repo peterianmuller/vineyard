@@ -10,10 +10,18 @@ export default class DataVis extends React.Component {
     super(props);
   }
 
+
   handleDropdownChange(item, e, { value }) {
     this.props.dispatch(setAnalysisItem(item, value));
   }
 
+/**
+ * Find selected vineyard's blocks.
+ * @function findBlock
+ * @param {array} inputArray
+ * @description Traverses vineyard data tree on from local storage and finds the blocks related to the selected vineyard.
+ * @memberOf DataVis Container
+ */
   findBlock(inputArray) {
   	var context = this;
   	var vinObj = inputArray.filter(function(obj) {
@@ -22,6 +30,13 @@ export default class DataVis extends React.Component {
   	return vinObj.blocks
   }
 
+/**
+ * Find available rows from selected block.
+ * @function fidRow
+ * @param {array} inputArray
+ * @description Helper function that traverses localStorage organization tree and returns the rows in the selected block.
+ * @memberOf DataVis Container
+ */
   findRow(inputArray) {
   	var context = this;
   	var vinObj = inputArray.filter(function(obj) {
@@ -52,8 +67,6 @@ export default class DataVis extends React.Component {
 	if(this.props.dataVis.block) {
 		rows = this.findRow(blocks);
 	}
-
-  console.log(this.props.dataVis.results, 'results?')
 
   return(
     <div>

@@ -15,12 +15,24 @@ export function displayDataResults(value) {
 	}
 }
 
+/**
+ * Parse data for graphing component visualization.
+ * @function
+ * @param {array} input - Array of objects from the PostgreSQL query. Transforms array into a date, results pairs that can be graphed by the Highcharts.js interface.
+ *
+ */
 const parseData = (input) => {
   return input.map((data_point) => {
       return [parseInt(data_point.date), data_point.result]
   })
 }
 
+/**
+ * Requests Analytical data from the PostgreSQL database.
+ * @function
+ * @param {object} vineyardInfo - Search parameters for database analysis results query (vineyard, block, row, analysis method type).
+ * @param {string} author - The author of the book.
+ */
 export const getAnalysis = (vineyardInfo) => {
 	return dispatch => axios.get('/api/data', {
     headers: {

@@ -15,6 +15,14 @@ export function setSignupItem(item, value) {
   return toReturn;
 }
 
+
+/**
+ * Post new user.
+ * @function signup
+ * @param {object} userAccount
+ * @description Sends post request to PostgreSQL database to insert new user.
+ * @memberOf SignUp Actions
+ */
 export function signup(userAccount) {
   return dispatch => axios.post('/auth/register', {
     firstName: userAccount.first_name,

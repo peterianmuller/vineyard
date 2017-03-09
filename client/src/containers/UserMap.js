@@ -28,6 +28,13 @@ export default class MapView extends React.Component {
     }
   }
 
+  /**
+ * Parses Polygon coordinate data from the database.
+ * @function UserMap
+ * @param {array of objects} dbResults
+ * @description Array of coordinate objects from the database. This function returns an object of polygon coordinates(polygonCollection) and polygon labels (names) groups coordinates by polygon Id into an array  of polygon-related coordinate arrays. Also organizes labels in ascending order of their related Polygon Ids.
+ * @memberOf MapView Container
+ */
   parsePolygonArray(dbResults) {
     if(this.props.polygons.polygons.length > 0) {
       var coordinateResults = dbResults[0].coords;
@@ -58,54 +65,42 @@ export default class MapView extends React.Component {
       
     }
   }
-
+  /**
+ * Renders polygons on button click.
+ * @funciton showShapes
+ * @param {event} e
+ * @description Button Click event. Toggles polygons on and off screen with associated labels.
+ * @memberOf MapView Component
+ */
   showShapes(e) {
     e.preventDefault();
     this.props.dispatch(showPolygonsOnMap());
   }
 
-  _onEditPath(e) {
-    console.log('Path edited !');
-  }
-
+  /**
+ * Listener for shape creation.
+ * @function _onCreate
+ * @param {event} e
+ * @description Listens for Leaflet-Draw 'draw:created' event. This method captures the shape that was drawn as 'newPoly' then dispatches and action that adds the coordinates to the Redux store, eventually posting to the database.
+ * @memberOf MapView Container
+ */
   _onCreate(e) {
     var label = prompt();
     let type = e.layerType;
     let newPoly = e.layer._latlngs[0];
-
     this.props.dispatch(addMapDataPoint({label: label, coords: newPoly, org_id: this.props.auth.org_id}));
-    
-    
     postMapData(this.props.mapVis);
-
     this.props.dispatch(clearDataPoints());
   }
 
-  _onDeleted(e) {
-    console.log('Path deleted !');
-  }
 
-  _mounted(drawControl) {
-    console.log('Component mounted !');
-  }
-
-  _onEditStart() {
-
-    console.log('Edit is starting !');
-  }
-
-  _onEditStop() {
-    console.log('Edit is stopping !');
-  }
-
-  _onDeleteStart() {
-    console.log('Delete is starting !');
-  }
-
-  _onDeleteStop() {
-    console.log('Delete is stopping !');
-  }
-
+  /**
+ * Polygon icon helper.
+ * @function createIcon
+ * @param {string} text
+ * @memberOf MapView Container
+ * @description This helper creates a Leaflet.js label for the polygons from their labels.
+ */
   createIcon(text) {
     var inputText = text.toString();
     return L.divIcon({
@@ -114,16 +109,29 @@ export default class MapView extends React.Component {
     })
   }
 
-  createNoteIcon(text) {
+  /**
+ * Note icon helper.
+ * @function createNoteIcon
+ * @param {}
+ * @description This helper creates a Leaflet.js icon for the notes.
+ * @memberOf MapView Container
+ */
+  createNoteIcon() {
     return L.icon({
       iconUrl: 'redPin.png',
       iconRetinaUrl: 'redPin.png',
-      iconSize: [17, 17],
-      //iconAnchor: [22, 94],
-      //popupAnchor: [-3, -76]
+      iconSize: [17, 17]
     })
   }
 
+
+/**
+ * Shows Notes on button click.
+ * @function showNotes
+ * @param {event} e
+ * @description  Renders pin and pop up label for notes on user click.
+ * @memberOf MapView Container
+ */
   showNotes(e) {
     e.preventDefault();
     this.props.dispatch(getNotes());
@@ -137,7 +145,7 @@ export default class MapView extends React.Component {
         <Map
           style={{height: "100vh"}}
           center={[-45.0197557,169.1879725]}
-          zoom={20}>
+          zoom={13}>
           <TileLayer
             url="https://api.mapbox.com/styles/v1/andipants12/cizsps6wg00842ro1wngxcqof/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5kaXBhbnRzMTIiLCJhIjoiY2l6b244ampwMDAxcDMzbnh5enpleTB2eCJ9.zu82GF0owfnb54lAGMUKKA"
             attribution='&copy;<a href="https://www.mapbox.com/about/maps" target="_blank">MapBox</a>, &copy;<a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors' />

@@ -12,6 +12,13 @@ export function setLoginItem(item, value) {
   return toReturn;
 }
 
+  /**
+ * Login process via Passport.
+ * @function loginUser
+ * @param {object} userCredentials
+ * @description Passport login, local protocol. Sets tokens on the local storage and connects sockets (for chat). Then redirects user to homepage.
+ * @memberOf Login Actions
+ */
 export function loginUser(userCredentials) {
   return dispatch => axios.post('/auth/login', {
     userName: userCredentials.username,
@@ -19,15 +26,6 @@ export function loginUser(userCredentials) {
   })
   .then((val) => {
     localStorage.setItem('token', val.data.token);
-
-
-    console.log('xxxxxxxxxxxxxxxx');
-    console.log('xxxxxxxxxxxxxxxx');
-    console.log('xxxxxxxxxxxxxxxx');
-    console.log('xxxxxxxxxxxxxxxx');
-    console.log('xxxxxxxxxxxxxxxx');
-    console.log('xxxxxxxxxxxxxxxx');
-    console.log(socket.disconnected);
     if (socket.disconnected) 
       socket.connect();
     //socket.emit('sign in');

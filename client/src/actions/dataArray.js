@@ -25,7 +25,6 @@ export function clearDataFields() {
 
 
 var obj = {
-    //should be row id, from the front end cache
     row: 1,
     date: 1488426073,
     results: {
@@ -35,9 +34,16 @@ var obj = {
     }
 }
 
+/**
+ * Post user-input data to database Anlysis table.
+ * @function postDataArray
+ * @param {array} data
+ * @description Sends post request to PostgreSQL database with user-input analysis. Maps input fields into an object with relevant results, date, and row number.
+ * @memberOf dataArray Actions
+ */
+ 
 export function postDataArray(data) {
   // add to data array on client-side 
-  //clearDataFields();
   var dataToSend = data.map((experiment) => {
     return {row:experiment.row, date: experiment.date, results: {brix: experiment.brix, ph: experiment.pH, ta: experiment.titratable}};
   });
@@ -47,12 +53,9 @@ export function postDataArray(data) {
 
   .then((response) => {
     console.log('response is', response);
-    //clearDataFields();
   }) 
   .catch((err) => {
     console.log(err);
   })
-
-  //return clearDataFormFields();
 };
 

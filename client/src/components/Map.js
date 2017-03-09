@@ -17,6 +17,13 @@ export default class Map extends React.Component {
     super(props);
   };
 
+  /**
+ * Adjusts 'current location' to be at the user's oganization location.
+ * @function updateHomeLocationBtn
+ * @param {e} event
+ * @description Retrieves organization address from PostgreSQL database then uses a geocoder to transform it to latitude/longitude, then sets the position to that coordinate.
+ * @memberOf Map
+ */
   updateHomeLocationBtn(e){
     e.preventDefault();    
     
@@ -50,6 +57,14 @@ export default class Map extends React.Component {
     })
 
   }
+
+  /**
+ * Renders map.
+ * @function showMap
+ * @param {e} event
+ * @description Renders a map via the Google Maps API .createMap() method.
+ * memberOf Map
+ */
 
   showMap(e){
     e.preventDefault();
@@ -112,7 +127,7 @@ export default class Map extends React.Component {
         var map = new google.maps.Map(document.getElementById('googleMaps'), {
 
           center: { lat: lat, lng: lng },
-          zoom: 19,
+          zoom: 13,
           zoomControl: false,
           mapTypeControl: false,
           scaleControl: false,
