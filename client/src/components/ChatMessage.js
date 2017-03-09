@@ -6,6 +6,7 @@ import Radium from 'radium';
 import { Comment } from 'semantic-ui-react';
 
 //Stylesheets
+import moment from 'moment';
 import styles from '../styles/ChatMessage';
 
 @Radium
@@ -42,7 +43,7 @@ export default class extends React.Component {
           }
           { 
             solo || top && !(bottom && top) ? (<Comment.Metadata style={ { display: 'inline' } }> 
-                    { new Date(this.props.time).toLocaleTimeString('en-us', dateOptions).toString() }
+                    { moment(this.props.time).fromNow() }
                   </Comment.Metadata>) : ''
           }
 

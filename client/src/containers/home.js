@@ -1,8 +1,6 @@
 
 //React requirements
 import React from 'react';
-import { connect } from 'react-redux';
-import store from '../store';
 
 //UI
 import { Dimmer, Loader, Segment } from 'semantic-ui-react';
@@ -10,6 +8,7 @@ import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 //Components
 import HomeCard from '../components/HomeCard';
 import MainNavBar from '../components/MainNavBar';
+import SplashCard from '../components/SplashCard';
 import WeatherSummary from '../components/weatherSummary';
 
 //Actions
@@ -19,12 +18,11 @@ import { setHomeLocation, testOrgs } from '../actions/homeView';
 //Styles
 import styles from '../styles/HomeStyles';
 
-class Home extends React.Component {
+export default class Home extends React.Component {
  
   componentDidMount(){
-
     var context = this;
-    testOrgs(); 
+    //testOrgs(); 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { 
         var lat = coords.latitude;
@@ -35,11 +33,15 @@ class Home extends React.Component {
 
   render() {
     return (
+      <div style={styles.flexBox}>
+        <SplashCard />
 
-        <div style={ { flexDirection: 'column', justifyContent: 'space-between', alignContent: 'space-between', flex: '1 auto' } }>
-          <HomeCard title='Notes' />
-          <HomeCard title='Data' />
+        <div style={styles.stackedCardContainer}>
+          <HomeCard title='Notes' stacked />
+          <HomeCard title='Data' stacked />
         </div>
+
+      </div>
     );
   }
 }

@@ -1,7 +1,6 @@
 import Notes from '../models/notes';
 
 export const newNote = (params) => {
-  console.log('inside newNote db controller ', params);
   return new Notes({
     title: params.title,
     text: params.text,

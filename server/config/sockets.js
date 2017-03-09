@@ -8,27 +8,39 @@ export default server => {
     socket.emit('connected', 'hello world');
   
     socket.on('join user room', data => {
-      socket.join('user ' + data.user_id);
+      if (!socket.rooms['user ' + data.id]) { 
+        socket.join('user ' + data.id);
+      }    
     });
 
     socket.on('new message', data => {
       messageController.postMessage(data).then(message => {
-        console.log('created msg');
         message.author_name = data.author_name;
-        console.log(message);
+
         io.in(data.room_id).emit('message created', message);
       });
     });
 
     socket.on('enter rooms', data => {
       data.forEach(item => {
-        socket.join(item.id);
+        if (!socket.rooms[item.id]) {
+          socket.join(item.id);
+        }
       });
     });
 
     socket.on('create rooms', data => {
-      console.log('added user to room i guess');
       io.in('user ' + data.user_id).emit('added to room');
+    });
+
+    socket.on('sign out', data => {
+      socket.disconnect();
+    });
+
+    socket.on('sign in', data => {
+      if (socket.disconnected) {
+        socket.connect();
+      }
     });
 
     // unsure if bottom two are needed

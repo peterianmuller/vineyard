@@ -48,10 +48,8 @@ export function register(req, res, next) {
     };
     return newUser(params)
     .then((user) => {
-      console.log('new user', user)
       getUserByUsername(params.username)
         .then((user) => {
-          console.log('user returned: ', user);
           next();
         })
         .catch((err) => {

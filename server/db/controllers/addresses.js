@@ -20,7 +20,6 @@ export const getAddressByStreet = (params) => {
   })
   .fetch()
   .then( function(address) {
-    console.log('address found from fetch: ', address);
     return address;
   })
 

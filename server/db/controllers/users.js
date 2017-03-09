@@ -22,10 +22,6 @@ export const getUserByUsername = (params) => {
     username: params
   })
   .fetch()
-  .then( function(user) {
-    console.log(user, "user from fetch")
-    return user;
-  })
 };
 
 export const getUserById = (params) => {
