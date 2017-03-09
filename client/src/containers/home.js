@@ -21,9 +21,8 @@ import styles from '../styles/HomeStyles';
 export default class Home extends React.Component {
  
   componentDidMount(){
-
     var context = this;
-    testOrgs(); 
+    //testOrgs(); 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { 
         var lat = coords.latitude;
