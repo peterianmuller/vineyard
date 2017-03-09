@@ -68,7 +68,7 @@ export default class DataForm extends React.Component {
   render(props) {
     return (
       <div>
-
+        
         <p>Standardization</p>
         <p>NaOH: 0.10</p>
    

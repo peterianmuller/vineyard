@@ -1,17 +1,6 @@
 import original from 'knex';
 import bookshelf from 'bookshelf';
 
-import seed from './seed/seed';
-import Addresses from '../models/adddresses';
-import Organizations from '../models/organizations';
-import Methods from '../models/methods';
-import Varietals from '../models/varietals';
-import Clones from '../models/clones';
-import Vineyards from '../models/vineyards';
-import Blocks from '../models/blocks';
-import Rows from '../models/rows';
-
-
 // FOR DEVELOPMENT:
 const knex = original({
   client: 'pg',
@@ -134,14 +123,6 @@ db.knex.schema.hasTable('addresses')
 			coord.integer('polygon_id').references('polygons.id');
 			coord.integer('note_id').references('notes.id');
 		})
-		.createTable('alerts', (alert) => {
-			alert.increments('id').primary();
-			alert.string('text', 5000).notNullable();
-			alert.string('latitude', 255).notNullable();
-			alert.string('longitude', 255).notNullable();
-			alert.date('alert_time', 255).notNullable();
-			alert.integer('alert_author_id').references('users.id').notNullable();
-		})
 		.createTable('rooms', (room) => {
 			room.increments('id').primary();
 			room.string('room_name', 255).notNullable();
@@ -159,21 +140,9 @@ db.knex.schema.hasTable('addresses')
       roomUser.integer('room_id').references('rooms.id').notNullable();
       roomUser.integer('user_id').references('users.id').notNullable();
     })
-    .createTable('organizations_polygons', (coordsPolys) => {
-    	coordsPolys.increments('id').primary();
-    	coordsPolys.integer('org_id').references('organizations.id').notNullable();
-    	coordsPolys.integer('poly_id').references('polygons.id').notNullable();
-    })
 		.then(() => {
-		  console.log('Tables created successfully, seeding commence!');
-		  return seed()
-		  .then(() => {
-		  	console.log('DB seeded successfully!');
-		  })
-		  .catch((err)=> {
-		  	console.log('Error with db seeding: ', err);
-		  })
-
+		  console.log('Tables created successfully!');
+		  
 		})
 		.catch((err) => {
 			console.log('Error with table implementation: ', err);

@@ -11,23 +11,21 @@ export const newPolygon = (params) => {
 
 export const getPolygonByName = (name) => {
   return new Polygons({ name: name }).fetch();
-  // .then(function (polygon) {
-  //   console.log('polygon found from fetch: ', polygon);
-  //   return polygon;
-  // })
 };
 
-export const getAllPolygonIds = () => {
-  return Polygons.forge().fetchAll()
+export const getAllPolygonIds = (org) => {
+  console.log('@@@@@@@@@@@@@@@@@@@@@@ org in db controller: ', org)
+  return Polygons
+  .where({org_id: org})
+  .fetchAll()
+  // return Polygons.forge().fetchAll()
   .then((polygons) => {
-    console.log('these are the polygons returned', polygons);
     let polygonIds = polygons.map((poly) => {
       return {
         id: poly.attributes.id,
         label: poly.attributes.name
       }
     })
-    console.log('this should be an array of polygon ids', polygonIds)
     return polygonIds;
   })
 }

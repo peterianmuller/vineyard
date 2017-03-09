@@ -14,7 +14,7 @@ export function authStatusReducer(state = authStatus, action) {
         ...state
       };
     case "SET_AUTHSTATUS_JWT_FULFILLED":
-      console.log('payload', action.payload)
+      // console.log('payload', action.payload)
       return {
         ...state,
         username: action.payload.username,

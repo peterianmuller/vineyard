@@ -18,8 +18,6 @@ export function clearDataPoints(value) {
 }
 
 export function postMapData(data) {
-  // add to data array on client-side 
-  //below is the axios post request that can be used when the route is ready to go!
   axios.post('/api/polygons', data, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
   .then((response) => {
     clearDataPoints();
@@ -37,8 +35,15 @@ function addPolys(value) {
   }
 }
 
-export function getShapeData() {
-  return dispatch => axios.get('api/polygons', { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }})
+export function getShapeData(org_id) {
+  return dispatch => axios.get('api/polygons',{
+    headers: {
+      'Authorization': 'JWT ' + localStorage.getItem('token') 
+    },
+    params: {
+      data: org_id
+    }
+  })
   .then((res) => {
     dispatch(addPolys(res.data));
   })

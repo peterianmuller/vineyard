@@ -40,7 +40,7 @@ export default props => {
               <MenuLink name='Home' icon='home' to='/' />
               <MenuLink name='Messages' icon='talk outline' to='/messages' />
               <MenuLink name='View Notes' icon='book' to='/notesView' />
-              <MenuLink name='View Data' icon='bar graph' to='/data/view' />
+              <MenuLink name='View Data' icon='bar graph' to='/DataVis' />
               <MenuLink name='View Alerts' icon='bell' to='alerts' />
               <MenuLink name='Write Note' icon='sticky note' to='form' />
               <MenuLink name='Record Data' icon='write' to='/dataForm' />

@@ -19,7 +19,7 @@ export default class Map extends React.Component {
 
   updateHomeLocationBtn(e){
     e.preventDefault();    
-
+    
     var context = this;
  
     axios.get('/api/address', {
@@ -48,7 +48,6 @@ export default class Map extends React.Component {
     .catch((err) => {
       console.log(err);
     })
-
 
   }
 
@@ -111,6 +110,7 @@ export default class Map extends React.Component {
           lng = context.props.lng;
         }
         var map = new google.maps.Map(document.getElementById('googleMaps'), {
+
           center: { lat: lat, lng: lng },
           zoom: 19,
           zoomControl: false,

@@ -12,3 +12,5 @@ const Varietals = db.Model.extend({
 		return this.hasMany(Clones);
 	}
 })
+
+export default Varietals;

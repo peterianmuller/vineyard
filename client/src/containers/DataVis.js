@@ -97,7 +97,7 @@ export default class DataVis extends React.Component {
         <Form.Button primary fluid type='submit'>Get Data</Form.Button>
       </Form>
 
-      {this.props.dataVis.results.length > 0 ? (<Graph props={this.props.dataVis.results}/>) : ''}
+      {this.props.dataVis.results.length > 0 ? (<Graph props={this.props.dataVis}/>) : ''}
 
     </div>
 

@@ -20,29 +20,17 @@ let polyline;
 export default class MapView extends React.Component {
 	constructor(props) {
 		super(props)
-    this.state = {
-      //vineyard coordinates
-      // -45.0197557,169.1879725
-      lat: -45.0197557,
-      lng: 169.1879725,
-      zoom: 20,
-      shapes: []
-    };
 	}
+  
   componentDidMount() {
-
-    //issue: only showing 2 ploygons.
-      //need to show new 
-    console.log('polygons?', this.props.polygons.polygons.length);
     if (this.props.polygons.polygons.length === 0) {
-      this.props.dispatch(getShapeData());
+      this.props.dispatch(getShapeData(this.props.auth.org_id));
     }
   }
 
   parsePolygonArray(dbResults) {
     if(this.props.polygons.polygons.length > 0) {
       var coordinateResults = dbResults[0].coords;
-      // console.log('coordinateResults: ', coordinateResults)
       var polygonIds = {}, polygonCollection = [];
       coordinateResults.forEach((coord) => {
         if(!polygonIds[coord.polygon_id]) {
@@ -53,7 +41,6 @@ export default class MapView extends React.Component {
         var collection = coordinateResults.filter((coords) => {
             return coords.polygon_id.toString() === key;
           }).sort(function(a, b) {
-            // console.log(a.id, 'this is the a comparator')
           return a.id > b.id;
         })
         polygonCollection.push(collection)
@@ -74,8 +61,6 @@ export default class MapView extends React.Component {
 
   showShapes(e) {
     e.preventDefault();
-    //toggle to boolean in the props store
-    console.log('show shapes button going');
     this.props.dispatch(showPolygonsOnMap());
   }
 
@@ -87,34 +72,13 @@ export default class MapView extends React.Component {
     var label = prompt();
     let type = e.layerType;
     let newPoly = e.layer._latlngs[0];
-    // console.log('new user shape drawn: ', newPoly, 'layer type: ', type);
-    // console.log('props inside polygon create: ', this.props.auth)
-    // console.log(addMapDataPoint);
-    // console.log('what does this look like', newPoly);
-    // for (var i = 0; i < newPoly.length - 1; i++) {
-    //   console.log('are these objects? ', newPoly[i]);
-    //   console.log('what type are these? ', typeof newPoly[i]);
-    // }
-    // console.log('obj with label prop and coords prop', {label: label, coords: newPoly});
 
-    //add polygon to 
     this.props.dispatch(addMapDataPoint({label: label, coords: newPoly, org_id: this.props.auth.org_id}));
     
     
     postMapData(this.props.mapVis);
 
     this.props.dispatch(clearDataPoints());
-
-    //to test /api/organizations route comment out all above and use testOrgs('k') below
-    
-    //testOrgs('k');
-
-    // console.log('shapes in the state: ', this.state.shapes);
-    // console.log('this is the state: ', this.state);
-    //polyline._latlngs[0] is the array of coordinates for that shape, 
-    //in the array, each index is a L.LatLng object that holds lat and lon
-    // To edit this polyline call : polyline.handler.enable()
-    console.log('Path created !');
   }
 
   _onDeleted(e) {
@@ -150,16 +114,7 @@ export default class MapView extends React.Component {
     })
   }
 
-  // createIcon(text) {
-  //   var inputText = text.toString();
-  //   return L.divIcon({
-  //     className: "noteIcon",
-  //     html: inputText
-  //   })
-  // }
-
   createNoteIcon(text) {
-    //var inputText = text.toString();
     return L.icon({
       iconUrl: 'redPin.png',
       iconRetinaUrl: 'redPin.png',
@@ -181,8 +136,8 @@ export default class MapView extends React.Component {
 			<div>
         <Map
           style={{height: "100vh"}}
-          center={[38.400, -122.828865]}
-          zoom={13}>
+          center={[38.3854604,-122.8651433]}
+          zoom={15}>
           <TileLayer
             url="https://api.mapbox.com/styles/v1/andipants12/cizsps6wg00842ro1wngxcqof/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5kaXBhbnRzMTIiLCJhIjoiY2l6b244ampwMDAxcDMzbnh5enpleTB2eCJ9.zu82GF0owfnb54lAGMUKKA"
             attribution='&copy;<a href="https://www.mapbox.com/about/maps" target="_blank">MapBox</a>, &copy;<a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
@@ -201,7 +156,6 @@ export default class MapView extends React.Component {
                 rectangle: false
               }}
             />
-          {console.log('create icon?', this.createIcon)}
           {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
           {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Marker icon={this.createIcon(myShapes.names[shape[0].polygon_id])} key={shape[0].lat} position={shape[0]}/>)) : ''}
         </FeatureGroup>
@@ -225,7 +179,3 @@ export default class MapView extends React.Component {
 		)
 	}
 }
-
-//look into not using tile layer, functions that add tiles on component load
-
-
