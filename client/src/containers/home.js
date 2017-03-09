@@ -22,7 +22,8 @@ class Home extends React.Component {
  
   componentDidMount(){
     // here set lat and lng of home page so we can set the userMap to that if we want
-    
+    var context = this;
+    console.log(context);
     this.testOrgs(); 
     // make api call to /organization/data to set 
     console.log('do I get here?');
@@ -30,18 +31,19 @@ class Home extends React.Component {
       ({ coords }) => { 
         var lat = coords.latitude;
         var lng = coords.longitude; 
-        this.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
+        context.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
     })   
   }
 
   testOrgs() {
+    var context;
     console.log('test orgs running')
     axios.get('/api/organization/information', {
       headers: {
         'Authorization': 'JWT ' + localStorage.getItem('token')  
       },
       params: {
-        name: this.props.auth.username
+        name: context.props.auth.username
       }
     })  
     .then((res) => {
@@ -62,7 +64,7 @@ class Home extends React.Component {
   }
 
   render() {
-    console.log(JSON.parse(window.localStorage.getItem('vineyards')), 'local')
+    //console.log(JSON.parse(window.localStorage.getItem('vineyards')), 'local')
     return (
 
       <div style={styles.flexBox}>

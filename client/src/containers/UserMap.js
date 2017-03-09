@@ -174,47 +174,17 @@ export default class MapView extends React.Component {
     this.props.dispatch(getNotes());
   }
 
-  goToVineyard(e){
-    e.preventDefault();  
-    //console.log('updateHomeLocationBtn is: ', updateHomeLocationBtn);
-    //updateHomeLocationBtn(e);
 
-
-    // var context = this;
-    // console.log('is this the address id? ', JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id);
-  
-
-    
-    // var geocoder = new google.maps.Geocoder();
-    // geocoder.geocode({'address': '1601 Rose St. Berkeley CA'}, function(results, status){
-
-    //   if (status === google.maps.GeocoderStatus.OK) {
-    //     var latitude = results[0].geometry.location.lat();
-    //     var longitude = results[0].geometry.location.lng();
-    //     context.props.dispatch(setHomeLocation({lat:latitude, lng:longitude}));
-    //   }
-    // });  
-
-    //this.props.dispatch(setHomeLocation({lat:60, lng:100}));
-    //this.createMap();
-  }
-
-  //update position to home
 	render() {
-    //const position = [38.384, -122.865];
-    const position = [this.props.homePage.lat, this.props.homePage.lng];
-    const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
 
-    
-    // go to the vineyard button - now we either hard code address in or can use current location
-      // need to be able to go to vineyard
+    const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
 
     return (
 			<div>
         <Map
           style={{height: "100vh"}}
-          center={position}
-          zoom={this.state.zoom}>
+          center={[38.400, -122.828865]}
+          zoom={13}>
           <TileLayer
             url="https://api.mapbox.com/styles/v1/andipants12/cizsps6wg00842ro1wngxcqof/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5kaXBhbnRzMTIiLCJhIjoiY2l6b244ampwMDAxcDMzbnh5enpleTB2eCJ9.zu82GF0owfnb54lAGMUKKA"
             attribution='&copy;<a href="https://www.mapbox.com/about/maps" target="_blank">MapBox</a>, &copy;<a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
@@ -252,8 +222,6 @@ export default class MapView extends React.Component {
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
         <Button onClick={this.showNotes.bind(this)}>Show Notes</Button>
-
-        <Button onClick={this.goToVineyard.bind(this)}>Vineyard!</Button>
 
       </div>
 		)

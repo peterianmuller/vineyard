@@ -103,6 +103,8 @@ export default class Map extends React.Component {
 
     function initMap() {
       //console.log('this.props is', this.props);
+      //var context = this;
+      console.log('context.props', context.props);
       var styleArray = [
          {
           featureType: "poi",
@@ -115,14 +117,20 @@ export default class Map extends React.Component {
       //need to get current coordinates to center map where user is at
         //navigator is async, so we can only access these coords inside the 
       navigator.geolocation.getCurrentPosition(function(pos){
-        //var lat = pos.coords.latitude;
-        //var lng = pos.coords.longitude;
+        var lat,lng
+        if (!context.props.homePage.lat) {
+          lat = pos.coords.latitude;
+          lng = pos.coords.longitude;
+        } else {
+          lat = context.props.homePage.lat;
+          lng = context.props.lng;
+        }
         var map = new google.maps.Map(document.getElementById('googleMaps'), {
 
           //able to get the location of the homepage
           //if this updates, will map re-render?
 
-          center: { lat: context.props.homePage.lat, lng: context.props.homePage.lng },
+          center: { lat: lat, lng: lng },
           zoom: 19,
           zoomControl: false,
           mapTypeControl: false,
