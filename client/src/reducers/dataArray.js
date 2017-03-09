@@ -83,7 +83,7 @@ export function dataArrayReducer(state = dataArray, action) {
       var month = today.getMonth();
       var day = today.getDate();
       var date = Date.UTC(year, month, day);
-      date = Number(date.toString().split('').slice(0, -3).join(''));
+      // date = Number(date.toString().split('').slice(0, -3).join(''));
       newState[action.key] = {
         ...newState[action.key], 
         NaOH: action.value,

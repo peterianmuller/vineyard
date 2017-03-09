@@ -15,9 +15,11 @@ modulesExport(Highcharts);
 import { Link, browserHistory } from 'react-router';
 
 export default class Graph extends React.Component {
+    constructor(props) {
+        super(props);
+    }
 
     componentDidMount() {
-
         var chart = new Highcharts.Chart({
         chart: {
         type: 'spline',
@@ -62,18 +64,7 @@ export default class Graph extends React.Component {
         // of 1970/71 in order to be compared on the same x axis. Note
         
             // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: [ [ 1467331200000, 3.07 ],
-                [ 1467504000000, 3.01 ],
-                [ 1468108800000, 3.05 ],
-                [ 1469059200000, 3.11 ],
-                [ 1469232000000, 2.94 ],
-                [ 1469318400000, 3.02 ],
-                [ 1469404800000, 2.98],
-                [ 1470096000000, 3.02 ],
-                [ 1470182400000, 3.01 ],
-                [ 1470268800000, 3.05 ],
-                [ 1470441600000, 3.05 ]
-               ], 
+            data: this.props.props.length > 0 ? this.props.props : [],
             showLegend: true,
             dataLabels: {
                 enabled: true

@@ -18,6 +18,7 @@ export const findRowId = (params) => {
 	.fetch()
 	.then((vineyard) => {
 		let vin_id = vineyard.attributes.id.toString();
+		console.log(')))))))))))))))))))))))params block: ', params.block)
 		return new Blocks({
 			name: params.block,
 			vineyard_id: vin_id
