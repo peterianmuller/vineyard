@@ -21,12 +21,12 @@ export default class Graph extends React.Component {
         super(props);
     }
 
+
     componentDidMount() {
         let dataProps = this.props.props;
         let method = dataProps.method;
         let block = dataProps.block;
         let row = dataProps.row;
-        console.log(dataProps, 'props')
 
         let text;
         if(dataProps.method === 'brix') {
@@ -47,9 +47,6 @@ export default class Graph extends React.Component {
         title: {
             text: method + ', block ' + block + ' in row ' + row
         },
-        // subtitle: {
-        //     text: 'Irregular time data in Highcharts JS'
-        // },
         xAxis: {
             type: 'datetime',
             dateTimeLabelFormats: { // don't display the dummy year
@@ -78,11 +75,6 @@ export default class Graph extends React.Component {
             }
         },
         series: [{
-        // name: 'pH block 5 abel',
-        // Define the data points. All series have a dummy year
-        // of 1970/71 in order to be compared on the same x axis. Note
-        
-            // that in JavaScript, months start at 0 for January, 1 for February etc.
             data: this.props.props.results.length > 0 ? this.props.props.results : [],
             showLegend: false,
             dataLabels: {
