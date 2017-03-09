@@ -31,7 +31,6 @@ export const insertNewPolygon = (req, res, next) => {
 
 export const findPolygonIds = (req, res, next) => {
 	let org = req.query.data;
-	console.log('wwwwwwwwwwwwwwworg: ', org)
 	return getAllPolygonIds(org)
 	.then((polyIds) => {
 		let labels = [];

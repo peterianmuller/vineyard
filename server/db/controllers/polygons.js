@@ -14,7 +14,6 @@ export const getPolygonByName = (name) => {
 };
 
 export const getAllPolygonIds = (org) => {
-  console.log('********************params inside getAllPolygonIds: ', org)
   return Polygons
   .where({org_id: org})
   .fetchAll()

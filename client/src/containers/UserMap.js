@@ -20,18 +20,10 @@ let polyline;
 export default class MapView extends React.Component {
 	constructor(props) {
 		super(props)
-    // this.state = {
-    //   //vineyard coordinates
-    //   // -45.0197557,169.1879725
-    //   lat: 38.3849138,
-    //   lng: -122.8651004,
-    //   zoom: 20,
-    //   shapes: []
-    // };
 	}
+  
   componentDidMount() {
     if (this.props.polygons.polygons.length === 0) {
-      console.log('org id in usermap?: ', this.props.auth.org_id)
       this.props.dispatch(getShapeData(this.props.auth.org_id));
     }
   }
