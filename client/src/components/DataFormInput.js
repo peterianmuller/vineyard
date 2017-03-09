@@ -20,6 +20,7 @@ export default props => {
     props.dispatch(addDataToArray(props.akey, props.field, e.target.value));
   }
 
+
   return(
     <div>
       {  
