@@ -1,5 +1,5 @@
 import express from 'express';
-import { createAddress } from '../../controllers/addresses';
+import { createAddress, findAddressById  } from '../../controllers/addresses';
 
 
 const router = express.Router();
@@ -8,5 +8,7 @@ const router = express.Router();
 
 // CREATE NEW ADDRESS
 router.route('/').post(createAddress);
+router.route('/').get(findAddressById);
+
 
 export default router;

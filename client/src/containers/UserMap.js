@@ -10,6 +10,10 @@ import {addPolys} from '../actions/mapVis';
 
 import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
 import { getNotes } from '../actions/notesView';
+import { setHomeLocation } from '../actions/homeView';
+
+//import { updateHomeLocationBtn } from '../components/map';
+
 
 let polyline;
 
@@ -170,20 +174,15 @@ export default class MapView extends React.Component {
     this.props.dispatch(getNotes());
   }
 
+
 	render() {
-    const position = [38.384, -122.865];
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
-
-    
-    // go to the vineyard button - now we either hard code address in or can use current location
-      // need to be able to go to vineyard
-
     return (
 			<div>
         <Map
           style={{height: "100vh"}}
-          center={position}
-          zoom={this.state.zoom}>
+          center={[38.400, -122.828865]}
+          zoom={13}>
           <TileLayer
             url="https://api.mapbox.com/styles/v1/andipants12/cizsps6wg00842ro1wngxcqof/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5kaXBhbnRzMTIiLCJhIjoiY2l6b244ampwMDAxcDMzbnh5enpleTB2eCJ9.zu82GF0owfnb54lAGMUKKA"
             attribution='&copy;<a href="https://www.mapbox.com/about/maps" target="_blank">MapBox</a>, &copy;<a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
@@ -217,6 +216,7 @@ export default class MapView extends React.Component {
           ))
         }
         </Map>
+
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>
         <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
         <Button onClick={this.showNotes.bind(this)}>Show Notes</Button>

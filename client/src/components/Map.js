@@ -1,10 +1,15 @@
 //React requirements
 import React from 'react';
+import axios from 'axios';
 
 
 //Actions and Functions
 import { setLatLong } from '../helpers/changeHandlers';
 import { setNoteFormItem } from '../actions/noteForm';
+
+import { Button } from 'semantic-ui-react';
+
+import { setHomeLocation } from '../actions/homeView';
 
 
 export default class Map extends React.Component {
@@ -12,8 +17,45 @@ export default class Map extends React.Component {
     super(props);
   };
 
-    //setNoteFormItem = setNoteFormItem.bind(this);
+  updateHomeLocationBtn(e){
+    e.preventDefault();    
 
+    var context = this;
+ 
+    axios.get('/api/address', {
+      params: {
+        id: JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id
+      },
+      headers: {
+        'Authorization': 'JWT ' + localStorage.getItem('token') 
+      }
+    })  
+    .then((response) => {
+      console.log('response is', response);
+      var address = response.data.street + ' ' + response.data.city + ' ' + response.data.state + ' ' + response.data.zip;
+
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({'address': address}, function(results, status){
+
+        if (status === google.maps.GeocoderStatus.OK) {
+          var latitude = results[0].geometry.location.lat();
+          var longitude = results[0].geometry.location.lng();
+          context.props.dispatch(setHomeLocation({lat:latitude, lng:longitude}));
+        }
+      })
+        this.createMap();
+    }) 
+    .catch((err) => {
+      console.log(err);
+    })
+
+
+  }
+
+  showMap(e){
+    e.preventDefault();
+    this.createMap();
+  }
 
   render() {
     return (
@@ -21,6 +63,7 @@ export default class Map extends React.Component {
         <div id='googleMaps' style = {{'margin': '0 auto', 'height': '40%', 'width': '50%', 'borderRadius': '3px' }}>
         </div>
         <div id="current" style={{'paddingTop': '25px'}}>Please move the note to a location</div>
+        <Button onClick={this.updateHomeLocationBtn.bind(this)}>Go to Vineyard</Button>
       </div> 
   )};
 
@@ -45,8 +88,9 @@ export default class Map extends React.Component {
     })();  
 
 
-
     function initMap() {
+  
+      console.log('context.props', context.props);
       var styleArray = [
          {
           featureType: "poi",
@@ -56,11 +100,16 @@ export default class Map extends React.Component {
           ]
         }
       ];
-      //need to get current coordinates to center map where user is at
-        //navigator is async, so we can only access these coords inside the 
+      
       navigator.geolocation.getCurrentPosition(function(pos){
-        var lat = pos.coords.latitude;
-        var lng = pos.coords.longitude;
+        var lat,lng
+        if (!context.props.homePage.lat) {
+          lat = pos.coords.latitude;
+          lng = pos.coords.longitude;
+        } else {
+          lat = context.props.homePage.lat;
+          lng = context.props.lng;
+        }
         var map = new google.maps.Map(document.getElementById('googleMaps'), {
           center: { lat: lat, lng: lng },
           zoom: 19,
@@ -101,7 +150,7 @@ export default class Map extends React.Component {
 
           // Setup the click event listeners: simply set the map to Chicago.
           controlUI.addEventListener('click', function() {
-            map.setCenter({ lat: lat, lng: lng });
+            map.setCenter({ lat: context.props.homePage.lat, lng: context.props.homePage.lng });
           });
         }
         
@@ -112,13 +161,13 @@ export default class Map extends React.Component {
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
         let myMarker = new google.maps.Marker({
-          position: {lat: lat, lng: lng},
+          position: {lat: context.props.homePage.lat, lng: context.props.homePage.lng},
           draggable: true,
           label: 'Note'
         });
 
         let myLocation = new google.maps.Marker({
-          position: {lat: lat, lng: lng},
+          position: {lat: context.props.homePage.lat, lng: context.props.homePage.lng},
           draggable: false,
           label: 'Me',
           icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
@@ -141,12 +190,9 @@ export default class Map extends React.Component {
             document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
         });
 
-        map.setCenter(myMarker.position);
-        
+        map.setCenter({lat: context.props.homePage.lat, lng: context.props.homePage.lng});        
         myMarker.setMap(map);
 
-        // console.log(marker.getPosition().lat());
-        // console.log(marker.getPosition().lng());
       });
     } 
   }

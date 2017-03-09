@@ -25,3 +25,16 @@ export const getAddressByStreet = (params) => {
   })
 
 };
+
+
+export const getAddressById = (params) => {
+  return new Addresses({
+    id: params.id
+  })
+  .fetch()
+  .then( function(address) {
+    console.log('address found from fetch: ', address);
+    return address;
+  })
+
+};
