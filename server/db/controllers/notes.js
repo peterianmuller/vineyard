@@ -17,16 +17,13 @@ export const getAllNotes = () => {
 };
 
 const deleteNote = (params) => {
-  //may need to modify value for title property
   return new Note({title: params.title})
   .fetch()
   .destroy()
-  //this should delete the note instance from te database
 };
 
 export default {
   newNote,
   getAllNotes,
-  // updateNote,
   deleteNote
 }

@@ -14,8 +14,10 @@ export function setLoginItem(item, value) {
 
   /**
  * Login process via Passport.
- * @function
- * @param {object} userCredentials - Passport login, local protocol. Sets tokens on the local storage and connects sockets (for chat). Then redirects user to homepage.
+ * @function loginUser
+ * @param {object} userCredentials
+ * @description Passport login, local protocol. Sets tokens on the local storage and connects sockets (for chat). Then redirects user to homepage.
+ * @memberOf Login Actions
  */
 export function loginUser(userCredentials) {
   return dispatch => axios.post('/auth/login', {

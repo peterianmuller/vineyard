@@ -13,16 +13,3 @@ export const newRow = (params) => {
   })
   .save();
 };
-// TODO: FIGURE OUT HOW TO SEARCH BY ANY PARAMETER BY WHICH WE'RE LOOKING FOR A ROW, EITHER BY LOCATION, NUMBER, ROOTSTOCK
-// const getRow = (req, res, next) => {
-// return new Rows( {/*TBD*/} )
-// };
-// // WILL WE EVER BE GETTING ALL ROWS? OR SIMPLY ALL ROWS WITHIN A GIVEN BLOCK OR VINEYARD, OR EVEN ALL ROWS BY VARIETAL OR ROOTSTOCK, ETC.
-// const getRows = (req, res, next) => {
-//   return Rows.findAll()
-//   .then((rows) => {
-
-//   })
-// };
-// const updateRow = (req, res, next) => {};
-// const deleteRow = (req, res, next) => {};

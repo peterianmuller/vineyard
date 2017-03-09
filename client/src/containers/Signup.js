@@ -24,6 +24,13 @@ export default class Signup extends React.Component {
     this.props.dispatch(getOrgs());
   }
 
+/**
+ * Confirm password match on signup.
+ * @function getPasswordValidationState
+ * @param {} 
+ * @description Checks user's password input; if not matching, error returned.
+ * @memberOf Signup Container
+ */
   getPasswordValidationState() {
     if (this.props.signup.password === '' &&
         this.props.signup.confirm_password === '') return null;
@@ -32,6 +39,13 @@ export default class Signup extends React.Component {
     else return 'success';
   }
 
+/**
+ * Enable/Disable submit button on signup form.
+ * @function buttonStatus
+ * @param {} 
+ * @description Disables submit when all forms are not completed.
+ * @memberOf Signup Container
+ */
   buttonStatus() {
     return !(this.props.signup.password === this.props.signup.confirm_password &&
       Object.keys(this.props.signup).reduce((acc, key)  => {

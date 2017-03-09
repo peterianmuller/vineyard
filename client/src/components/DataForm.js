@@ -18,10 +18,12 @@ import { addRowToTable, postDataArray, clearDataFields } from '../actions/dataAr
 
 export default class DataForm extends React.Component {
 
-  /**
+/**
  * Handle data form submission.
- * @function
- * @param {e} event - Calls postDataArray which sends a post request, and then dispatches action to clear input fields (prevent accumulation of old inputs). 
+ * @function handleSubmit
+ * @param {e} event
+ * @description Calls postDataArray which sends a post request, and then dispatches action to clear input fields (prevent accumulation of old inputs). 
+ * @memberOf DataForm
  */
   handleSubmit(e) {
     e.preventDefault();
@@ -32,8 +34,10 @@ export default class DataForm extends React.Component {
 
   /**
  * Clear data from redux store.
- * @function
- * @param {e} event - Clears data from redux store after it is posted to the PostgreSQL database.
+ * @function clearData
+ * @param {e} event
+ * @description Clears data from redux store after it is posted to the PostgreSQL database.
+ * @memberOf DataForm
  */
   clearData(e){
     e.preventDefault();
@@ -42,8 +46,10 @@ export default class DataForm extends React.Component {
 
   /**
  * Add row to data input table.
- * @function
- * @param {e} event - Adds row to table on user click.
+ * @function addRow
+ * @param {e} event
+ * @memberOf DataForm
+ * @description Adds row to table on user click.
  */
   addRow(e){
     e.preventDefault();

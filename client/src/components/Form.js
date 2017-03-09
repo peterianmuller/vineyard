@@ -16,7 +16,6 @@ import { getWeather, postNote, setSelectedImage, uploadImgToImgur, setNoteFormIt
 
 export default class FormPage extends React.Component {
   componentDidMount() {
-    //set he userid for the note
     this.props.dispatch(setNoteFormItem('username', this.props.auth.id))
 
     var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
@@ -38,10 +37,12 @@ export default class FormPage extends React.Component {
     this.props.dispatch(uploadImgToImgur(this.props.note.selectedImg));
   }
 
-  /**
+/**
  * Retrieves weather from weather API.
- * @function
- * @param {e} event - Dispatches action for weather API call.
+ * @function pullWeather
+ * @param {e} event
+ * @memberOf FormPage
+ * @description Dispatches action for weather API call.
  */
   pullWeather(e) {
     e.preventDefault();
@@ -50,8 +51,10 @@ export default class FormPage extends React.Component {
 
 /**
  * Handles user image file selection.
- * @function
- * @param {e} event - Allows user to select and upload file; sets image url to the Redux store via action dispatch.
+ * @function handleFileSelection
+ * @param {e} event
+ * @memberOf FormPage
+ * @desciption Allows user to select and upload file; sets image url to the Redux store via action dispatch.
  */
   handleFileSelection(e) {
     e.persist();

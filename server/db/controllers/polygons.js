@@ -14,11 +14,9 @@ export const getPolygonByName = (name) => {
 };
 
 export const getAllPolygonIds = (org) => {
-  console.log('@@@@@@@@@@@@@@@@@@@@@@ org in db controller: ', org)
   return Polygons
   .where({org_id: org})
   .fetchAll()
-  // return Polygons.forge().fetchAll()
   .then((polygons) => {
     let polygonIds = polygons.map((poly) => {
       return {

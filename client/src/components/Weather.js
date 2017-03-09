@@ -14,8 +14,10 @@ import { getWeather, postNote } from '../actions/noteForm';
 export default class Weather extends React.Component {
 /**
  * Request weather from Weather Underground API.
- * @function
- * @param {e} event - Dispatches an action that requests weather info from Weather Underground API. Toggles boolean on store to true, indicating that there is a weather property for the note object sent to the database.
+ * @function pullWeather
+ * @param {e} event 
+ * @description Dispatches an action that requests weather info from Weather Underground API. Toggles boolean on store to true, indicating that there is a weather property for the note object sent to the database.
+ * @memberOf Weather Component
  */
   pullWeather(e) {
     e.preventDefault();

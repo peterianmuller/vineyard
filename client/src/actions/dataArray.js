@@ -36,8 +36,10 @@ var obj = {
 
 /**
  * Post user-input data to database Anlysis table.
- * @function
- * @param {array} data - Sends post request to PostgreSQL database with user-input analysis. Maps input fields into an object with relevant results, date, and row number.
+ * @function postDataArray
+ * @param {array} data
+ * @description Sends post request to PostgreSQL database with user-input analysis. Maps input fields into an object with relevant results, date, and row number.
+ * @memberOf dataArray Actions
  */
  
 export function postDataArray(data) {

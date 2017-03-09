@@ -19,8 +19,10 @@ export function clearDataPoints(value) {
 
 /**
  * Sends Post request for Polygon creation.
- * @function
- * @param {array} data - Array of newly created polygon coordinate arrays (e.g. [[ [latlng], [latlng] ], [ [latlng], [latlng] ]...] ). Post request to PostgreSQL on creation of new user polygons. Polygons are tied to an organization id, so user's within the same org can view all org polygons.
+ * @function postMapData
+ * @param {array} data
+ * @description Array of newly created polygon coordinate arrays (e.g. [[ [latlng], [latlng] ], [ [latlng], [latlng] ]...] ). Post request to PostgreSQL on creation of new user polygons. Polygons are tied to an organization id, so user's within the same org can view all org polygons.
+ * @memberOf mapVis Actions
  */
 
 export function postMapData(data) {
@@ -43,8 +45,10 @@ function addPolys(value) {
 
 /**
  * Request polygon data form database.
- * @function
- * @param {integer} og_id - User's organization primary key. For lookup of all user's organization's polygons.
+ * @function getShapeData
+ * @param {integer} og_id
+ * @memberOf mapVis Actions
+ * @description User's organization primary key. For lookup of all user's organization's polygons.
  */
 export function getShapeData(org_id) {
   return dispatch => axios.get('api/polygons',{

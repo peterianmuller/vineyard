@@ -6,10 +6,11 @@ import axios from 'axios';
 
 /**
  * Post request to retrieve weather info from Weather underground API.
- * @function
+ * @function getWeather
  * @param {object} note - Note object from user input.
  * @param {boolean} noteCheck - Checks note format?
- * Initializes a post request to Weather API based on note's latitude and longitude.
+ * @description Initializes a post request to Weather API based on note's latitude and longitude.
+ * memberOf noteForm Actions
  */
 export function getWeather(note, noteCheck) {
   var cb = noteCheck ? setNoteWeather : setHomePageWeather;
@@ -62,6 +63,13 @@ export function appendNoteFormItem(item, value) {
 
 //add in rest of cols in schema
 
+/**
+ * Post request to retrieve weather info from Weather underground API.
+ * @function postNote
+ * @param {object} note - Note object from user input.
+ * @param {boolean} noteCheck - Checks note format?
+ * @description Initializes a post request to Weather API based on note's latitude and longitude.
+ */
 export function postNote(note) {
   
   return dispatch => axios.post('/api/note', {
@@ -89,6 +97,13 @@ export function clearNoteFields() {
   };
 }
 
+
+/**
+ * Upload Image to Imgur
+ * @function uploadImgToImgur
+ * @param {string} image - Note object from user input.
+ * @description Formats image string and sends post request to add image to imgur API.
+ */
 export function uploadImgToImgur(image) {
   if (image !== '') {
     return {

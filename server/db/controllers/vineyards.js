@@ -15,6 +15,4 @@ const allVineyards = (params) => {
 export default {
   newVineyard,
   allVineyards
-  // updateVineyard,
-  // deleteVineyard
 };

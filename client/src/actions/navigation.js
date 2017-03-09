@@ -13,6 +13,13 @@ export function toggleLeftSidebar() {
   };
 }
 
+/**
+ * User logout.
+ * @function logoutUser
+ * @param {object} userCredentials
+ * @description Handles user logout; dispatches action to logout user.
+ * @memberOf Navigation Actions
+ */
 export function logoutUser(userCredentials) {
   return dispatch => axios.get('/auth/logout')
   .then(() => { 
@@ -30,8 +37,10 @@ export function logoutUser(userCredentials) {
 
 /**
  * User validation.
- * @function
- * @param {function} callback - 
+ * @function validateUser
+ * @param {function} callback
+ * @description Handles user validation via JWT token auth and Passport.js Local Strategy.
+ * @memberOf Navigation Actions
  */
 export function validateUser(callback) {
   return dispatch => axios.get('/auth/session', 

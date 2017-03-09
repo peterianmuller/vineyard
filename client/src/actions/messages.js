@@ -24,9 +24,12 @@ export function textInputChange(text) {
 
 /**
  * Dispatches request for room messages..
- * @function
- * @param {integer} roomId - Retrieves messages belonging to specific room.
+ * @function grabMessagesInRoom
+ * @param {integer} roomId
+ * @description Retrieves messages belonging to specific room.
+ * @memberOf Messages Actions
  */
+
 
 export function grabMessagesInRoom(roomId) {
   return dispatch => axios.get('/api/messages/byRoomId/' + roomId,

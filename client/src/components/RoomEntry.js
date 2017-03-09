@@ -8,8 +8,10 @@ export default class RoomEntry extends React.Component {
 
 /**
  * Set user's current room.
- * @function
- * @param {e} event - On user click dispatches action that sets current chat room.
+ * @function handleClick
+ * @param {e} event 
+ * @memberOf RoomEntry
+ * @description On user click dispatches action that sets current chat room.
  */
   handleClick(e) {
     e.preventDefault();

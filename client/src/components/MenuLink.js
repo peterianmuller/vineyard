@@ -14,8 +14,10 @@ export default class MenuItem extends React.Component {
 
 /**
  * Handles menu icon clicks.
- * @function
- * @param {e} event - Dispatches an action that redirects user to desired endpoint.
+ * @function handleClick
+ * @param {e} event
+ * @memberOf MenuItem
+ * @description Dispatches an action that redirects user to desired endpoint.
  */
   handleClick(e) {
     if (this.props.onClick) 

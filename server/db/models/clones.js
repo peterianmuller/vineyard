@@ -10,7 +10,6 @@ const Clones = db.Model.extend({
   rows: function() {
     return this.hasMany(Rows);
   }
-
 });
 
 export default Clones;

@@ -8,6 +8,13 @@ export function addEvent(event) {
   };
 }
 
+/**
+ * Retrieve notes from database.
+ * @function getNodes
+ * @param {} 
+ * @description Get request to retrieve notes then dispatches action to add notes to the store.
+ * @memberOf notesView Actions
+ */
 export function getNotes() {
   return dispatch => axios.get('/api/note', {
     headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }

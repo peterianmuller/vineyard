@@ -9,10 +9,12 @@ import { handleItemChange } from '../helpers/changeHandlers';
 import { addDataToArray } from '../actions/dataArray';
       
 export default props => {
-  /**
+/**
  * Handles user input in Data Form component.
- * @function
- * @param {e} event - Adds user input to Redux store through action dispatch.
+ * @function changeHandler
+ * @param {e} event
+ * @memberOf DataFormInput
+ * @description Adds user input to Redux store through action dispatch.
  */
   var changeHandler = (e) => {
     e.persist();
