@@ -20,17 +20,18 @@ let polyline;
 export default class MapView extends React.Component {
 	constructor(props) {
 		super(props)
-    this.state = {
-      //vineyard coordinates
-      // -45.0197557,169.1879725
-      lat: -45.0197557,
-      lng: 169.1879725,
-      zoom: 20,
-      shapes: []
-    };
+    // this.state = {
+    //   //vineyard coordinates
+    //   // -45.0197557,169.1879725
+    //   lat: 38.3849138,
+    //   lng: -122.8651004,
+    //   zoom: 20,
+    //   shapes: []
+    // };
 	}
   componentDidMount() {
     if (this.props.polygons.polygons.length === 0) {
+      console.log('org id in usermap?: ', this.props.auth.org_id)
       this.props.dispatch(getShapeData(this.props.auth.org_id));
     }
   }
@@ -143,8 +144,8 @@ export default class MapView extends React.Component {
 			<div>
         <Map
           style={{height: "100vh"}}
-          center={[38.400, -122.828865]}
-          zoom={13}>
+          center={[38.3854604,-122.8651433]}
+          zoom={15}>
           <TileLayer
             url="https://api.mapbox.com/styles/v1/andipants12/cizsps6wg00842ro1wngxcqof/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5kaXBhbnRzMTIiLCJhIjoiY2l6b244ampwMDAxcDMzbnh5enpleTB2eCJ9.zu82GF0owfnb54lAGMUKKA"
             attribution='&copy;<a href="https://www.mapbox.com/about/maps" target="_blank">MapBox</a>, &copy;<a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors' />

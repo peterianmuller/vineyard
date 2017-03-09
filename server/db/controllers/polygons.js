@@ -13,9 +13,10 @@ export const getPolygonByName = (name) => {
   return new Polygons({ name: name }).fetch();
 };
 
-export const getAllPolygonIds = (params) => {
+export const getAllPolygonIds = (org) => {
+  console.log('********************params inside getAllPolygonIds: ', org)
   return Polygons
-  .where({org_id: params.org_id})
+  .where({org_id: org})
   .fetchAll()
   // return Polygons.forge().fetchAll()
   .then((polygons) => {
