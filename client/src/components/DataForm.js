@@ -58,8 +58,8 @@ export default class DataForm extends React.Component {
     return (
       <div>
         
-        <p>Standardization</p>
         <p>NaOH: 0.10</p>
+  
    
       <Table celled>
       <Table.Header>
