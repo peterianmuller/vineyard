@@ -28,6 +28,11 @@ export default class MapView extends React.Component {
     }
   }
 
+  /**
+ * Parses Polygon coordinate data from the database.
+ * @method of UserMap
+ * @param {array of objects} dbResults - Array of coordinate objects from the database. This function returns an object of polygon coordinates(polygonCollection) and polygon labels (names) groups coordinates by polygon Id into an array  of polygon-related coordinate arrays. Also organizes labels in ascending order of their related Polygon Ids.
+ */
   parsePolygonArray(dbResults) {
     if(this.props.polygons.polygons.length > 0) {
       var coordinateResults = dbResults[0].coords;
@@ -58,54 +63,36 @@ export default class MapView extends React.Component {
       
     }
   }
-
+  /**
+ * Renders polygons on button click.
+ * @method of UserMap
+ * @param {event} e - Button Click event. Toggles polygons on and off screen with associated labels.
+ */
   showShapes(e) {
     e.preventDefault();
     this.props.dispatch(showPolygonsOnMap());
   }
 
-  _onEditPath(e) {
-    console.log('Path edited !');
-  }
-
+  /**
+ * Listener for shape creation.
+ * @method of UserMap
+ * @param {event} e - Listens for Leaflet-Draw 'draw:created' event. This method captures the shape that was drawn as 'newPoly' then dispatches and action that adds the coordinates to the Redux store, eventually posting to the database.
+ */
   _onCreate(e) {
     var label = prompt();
     let type = e.layerType;
     let newPoly = e.layer._latlngs[0];
-
     this.props.dispatch(addMapDataPoint({label: label, coords: newPoly, org_id: this.props.auth.org_id}));
-    
-    
     postMapData(this.props.mapVis);
-
     this.props.dispatch(clearDataPoints());
   }
 
-  _onDeleted(e) {
-    console.log('Path deleted !');
-  }
 
-  _mounted(drawControl) {
-    console.log('Component mounted !');
-  }
-
-  _onEditStart() {
-
-    console.log('Edit is starting !');
-  }
-
-  _onEditStop() {
-    console.log('Edit is stopping !');
-  }
-
-  _onDeleteStart() {
-    console.log('Delete is starting !');
-  }
-
-  _onDeleteStop() {
-    console.log('Delete is stopping !');
-  }
-
+  /**
+ * Polygon icon helper.
+ * @method of UserMap
+ * @param {string} text - This helper creates a Leaflet.js label for the polygons from their labels.
+ */
   createIcon(text) {
     var inputText = text.toString();
     return L.divIcon({
@@ -114,16 +101,25 @@ export default class MapView extends React.Component {
     })
   }
 
-  createNoteIcon(text) {
+  /**
+ * Note icon helper.
+ * @method of UserMap
+ * @param {} - This helper creates a Leaflet.js icon for the notes.
+ */
+  createNoteIcon() {
     return L.icon({
       iconUrl: 'redPin.png',
       iconRetinaUrl: 'redPin.png',
-      iconSize: [17, 17],
-      //iconAnchor: [22, 94],
-      //popupAnchor: [-3, -76]
+      iconSize: [17, 17]
     })
   }
 
+
+/**
+ * Shows Notes on button click.
+ * @method of UserMap
+ * @param {event} e - Renders pin and pop up label for notes on user click.
+ */
   showNotes(e) {
     e.preventDefault();
     this.props.dispatch(getNotes());
