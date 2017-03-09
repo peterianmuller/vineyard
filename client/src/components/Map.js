@@ -19,12 +19,9 @@ export default class Map extends React.Component {
 
   updateHomeLocationBtn(e){
     e.preventDefault();    
-    //get address here
-    var context = this;
-    console.log('this is props inside updateHomeLocationBtn:', context.props);
 
-    console.log('is this the address id? ', JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id);
-    // have the address id, send axios 
+    var context = this;
+ 
     axios.get('/api/address', {
       params: {
         id: JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id
@@ -47,7 +44,6 @@ export default class Map extends React.Component {
         }
       })
         this.createMap();
-      //console.log('this.createMap is:', this.createMap);
     }) 
     .catch((err) => {
       console.log(err);
@@ -61,10 +57,6 @@ export default class Map extends React.Component {
     this.createMap();
   }
 
-    //setNoteFormItem = setNoteFormItem.bind(this);
-        //<Button onClick={this.showMap.bind(this)}>Update homePage location</Button>
-
-
   render() {
     return (
       <div>
@@ -77,16 +69,11 @@ export default class Map extends React.Component {
 
   
   componentDidMount() {
-    console.log('inside componentDidMount');
-    //console.log('is this the address id? ', JSON.parse(window.localStorage.getItem('orgs')).orgs.address_id);
-    //
-    //console.log('this.props is: ', this.props);
     this.createMap();
   };
 
   createMap() {
     var context = this;
-    console.log('this.props inside createMap is ', this.props);
 
     //JSONP request for map  
     (function fetchMap() {
@@ -102,8 +89,7 @@ export default class Map extends React.Component {
 
 
     function initMap() {
-      //console.log('this.props is', this.props);
-      //var context = this;
+  
       console.log('context.props', context.props);
       var styleArray = [
          {
@@ -114,8 +100,7 @@ export default class Map extends React.Component {
           ]
         }
       ];
-      //need to get current coordinates to center map where user is at
-        //navigator is async, so we can only access these coords inside the 
+      
       navigator.geolocation.getCurrentPosition(function(pos){
         var lat,lng
         if (!context.props.homePage.lat) {
@@ -126,10 +111,6 @@ export default class Map extends React.Component {
           lng = context.props.lng;
         }
         var map = new google.maps.Map(document.getElementById('googleMaps'), {
-
-          //able to get the location of the homepage
-          //if this updates, will map re-render?
-
           center: { lat: lat, lng: lng },
           zoom: 19,
           zoomControl: false,
@@ -209,12 +190,9 @@ export default class Map extends React.Component {
             document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
         });
 
-        map.setCenter({lat: context.props.homePage.lat, lng: context.props.homePage.lng});
-        
+        map.setCenter({lat: context.props.homePage.lat, lng: context.props.homePage.lng});        
         myMarker.setMap(map);
 
-        // console.log(marker.getPosition().lat());
-        // console.log(marker.getPosition().lng());
       });
     } 
   }

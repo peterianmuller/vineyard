@@ -176,9 +176,7 @@ export default class MapView extends React.Component {
 
 
 	render() {
-
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
-
     return (
 			<div>
         <Map
