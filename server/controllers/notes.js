@@ -1,10 +1,6 @@
 import notesController from '../db/controllers/notes';
 
 export function createNote(req, res, next) {
-  console.log('inside create note server controller');
-  console.log(req.body);
-  console.log('user posting note:', req.body.note_author_id);
-  console.log('this is the img url: ', req.body.image_url)
   const params = {
     title: req.body.title,
     text: req.body.text,
@@ -18,7 +14,6 @@ export function createNote(req, res, next) {
   return notesController.newNote(params)
     .then((note) => {
       if (note) {
-        console.log('this is note in tehn', note);
         res.json(note);
       } else {
         next();

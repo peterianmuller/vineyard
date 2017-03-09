@@ -1,8 +1,9 @@
 //React requirements
 import { push } from 'react-router-redux';
 
-//AJAX
+//Axios and sockets
 import axios from 'axios';
+import socket from '../sockets';
 
 export function setLoginItem(item, value) {
   var toReturn =  { value };
@@ -19,6 +20,18 @@ export function loginUser(userCredentials) {
   .then((val) => {
     localStorage.setItem('token', val.data.token);
 
+
+    console.log('xxxxxxxxxxxxxxxx');
+    console.log('xxxxxxxxxxxxxxxx');
+    console.log('xxxxxxxxxxxxxxxx');
+    console.log('xxxxxxxxxxxxxxxx');
+    console.log('xxxxxxxxxxxxxxxx');
+    console.log('xxxxxxxxxxxxxxxx');
+    console.log(socket.disconnected);
+    if (socket.disconnected) 
+      socket.connect();
+    //socket.emit('sign in');
+
     dispatch(clearUserLogin());
     dispatch(push('/'));
     return val;
@@ -33,13 +46,6 @@ export function clearUserLogin() {
     type: "CLEAR_LOGIN_FORM"
   }
 }
-
-// function updateAuthStatus(user) {
-//   return {
-//     type: "SET_AUTHSTATUS_ID",
-//     value: user
-//   };
-// }
 
 export function clearAuthStatus() {
   return {

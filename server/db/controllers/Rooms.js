@@ -38,10 +38,6 @@ function addUserToRoom(userId, roomId) {
 function getUsersInRoom(roomId) {
   return new Rooms({ id: roomId })
     .users().fetch()
-    .then(rooms => {
-      console.log("THIS IS THE ROOMS MAMANANA", rooms);
-      return rooms;
-    });
 }
 
 export default { addUserToRoom, createRoom, getMostRecent, getRoomById, getUsersInRoom };

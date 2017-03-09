@@ -25,7 +25,7 @@ import { mapVisReducer } from './reducers/mapVis';
 import { polygonsReducer } from './reducers/polygons';
 import { dataVisReducer } from './reducers/dataVis';
 
-const rootReducer = combineReducers({
+const appReducer = combineReducers({
   authStatus: authStatusReducer,
   login: userLoginReducer,
   messages: messageReducer,
@@ -43,6 +43,14 @@ const rootReducer = combineReducers({
   polygons: polygonsReducer,
   dataVis: dataVisReducer
 });
+
+const rootReducer = (state, action) => {
+  if (action.type === 'LOGOUT_USER') {
+    state = undefined;
+  }
+
+  return appReducer(state, action);
+}
 
 const middleware = applyMiddleware(routerMiddleware(browserHistory), logger(), promise(), thunk);
 

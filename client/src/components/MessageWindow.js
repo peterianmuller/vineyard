@@ -16,16 +16,6 @@ import socket from '../sockets';
 import styles from '../styles/ChatMessage';
 
 export default class MessageWindow extends React.Component {
-  constructor(props) {
-    super(props);
-
-    socket.on('message created', function(data) {
-      console.log('i see this coming in');
-      props.dispatch(receivedMessage(data)); 
-      props.dispatch(clearTextInput());
-    });
-  }
-
   componentWillUpdate() {
     var node = ReactDOM.findDOMNode(this);
     var heightDifference = node.scrollHeight - (Math.ceil(node.scrollTop) + node.offsetHeight);

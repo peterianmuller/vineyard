@@ -28,7 +28,6 @@ export const findOrCreateNewOrg = (params) => {
 export const getAllOrgs = (params) => {
   return Organizations.forge().fetchAll()
   .then((orgs) => {
-    console.log('orgs collection from getAllOrgs: ', orgs)
     return orgs;
   });
 }
@@ -36,11 +35,9 @@ export const getAllOrgs = (params) => {
 //hypothetically, this should send a json tree of all the vineyard data for this org
 export const getAllOrgVineyardData = (params) => {
   //should return all vineyards and their blocks
-  console.log('*************inside getAllOrgVineyardData', params);
   return new Users({username: params})
   .fetch()
   .then((user) => {
-    // console.log('user.attributes is: ', user.attributes);
     let org_id = String(user.attributes.organization_id);
     return new Organizations({id: org_id})
       .fetch({
@@ -48,7 +45,6 @@ export const getAllOrgVineyardData = (params) => {
       })
       .then((data) => {
         if(data) {
-          console.log('******************this the vineyard data returned from the db', data)
           return data;    
         }
       })

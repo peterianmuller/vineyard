@@ -14,6 +14,7 @@ import { getWeather } from '../actions/noteForm';
 import { setFOrC } from '../actions/homeView';
 
 //Style
+import moment from 'moment';
 import styles from '../styles/AppStyles';
 
 export default class MainNavBar extends React.Component {
@@ -34,25 +35,37 @@ export default class MainNavBar extends React.Component {
   render() {
     return (
       <Menu icon fixed='top' style={ styles.mainNavBar }>
-        <Menu.Item position='right'
-          onClick={::this.handleClick} 
-          style={ styles.weatherElement }
-        >
-          <Dimmer inverted active={!this.props.weather.icon}>
-            <Loader> </Loader>
-          </Dimmer>
+        <Dimmer inverted active={!this.props.weather.icon}>
+          <Loader> </Loader>
+        </Dimmer>
 
-          <img src={this.props.weather.icon} />
-          <p>
-            { 
-              (this.props.weather.showF ? 
-                this.props.weather.tempF : 
-                this.props.weather.tempC) +
-                String.fromCharCode(this.props.weather.showF ? 
-                  '0x2109' : '0x2103')
-            }
-          </p>
-        </Menu.Item>
+        {
+          this.props.weather.icon ? (
+            <Menu.Menu position='right' style={ styles.weatherElement }>
+              <Menu.Item>
+                { moment().format('dddd, MMMM Do YYYY, h:mm:ss A') }
+              </Menu.Item>
+              <Menu.Item
+                onClick={::this.handleClick} 
+              >
+                <img src={this.props.weather.icon} />
+                <p style={ { width: '3em' } }>
+                  { 
+                    (
+                      this.props.weather.showF ? 
+                      this.props.weather.tempF : 
+                      this.props.weather.tempC
+                    ) + 
+                      String.fromCharCode(this.props.weather.showF ?  '0x2109' : '0x2103')
+                  }
+                </p>
+              </Menu.Item>
+              <Menu.Item>
+                Humidity: {this.props.weather.humidity}
+              </Menu.Item>
+            </Menu.Menu>
+          ) : ''
+        }
       </Menu>
     );
   }

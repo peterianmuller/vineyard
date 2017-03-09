@@ -10,7 +10,7 @@ export default {
     flexDirection: 'column',
     order: 1,
     flexGrow: 1,
-    margin: '5em 1em 1em 2em', 
+    margin: '4.5em 1em 1em 2em', 
     width: '100%',
   },
 

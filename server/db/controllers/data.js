@@ -47,7 +47,6 @@ export const findDatabyRowId = (params) => {
 	})
 	.fetchAll()
 	.then((data) => {
-		console.log('************this is the data from the db query for row and id data: ', data);
 		return data;
 	})
 }

@@ -16,14 +16,11 @@ export function createOrganization(req, res, next) {
   }
   return newAddress(paramsAddress)
   .then((address) => {
-    console.log(address, "this is the new address")
     getAddressByStreet(paramsAddress.street)
     .then((address) => {
       return address.id;
     })
     .then((addressId) => {
-      console.log(req.body, "inside org create")
-      console.log(addressId, "address id just created")
       const params = {
         name: req.body.name.toLowerCase(),
         phoneNumber: req.body.phone_number,
@@ -53,12 +50,8 @@ export function fetchAllOrgs (req, res, next) {
 }
 
 export function fetchAllOrgVineyardData (req, res, next) {
-  //console.log('req params in fetchAllOrgs is: ', req);
-  //console.log('res in fetchAllOrgs is: ', res);
-  // console.log('req query: ', req.query.name);
   return getAllOrgVineyardData(req.query.name)
   .then ((vineyard_data) => {
-      console.log('********************vineyard_data is: ', vineyard_data);
       res.json(vineyard_data); 
   })
 }

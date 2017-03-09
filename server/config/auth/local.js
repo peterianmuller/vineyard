@@ -24,11 +24,9 @@ passport.use('local', new LocalStrategy({
   passReqToCallback: true
 },
   function(req, username, password, done) {
-    console.log('this is the user to find: ', username)
     var user_name_lower_case = username.toLowerCase();
     new Users({ username: user_name_lower_case }).fetch()
     .then((user) => {
-      console.log('user that was created: ', user);
       if (!user) {
         return done(null, false);
       }
@@ -36,7 +34,6 @@ passport.use('local', new LocalStrategy({
           alert('invalid password');
           return done(null, false);
       }
-      console.log('user matched by passport local auth');
       return done(null, user);
     })
     .catch((err) => {

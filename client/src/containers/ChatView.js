@@ -25,14 +25,7 @@ export default class ChatView extends React.Component {
     const dispatch = this.props.dispatch;
     dispatch(getRoomsRecentActivity(props.auth.id));
 
-    socket.on('message created', function() {
-      dispatch(getRoomsRecentActivity(props.auth.id));
-    });
-
-    socket.on('added to room', function() {
-      console.log('ive been added');
-      dispatch(getRoomsRecentActivity(props.auth.id));
-    });
+    socket.emit('join user room', { id: props.auth.id });
   }
 
   render() {

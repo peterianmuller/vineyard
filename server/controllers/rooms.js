@@ -36,7 +36,6 @@ export function addUserToRoom(req, res, next) {
 
 
 export function getUsersInRoom(req, res, next) {
-  console.log("This is inserted param", req.params.id);
   return roomsController.getUsersInRoom(req.params.id)
     .then(rooms => {
       res.json(rooms); 
