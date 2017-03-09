@@ -12,13 +12,7 @@ export default class Home extends React.Component {
     return (
       <Segment style={styles.splashCard}>
         <h1 style={styles.splashTitle}>
-          Welcome to your 
-					<div style={styles.nameText}>
-            <div style={styles.imgContainer}>
-        	  	<img style={styles.img} src='/wine-icon-22.png' /> 
-            </div>
-						<div style={styles.logoText}>Vineyard</div>
-					</div>
+          Welcome to your <span style={styles.logoText}>Vineyard</span>
         </h1>
       </Segment>
     );

@@ -20,7 +20,7 @@ export default {
     width: '65%',
     height: '88%',
     marginTop: '0 1em 1em 1em',
-    backgroundImage: 'url(https://static.pexels.com/photos/39351/purple-grapes-vineyard-napa-valley-napa-vineyard-39351.jpeg)',
+    backgroundImage: 'url(http://www.vinography.com/assets_c/2011/07/vinography_desktop_veraison-thumb-600x397-1347.jpg)',
     backgroundSize: '100% 100%',
   },
 
@@ -52,26 +52,28 @@ export default {
     marginTop: '3em',
     marginLeft: '1.5em',
     fontSize: '3em',
-    color: 'rgb(114, 47, 55)',
+    color: 'white',
     fontFamily: 'Arima Madurai',
 		fontStyle: 'italic',
   }, 
 
   nameText: {
     display: 'inline-block',
+    verticalAlign: 'middle',
     height: '5em',
     width: '5em',
     fontFamily: 'Parisienne',
     color: 'white',
     fontSize: '1em',
+    padding: '0.5em',
 		backgroundColor: 'rgb(114, 47, 55)',
+    borderRadius: '100%',
+    marginLeft: '0.5em',
   },
 
   logoText: {
-    textAlign: 'center',
-    paddingRight: '0.5em',
-    fontSize: '0.8em',
-    marginTop: '-0.4em',
+    fontFamily: "Parisienne",
+    fontSize: '2em',
   },
 
   imgContainer: {
