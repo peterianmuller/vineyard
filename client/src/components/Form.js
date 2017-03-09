@@ -3,7 +3,7 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
 //UI
-import { Button, Form, Grid } from 'semantic-ui-react';
+import { Button, Form, Segment } from 'semantic-ui-react';
 import Loadable from 'react-loading-overlay';
 
 //Components
@@ -69,59 +69,54 @@ export default class FormPage extends React.Component {
 
   render() {
     return (
-      <Grid columns="equal">
-        <Grid.Row>
-          <Grid.Column>
-            <h1>Create a new note</h1>
-            <Form onSubmit={this.handleSubmit.bind(this)}>
-              <NoteFormInput title='Note Title' field='title' value={this.props.note.title} />
-              <NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
-            </Form>
+      <Segment style={ { maxWidth: '500px', margin: '0 auto', height: '90%' } }>
+        <h1>Create a new note</h1>
+        <Form onSubmit={this.handleSubmit.bind(this)}>
+          <NoteFormInput title='Note Title' field='title' value={this.props.note.title} />
+          <NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
+        </Form>
 
-            <Grid.Row>
-              <Grid.Column>
-                <div className='photoContainer'
-                  onClick={this.clickFileChooser.bind(this)}
-                >
-                    <Loadable
-                      spinner
-                      active={ this.props.note.uploadPending }
-                      animate
-                      text="Uploading photo to imgur"
-                    >
-                      <img
-                        src={this.props.note.selectedImg}
+        <div className='photoContainer'
+          onClick={this.clickFileChooser.bind(this)}
+          style={ { height: '40%' } }
+        >
+          <Loadable
+            spinner
+            active={ this.props.note.uploadPending }
+            animate
+            text="Uploading photo to imgur"
+          >
+            <table style={ { height: '100%', width: '100%', margin: 0, padding: 0, border: 0 } }>
+              <tr style={ { verticalAlign: 'middle', textAlign: 'center' } }>
+                <td>
+                  <img
+                    src={this.props.note.selectedImg}
+                    className='uploadedPhoto textCenter'
+                    alt='Click here to upload image' 
+                  />
+                </td>
+              </tr>
+            </table>
+          </Loadable>
+        </div>
 
-                        className='uploadedPhoto textCenter'
-                        alt='Click here to upload image' 
-
-                      />
-                    </Loadable>
-                  </div>
-              </Grid.Column>
-            </Grid.Row>
-
-            <Grid.Row>
-              <input
-                ref={input => this.inputElement = input}
-                className='selectFileBtn'
-                style={ { display: 'none' } }
-                type='file'
-                capture='camera'
-                onChange={this.handleFileSelection.bind(this)}
-              />
-              <div className='oneEm'>
-                <Button
-                  fluid
-                  primary
-                  onClick={this.handleSubmit.bind(this)}>
-                  Next
-                </Button>
-              </div>
-            </Grid.Row>
-          </Grid.Column>
-        </Grid.Row>
-      </Grid>
+        <input
+          ref={input => this.inputElement = input}
+          className='selectFileBtn'
+          style={ { display: 'none' } }
+          type='file'
+          capture='camera'
+          onChange={this.handleFileSelection.bind(this)}
+        />
+        <div className='oneEm'>
+          <Button
+            fluid
+            primary
+            onClick={this.handleSubmit.bind(this)}>
+            Next
+          </Button>
+        </div>
+      </Segment>
     );
   }
 }
