@@ -8,9 +8,9 @@ import $ from 'jquery';
 import Highcharts from 'highcharts';
 
 import modulesExport from 'highcharts/modules/exporting';
-import darkUnica from 'highcharts/themes/dark-unica';
+// import darkUnica from 'highcharts/themes/dark-unica';
 modulesExport(Highcharts);
-darkUnica(Highcharts);
+// darkUnica(Highcharts);
 
 
 

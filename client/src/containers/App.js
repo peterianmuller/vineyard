@@ -44,15 +44,18 @@ export default class App extends React.Component {
                 dispatch: this.props.dispatch,
                 homePage: this.props.homePage,
 	  		  	  	login: this.props.login,
-                mapHome: this.props.mapHome,
-                mapVis: this.props.mapVis,
+                dataVis: this.props.dataVis,
+                dispatch: this.props.dispatch,
+                login: this.props.login,
                 messages: this.props.messages,
                 note: this.props.note,
                 notesView: this.props.notesView,
                 orgSignup: this.props.orgSignup,
                 polygons: this.props.polygons,
                 rooms: this.props.rooms,
-	  		  	  	signup: this.props.signup,
+                signup: this.props.signup,
+                mapHome: this.props.mapHome,
+                mapVis: this.props.mapVis
 	  		  	  }
 	  		    )
 	  	    }

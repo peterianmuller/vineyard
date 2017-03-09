@@ -13,8 +13,6 @@ const knex = original({
   },
   debug: true
 });
-
-const db = bookshelf(knex);
 // FOR PRODUCTION:
 // const knex = original({
 //   client: 'pg',
@@ -29,7 +27,7 @@ const db = bookshelf(knex);
 // })
 
 
-// const db = bookshelf(knex);
+const db = bookshelf(knex);
 db.knex.schema.hasTable('addresses')
 .then((exists) => {
 	if(!exists) {
@@ -157,6 +155,7 @@ db.knex.schema.hasTable('addresses')
     })
 		.then(() => {
 		  console.log('Tables created successfully!');
+		  
 		})
 		.catch((err) => {
 			console.log('Error with table implementation: ', err);
