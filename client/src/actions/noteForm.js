@@ -4,6 +4,13 @@ import { browserHistory } from 'react-router';
 //AJAX
 import axios from 'axios';
 
+/**
+ * Post request to retrieve weather info from Weather underground API.
+ * @function
+ * @param {object} note - Note object from user input.
+ * @param {boolean} noteCheck - Checks note format?
+ * Initializes a post request to Weather API based on note's latitude and longitude.
+ */
 export function getWeather(note, noteCheck) {
   var cb = noteCheck ? setNoteWeather : setHomePageWeather;
   return dispatch => axios.post('/api/weather/byLatLon', {
@@ -39,9 +46,6 @@ export function setNoteFormItem(item, value) {
 }
 
 function setNoteWeather(value) {
-  console.log('really in set note weather?');
-  console.log('resposne from API?', value.data.current_observation
-);
   return {
     type: "UPDATE_WEATHER",
     value: {temp: value.data.current_observation.temp_f +'F, ' + value.data.current_observation.temp_c + 'C' , humidity: value.data.current_observation.relative_humidity}
@@ -57,6 +61,7 @@ export function appendNoteFormItem(item, value) {
 }
 
 //add in rest of cols in schema
+
 export function postNote(note) {
   
   return dispatch => axios.post('/api/note', {

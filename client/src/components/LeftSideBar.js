@@ -14,6 +14,11 @@ import { logoutUser } from '../actions/navigation';
 import styles from '../styles/AppStyles';
 
 export default props => {
+/**
+ * Enables user logout.
+ * @function
+ * @param {e} event - Dispatches action to logout the user.
+ */
   const handleLogout = (e) => {
     e.preventDefault();
 

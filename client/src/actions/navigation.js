@@ -28,15 +28,17 @@ export function logoutUser(userCredentials) {
   });
 }
 
+/**
+ * User validation.
+ * @function
+ * @param {function} callback - 
+ */
 export function validateUser(callback) {
-  var test = 'huh';
   return dispatch => axios.get('/auth/session', 
     {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     })
     .then(res => {
-      console.log('this is test', test, 'shdjfkshdkfdsh')
-      console.log('idk man', res.data);
       return dispatch(setUserCredentials({ id: res.data.id, username: res.data.username, org_id: res.data.org_id }));
     })
     .then(() => {

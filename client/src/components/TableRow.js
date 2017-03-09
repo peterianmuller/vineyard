@@ -9,14 +9,6 @@ import { addDataToArray } from '../actions/dataArray';
 
 export default props => {
 
-  
-  // const today = new Date();
-  // var year = today.getFullYear();
-  // var month = today.getMonth();
-  // var day = today.getDate();
-  // console.log('year: ', year, 'month: ', month, 'day: ', day)
-  // props.dispatch(addDataToArray(props.akey, 'date', Date.UTC(year, month, day)));
-
   var calculateTitrate = (NaOH) => {
     return 0.10 * NaOH * 7.5;
   }

@@ -17,29 +17,12 @@ import { postData, appendDataFormItem } from '../actions/dataForm';
 import { addRowToTable, postDataArray, clearDataFields } from '../actions/dataArray';
 
 export default class DataForm extends React.Component {
-  componentDidMount() {
-    
-    // set he userid for the note
-    // this.props.dispatch(setNoteFormItem('username', this.props.auth.username))
 
-    // navigator.geolocation.getCurrentPosition(
-    //   ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
-
-    // const today = new Date();
-    // var year = today.getFullYear();
-    // var month = today.getMonth();
-    // var day = today.getDate();
-    // console.log('year: ', year, 'month: ', month, 'day: ', day)
-    // this.props.dispatch(appendDataFormItem('date', Date.UTC(year, month, day)));
-
-
-    // this.props.dispatch(setNoteFormItem('date', formattedDate));
-  }
-
-  // clickFileChooser(e) {
-  //   this.inputElement.click();
-  // }
-
+  /**
+ * Handle data form submission.
+ * @function
+ * @param {e} event - Calls postDataArray which sends a post request, and then dispatches action to clear input fields (prevent accumulation of old inputs). 
+ */
   handleSubmit(e) {
     e.preventDefault();
     postDataArray(this.props.dataArray);
@@ -47,23 +30,26 @@ export default class DataForm extends React.Component {
 
   }
 
+  /**
+ * Clear data from redux store.
+ * @function
+ * @param {e} event - Clears data from redux store after it is posted to the PostgreSQL database.
+ */
   clearData(e){
     e.preventDefault();
     this.props.dispatch(clearDataFields());
   }
 
+  /**
+ * Add row to data input table.
+ * @function
+ * @param {e} event - Adds row to table on user click.
+ */
   addRow(e){
-    // add row to table
-    // start with two rows 
     e.preventDefault();
     console.log(this.props);
     this.props.dispatch(addRowToTable());
-
   }
-   
-   // need to have an add row button add new rows upon clicking
-   // need to keep track of how many rows to have on the form in a store in redux and for each
-   // row we add to redux we render it on the page
 
   render(props) {
     return (

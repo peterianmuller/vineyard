@@ -15,7 +15,6 @@ export function displayDataResults(value) {
 	}
 }
 
-
 /**
  * Parse data for graphing component visualization.
  * @function
@@ -27,7 +26,6 @@ const parseData = (input) => {
       return [parseInt(data_point.date), data_point.result]
   })
 }
-
 
 /**
  * Requests Analytical data from the PostgreSQL database.

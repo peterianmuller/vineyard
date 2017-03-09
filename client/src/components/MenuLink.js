@@ -11,6 +11,12 @@ import { push } from 'react-router-redux';
 import { toggleLeftSidebar } from '../actions/navigation';
 
 export default class MenuItem extends React.Component {
+
+/**
+ * Handles menu icon clicks.
+ * @function
+ * @param {e} event - Dispatches an action that redirects user to desired endpoint.
+ */
   handleClick(e) {
     if (this.props.onClick) 
       this.props.onClick();
