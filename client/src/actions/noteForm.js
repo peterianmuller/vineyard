@@ -6,7 +6,6 @@ import axios from 'axios';
 
 export function getWeather(note, noteCheck) {
   var cb = noteCheck ? setNoteWeather : setHomePageWeather;
-  console.log(note);
   return dispatch => axios.post('/api/weather/byLatLon', {
     'lat': note.lat,
     'lon': note.lon
@@ -18,7 +17,6 @@ export function getWeather(note, noteCheck) {
 }
 
 export function setHomePageWeather(value) {
-  console.log(value.data);
   return {
     type: "UPDATE_TEMP",
     value: value.data.current_observation
@@ -60,7 +58,6 @@ export function appendNoteFormItem(item, value) {
 
 //add in rest of cols in schema
 export function postNote(note) {
-  console.log('inside postNote on the front end', note, 'then something else');
   
   return dispatch => axios.post('/api/note', {
     title: note.title,

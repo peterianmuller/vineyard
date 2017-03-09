@@ -13,42 +13,51 @@ import LeftSideBar from '../components/LeftSideBar';
 //Actions
 import { validateUser } from '../actions/navigation';
 
-class App extends React.Component {
+//Stylesheets
+import Radium from 'radium';
+import styles from '../styles/AppStyles.js';
+
+@connect(state => state)
+@Radium
+export default class App extends React.Component {
   render() {
     return (
-      <div>
-        <Sidebar.Pushable as={Segment}>
-          <LeftSideBar dispatch={this.props.dispatch} nav={this.props.nav} auth={this.props.authStatus} />
+      <div style={styles.flexbox}>
+        <div style={styles.leftSideBar}>
+          <LeftSideBar 
+            dispatch={this.props.dispatch} 
+            nav={this.props.nav} 
+            auth={this.props.authStatus} />
+        </div>
 
-          <Sidebar.Pusher>
-            <MainNavBar dispatch={this.props.dispatch} auth={this.props.authStatus} /> 
-            { 
-              React.cloneElement(this.props.children, 
-	  		  			{
-                  auth: this.props.authStatus,
-                  dispatch: this.props.dispatch,
-	  		  				login: this.props.login,
-                  messages: this.props.messages,
-                  note: this.props.note,
-                  notesView: this.props.notesView,
-                  orgSignup: this.props.orgSignup,
-                  rooms: this.props.rooms,
-	  		  				signup: this.props.signup,
-                  homePage: this.props.homePage,
-                  mapHome: this.props.mapHome,
-                  dataForm: this.props.dataForm,
-                  dataArray: this.props.dataArray,
-                  mapVis: this.props.mapVis,
-                  polygons: this.props.polygons,
-                  dataVis: this.props.dataVis
-	  		  			}
-	  		  		)
-	  		  	}
-          </Sidebar.Pusher>
-        </Sidebar.Pushable>
+        <div style={styles.innerCol}>
+          <MainNavBar weather={this.props.homePage} 
+            dispatch={this.props.dispatch}
+            auth={this.props.authStatus}
+          /> 
+          { 
+            React.cloneElement(this.props.children, 
+	  		  	  {
+                auth: this.props.authStatus,
+                dataArray: this.props.dataArray,
+                dataForm: this.props.dataForm,
+                dispatch: this.props.dispatch,
+                homePage: this.props.homePage,
+	  		  	  	login: this.props.login,
+                mapHome: this.props.mapHome,
+                mapVis: this.props.mapVis,
+                messages: this.props.messages,
+                note: this.props.note,
+                notesView: this.props.notesView,
+                orgSignup: this.props.orgSignup,
+                polygons: this.props.polygons,
+                rooms: this.props.rooms,
+	  		  	  	signup: this.props.signup,
+	  		  	  }
+	  		    )
+	  	    }
+        </div>
       </div>
     );
   }
 }
-
-export default connect(state => state)(App);

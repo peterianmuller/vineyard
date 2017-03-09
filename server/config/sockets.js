@@ -7,12 +7,11 @@ export default server => {
   io.on('connection', socket => {
     socket.emit('connected', 'hello world');
   
-    socket.on('this test', socket => {
-      console.log('~~~~~~~~~~~~~I dont know what this is doing~~~~~~~~~~~~~~~~~~');
+    socket.on('join user room', data => {
+      socket.join('user ' + data.user_id);
     });
 
     socket.on('new message', data => {
-      console.log('got the socket shit');
       messageController.postMessage(data).then(message => {
         console.log('created msg');
         message.author_name = data.author_name;
@@ -27,9 +26,13 @@ export default server => {
       });
     });
 
+    socket.on('create rooms', data => {
+      console.log('added user to room i guess');
+      io.in('user ' + data.user_id).emit('added to room');
+    });
+
     // unsure if bottom two are needed
     socket.on('initial room join', data => {
-      console.log('im in the room', data.room_id);
       socket.join(data.room_id);
     });
 

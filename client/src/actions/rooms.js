@@ -85,15 +85,15 @@ export function addUserToRoom(userId, roomId) {
     {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     }).then(resp => {
-      console.log('not sure what to expect', resp);
+      socket.emit('create rooms', { user_id: userId }); 
     });
 }
 
 export function searchUsersForAddRoom(text) {
   return dispatch => client.search({
-		index: "users",
-		type: "user", 
-		body: {
+	  index: "users",
+	  type: "user", 
+	  body: {
 	    "query": { 
 	      "multi_match": { 
 	        "fields": ["username", "firstname"], 
@@ -102,8 +102,7 @@ export function searchUsersForAddRoom(text) {
 	      } 
 	    }
 	  }
-	}).then(results => {
-    console.log('this is what you searched for', results);
+  }).then(results => {
     dispatch(updateUserList(results.hits.hits));
   }).catch(err => {
     console.log('this is the error', err); 

@@ -2,12 +2,15 @@
 import React from 'react';
 
 //UI
-import { Form } from 'semantic-ui-react';
+import { Form, Segment } from 'semantic-ui-react';
 
 //Actions and helpers
 import { createOrg, setOrgSignupItem } from '../actions/OrgSignup';
 import { handleItemChange } from '../helpers/changeHandlers';
 import { genDropdownOptions } from '../helpers/lifeHax';
+
+//Styles
+import styles from '../styles/AuthStyles';
 
 export default class OrgSignup extends React.Component {
   handleChange(value) {
@@ -28,7 +31,8 @@ export default class OrgSignup extends React.Component {
     const { orgSignup: fields } = this.props;
 
     return (
-      <div className="oneEm max500width">
+      <Segment style={styles.segment}>
+        <h1>Register organization here!</h1>
         <Form onSubmit={ this.handleSubmit.bind(this) }>
           <Form.Input
             required
@@ -96,7 +100,7 @@ export default class OrgSignup extends React.Component {
             Submit 
           </Form.Button>
         </Form>
-      </div>
+      </Segment>
     );
   }
 }

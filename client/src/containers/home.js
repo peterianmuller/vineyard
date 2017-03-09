@@ -1,23 +1,27 @@
+
 //React requirements
 import React from 'react';
 import { connect } from 'react-redux';
 import store from '../store';
-import WeatherSummary from '../components/weatherSummary';
-import { Button, Divider, Item, Grid, Form } from 'semantic-ui-react';
 
-import { setHomeLocation } from '../actions/homeView';
-
-import axios from 'axios'
+//UI
+import { Dimmer, Loader, Segment } from 'semantic-ui-react';
 
 //Components
+import HomeCard from '../components/HomeCard';
 import MainNavBar from '../components/MainNavBar';
+import WeatherSummary from '../components/weatherSummary';
+
+//Actions
+import { setHomeLocation } from '../actions/homeView';
+
+//Styles
+import styles from '../styles/HomeStyles';
 
 class Home extends React.Component {
  
   componentDidMount(){
     // here set lat and lng of home page so we can set the userMap to that if we want
-
-
     
     this.testOrgs(); 
     // make api call to /organization/data to set 
@@ -55,32 +59,19 @@ class Home extends React.Component {
     .catch((err)=> {
       console.log(err);
     })
-  };
+  }
 
   render() {
     console.log(JSON.parse(window.localStorage.getItem('vineyards')), 'local')
     return (
-     <Grid columns={16}>
-        <Grid.Column width={4}>
-          <h1>Basic Data Setup</h1> 
-          <p>Disrupt green juice deep v ethical shabby chic, 
-          kogi hella flexitarian prism letterpress. 
-          Keffiyeh photo booth blue bottle drinking vinegar, 
-          hella man braid biodiesel food truck lyft poke post-ironic. 
-          Af hashtag ennui, air plant hot chicken freegan 
-          DIY mustache biodiesel snackwave hell of kogi single-origin coffee literally. 
-          Vice freegan art party, helvetica unicorn authentic normcore blue bottle pinterest 
-          lomo humblebrag man braid. Semiotics tattooed chambray, pok pok hell of before they sold out offal. 
-          +1 fixie normcore, drinking vinegar man braid listicle cardigan waistcoat XOXO meh. 
-          Art party chillwave yuccie keffiyeh, bitters deep v before they sold out.</p>
-       </Grid.Column>
-       <Grid.Column width={4}>
-         <h1>Weather summary</h1>
-           <WeatherSummary dispatch={this.props.dispatch} temperature={this.props.homePage.temperature} humditiy={this.props.humidity} homePage={this.props.homePage}/>
-       </Grid.Column>
-    </Grid>
+
+      <div style={styles.flexBox}>
+        <div style={ { flexDirection: 'column', justifyContent: 'space-between', alignContent: 'space-between', flex: '1 auto' } }>
+          <HomeCard title='Notes' />
+          <HomeCard title='Data' />
+        </div>
+      </div>
     );
   }
 }
 
-export default connect(state => state)(Home);

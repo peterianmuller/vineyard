@@ -1,10 +1,10 @@
 import original from 'knex';
 import bookshelf from 'bookshelf';
 
+// FOR DEVELOPMENT:
 const knex = original({
   client: 'pg',
   connection: {
-    //host: 'vineyarddb.ct23pvub5oym.us-west-1.rds.amazonaws.com',
     host: 'localhost',
     port: '5432',
     user: null,
@@ -13,6 +13,19 @@ const knex = original({
   },
   debug: true
 });
+// FOR PRODUCTION:
+// const knex = original({
+//   client: 'pg',
+//   connection: {
+//     host: 'vineyarddb.ct23pvub5oym.us-west-1.rds.amazonaws.com',
+//     port: '5432',
+//     user: 'vineyardadmin',
+//     password: 'zydecovineyard',
+//     database: 'vineyard'
+//   },
+//   debug: true
+// })
+
 
 const db = bookshelf(knex);
 db.knex.schema.hasTable('addresses')

@@ -12,9 +12,13 @@ module.exports = [
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          loaders: [
-            'babel-loader'
-          ]
+          loader: 'babel-loader',
+          query: {
+            cacheDirectory: true,
+            plugins: [
+              'transform-decorators-legacy',
+            ],
+          }
         },
       ]
     },
@@ -37,10 +41,15 @@ module.exports = [
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          loaders: [
-            'babel-loader'
-          ]
-        }      ]
+          loader: 'babel-loader',
+          query: {
+            cacheDirectory: true,
+            plugins: [
+              'transform-decorators-legacy',
+            ],
+          }
+        },      
+      ],
     },
     externals: {
       'cheerio': 'window',
