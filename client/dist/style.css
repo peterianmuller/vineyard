@@ -7,6 +7,10 @@ body {
   position: relative;
 }
 
+#highcharts-container {
+  height: 70vh;
+}
+
 .map_buttons {
   z-index: 9999999;
 }

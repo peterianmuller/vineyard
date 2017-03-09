@@ -33,9 +33,9 @@ export default class MapView extends React.Component {
 
     //issue: only showing 2 ploygons.
       //need to show new 
-    console.log('polygons?', this.props.polygons.polygons.length);
+    console.log('polygons?', this.props.auth.org_id);
     if (this.props.polygons.polygons.length === 0) {
-      this.props.dispatch(getShapeData());
+      this.props.dispatch(getShapeData(this.props.auth.org_id));
     }
   }
 

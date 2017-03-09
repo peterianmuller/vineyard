@@ -35,7 +35,8 @@ export const insertNewPolygon = (req, res, next) => {
 }
 
 export const findPolygonIds = (req, res, next) => {
-	return getAllPolygonIds()
+	console.log('FROM THE FRONT ENDNDNDNDNDNDND: ', req.query);
+	return getAllPolygonIds(req.body)
 	.then((polyIds) => {
 		console.log('should be an array of obj wiht id and name: ', polyIds)
 		// id: poly.attributes.id,

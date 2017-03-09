@@ -8,9 +8,9 @@ import $ from 'jquery';
 import Highcharts from 'highcharts';
 
 import modulesExport from 'highcharts/modules/exporting';
-// import darkUnica from 'highcharts/themes/dark-unica';
+import darkUnica from 'highcharts/themes/dark-unica';
 modulesExport(Highcharts);
-// darkUnica(Highcharts);
+darkUnica(Highcharts);
 
 
 
@@ -22,17 +22,34 @@ export default class Graph extends React.Component {
     }
 
     componentDidMount() {
+        let dataProps = this.props.props;
+        let method = dataProps.method;
+        let block = dataProps.block;
+        let row = dataProps.row;
+        console.log(dataProps, 'props')
+
+        let text;
+        if(dataProps.method === 'brix') {
+            text = 'Brix°';
+        } 
+        if (dataProps.method === 'ph') {
+            text = 'pH';
+        } 
+        if(dataProps.method === 'ta') {
+            text = 'Titratable Acidity (g/L)';
+        }
+
         var chart = new Highcharts.Chart({
         chart: {
         type: 'spline',
-        renderTo: 'container'
+        renderTo: 'highcharts-container'
         },
         title: {
-            text: 'pH clone comparison, block 5'
+            text: method + ', block ' + block + ' in row ' + row
         },
-        subtitle: {
-            text: 'Irregular time data in Highcharts JS'
-        },
+        // subtitle: {
+        //     text: 'Irregular time data in Highcharts JS'
+        // },
         xAxis: {
             type: 'datetime',
             dateTimeLabelFormats: { // don't display the dummy year
@@ -45,7 +62,7 @@ export default class Graph extends React.Component {
         },
         yAxis: {
             title: {
-                text: 'Snow depth (m)'
+                text: text
             },
             min: 0
         },
@@ -66,8 +83,8 @@ export default class Graph extends React.Component {
         // of 1970/71 in order to be compared on the same x axis. Note
         
             // that in JavaScript, months start at 0 for January, 1 for February etc.
-            data: this.props.props.length > 0 ? this.props.props : [],
-            showLegend: true,
+            data: this.props.props.results.length > 0 ? this.props.props.results : [],
+            showLegend: false,
             dataLabels: {
                 enabled: true
             }
@@ -77,7 +94,7 @@ export default class Graph extends React.Component {
 
     render(){
       return(
-           <div id='container'>
+           <div id='highcharts-container'>
              
            </div>
         )

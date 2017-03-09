@@ -37,9 +37,17 @@ function addPolys(value) {
   }
 }
 
-export function getShapeData() {
-  return dispatch => axios.get('api/polygons', { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }})
+export function getShapeData(org_id) {
+  return dispatch => axios.get('api/polygons',{
+    headers: {
+      'Authorization': 'JWT ' + localStorage.getItem('token') 
+    },
+    params: {
+      data: org_id
+    }
+  })
   .then((res) => {
+    console.log(res, 'response after get shape data')
     dispatch(addPolys(res.data));
   })
   .catch((err) => {

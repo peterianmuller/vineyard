@@ -17,8 +17,11 @@ export const getPolygonByName = (name) => {
   // })
 };
 
-export const getAllPolygonIds = () => {
-  return Polygons.forge().fetchAll()
+export const getAllPolygonIds = (params) => {
+  return Polygons
+  .where({org_id: params.org_id})
+  .fetchAll()
+  // return Polygons.forge().fetchAll()
   .then((polygons) => {
     console.log('these are the polygons returned', polygons);
     let polygonIds = polygons.map((poly) => {
