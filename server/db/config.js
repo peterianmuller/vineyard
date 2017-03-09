@@ -123,14 +123,6 @@ db.knex.schema.hasTable('addresses')
 			coord.integer('polygon_id').references('polygons.id');
 			coord.integer('note_id').references('notes.id');
 		})
-		.createTable('alerts', (alert) => {
-			alert.increments('id').primary();
-			alert.string('text', 5000).notNullable();
-			alert.string('latitude', 255).notNullable();
-			alert.string('longitude', 255).notNullable();
-			alert.date('alert_time', 255).notNullable();
-			alert.integer('alert_author_id').references('users.id').notNullable();
-		})
 		.createTable('rooms', (room) => {
 			room.increments('id').primary();
 			room.string('room_name', 255).notNullable();
@@ -147,11 +139,6 @@ db.knex.schema.hasTable('addresses')
       roomUser.increments('id').primary();
       roomUser.integer('room_id').references('rooms.id').notNullable();
       roomUser.integer('user_id').references('users.id').notNullable();
-    })
-    .createTable('organizations_polygons', (coordsPolys) => {
-    	coordsPolys.increments('id').primary();
-    	coordsPolys.integer('org_id').references('organizations.id').notNullable();
-    	coordsPolys.integer('poly_id').references('polygons.id').notNullable();
     })
 		.then(() => {
 		  console.log('Tables created successfully!');

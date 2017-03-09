@@ -9,7 +9,6 @@ import blocksRouter from './routes/blocks';
 import rowsRouter from './routes/rows';
 import usersRouter from './routes/users';
 import notesRouter from './routes/notes';
-import alertsRouter from './routes/alerts';
 import authRouter from './routes/authorization';
 import weatherRoutes from './routes/weather';
 import roomRouter from './routes/rooms';
@@ -28,7 +27,6 @@ export default function routes(app, express) {
   app.use('/api/signup', usersRouter);
   app.use('/api/user', usersRouter);
   app.use('/api/note', notesRouter);
-  app.use('/api/alert', alertsRouter);
   app.use('/api/weather', weatherRoutes);
   app.use('/api/rooms', roomRouter);
   app.use('/api/messages', messageRouter);
