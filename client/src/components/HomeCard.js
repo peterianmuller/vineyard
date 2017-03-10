@@ -60,7 +60,7 @@ export default class HomeCard extends React.Component {
                 {
                   this.props.children.map((item, key) => (
                     <List.Item key={key}>
-                      <Icon name='bar graph large icon'/>
+                      <Icon name='bar graph'/>
                       <List.Content>
                         <List.Header> {item.vineyard + ', row: '} {item.row} { 'block : ' + item.block + '.'} </List.Header>
                         <List.Description>
