@@ -137,7 +137,7 @@ export default class MapView extends React.Component {
 	render() {
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
     return (
-      <Segment style={ { height: '87%' } }>
+      <Segment style={ { height: '87%', maxWidth: '900px', margin: '0 auto' } }>
 		  	<div style={ { position: 'relative' } }>
           <Map
             style={{height: "100vh"}}
