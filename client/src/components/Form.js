@@ -38,7 +38,6 @@ export default class FormPage extends React.Component {
   }
 
 /**
- * Retrieves weather from weather API.
  * @function pullWeather
  * @param {e} event
  * @memberOf FormPage
@@ -50,7 +49,6 @@ export default class FormPage extends React.Component {
   }
 
 /**
- * Handles user image file selection.
  * @function handleFileSelection
  * @param {e} event
  * @memberOf FormPage

@@ -18,7 +18,6 @@ export default class Map extends React.Component {
   };
 
   /**
- * Adjusts 'current location' to be at the user's oganization location.
  * @function updateHomeLocationBtn
  * @param {e} event
  * @description Retrieves organization address from PostgreSQL database then uses a geocoder to transform it to latitude/longitude, then sets the position to that coordinate.

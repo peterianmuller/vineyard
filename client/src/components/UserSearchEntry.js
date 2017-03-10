@@ -15,7 +15,6 @@ export default class UserSearchEntry extends React.Component {
   }
 
 /**
- * Handles user seach for chat room member selection.
  * @function handleClick
  * @param {e} event
  * @memberOf UserSearchEntry

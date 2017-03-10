@@ -29,9 +29,8 @@ export default class MapView extends React.Component {
   }
 
   /**
- * Parses Polygon coordinate data from the database.
  * @function UserMap
- * @param {array of objects} dbResults
+ * @param {array} dbResults
  * @description Array of coordinate objects from the database. This function returns an object of polygon coordinates(polygonCollection) and polygon labels (names) groups coordinates by polygon Id into an array  of polygon-related coordinate arrays. Also organizes labels in ascending order of their related Polygon Ids.
  * @memberOf MapView Container
  */
@@ -66,7 +65,6 @@ export default class MapView extends React.Component {
     }
   }
   /**
- * Renders polygons on button click.
  * @funciton showShapes
  * @param {event} e
  * @description Button Click event. Toggles polygons on and off screen with associated labels.
@@ -78,7 +76,6 @@ export default class MapView extends React.Component {
   }
 
   /**
- * Listener for shape creation.
  * @function _onCreate
  * @param {event} e
  * @description Listens for Leaflet-Draw 'draw:created' event. This method captures the shape that was drawn as 'newPoly' then dispatches and action that adds the coordinates to the Redux store, eventually posting to the database.
@@ -95,7 +92,6 @@ export default class MapView extends React.Component {
 
 
   /**
- * Polygon icon helper.
  * @function createIcon
  * @param {string} text
  * @memberOf MapView Container
@@ -110,7 +106,6 @@ export default class MapView extends React.Component {
   }
 
   /**
- * Note icon helper.
  * @function createNoteIcon
  * @param {}
  * @description This helper creates a Leaflet.js icon for the notes.
@@ -126,7 +121,6 @@ export default class MapView extends React.Component {
 
 
 /**
- * Shows Notes on button click.
  * @function showNotes
  * @param {event} e
  * @description  Renders pin and pop up label for notes on user click.

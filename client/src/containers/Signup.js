@@ -25,10 +25,9 @@ export default class Signup extends React.Component {
   }
 
 /**
- * Confirm password match on signup.
  * @function getPasswordValidationState
  * @param {} 
- * @description Checks user's password input; if not matching, error returned.
+ * @description Checks user's password input if not matching, error returned.
  * @memberOf Signup Container
  */
   getPasswordValidationState() {
@@ -40,7 +39,6 @@ export default class Signup extends React.Component {
   }
 
 /**
- * Enable/Disable submit button on signup form.
  * @function buttonStatus
  * @param {} 
  * @description Disables submit when all forms are not completed.

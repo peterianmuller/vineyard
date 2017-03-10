@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: components/Form.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: components/Form.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>//React requirements
+import React from 'react';
+import { Link, browserHistory } from 'react-router';
+
+//UI
+import { Button, Form, Grid } from 'semantic-ui-react';
+import Loadable from 'react-loading-overlay';
+
+//Components
+import NoteFormInput from './NoteFormInput';
+import Map from './Map';
+
+//Actions and Functions
+import { setLatLong } from '../helpers/changeHandlers';
+import { getWeather, postNote, setSelectedImage, uploadImgToImgur, setNoteFormItem } from '../actions/noteForm';
+
+export default class FormPage extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(setNoteFormItem('username', this.props.auth.id))
+
+    var formattedDate = String(new Date()).split(' ').slice(0,5).join(' ');
+
+    navigator.geolocation.getCurrentPosition(
+      ({ coords }) => { setLatLong(coords.latitude, coords.longitude); } );
+    if (!this.props.note.date) {
+      this.props.dispatch(setNoteFormItem('date', formattedDate));
+    }
+  }
+
+  clickFileChooser(e) {
+    this.inputElement.click();
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    this.props.dispatch(uploadImgToImgur(this.props.note.selectedImg));
+  }
+
+/**
+ * @function pullWeather
+ * @param {e} event
+ * @memberOf FormPage
+ * @description Dispatches action for weather API call.
+ */
+  pullWeather(e) {
+    e.preventDefault();
+    this.props.dispatch(getWeather(this.props.note));
+  }
+
+/**
+ * @function handleFileSelection
+ * @param {e} event
+ * @memberOf FormPage
+ * @desciption Allows user to select and upload file; sets image url to the Redux store via action dispatch.
+ */
+  handleFileSelection(e) {
+    e.persist();
+
+    var inputFile = e.target.files[0];
+    var reader = new FileReader();
+
+    reader.onload = e => {
+      this.props.dispatch(setSelectedImage(e.target.result));
+    }
+
+    reader.readAsDataURL(inputFile);
+  }
+
+  render() {
+    return (
+      &lt;Grid columns="equal">
+        &lt;Grid.Row>
+          &lt;Grid.Column>
+            &lt;p>{this.props.note.date}&lt;/p>
+            &lt;p>{this.props.login.username}&lt;/p>
+            &lt;Form onSubmit={this.handleSubmit.bind(this)}>
+              &lt;NoteFormInput title='Note Title' field='title' value={this.props.note.title} />
+              &lt;NoteFormInput title='Note Text' field='textArea' value={this.props.note.textArea} isTextArea={true} />
+            &lt;/Form>
+
+            &lt;Grid.Row>
+              &lt;Grid.Column>
+                  &lt;div className='photoContainer'>
+                    &lt;Loadable
+                      spinner
+                      active={ this.props.note.uploadPending }
+                      animate
+                      text="Uploading photo to imgur"
+                    >
+                      &lt;img
+                        src={this.props.note.selectedImg}
+
+                        className='uploadedPhoto textCenter'
+                        alt='Click here to upload image' 
+
+                        onClick={this.clickFileChooser.bind(this)}
+                      />
+                    &lt;/Loadable>
+                  &lt;/div>
+              &lt;/Grid.Column>
+            &lt;/Grid.Row>
+
+            &lt;Grid.Row>
+              &lt;input
+                ref={input => this.inputElement = input}
+                className='selectFileBtn'
+                style={ { display: 'none' } }
+                type='file'
+                capture='camera'
+                onChange={this.handleFileSelection.bind(this)}
+              />
+              &lt;div className='oneEm'>
+                &lt;Button
+                  fluid
+                  primary
+                  onClick={this.handleSubmit.bind(this)}>
+                  Next
+                &lt;/Button>
+              &lt;/div>
+            &lt;/Grid.Row>
+          &lt;/Grid.Column>
+        &lt;/Grid.Row>
+      &lt;/Grid>
+    );
+  }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getAnalysis">getAnalysis</a></li><li><a href="global.html#getWeather">getWeather</a></li><li><a href="global.html#parseData">parseData</a></li><li><a href="global.html#postNote">postNote</a></li><li><a href="global.html#showMap">showMap</a></li><li><a href="global.html#uploadImgToImgur">uploadImgToImgur</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Thu Mar 09 2017 16:31:45 GMT-0800 (PST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

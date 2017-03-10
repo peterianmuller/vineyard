@@ -9,6 +9,12 @@ recog.continuous = true;
 recog.interimResults = false;
 recog.lang = 'en-US';
 
+
+ /**
+* @function recog.onResult
+* @description action for recording voice detection in speach to text functionality.
+* @memberOf Helper Functions
+*/
 recog.onresult = e => {
   store.dispatch({
     type: "APPEND_NOTE_FORM_" + store.getState().note.currentlyRecording,
