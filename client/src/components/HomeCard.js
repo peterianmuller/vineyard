@@ -30,7 +30,7 @@ export default class HomeCard extends React.Component {
 
                       { item.image_url ?
                         <Image avatar src={item.image_url} /> :             
-                        <Icon name='sticky note'/>
+                        <Icon name='sticky note large icon'/>
                         
                       }
 
