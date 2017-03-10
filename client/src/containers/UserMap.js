@@ -17,8 +17,13 @@ import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData }
 import { getNotes } from '../actions/notesView';
 import { setHomeLocation } from '../actions/homeView';
 
+//Styles
+import Radium from 'radium';
+import styles from '../styles/MapStyles';
+
 let polyline;
 
+@Radium
 export default class MapView extends React.Component {
 	constructor(props) {
 		super(props)
@@ -137,7 +142,7 @@ export default class MapView extends React.Component {
 	render() {
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
     return (
-      <Segment style={ { height: '87%', maxWidth: '900px', margin: '0 auto' } }>
+      <Segment style={ styles.mapViewSegment }>
 		  	<div style={ { position: 'relative' } }>
           <Map
             style={{height: "100vh"}}
@@ -176,9 +181,11 @@ export default class MapView extends React.Component {
           }
           </Map>
 
-          <Button style={ { position: 'absolute', top: 0, left: '27%' } } onClick={this.showShapes.bind(this)}>Show Blocks</Button>
-          <Button style={ { position: 'absolute', top: 0, right: '43%' } } onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
-          <Button style={ { position: 'absolute', top: 0, right: '27%' } } onClick={this.showNotes.bind(this)}>Show Notes</Button>
+          <div style={ styles.mapViewContainer }>
+            <Button style={ styles.mapViewButton } onClick={this.showShapes.bind(this)}>Show Blocks</Button>
+            <Button style={ styles.mapViewButton } onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
+            <Button style={ styles.mapViewButton } onClick={this.showNotes.bind(this)}>Show Notes</Button>
+          </div>
 
         </div>
       </Segment>
