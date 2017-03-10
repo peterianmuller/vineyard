@@ -13,7 +13,7 @@ import WeatherSummary from '../components/weatherSummary';
 
 //Actions
 
-import { setHomeLocation, testOrgs } from '../actions/homeView';
+import { setHomeLocation, testOrgs, retrieveAllData } from '../actions/homeView';
 import { getNotes } from '../actions/notesView';
 
 //Styles
@@ -31,7 +31,9 @@ export default class Home extends React.Component {
         context.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
     })
 
-    this.props.dispatch(getNotes());   
+    this.props.dispatch(getNotes());
+
+    retrieveAllData();
   }
 
  // dummy data for data array

@@ -49,3 +49,39 @@ export const findDatabyRowId = (params) => {
 		return data;
 	})
 }
+
+export const findAllData = () => {
+	// console.log('&&&&&&&&&&&&&&& in db controller');
+	return new Analysis().fetchAll()
+	.then((analyses) => {
+		// console.log('###################this is the analyses returned from the db: ', analyses);
+		analyses.forEach((analysis) => {
+			//analysis.attributes.row_id should be the row id
+			let results = analysis;
+			let rowId = analysis.attributes.row_id.toString();
+			// console.log('#####################row id: ', rowId)
+			return Rows.where({id: rowId})
+			.fetch()
+			.then((row) => {
+				let blockId = row.attributes.block_id.toString();
+				// console.log('55555555555555555 block: ', blockId)
+				return Blocks.where({id: blockId})
+				.fetch()
+				.then((block) => {
+					let name = block.attributes.name;
+					// console.log('NAME: ', name, 'ANAYLSUS: ', analysis)
+					return {
+						analysis: analysis,
+						name: name
+					}
+				}).catch((err) => {
+					console.log(err);
+				})
+			}).catch((err) => {
+				console.log(err);
+			})
+		})
+	}).catch((err) => {
+		console.log(err);
+	})
+}
