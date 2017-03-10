@@ -1,6 +1,6 @@
 import React from 'react';
 import Graph from '../components/Graph';
-import {Form} from 'semantic-ui-react';
+import {Form, Dimmer, Divider, Item, Segment, Loader} from 'semantic-ui-react';
 
 import { genDropdownOptions, genDropdownOptionsOgs } from '../helpers/lifeHax';
 import { setAnalysisItem, getAnalysis } from '../actions/dataVis';
@@ -68,6 +68,7 @@ export default class DataVis extends React.Component {
 	}
 
   return(
+    <Segment style={ { height: '87%', margin: '0 auto' } }>
     <div>
       <Form onSubmit={ this.handleSubmit.bind(this) }>
         <Form.Dropdown selection
@@ -112,6 +113,7 @@ export default class DataVis extends React.Component {
       {this.props.dataVis.results.length > 0 ? (<Graph props={this.props.dataVis}/>) : ''}
 
     </div>
+    </Segment>
 
 
   )
