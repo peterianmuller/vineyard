@@ -179,18 +179,16 @@ export default class Map extends React.Component {
 
 
         google.maps.event.addListener(myMarker, 'dragend', function(evt){
-          document.getElementById('current').innerHTML = '<p>My location is: Current Lat: ' + evt.latLng.lat().toFixed(5) + ' Current Lng: ' + evt.latLng.lng().toFixed(5) + '</p>';
+          //document.getElementById('current').innerHTML = '<p>My location is: Current Lat: ' + evt.latLng.lat().toFixed(5) + ' Current Lng: ' + evt.latLng.lng().toFixed(5) + '</p>';
           
-          console.log(evt.latLng.lat().toFixed(5), evt.latLng.lng().toFixed(5));
-
           context.props.dispatch(setNoteFormItem('lat', evt.latLng.lat().toFixed(5)));
           context.props.dispatch(setNoteFormItem('lon',evt.latLng.lng().toFixed(5)));
 
         });
 
-        google.maps.event.addListener(myMarker, 'dragstart', function(evt){
-            document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
-        });
+        //google.maps.event.addListener(myMarker, 'dragstart', function(evt){
+        //  document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
+        //});
 
         map.setCenter({lat: context.props.homePage.lat, lng: context.props.homePage.lon});        
         myMarker.setMap(map);
@@ -202,8 +200,8 @@ export default class Map extends React.Component {
   render() {
     return (
       <div>
-        <div id="current" style={{'paddingTop': '25px'}}>
-          Please move the note to a location
+        <div id="current" style={{'paddingBottom': '10px'}}>
+          Blue is your location, red is the notes location.
         </div>
 
         <div style={ styles.mapsContainer }>

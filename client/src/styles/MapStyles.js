@@ -11,5 +11,5 @@ export default {
     'height': '65%', 
     'width': '100%', 
     'borderRadius': '3px' 
-  }
+  },
 };

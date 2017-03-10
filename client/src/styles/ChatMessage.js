@@ -45,6 +45,7 @@ export default {
     display: 'flex',
     justifyContent: 'space-between',
     padding: '0 1em 0 1em',
+
   },
 
   roomSelectorSegment: {
@@ -72,5 +73,15 @@ export default {
     justifyContent: 'flex-start',
     width: '90%',
     maxWidth: '90%',
+  },
+
+  roomEntries: {
+    overflowY: 'scroll',
+    height: '90%',
+  },
+
+  roomFont: {
+    fontSize: '2vw',
+
   },
 };

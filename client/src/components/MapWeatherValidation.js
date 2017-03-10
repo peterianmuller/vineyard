@@ -15,6 +15,8 @@ import { postNote } from '../actions/noteForm';
 
 export default props => (
   <Segment style={ { height: '90%', maxWidth: '700px', margin: '0 auto' } }>
+    <h1>Please mark where note occurred</h1>
+
     <Map dispatch={props.dispatch} homePage={props.homePage} />
     <Weather dispatch={props.dispatch} note={props.homePage}/>
   </Segment>
