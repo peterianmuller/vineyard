@@ -18,6 +18,6 @@ export default props => (
     <h1>Please mark where note occurred</h1>
 
     <Map dispatch={props.dispatch} homePage={props.homePage} />
-    <Weather dispatch={props.dispatch} note={props.homePage}/>
+    <Weather dispatch={props.dispatch} note={props.note} home={props.homePage} />
   </Segment>
 );

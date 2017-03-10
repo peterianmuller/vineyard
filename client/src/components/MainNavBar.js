@@ -32,7 +32,7 @@ export default class MainNavBar extends React.Component {
 
         this.props.dispatch(setLatLon( lat, lon ));
         this.props.dispatch(getWeather({ lat, lon }, false));
-      } 
+      }, err => { console.log(err) } 
     );
   }
 

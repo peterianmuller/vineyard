@@ -17,7 +17,7 @@ import styles from '../styles/WeatherStyles';
 export default class Weather extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
-    this.props.dispatch(postNote(this.props.note));
+    this.props.dispatch(postNote(this.props.note, this.props.home));
   }
 
   render(){
@@ -27,19 +27,19 @@ export default class Weather extends React.Component {
           <Form.Input
             style={styles.input}
             label="Temperature:"
-            value={ this.props.note.showF ? this.props.note.tempF : this.props.note.tempC } />
+            value={ this.props.home.showF ? this.props.home.tempF : this.props.home.tempC } />
           <Form.Input 
             style={styles.input}
             label="Humidity:"
-            value={this.props.note.humidity} />
+            value={this.props.home.humidity} />
           <Form.Input 
             style={styles.input}
             label="Latitude:"
-            value={this.props.note.lat.toFixed(5)} />
+            value={this.props.home.lat.toFixed(5)} />
           <Form.Input 
             style={styles.input}
             label="Longitude:"
-            value={this.props.note.lon.toFixed(5)} />
+            value={this.props.home.lon.toFixed(5)} />
         </Form.Group>
 
         <Button style={styles.button} 

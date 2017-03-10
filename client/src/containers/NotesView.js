@@ -2,30 +2,36 @@
 import React from 'react';
 
 //UI
-import { Button, Divider, Grid, Item } from 'semantic-ui-react';
+import { Dimmer, Divider, Item, Loader, Segment } from 'semantic-ui-react';
 
 //Components
 import Note from '../components/Note';
 
 //Actions
-import { getNotes, addEvent, sortNotesByDate } from '../actions/notesView';
+import { getNotes, addEvent, setLoading, sortNotesByDate } from '../actions/notesView';
 
 export default class NotesView extends React.Component {
-  handleSubmit(e) {
-    e.preventDefault();
+  componentDidMount() {
+    this.props.dispatch(setLoading());
     this.props.dispatch(getNotes());
   }
   
   render() {
     return (
-      <div>
-        <Button onClick={ this.handleSubmit.bind(this) }>Give me Notes!</Button>
-        <Divider />
+      <Segment style={ { height: '87%', margin: '0 auto' } }>
+        <Dimmer active={!this.props.notesView.doneRetrieving}>
+          <Loader>
+            Loading notes 
+          </Loader>
+        </Dimmer>
 
-        <Grid padded>
+        <h1>View notes</h1>
+        <Divider style={ { margin: 0 } }/>
+
+        <div style={ { height: '87%', overflowY: 'scroll' } }>
           <Item.Group>
             {
-              this.props.notesView.map((note, key) => (
+              this.props.notesView.notes.map((note, key) => (
                 <Note 
                   image={note.image_url}
                   title={note.title} 
@@ -37,8 +43,8 @@ export default class NotesView extends React.Component {
               ))
             }
           </Item.Group>
-        </Grid>
-      </div>
+        </div>
+      </Segment>
     );
   }
 }

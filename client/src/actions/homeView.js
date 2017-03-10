@@ -34,8 +34,8 @@ export function setLatLon(lat, lon) {
   };
 }
 
-export const testOrgs = (username) => {
-  axios.get('/api/organization/information', {
+export function testOrgs(username) {
+  return dispatch => axios.get('/api/organization/information', {
     headers: {
       'Authorization': 'JWT ' + localStorage.getItem('token')  
     },

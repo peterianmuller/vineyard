@@ -23,7 +23,7 @@ export default class Home extends React.Component {
  
   componentDidMount() {
     var context = this;
-    testOrgs(this.props.auth.username); 
+
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { 
         var lat = coords.latitude;
@@ -31,9 +31,11 @@ export default class Home extends React.Component {
         context.props.dispatch(setHomeLocation({lat:lat, lng:lng}));
     })
 
-    this.props.dispatch(getNotes());
-
+    //What is this for?
     retrieveAllData();
+
+    this.props.dispatch(testOrgs(this.props.auth.username)); 
+    this.props.dispatch(getNotes());   
   }
 
  // dummy data for data array
@@ -47,7 +49,7 @@ export default class Home extends React.Component {
         <SplashCard />
 
         <div style={styles.stackedCardContainer}>
-          <HomeCard title='Notes' stacked children={this.props.notesView.slice(0,9)}/>
+          <HomeCard title='Notes' stacked children={this.props.notesView.notes.slice(0,9)}/>
           <HomeCard title='Data' stacked children={this.props.dataArray}/>
         </div>
 
