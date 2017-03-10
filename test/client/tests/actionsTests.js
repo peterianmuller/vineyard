@@ -72,11 +72,11 @@ describe('Actions', () => {
 
           console.log(store.getState());
           push.restore();
-          done();
         });
 
       sendResp(200, token);
 
+      done();
     });
 
   });
@@ -171,7 +171,7 @@ describe('Actions', () => {
     });
   });
 
-  describe('Data form', () => {
+  describe('Data Form', () => {
     it('should have an action to clear data form fields', () => {
       const expectedActionClear = {
         type: 'CLEAR_DATA_FIELDS'
@@ -205,26 +205,6 @@ describe('Actions', () => {
 
     });
 
-    xit('should have an action that posts arrays of data objects to the databse', () => {
-      return dataActions.postDataArray([{
-        vineyard: '',
-        block: '',
-        varietal: '',
-        clone: '',
-        pH: '',
-        brix: '',
-        NaOH: '',
-        date: '',
-        titratable: '',
-        row: ''
-      }])
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-    });
   });
 
   it('should have an action to add a plot to the map', () => {
@@ -245,7 +225,6 @@ describe('Actions', () => {
       expect(userMapActions.clearDataPoints()).to.deep.equal(expectedActionClear);
     });
 
-    xit('should have an action to post map points to db')
   });
 
   describe('Weather', () => {

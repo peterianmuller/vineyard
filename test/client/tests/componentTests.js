@@ -10,17 +10,6 @@ import NoteFormInput from '../../../client/src/components/NoteFormInput';
 
 
 describe('Components', () => {
-  describe('<MainNavBar />', () => {
-    it('should have icon and children as props', () => {
-      const wrapper = mount(<MainNavBar />);   
-      //var props = wrapper.props();
-      console.log('what are these props', Array.isArray(Object.keys(props)));
-      
-      //expect(Object.keys(props).join(' ')).to.equal('icon children');
-      //expect(Object.keys(props).length).to.equal(1);
-      //expect(Object.keys(props)[0]).to.equal('children');
-    });
-  });
   
   describe('<NameBirthdateInput />', () => {
     it('should render 4 Form.Input', () => {
