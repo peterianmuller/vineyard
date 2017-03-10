@@ -26,6 +26,7 @@ export default class DataVis extends React.Component {
   	var vinObj = inputArray.filter(function(obj) {
   		return obj.name === context.props.dataVis.vineyard;
   	})[0];
+    console.log(vinObj.blocks, 'VINEYARD BLOCKSSSSS')
   	return vinObj.blocks
   }
 

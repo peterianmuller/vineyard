@@ -23,7 +23,7 @@ export default class Home extends React.Component {
  
   componentDidMount() {
     var context = this;
-    testOrgs(); 
+    testOrgs(this.props.auth.username); 
     navigator.geolocation.getCurrentPosition(
       ({ coords }) => { 
         var lat = coords.latitude;
