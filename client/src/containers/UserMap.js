@@ -1,19 +1,21 @@
+//React requirements
 import React from 'react';
 import ReactDom from 'react-dom';
 
-import { Button } from 'semantic-ui-react';
+//UI
+import { Button, Segment } from 'semantic-ui-react';
+
+//Map functions
 import { Map, TileLayer, Polygon, Marker, FeatureGroup, Popup } from 'react-leaflet';
 import { EditControl } from "react-leaflet-draw";
 import L from 'leaflet';
+
+//Actions
 import { showPolygonsOnMap } from '../actions/polygons';
 import {addPolys} from '../actions/mapVis';
-
 import { addMapDataPoint, postMapData, clearDataPoints, testOrgs, getShapeData } from '../actions/mapVis';
 import { getNotes } from '../actions/notesView';
 import { setHomeLocation } from '../actions/homeView';
-
-//import { updateHomeLocationBtn } from '../components/map';
-
 
 let polyline;
 
@@ -135,49 +137,51 @@ export default class MapView extends React.Component {
 	render() {
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
     return (
-			<div style={ { position: 'relative' } }>
-        <Map
-          style={{height: "100vh"}}
-          center={[-45.0197557,169.1879725]}
-          zoom={13}>
-          <TileLayer
-            url="https://api.mapbox.com/styles/v1/andipants12/cizsps6wg00842ro1wngxcqof/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5kaXBhbnRzMTIiLCJhIjoiY2l6b244ampwMDAxcDMzbnh5enpleTB2eCJ9.zu82GF0owfnb54lAGMUKKA"
-            attribution='&copy;<a href="https://www.mapbox.com/about/maps" target="_blank">MapBox</a>, &copy;<a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
-          <FeatureGroup>
-            <EditControl
-              position='topright'
-              onEdited={this._onEditPath}
-              onCreated={this._onCreate.bind(this)}
-              onDeleted={this._onDeleted}
-              onMounted={this._mounted}
-              onEditStart={this._onEditStart}
-              onEditStop={this._onEditStop}
-              onDeleteStart={this._onDeleteStart}
-              onDeleteStop={this._onDeleteStop}
-              draw={{
-                rectangle: false
-              }}
-            />
-          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
-          {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Marker icon={this.createIcon(myShapes.names[shape[0].polygon_id])} key={shape[0].lat} position={shape[0]}/>)) : ''}
-        </FeatureGroup>
+      <Segment style={ { height: '87%' } }>
+		  	<div style={ { position: 'relative' } }>
+          <Map
+            style={{height: "100vh"}}
+            center={[-45.0197557,169.1879725]}
+            zoom={13}>
+            <TileLayer
+              url="https://api.mapbox.com/styles/v1/andipants12/cizsps6wg00842ro1wngxcqof/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1IjoiYW5kaXBhbnRzMTIiLCJhIjoiY2l6b244ampwMDAxcDMzbnh5enpleTB2eCJ9.zu82GF0owfnb54lAGMUKKA"
+              attribution='&copy;<a href="https://www.mapbox.com/about/maps" target="_blank">MapBox</a>, &copy;<a href="https://openstreetmap.org/copyright">OpenStreetMap</a> contributors' />
+            <FeatureGroup>
+              <EditControl
+                position='topright'
+                onEdited={this._onEditPath}
+                onCreated={this._onCreate.bind(this)}
+                onDeleted={this._onDeleted}
+                onMounted={this._mounted}
+                onEditStart={this._onEditStart}
+                onEditStop={this._onEditStop}
+                onDeleteStart={this._onDeleteStart}
+                onDeleteStop={this._onDeleteStop}
+                draw={{
+                  rectangle: false
+                }}
+              />
+            {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Polygon positions={shape} key={shape[0].lat} />)) : ''}
+            {this.props.polygons.show_polys && this.props.polygons.polygons.length > 0 ? myShapes.polygonCollection.map((shape) => (<Marker icon={this.createIcon(myShapes.names[shape[0].polygon_id])} key={shape[0].lat} position={shape[0]}/>)) : ''}
+          </FeatureGroup>
 
-        {
-          this.props.notesView.map((note, key) => (
-            <Marker position={[note.latitude, note.longitude]} key={key} icon={this.createNoteIcon()}> 
-              <Popup>
-                <span>{note.title}</span>
-              </Popup>
-            </Marker>  
-          ))
-        }
-        </Map>
+          {
+            this.props.notesView.map((note, key) => (
+              <Marker position={[note.latitude, note.longitude]} key={key} icon={this.createNoteIcon()}> 
+                <Popup>
+                  <span>{note.title}</span>
+                </Popup>
+              </Marker>  
+            ))
+          }
+          </Map>
 
-        <Button style={ { position: 'absolute', top: 0, left: '27%' } } onClick={this.showShapes.bind(this)}>Show Blocks</Button>
-        <Button style={ { position: 'absolute', top: 0, right: '43%' } } onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
-        <Button style={ { position: 'absolute', top: 0, right: '27%' } } onClick={this.showNotes.bind(this)}>Show Notes</Button>
+          <Button style={ { position: 'absolute', top: 0, left: '27%' } } onClick={this.showShapes.bind(this)}>Show Blocks</Button>
+          <Button style={ { position: 'absolute', top: 0, right: '43%' } } onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
+          <Button style={ { position: 'absolute', top: 0, right: '27%' } } onClick={this.showNotes.bind(this)}>Show Notes</Button>
 
-      </div>
+        </div>
+      </Segment>
 		)
 	}
 }
