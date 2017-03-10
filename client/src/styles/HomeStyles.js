@@ -20,8 +20,16 @@ export default {
     width: '65%',
     height: '88%',
     marginTop: '0 1em 1em 1em',
-    backgroundImage: 'url(http://www.vinography.com/assets_c/2011/07/vinography_desktop_veraison-thumb-600x397-1347.jpg)',
     backgroundSize: '100% 100%',
+  },
+
+  imageContainer: {
+    width: '100%',
+    height: '100%',
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+    backgroundImage: 'url(http://www.vinography.com/assets_c/2011/07/vinography_desktop_veraison-thumb-600x397-1347.jpg)',
   },
 
   stackedCard: {
@@ -49,7 +57,7 @@ export default {
   },
 
   splashTitle: {
-    marginTop: '3em',
+    paddingTop: '3em',
     marginLeft: '1.5em',
     fontSize: '3em',
     color: 'white',

@@ -11,9 +11,11 @@ export default class Home extends React.Component {
   render() {
     return (
       <Segment style={styles.splashCard}>
-        <h1 style={styles.splashTitle}>
-          Welcome to your <span style={styles.logoText}>Vineyard</span>
-        </h1>
+        <div style={styles.imageContainer}>
+          <h1 style={styles.splashTitle}>
+            Welcome to your <span style={styles.logoText}>Vineyard</span>
+          </h1>
+        </div>
       </Segment>
     );
   }
