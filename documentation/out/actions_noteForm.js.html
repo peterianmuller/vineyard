@@ -36,9 +36,9 @@ import axios from 'axios';
  * Post request to retrieve weather info from Weather underground API.
  * @function getWeather
  * @param {object} note - Note object from user input.
- * @param {boolean} noteCheck - Checks note format?
- * @description Initializes a post request to Weather API based on note's latitude and longitude.
- * memberOf noteForm Actions
+ * @param {boolean} noteCheck - 
+ * @description Initializes a POST request to Weather API based on note's latitude and longitude.
+ * @memberOf noteForm Actions
  */
 export function getWeather(note, noteCheck) {
   var cb = noteCheck ? setNoteWeather : setHomePageWeather;
@@ -95,8 +95,8 @@ export function appendNoteFormItem(item, value) {
  * Post request to retrieve weather info from Weather underground API.
  * @function postNote
  * @param {object} note - Note object from user input.
- * @param {boolean} noteCheck - Checks note format?
- * @description Initializes a post request to Weather API based on note's latitude and longitude.
+ * @param {boolean} noteCheck - If true, set's note weather, if false, sets homepage weather.
+ * @description Initializes a POST request to Weather API based on note's latitude and longitude.
  */
 export function postNote(note) {
   
