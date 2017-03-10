@@ -25,7 +25,7 @@ export default {
   },
 
   stackedCard: {
-    width: '90%',
+    width: '95%',
     height: '50%',
     margin: '0 1em 1em 1em',
   },
