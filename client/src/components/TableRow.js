@@ -4,6 +4,7 @@ import { Form, Header, Icon, Input, Label, Segment, TextArea, Table } from 'sema
 
 import DataFormInput from './DataFormInput';
 
+
 import { addDataToArray } from '../actions/dataArray';
 
 
