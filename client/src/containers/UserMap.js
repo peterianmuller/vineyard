@@ -135,7 +135,7 @@ export default class MapView extends React.Component {
 	render() {
     const myShapes = this.parsePolygonArray(this.props.polygons.polygons);
     return (
-			<div>
+			<div style={ { position: 'relative' } }>
         <Map
           style={{height: "100vh"}}
           center={[-45.0197557,169.1879725]}
@@ -173,9 +173,9 @@ export default class MapView extends React.Component {
         }
         </Map>
 
-        <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Show Blocks</Button>
-        <Button className='map_buttons' onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
-        <Button onClick={this.showNotes.bind(this)}>Show Notes</Button>
+        <Button style={ { position: 'absolute', top: 0, left: '27%' } } onClick={this.showShapes.bind(this)}>Show Blocks</Button>
+        <Button style={ { position: 'absolute', top: 0, right: '43%' } } onClick={this.showShapes.bind(this)}>Hide Blocks</Button>
+        <Button style={ { position: 'absolute', top: 0, right: '27%' } } onClick={this.showNotes.bind(this)}>Show Notes</Button>
 
       </div>
 		)
