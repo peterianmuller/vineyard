@@ -37,6 +37,8 @@ export default class Home extends React.Component {
  // dummy data for data array
  // !this.props.dataArray[0].block ? [{row:'5', block:'10', titratable: '3.4', vineyard:'Rosella'}, {row:'2', titratable: '5.4', block:'17', vineyard:'Gatos Locos'}] :
 
+ //this.props.dataArray.slice(0,9)
+
   render() {
     return (
       <div style={styles.flexBox}>
@@ -44,7 +46,7 @@ export default class Home extends React.Component {
 
         <div style={styles.stackedCardContainer}>
           <HomeCard title='Notes' stacked children={this.props.notesView.slice(0,9)}/>
-          <HomeCard title='Data' stacked children={this.props.dataArray.slice(0,9)}/>
+          <HomeCard title='Data' stacked children={this.props.dataArray}/>
         </div>
 
       </div>

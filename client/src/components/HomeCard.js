@@ -10,7 +10,7 @@ import styles from '../styles/HomeStyles';
 
 // let pusheen = 'http://25.media.tumblr.com/13bbe1de2ff21654eaae0cc29d514753/tumblr_mndyhaRTa11s2cbulo1_400.gif';
 
-
+//sticky note large
 @Radium
 export default class HomeCard extends React.Component {
   render() {
@@ -37,7 +37,11 @@ export default class HomeCard extends React.Component {
                       <List.Content>
                         <List.Header> {item.title} </List.Header>
                         <List.Description>
-                          {item.text}
+                          {
+
+                            item.text.split('').slice(0,26).join('')
+
+                          }
                         </List.Description>
                       </List.Content>
                       <Divider />
@@ -56,7 +60,7 @@ export default class HomeCard extends React.Component {
                 {
                   this.props.children.map((item, key) => (
                     <List.Item key={key}>
-                      <Icon name='sticky note large icon'/>
+                      <Icon name='bar graph large icon'/>
                       <List.Content>
                         <List.Header> {item.vineyard + ', row: '} {item.row} { 'block : ' + item.block + '.'} </List.Header>
                         <List.Description>
