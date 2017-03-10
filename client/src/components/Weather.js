@@ -2,7 +2,7 @@
 import React from 'react';
 
 //UI
-import { Button, Grid } from 'semantic-ui-react'
+import { Button, Form, Segment } from 'semantic-ui-react'
 
 //Components
 import NoteFormInput from './NoteFormInput';
@@ -11,18 +11,10 @@ import NoteFormInput from './NoteFormInput';
 import { setLatLong } from '../helpers/changeHandlers';
 import { getWeather, postNote } from '../actions/noteForm';
 
-export default class Weather extends React.Component {
-/**
- * @function pullWeather
- * @param {e} event 
- * @description Dispatches an action that requests weather info from Weather Underground API. Toggles boolean on store to true, indicating that there is a weather property for the note object sent to the database.
- * @memberOf Weather Component
- */
-  pullWeather(e) {
-    e.preventDefault();
-    this.props.dispatch(getWeather(this.props.note, true));
-  }
+//Styles
+import styles from '../styles/WeatherStyles';
 
+export default class Weather extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.dispatch(postNote(this.props.note));
@@ -30,23 +22,32 @@ export default class Weather extends React.Component {
 
   render(){
     return (
-      <Grid>
-        <Grid.Row centered='true' columns={4}>
-          <Grid.Column>
-            <NoteFormInput title='Temperature: ' field='weather' value={this.props.note.temperature} />
-          </Grid.Column>
-          <Grid.Column>
-            <NoteFormInput title='Humidity: ' field='weather' value={this.props.note.humidity} />
-          </Grid.Column>
-        </Grid.Row>     
+      <Form>
+        <Form.Group style={ styles.form }>
+          <Form.Input
+            style={styles.input}
+            label="Temperature:"
+            value={ this.props.note.showF ? this.props.note.tempF : this.props.note.tempC } />
+          <Form.Input 
+            style={styles.input}
+            label="Humidity:"
+            value={this.props.note.humidity} />
+          <Form.Input 
+            style={styles.input}
+            label="Latitude:"
+            value={this.props.note.lat.toFixed(5)} />
+          <Form.Input 
+            style={styles.input}
+            label="Longitude:"
+            value={this.props.note.lon.toFixed(5)} />
+        </Form.Group>
 
-        <Grid.Row centered="true" columns={2}>
-          <Grid.Column>
-            <Button onClick={this.pullWeather.bind(this)}>Get weather</Button>
-            <Button onClick={this.handleSubmit.bind(this)}>Confirm and Save Note</Button>       
-          </Grid.Column>
-        </Grid.Row>    
-      </Grid>
-    )
+        <Button style={styles.button} 
+          primary fluid onClick={this.handleSubmit.bind(this)}
+        >
+          Confirm and Save Note
+        </Button>       
+      </Form>
+    );
   }
 }

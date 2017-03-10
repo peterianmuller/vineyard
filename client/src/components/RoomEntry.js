@@ -4,6 +4,9 @@ import React from 'react';
 //Actions
 import { setCurrentRoom } from '../actions/rooms';
 
+//Styles
+import styles from '../styles/ChatMessage';
+
 export default class RoomEntry extends React.Component {
 
 /**
@@ -27,7 +30,7 @@ export default class RoomEntry extends React.Component {
     return (
       <a href="#" onClick={this.handleClick.bind(this)}>
         <div className={ (active ? 'activeRoom ' : ' ') + 'roomEntry'}>
-          <h2>{this.props.room.room_name}</h2>
+          <p style={styles.roomFont}>{this.props.room.room_name}</p>
         </div>
       </a>
     );

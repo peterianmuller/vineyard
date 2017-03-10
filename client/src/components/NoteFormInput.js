@@ -13,7 +13,7 @@ export default props => (
     <Header size='tiny'>{props.title}</Header>
     { 
       props.isTextArea ? (
-        <Segment>
+        <div style={ { position: 'relative' } }>
           <TextArea
             value={props.value}
             onChange={ handleItemChange.bind(null, setNoteFormItem, props.field)}
@@ -26,9 +26,10 @@ export default props => (
               setCurrentlyRecording, 
               props.field.toUpperCase()
             )}
+            style={ { position: 'absolute', top: 0, right: 0 } }
           />
-        </Segment>) : (
-        <Segment>
+        </div>) : (
+        <div>
           <Input
             fluid
             label={<Label className='fa fa-microphone'
@@ -43,7 +44,7 @@ export default props => (
             onChange={ handleItemChange.bind(null, setNoteFormItem, props.field)}
             disabled={ props.disabled ? true : false }
           />
-        </Segment>)
+        </div>)
     }
   </div>
 );

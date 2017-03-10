@@ -2,7 +2,7 @@
 import React from 'react';
 
 //UI
-import { Button, Grid } from 'semantic-ui-react'
+import { Button, Segment } from 'semantic-ui-react'
 
 //Components
 import Map from './Map';
@@ -14,16 +14,10 @@ import { setLatLong } from '../helpers/changeHandlers';
 import { postNote } from '../actions/noteForm';
 
 export default props => (
-  <Grid centered='true' divided='vertically'>
-    <Grid.Row columns={1}>
-      <Grid.Column>
-        <Map dispatch={props.dispatch} homePage={props.homePage} />
-      </Grid.Column>
-    </Grid.Row>  
-    <Grid.Row columns={1}>
-      <Grid.Column>
-        <Weather dispatch={props.dispatch} note={props.note}/>
-      </Grid.Column> 
-    </Grid.Row>   
-  </Grid>
+  <Segment style={ { height: '90%', maxWidth: '700px', margin: '0 auto' } }>
+    <h1>Please mark where note occurred</h1>
+
+    <Map dispatch={props.dispatch} homePage={props.homePage} />
+    <Weather dispatch={props.dispatch} note={props.homePage}/>
+  </Segment>
 );

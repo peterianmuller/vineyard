@@ -124,7 +124,7 @@ export function noteFormReducer(state = defaultForm, action) {
     case "SET_NOTE_FORM_LAT":
       return {
         ...state,
-        lat: action.value
+        lat: action.value,
       }
     case "SET_NOTE_FORM_LON":
       return {
