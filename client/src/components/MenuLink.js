@@ -13,7 +13,6 @@ import { toggleLeftSidebar } from '../actions/navigation';
 export default class MenuItem extends React.Component {
 
 /**
- * Handles menu icon clicks.
  * @function handleClick
  * @param {e} event
  * @memberOf MenuItem

@@ -10,7 +10,6 @@ import { addDataToArray } from '../actions/dataArray';
       
 export default props => {
 /**
- * Handles user input in Data Form component.
  * @function changeHandler
  * @param {e} event
  * @memberOf DataFormInput

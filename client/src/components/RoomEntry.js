@@ -7,7 +7,6 @@ import { setCurrentRoom } from '../actions/rooms';
 export default class RoomEntry extends React.Component {
 
 /**
- * Set user's current room.
  * @function handleClick
  * @param {e} event 
  * @memberOf RoomEntry

@@ -15,7 +15,6 @@ import styles from '../styles/AppStyles';
 
 export default props => {
 /**
- * Enables user logout.
  * @function handleLogout
  * @memberOf LeftSideBar
  * @param {e} event

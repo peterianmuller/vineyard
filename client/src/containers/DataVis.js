@@ -16,7 +16,6 @@ export default class DataVis extends React.Component {
   }
 
 /**
- * Find selected vineyard's blocks.
  * @function findBlock
  * @param {array} inputArray
  * @description Traverses vineyard data tree on from local storage and finds the blocks related to the selected vineyard.
@@ -31,8 +30,7 @@ export default class DataVis extends React.Component {
   }
 
 /**
- * Find available rows from selected block.
- * @function fidRow
+ * @function findRow
  * @param {array} inputArray
  * @description Helper function that traverses localStorage organization tree and returns the rows in the selected block.
  * @memberOf DataVis Container
