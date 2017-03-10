@@ -7,7 +7,7 @@ const defaultHomePageState = {
   humidity: '',
   description: '',
   lat: '',
-  lng: '',
+  lon: '',
   icon: '',
   time: moment(),
   incrementing: false,
@@ -26,6 +26,12 @@ export function homePageReducer(state=defaultHomePageState, action) {
       return {
         ...state,
         showF: !state.showF,
+      };
+    case "SET_HOME_LAT_LON":
+      return {
+        ...state,
+        lat: action.lat,
+        lon: action.lon
       };
     case "UPDATE_TEMP":
       return {

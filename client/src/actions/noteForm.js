@@ -46,6 +46,14 @@ export function setNoteFormItem(item, value) {
   return toReturn;
 }
 
+export function setLatLon(lat, lon) {
+  return {
+    type: "SET_NOTE_FORM_LAT_LON",
+    lat,
+    lon
+  };
+}
+
 function setNoteWeather(value) {
   return {
     type: "UPDATE_WEATHER",

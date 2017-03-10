@@ -69,7 +69,7 @@ export default class FormPage extends React.Component {
 
   render() {
     return (
-      <Segment style={ { maxWidth: '500px', margin: '0 auto', height: '90%' } }>
+      <Segment style={ { maxWidth: '700px', margin: '0 auto', height: '90%' } }>
         <h1>Create a new note</h1>
         <Form onSubmit={this.handleSubmit.bind(this)}>
           <NoteFormInput title='Note Title' field='title' value={this.props.note.title} />

@@ -24,6 +24,14 @@ export function setFOrC() {
  * @description This sends a get request to retrieve a JSON tree of all relations nested under an Organization. Then this is saved to Local Storage for population of pulldown menus and address matching.
  * @memberOf homeView Actions
  */
+export function setLatLon(lat, lon) {
+  return {
+    type: "SET_HOME_LAT_LON",
+    lat,
+    lon
+  };
+}
+
 export const testOrgs = () => {
   axios.get('/api/organization/information', {
     headers: {

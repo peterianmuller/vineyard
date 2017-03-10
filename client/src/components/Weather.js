@@ -20,17 +20,15 @@ export default class Weather extends React.Component {
   render(){
     return (
       <Form>
-        <Segment>
-          <Form.Group style={ { margin: '0 auto' } }>
-            <Form.Input
-              label="Temperature :"
-              value={ this.props.note.showF ? this.props.note.tempF : this.props.note.tempC } />
-            
-            <Form.Input 
-              label="Humidity :"
-              value={this.props.note.humidity} />
-          </Form.Group>
-        </Segment>
+        <Form.Group style={ { margin: '0 auto', display: 'flex', padding: '1em', justifyContent: 'space-around', width: '50%' } }>
+          <Form.Input
+            label="Temperature :"
+            value={ this.props.note.showF ? this.props.note.tempF : this.props.note.tempC } />
+          
+          <Form.Input 
+            label="Humidity :"
+            value={this.props.note.humidity} />
+        </Form.Group>
 
         <Button primary fluid onClick={this.handleSubmit.bind(this)}>
           Confirm and Save Note

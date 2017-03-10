@@ -11,7 +11,7 @@ import MenuLink from './MenuLink';
 import { push } from 'react-router-redux';
 import { toggleLeftSidebar } from '../actions/navigation';
 import { getWeather } from '../actions/noteForm';
-import { incrementTime, setFOrC } from '../actions/homeView';
+import { incrementTime, setFOrC, setLatLon } from '../actions/homeView';
 
 //Style
 import moment from 'moment';
@@ -29,6 +29,8 @@ export default class MainNavBar extends React.Component {
       ({ coords }) => { 
         let lat = coords.latitude;
         let lon = coords.longitude; 
+
+        this.props.dispatch(setLatLon( lat, lon ));
         this.props.dispatch(getWeather({ lat, lon }, false));
       } 
     );

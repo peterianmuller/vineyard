@@ -26,7 +26,7 @@ export default props => (
               setCurrentlyRecording, 
               props.field.toUpperCase()
             )}
-            style={ { position: 'absolute', top: 0, right: 0, margin: '1em' } }
+            style={ { position: 'absolute', top: 0, right: 0 } }
           />
         </div>) : (
         <div>

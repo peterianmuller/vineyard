@@ -2,20 +2,20 @@
 import React from 'react';
 import axios from 'axios';
 
-
-//Actions and Functions
-import { setLatLong } from '../helpers/changeHandlers';
-import { setNoteFormItem } from '../actions/noteForm';
-
+//UI
 import { Button } from 'semantic-ui-react';
 
-import { setHomeLocation } from '../actions/homeView';
+//Actions and Functions
+import { setLatLon } from '../actions/homeView';
+import { setNoteFormItem } from '../actions/noteForm';
 
+// Styles
+import styles from '../styles/MapStyles';
 
 export default class Map extends React.Component {
-  constructor(props) {
-    super(props);
-  };
+  componentDidMount() {
+    this.createMap();
+  }
 
   /**
  * @function updateHomeLocationBtn
@@ -37,19 +37,19 @@ export default class Map extends React.Component {
       }
     })  
     .then((response) => {
-      console.log('response is', response);
       var address = response.data.street + ' ' + response.data.city + ' ' + response.data.state + ' ' + response.data.zip;
-
       var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'address': address}, function(results, status){
 
+      geocoder.geocode({'address': address}, function(results, status){
         if (status === google.maps.GeocoderStatus.OK) {
           var latitude = results[0].geometry.location.lat();
           var longitude = results[0].geometry.location.lng();
-          context.props.dispatch(setHomeLocation({lat:latitude, lng:longitude}));
+
+          context.props.dispatch(setLatLon(latitude, longitude));
         }
       })
-        this.createMap();
+
+      this.createMap();
     }) 
     .catch((err) => {
       console.log(err);
@@ -70,40 +70,28 @@ export default class Map extends React.Component {
     this.createMap();
   }
 
-  render() {
-    return (
-      <div>
-        <div id='googleMaps' style = {{'margin': '0 auto', 'height': '40%', 'width': '50%', 'borderRadius': '3px' }}>
-        </div>
-        <div id="current" style={{'paddingTop': '25px'}}>Please move the note to a location</div>
-        <Button onClick={this.updateHomeLocationBtn.bind(this)}>Go to Vineyard</Button>
-      </div> 
-  )};
-
-  
-  componentDidMount() {
-    this.createMap();
-  };
 
   createMap() {
     var context = this;
 
     //JSONP request for map  
-    (function fetchMap() {
-      window.initMap = initMap;
-      var script = window.document.createElement('script');
-      var ref = window.document.getElementsByTagName('script')[0];
-      script.src = 'http://maps.googleapis.com/maps/api/js?key=AIzaSyCBb0bm-_wNIf3oDMi-5PN_zeOf1bRWstI&libraries=places&callback=initMap';
-      ref.parentNode.insertBefore(script, ref);
-      script.onload = function() {
-        this.remove();
-      };
-    })();  
+    (
+      function fetchMap() {
+        window.initMap = initMap;
+        var script = window.document.createElement('script');
+        var ref = window.document.getElementsByTagName('script')[0];
+
+        script.src = 'http://maps.googleapis.com/maps/api/js?key=AIzaSyCBb0bm-_wNIf3oDMi-5PN_zeOf1bRWstI&libraries=places&callback=initMap';
+        ref.parentNode.insertBefore(script, ref);
+
+        script.onload = function() {
+          this.remove();
+        };
+      }
+    )();  
 
 
     function initMap() {
-  
-      console.log('context.props', context.props);
       var styleArray = [
          {
           featureType: "poi",
@@ -115,16 +103,17 @@ export default class Map extends React.Component {
       ];
       
       navigator.geolocation.getCurrentPosition(function(pos){
-        var lat,lng
+        var lat, lng
+
         if (!context.props.homePage.lat) {
           lat = pos.coords.latitude;
           lng = pos.coords.longitude;
         } else {
           lat = context.props.homePage.lat;
-          lng = context.props.lng;
+          lng = context.props.homePage.lon;
         }
-        var map = new google.maps.Map(document.getElementById('googleMaps'), {
 
+        var map = new google.maps.Map(document.getElementById('googleMaps'), {
           center: { lat: lat, lng: lng },
           zoom: 13,
           zoomControl: false,
@@ -138,7 +127,6 @@ export default class Map extends React.Component {
 
 
         function CenterControl(controlDiv, map) {
-
           // Set CSS for the control border.
           var controlUI = document.createElement('div');
           controlUI.style.backgroundColor = '#fff';
@@ -164,7 +152,7 @@ export default class Map extends React.Component {
 
           // Setup the click event listeners: simply set the map to Chicago.
           controlUI.addEventListener('click', function() {
-            map.setCenter({ lat: context.props.homePage.lat, lng: context.props.homePage.lng });
+            map.setCenter({ lat: context.props.homePage.lat, lng: context.props.homePage.lon });
           });
         }
         
@@ -175,13 +163,13 @@ export default class Map extends React.Component {
         map.controls[google.maps.ControlPosition.TOP_CENTER].push(centerControlDiv);
 
         let myMarker = new google.maps.Marker({
-          position: {lat: context.props.homePage.lat, lng: context.props.homePage.lng},
+          position: {lat: context.props.homePage.lat, lng: context.props.homePage.lon},
           draggable: true,
           label: 'Note'
         });
 
         let myLocation = new google.maps.Marker({
-          position: {lat: context.props.homePage.lat, lng: context.props.homePage.lng},
+          position: {lat: context.props.homePage.lat, lng: context.props.homePage.lon},
           draggable: false,
           label: 'Me',
           icon: 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png'
@@ -191,7 +179,7 @@ export default class Map extends React.Component {
 
 
         google.maps.event.addListener(myMarker, 'dragend', function(evt){
-            document.getElementById('current').innerHTML = '<p>My location is: Current Lat: ' + evt.latLng.lat().toFixed(5) + ' Current Lng: ' + evt.latLng.lng().toFixed(5) + '</p>';
+          document.getElementById('current').innerHTML = '<p>My location is: Current Lat: ' + evt.latLng.lat().toFixed(5) + ' Current Lng: ' + evt.latLng.lng().toFixed(5) + '</p>';
           
           console.log(evt.latLng.lat().toFixed(5), evt.latLng.lng().toFixed(5));
 
@@ -204,10 +192,31 @@ export default class Map extends React.Component {
             document.getElementById('current').innerHTML = '<p>Currently dragging marker...</p>';
         });
 
-        map.setCenter({lat: context.props.homePage.lat, lng: context.props.homePage.lng});        
+        map.setCenter({lat: context.props.homePage.lat, lng: context.props.homePage.lon});        
         myMarker.setMap(map);
 
       });
     } 
   }
-};
+  
+  render() {
+    return (
+      <div>
+        <div id="current" style={{'paddingTop': '25px'}}>
+          Please move the note to a location
+        </div>
+
+        <div style={ styles.mapsContainer }>
+          <div id='googleMaps' style={ { height: '100%' } } />
+          <Button 
+            size='small' 
+            style={ styles.toVineyardButton } 
+            onClick={this.updateHomeLocationBtn.bind(this)}
+          >
+            Go to Vineyard 
+          </Button>
+        </div>
+      </div> 
+    );
+  }
+}

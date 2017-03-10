@@ -42,7 +42,7 @@ var Root = props => {
         <Route path='/' component={App}>
           <IndexRedirect to='/home' />
           <Route path='/form' component={Form} onEnter={validateLogin} />
-          <Route path='/formValidation' component={MapWeatherValidation} />
+          <Route path='/formValidation' component={MapWeatherValidation} onEnter={validateLogin} />
           <Route path='/home' component={Home} onEnter={validateLogin} />
           <Route path='/login' component={Login} onEnter={isLoggedIn} />
           <Route path='/notes' component={Note} onEnter={validateLogin}/>
