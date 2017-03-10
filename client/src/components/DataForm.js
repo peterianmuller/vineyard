@@ -47,7 +47,7 @@ export default class DataForm extends React.Component {
  */
   addRow(e){
     e.preventDefault();
-    console.log(this.props);
+
     this.props.dispatch(addRowToTable());
   }
 

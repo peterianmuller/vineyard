@@ -52,6 +52,6 @@ const rootReducer = (state, action) => {
   return appReducer(state, action);
 }
 
-const middleware = applyMiddleware(routerMiddleware(browserHistory), logger(), promise(), thunk);
+const middleware = applyMiddleware(routerMiddleware(browserHistory), /*logger(),*/ promise(), thunk);
 
 export default createStore(rootReducer, middleware);

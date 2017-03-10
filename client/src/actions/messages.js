@@ -37,7 +37,6 @@ export function grabMessagesInRoom(roomId) {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     })
     .then(messages => {
-      console.log('these are the msgs', messages);
       dispatch(updateMessages(messages.data));
     });
 }
