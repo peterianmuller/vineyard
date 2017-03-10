@@ -1,4 +1,4 @@
-import { newDataEntry, findRowId, findDatabyRowId } from '../db/controllers/data';
+import { newDataEntry, findRowId, findDatabyRowId, findAllData } from '../db/controllers/data';
 
 
 const myMethods = {
@@ -66,12 +66,22 @@ export const getDataByRowId = (req, res, next) => {
 		return findDatabyRowId(params)
 		.then((dataArray) => {
 			if(dataArray) {
+				console.log('THIS IS THE DATA TO GO TO THE CLIENT', dataArray)
 				res.json(dataArray)
 			} else {
 				next();
 			}
 		})
 	})
+}
 
-
+export const getAllData = (req, res, next) => {
+	return findAllData()
+	.then((data) => {
+		console.log('this is the data from the db in the router controller: ', data);
+		res.json(data);
+	})
+	.catch((err) => {
+		console.log('there was an error retrieving all of the data: ', err);
+	})
 }

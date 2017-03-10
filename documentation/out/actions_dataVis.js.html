@@ -56,10 +56,9 @@ const parseData = (input) => {
 }
 
 /**
- * Requests Analytical data from the PostgreSQL database.
+ * Requests analytical data from the PostgreSQL database.
  * @function
  * @param {object} vineyardInfo - Search parameters for database analysis results query (vineyard, block, row, analysis method type).
- * @param {string} author - The author of the book.
  */
 export const getAnalysis = (vineyardInfo) => {
 	return dispatch => axios.get('/api/data', {

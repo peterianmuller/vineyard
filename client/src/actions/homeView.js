@@ -1,9 +1,10 @@
+import axios from 'axios';
+
 export function incrementTime() {
   return {
     type: "INCREMENT_TIME", 
   };
 }
-
 export function setHomeLocation(data){
   return {
     type: "UPDATE_LOCATION",
@@ -24,6 +25,7 @@ export function setFOrC() {
  * @description This sends a get request to retrieve a JSON tree of all relations nested under an Organization. Then this is saved to Local Storage for population of pulldown menus and address matching.
  * @memberOf homeView Actions
  */
+
 export function setLatLon(lat, lon) {
   return {
     type: "SET_HOME_LAT_LON",
@@ -32,13 +34,13 @@ export function setLatLon(lat, lon) {
   };
 }
 
-export const testOrgs = () => {
+export const testOrgs = (username) => {
   axios.get('/api/organization/information', {
     headers: {
       'Authorization': 'JWT ' + localStorage.getItem('token')  
     },
     params: {
-      name: this.props.auth.username
+      name: username
     }
   })  
   .then((res) => {
@@ -53,5 +55,19 @@ export const testOrgs = () => {
   })
   .catch((err)=> {
     console.log('error getting org vineyard information: ', err);
+  })
+}
+
+export const retrieveAllData = () => {
+  console.log('meowwwwwwwwwwwwwwwwwwww')
+  axios.get('/api/data/all', {
+    headers: {
+      'Authorization': 'JWT ' + localStorage.getItem('token')  
+    }
+  })
+  .then((res) => {
+    console.log('this is hopefully the response from the server will all the data!: ', res);
+  }).catch((err) => {
+    console.log(err);
   })
 }
