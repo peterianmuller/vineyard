@@ -69,8 +69,8 @@ export default class Home extends React.Component {
         <SplashCard />
 
         <div style={styles.stackedCardContainer}>
-          <HomeCard title='Notes' stacked children={this.props.notesView.notes.slice(0,9)}/>
-          <HomeCard title='Data' stacked children={dataz}/>
+          <HomeCard title='Recent notes' stacked children={this.props.notesView.notes.slice(0,9)}/>
+          <HomeCard title='Recent data points' stacked children={dataz}/>
         </div>
 
       </div>

@@ -78,7 +78,7 @@ export default class FormPage extends React.Component {
 
         <div className='photoContainer'
           onClick={this.clickFileChooser.bind(this)}
-          style={ { height: '40%' } }
+          style={ { height: '46%' } }
         >
           <Loadable
             spinner
