@@ -11,7 +11,7 @@ import NoteFormInput from '../../../client/src/components/NoteFormInput';
 
 describe('Components', () => {
   
-  describe('<NameBirthdateInput />', () => {
+  describe('NameBirthdateInput', () => {
     it('should render 4 Form.Input', () => {
       const wrapper = 
         shallow(<NameBirthdateInput setItem={ () => {} } signup={ {
@@ -103,7 +103,7 @@ describe('Components', () => {
   
   });
 
-  describe('<NoteFormInput />', () => {
+  describe('NoteFormInput', () => {
 
     it('should render 1 input element', () => {
       const wrapper = mount(<NoteFormInput title='Note Title' field='title'/>);      
@@ -119,7 +119,7 @@ describe('Components', () => {
   
   });
 
-  describe('<Form />', () => {
+  describe('Form', () => {
     
     it('should render 2 instances of <NoteFormInput>', () => {
       const wrapper = shallow(<NoteForm note={{

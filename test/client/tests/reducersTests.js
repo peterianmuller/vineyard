@@ -114,7 +114,7 @@ describe('Reducers', () => {
     });
   });
 
-  describe('noteFormReducer', () => {
+  describe('NoteForm Reducer', () => {
     var defaults;
 
     before(() => {

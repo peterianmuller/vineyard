@@ -14,7 +14,7 @@ import OrgSignup from '../../../client/src/containers/OrgSignup';
 
 describe('Containers', () => {
 
-  describe('<App />', () => {
+  describe('App', () => {
     it('should have a children and store props', () => {
       console.log('hello there tho');
       const wrapper = mount(
@@ -41,7 +41,7 @@ describe('Containers', () => {
 
   });
 
-  describe('<Login />', () => {
+  describe('Login', () => {
     it('should have two forms', () => {
       const wrapper = shallow(<Login login={ { username: '', password: '' } } />);
 
@@ -61,7 +61,7 @@ describe('Containers', () => {
     });
   });
   
-  describe('<OrgSignup>', () => {
+  describe('OrgSignup', () => {
     it('should have labels for: Organization name, Phone number, country, street, city, state, and Zip Code', () => {
       const wrapper = shallow(<OrgSignup orgSignup={ {
         city:"",
@@ -104,7 +104,7 @@ describe('Containers', () => {
 
   });
 
-  describe('<Signup />', () => {
+  describe('Signup', () => {
     it('should have five input forms', () => {
       const wrapper = shallow(<Signup signup={ {
         account_restrictions: "",
