@@ -166,7 +166,7 @@ export default class MapView extends React.Component {
           </FeatureGroup>
 
           {
-            this.props.notesView.map((note, key) => (
+            this.props.notesView.notes.map((note, key) => (
               <Marker position={[note.latitude, note.longitude]} key={key} icon={this.createNoteIcon()}> 
                 <Popup>
                   <span>{note.title}</span>
