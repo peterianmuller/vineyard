@@ -63,7 +63,7 @@ export default {
     display: 'flex',
     justifyContent: 'center', 
     width: '100%',
-    height: '75%',
+    height: '77%',
     flex: 1
   },
   

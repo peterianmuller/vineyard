@@ -27,9 +27,15 @@ export function getNotes() {
   });
 }
 
+export function setLoading() {
+  return {
+    type: 'GET_NOTES'
+  };
+}
+
 export function setNotes(data) {
   return {
-    type: "GET_NOTES",
+    type: "SET_NOTES",
     value: data
   };
 }

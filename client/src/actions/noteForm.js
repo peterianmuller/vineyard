@@ -78,20 +78,20 @@ export function appendNoteFormItem(item, value) {
  * @param {boolean} noteCheck - Checks note format?
  * @description Initializes a post request to Weather API based on note's latitude and longitude.
  */
-export function postNote(note) {
+export function postNote(note, weather) {
   
   return dispatch => axios.post('/api/note', {
     title: note.title,
     text: note.textArea,
     date_time: note.date,
-    latitude: note.lat,
-    longitude: note.lon,
+    latitude: weather.lat,
+    longitude: weather.lon,
     image_url: note.uploadedImgUrl,
     note_author_id: note.username
   }, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
   .then(() => {
     dispatch(clearNoteFields());
-    browserHistory.push('/home');
+    browserHistory.push('/notesView');
 
     })
   .catch((err) => {
