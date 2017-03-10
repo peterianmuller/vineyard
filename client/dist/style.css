@@ -143,6 +143,11 @@ body {
   height: auto !important;
 }
 
+i.sticky.note.large.icon {
+  padding: 5px;
+}
+
+
 .lineBlock {
   display: inline-block !important;
 }

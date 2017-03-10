@@ -44,7 +44,7 @@ export default class Home extends React.Component {
 
         <div style={styles.stackedCardContainer}>
           <HomeCard title='Notes' stacked children={this.props.notesView.slice(0,9)}/>
-          <HomeCard title='Data' stacked children={this.props.dataArray}/>
+          <HomeCard title='Data' stacked children={this.props.dataArray.slice(0,9)}/>
         </div>
 
       </div>

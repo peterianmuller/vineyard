@@ -2,13 +2,14 @@
 import React from 'react';
 
 //UI
-import { Divider, Image, List, Segment } from 'semantic-ui-react';
+import { Divider, Image, List, Segment, Icon } from 'semantic-ui-react';
 
 //styles
 import Radium from 'radium';
 import styles from '../styles/HomeStyles';
 
-let pusheen = 'http://25.media.tumblr.com/13bbe1de2ff21654eaae0cc29d514753/tumblr_mndyhaRTa11s2cbulo1_400.gif';
+// let pusheen = 'http://25.media.tumblr.com/13bbe1de2ff21654eaae0cc29d514753/tumblr_mndyhaRTa11s2cbulo1_400.gif';
+
 
 @Radium
 export default class HomeCard extends React.Component {
@@ -26,7 +27,13 @@ export default class HomeCard extends React.Component {
                 { 
                   this.props.children.map((item, key) => (
                     <List.Item key={key}>
-                      <Image avatar src={item.image_url ? item.image_url : pusheen} />
+
+                      { item.image_url ?
+                        <Image avatar src={item.image_url} /> :             
+                        <Icon name='sticky note large'/>
+                        
+                      }
+
                       <List.Content>
                         <List.Header> {item.title} </List.Header>
                         <List.Description>
@@ -49,7 +56,7 @@ export default class HomeCard extends React.Component {
                 {
                   this.props.children.map((item, key) => (
                     <List.Item key={key}>
-                      <Image avatar src={item.image_url ? item.image_url : pusheen} />
+                      <Icon name='sticky note large icon'/>
                       <List.Content>
                         <List.Header> {item.vineyard + ', row: '} {item.row} { 'block : ' + item.block + '.'} </List.Header>
                         <List.Description>
