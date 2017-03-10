@@ -3,21 +3,18 @@ import React from 'react';
 import { Link, browserHistory } from 'react-router';
 
 //UI
-import { Button, Form, Grid, Table, Icon, Label, Menu } from 'semantic-ui-react';
+import { Button, Divider, Table, Segment } from 'semantic-ui-react';
 import Loadable from 'react-loading-overlay';
 
 //Components
 import DataFormInput from './DataFormInput';
-//import Map from './Map';
 import TableRow from './TableRow';
 
 //Actions and Functions
-//import { setLatLong } from '../helpers/changeHandlers';
 import { postData, appendDataFormItem } from '../actions/dataForm';
 import { addRowToTable, postDataArray, clearDataFields } from '../actions/dataArray';
 
 export default class DataForm extends React.Component {
-
 /**
  * @function handleSubmit
  * @param {e} event
@@ -56,39 +53,45 @@ export default class DataForm extends React.Component {
 
   render(props) {
     return (
-      <div>
-        
-        <p>NaOH: 0.10</p>
-  
-   
-      <Table celled>
-      <Table.Header>
-        <Table.Row>
-          <Table.HeaderCell>Vineyard</Table.HeaderCell>
-          <Table.HeaderCell>Row</Table.HeaderCell>
-          <Table.HeaderCell>Block</Table.HeaderCell>
-          <Table.HeaderCell>Varietal</Table.HeaderCell>
-          <Table.HeaderCell>Clone</Table.HeaderCell>
-          <Table.HeaderCell>pH</Table.HeaderCell>
-          <Table.HeaderCell>brix</Table.HeaderCell>
-          <Table.HeaderCell>∆ NaOH(mL)</Table.HeaderCell>
-          <Table.HeaderCell>Titratable Acidity</Table.HeaderCell>
-        </Table.Row>
-      </Table.Header>
+      <Segment style={ { height: '88%' } }>
+        <h1>Enter laboratory data</h1>
+        Standardization: NaOH | 0.10
+        <Button 
+          style={ { marginBottom: '0.5em' } }
+          floated='right'
+          onClick={this.addRow.bind(this)}>Add Row</Button>
 
-      <Table.Body>
-        {this.props.dataArray.map((element, key) => (
-          <TableRow dataForm={element} key={key} akey={key} dispatch={this.props.dispatch} />
-        ))}
-      </Table.Body>
+        <div style={ { overflowY: 'scroll', height: '80%', width: '100%' } }>
+          <Table celled>
+            <Table.Header>
+              <Table.Row>
+                <Table.HeaderCell>Vineyard</Table.HeaderCell>
+                <Table.HeaderCell>Row</Table.HeaderCell>
+                <Table.HeaderCell>Block</Table.HeaderCell>
+                <Table.HeaderCell>Varietal</Table.HeaderCell>
+                <Table.HeaderCell>Clone</Table.HeaderCell>
+                <Table.HeaderCell>pH</Table.HeaderCell>
+                <Table.HeaderCell>brix</Table.HeaderCell>
+                <Table.HeaderCell>∆ NaOH(mL)</Table.HeaderCell>
+                <Table.HeaderCell>Titratable Acidity</Table.HeaderCell>
+              </Table.Row>
+            </Table.Header>
 
-    </Table>
+            <Table.Body>
+                {
+                  this.props.dataArray.map((element, key) => (
+                    <TableRow dataForm={element} key={key} akey={key} dispatch={this.props.dispatch} />)
+                  )
+                }
+            </Table.Body>
 
-    <Button onClick={this.handleSubmit.bind(this)}>Submit Data</Button>
-    <Button onClick={this.addRow.bind(this)}>Add Row</Button>
-    <Button onClick={this.clearData.bind(this)}>Clear Data</Button>
+          </Table>
+        </div>
 
-      </div>
+        <Button primary floated='right' onClick={this.handleSubmit.bind(this)}>Submit Data</Button>
+        <Button floated='right' onClick={this.clearData.bind(this)}>Clear Data</Button>
+
+      </Segment>
     );
   }
 }
