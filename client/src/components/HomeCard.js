@@ -30,7 +30,7 @@ export default class HomeCard extends React.Component {
 
                       { item.image_url ?
                         <Image avatar src={item.image_url} /> :             
-                        <Icon name='sticky note large icon'/>
+                        <Icon name='sticky note' size='large'/>
                         
                       }
 
@@ -60,7 +60,7 @@ export default class HomeCard extends React.Component {
                 {
                   this.props.children.map((item, key) => (
                     <List.Item key={key}>
-                      <Icon name='bar graph'/>
+                      <Icon name='bar graph' size='large'/>
                       <List.Content>
                         <List.Header> {item.vineyard + ', row: '} {item.row} { 'block : ' + item.block + '.'} </List.Header>
                         <List.Description>
