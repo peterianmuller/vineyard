@@ -12,18 +12,15 @@ export function addRoom(roomName, userId) {
     {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     }).then(room => {
-      console.log('we made it into add room', room);
       return dispatch(getRoomsRecentActivity(userId, room.data.id)) 
     })
 }
 
 export function getUsersInRoom(roomId) {
-  console.log("THIS IS THE ROOM ID", roomId);
   return dispatch => axios.get('/api/rooms/id/' + roomId + '/getUsers',
     {
       headers: {'Authorization': 'JWT ' + localStorage.getItem('token') }
     }).then(users => {
-      console.log('this is users resp data', users.data);
       dispatch(setUsersInRoom(users.data));
     });
 }
@@ -46,7 +43,6 @@ export function getRoomsRecentActivity(userId, roomId) {
       socket.emit('enter rooms', rooms.data);
 
       var roomToRetrieve = roomId ? roomId : rooms.data[0].id;
-      console.log('this is to retrieve room', roomToRetrieve, roomId)
 
       dispatch(setRoom(roomToRetrieve));
       dispatch(updateRooms(rooms.data));

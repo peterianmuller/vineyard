@@ -59,14 +59,10 @@ export function testOrgs(username) {
 }
 
 export const retrieveAllData = () => {
-  console.log('meowwwwwwwwwwwwwwwwwwww')
-  axios.get('/api/data/all', {
+  return dispatch => axios.get('/api/data/all', {
     headers: {
       'Authorization': 'JWT ' + localStorage.getItem('token')  
     }
-  })
-  .then((res) => {
-    console.log('this is hopefully the response from the server will all the data!: ', res);
   }).catch((err) => {
     console.log(err);
   })

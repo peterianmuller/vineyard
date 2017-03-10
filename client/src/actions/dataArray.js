@@ -47,15 +47,14 @@ export function postDataArray(data) {
   var dataToSend = data.map((experiment) => {
     return {row:experiment.row, date: experiment.date, results: {brix: experiment.brix, ph: experiment.pH, ta: experiment.titratable}};
   });
-  console.log('data sent to server', dataToSend);  
   
-  axios.post('/api/data', dataToSend, { headers: {'Authorization': 'JWT ' + localStorage.getItem('token') } })
-
-  .then((response) => {
-    console.log('response is', response);
-  }) 
-  .catch((err) => {
-    console.log(err);
-  })
+  return dispatch => axios.post('/api/data', 
+    dataToSend, { 
+      headers: {
+        'Authorization': 'JWT ' + localStorage.getItem('token') 
+      } 
+    }).catch((err) => {
+      console.log(err);
+    })
 };
 
