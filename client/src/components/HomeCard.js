@@ -64,7 +64,7 @@ export default class HomeCard extends React.Component {
                       <List.Content>
                         <List.Header> {item.vineyard + ', row: '} {item.row} { 'block : ' + item.block + '.'} </List.Header>
                         <List.Description>
-                         titratable is: {item.titratable}
+                         {item.method} is: {item.result}
                         </List.Description>
                       </List.Content>
                       <Divider />

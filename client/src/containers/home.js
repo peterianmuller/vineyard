@@ -38,19 +38,39 @@ export default class Home extends React.Component {
     this.props.dispatch(getNotes());   
   }
 
+ // var mockData = [
+ //  {date: 'Yesterday', row:'5', method: 'ph', block:'5', result: '3.02', vineyard:'Burn Cottage Vineyard'}, 
+ //  {date: 'Yesterday',row:'2', method: 'titratable acidity', result: '7.5', block:'2', vineyard:'Burn Cottage Vineyard'},
+ //  {date: 'Yesterday',row:'2', method: 'brix', result: '21', block:'2', vineyard:'Burn Cottage Vineyard'},
+ //  {date: 'March 9, 2017', row:'2', method: 'pH', result: '3.10', block:'5', vineyard:'Burn Cottage Vineyard'},
+ //  {date: 'March 9, 2017', row:'5', method: 'titratable acidity', result: '8.4', block:'5', vineyard:'Burn Cottage Vineyard'},
+ //  {date: 'March 9, 2017', row:'10', method: 'brix', result: '20.4', block:'2', vineyard:'Burn Cottage Vineyard'},
+ //  {date: 'March 7, 2017', row:'11', method: 'brix', result: '23.0', block:'3', vineyard:'Burn Cottage Vineyard'},
+ //  {date: 'March 7, 2017', row:'10', method: 'pH', result: '3.20', block:'3', vineyard:'Burn Cottage Vineyard'},
+ //  {date: 'March 7, 2017', row:'12', method: 'titratable acidity', result: '6.5', block:'3', vineyard:'Burn Cottage Vineyard'}
+ //  ];
  // dummy data for data array
- // !this.props.dataArray[0].block ? [{row:'5', block:'10', titratable: '3.4', vineyard:'Rosella'}, {row:'2', titratable: '5.4', block:'17', vineyard:'Gatos Locos'}] :
-
- //this.props.dataArray.slice(0,9)
 
   render() {
+  const dataz = [
+  {date: 'Yesterday', row:'5', method: 'ph', block:'5', result: '3.02', vineyard:'Burn Cottage Vineyard'}, 
+  {date: 'Yesterday',row:'2', method: 'titratable acidity', result: '7.5', block:'2', vineyard:'Burn Cottage Vineyard'},
+  {date: 'Yesterday',row:'2', method: 'brix', result: '21', block:'2', vineyard:'Burn Cottage Vineyard'},
+  {date: 'March 9, 2017', row:'2', method: 'pH', result: '3.10', block:'5', vineyard:'Burn Cottage Vineyard'},
+  {date: 'March 9, 2017', row:'5', method: 'titratable acidity', result: '8.4', block:'5', vineyard:'Burn Cottage Vineyard'},
+  {date: 'March 9, 2017', row:'10', method: 'brix', result: '20.4', block:'2', vineyard:'Burn Cottage Vineyard'},
+  {date: 'March 7, 2017', row:'11', method: 'brix', result: '23.0', block:'3', vineyard:'Burn Cottage Vineyard'},
+  {date: 'March 7, 2017', row:'10', method: 'pH', result: '3.20', block:'3', vineyard:'Burn Cottage Vineyard'},
+  {date: 'March 7, 2017', row:'12', method: 'titratable acidity', result: '6.5', block:'3', vineyard:'Burn Cottage Vineyard'}
+  ];
+
     return (
       <div style={styles.flexBox}>
         <SplashCard />
 
         <div style={styles.stackedCardContainer}>
           <HomeCard title='Notes' stacked children={this.props.notesView.notes.slice(0,9)}/>
-          <HomeCard title='Data' stacked children={this.props.dataArray}/>
+          <HomeCard title='Data' stacked children={dataz}/>
         </div>
 
       </div>
