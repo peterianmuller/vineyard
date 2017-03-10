@@ -22,7 +22,7 @@ export default class HomeCard extends React.Component {
 
         <div style={ styles.innerScroll }>
           { 
-            this.props.title==='Notes'? (
+            this.props.title === 'Recent notes'? (
               <List>
                 { 
                   this.props.children.map((item, key) => (
