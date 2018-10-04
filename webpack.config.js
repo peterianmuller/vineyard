@@ -1,10 +1,10 @@
 module.exports = [
   {
     entry: {
-      bundle: './client/src/index.js',
+      bundle: `${__dirname}/client/src/index.js`
     },
     output: {
-      path: './client/dist',
+      path: `${__dirname}/client/dist`,
       filename: '[name].js'
     },
     module: {
@@ -15,25 +15,24 @@ module.exports = [
           loader: 'babel-loader',
           query: {
             cacheDirectory: true,
-            plugins: [
-              'transform-decorators-legacy',
-            ],
+            plugins: ['transform-decorators-legacy']
           }
-        },
+        }
       ]
     },
     externals: {
-      'cheerio': 'window',
+      cheerio: 'window',
       'react/addons': 'react',
       'react/lib/ExecutionEnvironment': 'react',
-      'react/lib/ReactContext': 'react',
+      'react/lib/ReactContext': 'react'
     }
-  }, {
+  },
+  {
     entry: {
-      test: './test/client/index.js',
+      test: './test/client/index.js'
     },
     output: {
-      path: './client/dist',
+      path: `${__dirname}/client/dist`,
       filename: '[name].js'
     },
     module: {
@@ -44,18 +43,16 @@ module.exports = [
           loader: 'babel-loader',
           query: {
             cacheDirectory: true,
-            plugins: [
-              'transform-decorators-legacy',
-            ],
+            plugins: ['transform-decorators-legacy']
           }
-        },      
-      ],
+        }
+      ]
     },
     externals: {
-      'cheerio': 'window',
+      cheerio: 'window',
       'react/addons': 'react',
       'react/lib/ExecutionEnvironment': 'react',
-      'react/lib/ReactContext': 'react',
+      'react/lib/ReactContext': 'react'
     }
   }
-]
+];
